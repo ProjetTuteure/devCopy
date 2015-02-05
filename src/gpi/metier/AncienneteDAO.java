@@ -62,7 +62,7 @@ public class AncienneteDAO {
 							" JOIN fabricant fab on m.idFabricant=fab.idfabricant"+
 							" JOIN Facture f on m.idFacture=f.idFacture"+
 							" JOIN REVENDEUR r on f.idRevendeur=r.idRevendeur"+
-							" WHERE idSite=? AND idType=?;");
+							" WHERE s.idSite=? AND m.idType=?;");
 			prep.setInt(1, site.getIdSite());
 			prep.setInt(2, type.getIdType());
 			ResultSet resultat = prep.executeQuery();
@@ -99,7 +99,7 @@ public class AncienneteDAO {
 							" JOIN fabricant fab on m.idFabricant=fab.idfabricant"+
 							" JOIN Facture f on m.idFacture=f.idFacture"+
 							" JOIN REVENDEUR r on f.idRevendeur=r.idRevendeur"+
-							" WHERE idSite=?;");
+							" WHERE s.idSite=?;");
 			prep.setInt(1, site.getIdSite());
 			ResultSet resultat = prep.executeQuery();
 			while (resultat.next()) {
@@ -135,7 +135,7 @@ public class AncienneteDAO {
 							" JOIN fabricant fab on m.idFabricant=fab.idfabricant"+
 							" JOIN Facture f on m.idFacture=f.idFacture"+
 							" JOIN REVENDEUR r on f.idRevendeur=r.idRevendeur"+
-							" WHERE idType=?;");
+							" WHERE m.idType=?;");
 			prep.setInt(1, type.getIdType());
 			ResultSet resultat = prep.executeQuery();
 			while (resultat.next()) {
