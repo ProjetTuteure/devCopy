@@ -23,7 +23,10 @@ public class PingWindows implements Ping,Runnable {
 	@Override
 	public void run()
 	{
-		ping(materiel);
+		synchronized(this)
+		{
+			ping(materiel);	
+		}
 	}
 	
 	@Override
