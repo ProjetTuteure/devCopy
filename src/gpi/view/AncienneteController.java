@@ -71,6 +71,8 @@ public class AncienneteController implements Initializable {
 	@FXML
 	private TableColumn<Materiel, String> dernierUtilisateurMateriel;
 	
+	
+	
 	ObservableList<Materiel> listMateriel;
 	ObservableList<String> listSite;
 	List<Integer> listSiteId;
@@ -130,19 +132,30 @@ public class AncienneteController implements Initializable {
 			actionOnCombo(listTypeId,listSiteId);
 		});
 		
-		materielTable.setOnMouseClicked((event) -> {
+		/*materielTable.setOnMouseClicked(new EventHandler<MouseEvent>()){
+				@Override
+		        public void handle(MouseEvent event) {
+				 Materiel mat = materielTable.getSelectionModel().getSelectedItem();  
+					
+					if (mat != null){
+						MainApp.setCritere(mat);
+						MainApp.changerTab("DetailMachine");
+					}
+			 	}
+		});*/
+	}
 //		materielTable.addEventFilter(MouseEvent.MOUSE_CLICKED, 
 //                new Event(arg0)
-       
-			Materiel mat = materielTable.getSelectionModel().getSelectedItem();  
-			
-			if (mat != null){
-				MainApp.setCritere(mat);
-				MainApp.changerTab("DetailMachine");
-			}
-		});
-	}
-	
+     
+	@FXML 
+	public void handleMouseClick(MouseEvent arg0) {
+		Materiel mat = materielTable.getSelectionModel().getSelectedItem();  
+		
+		if (mat != null){
+			MainApp.setCritere(mat);
+			MainApp.changerTab("DetailMachine");
+		}
+ 	}
 	/**
 	 * Permet de gerer la restriction en fonction du combo box.
 	 * @param materiel la liste de materiel qui sera affichee dans la tableView en fonction
