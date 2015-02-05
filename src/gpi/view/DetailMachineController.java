@@ -339,11 +339,6 @@ public class DetailMachineController{
 	private ObservableList<String> donneesMaintenanceToList(Materiel materiel) {
 		ObservableList<String> list= FXCollections.observableArrayList();
 		ObservableList<Maintenance> listMaintenanceMateriel = FXCollections.observableArrayList();
-		for(EstMaintenu em : MainApp.donnee.getEstMaintenuData()){
-			if(em.getMaterielEstMaintenu().toString().equals(materiel.toString())){
-				listMaintenanceMateriel.add(em.getMaintenanceEstMaintenu());
-			}
-		}
 		int i=1;
 		for(Maintenance m : listMaintenanceMateriel){
 			list.add("\nMaintenance "+i+" : \n");
@@ -365,11 +360,6 @@ public class DetailMachineController{
 	private ObservableList<String> donneesUtilisateurToList(Materiel materiel) {
 		ObservableList<String> list= FXCollections.observableArrayList();
 		ObservableList<Utilisateur> listUtilisateurMateriel = FXCollections.observableArrayList();
-		for(Utilise u : MainApp.donnee.getUtiliseData()){
-			if(u.getMaterielUtilise().toString().equals(materiel.toString())){
-				listUtilisateurMateriel.add(u.getUtilisateurUtilise());
-			}
-		}
 		for(Utilisateur u : listUtilisateurMateriel){
 			list.add("\nUtilisateur "+String.valueOf(u.getIdUtilisateur())+" :\n");
 			list.add("Nom : "+u.getNomUtilisateur().getValueSafe()+"\n");
