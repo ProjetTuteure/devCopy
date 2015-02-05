@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.ParametreController">
+   <children>
+      <Label layoutX="34.0" layoutY="17.0" text="Paramètres" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+      <GridPane layoutX="47.0" layoutY="37.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="14.0" prefWidth="80.0" text="Dossier Drivers" />
+            <Label text="Gérer les fabricants" GridPane.rowIndex="7" />
+            <Label text="Gérer les factures" GridPane.rowIndex="6" />
+            <Label text="Gérer les logiciels" GridPane.rowIndex="8" />
+            <Label text="Gérer les maintenances" GridPane.rowIndex="11" />
+            <Label text="Gérer les matériels" GridPane.rowIndex="4" />
+            <Label text="Gérer les prestataires" GridPane.rowIndex="10" />
+            <Label text="Gérer les revendeurs" GridPane.rowIndex="9" />
+            <Label text="Gérer les sites" GridPane.rowIndex="3" />
+            <Label text="Gérer les types" GridPane.rowIndex="5" />
+            <Separator prefWidth="200.0" GridPane.rowIndex="2" />
+            <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label text="Gérer les composants" GridPane.rowIndex="12" />
+            <Label text="Gérer les composition mat/comp" GridPane.rowIndex="14" />
+            <Label prefHeight="17.0" prefWidth="252.0" text="URL de la Base de Donnée" GridPane.rowIndex="1" />
+            <Label text="Gérer les utilisateurs" GridPane.rowIndex="13" />
+            <Label text="Gérer les interventions" GridPane.rowIndex="15" />
+            <Label text="Gérer les utilisations" GridPane.rowIndex="16" />
+            <Label text="Gérer les opérations maintenance" GridPane.rowIndex="17" />
+            
+            <Button mnemonicParsing="false" onAction="#handleDriver" prefHeight="25.0" prefWidth="190.0" text="Changer chemin dossier driver..." GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handleBD" text="Changer l'URL de la BD..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Button mnemonicParsing="false" onAction="#handleaddSite" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#handlemodSite" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#handlesuppSite" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#handleaddMat" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#handlemodMat" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#handlesuppMat" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#handleaddType" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#handlemodType" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#handlesuppType" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#handleaddFact" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button mnemonicParsing="false" onAction="#handlemodFact" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Button mnemonicParsing="false" onAction="#handlesuppFact" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Button mnemonicParsing="false" onAction="#handleaddFabr" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" onAction="#handlemodFabr" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" onAction="#handlesuppFabr" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" onAction="#handleaddLog" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Button mnemonicParsing="false" onAction="#handlemodLog" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Button mnemonicParsing="false" onAction="#handlesuppLog" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <Button mnemonicParsing="false" onAction="#handleaddRev" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Button mnemonicParsing="false" onAction="#handlemodRev" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Button mnemonicParsing="false" onAction="#handlesuppRev" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Button mnemonicParsing="false" onAction="#handleaddPrest" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Button mnemonicParsing="false" onAction="#handlemodPrest" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Button mnemonicParsing="false" onAction="#handlesuppPrest" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <Button mnemonicParsing="false" onAction="#handleaddMaint" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Button mnemonicParsing="false" onAction="#handlemodMaint" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="11" />
+            <Button mnemonicParsing="false" onAction="#handlesuppMaint" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="11" />
+            <Button mnemonicParsing="false" onAction="#handleaddComposant" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <Button mnemonicParsing="false" onAction="#handlemodComposant" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="12" />
+            <Button mnemonicParsing="false" onAction="#handlesuppComposant" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="12" />
+            <Button mnemonicParsing="false" onAction="#handleaddUtilisateur" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <Button mnemonicParsing="false" onAction="#handlemodUtilisateur" text="Modifier..." GridPane.columnIndex="2" GridPane.rowIndex="13" />
+            <Button mnemonicParsing="false" onAction="#handlesuppUtilisateur" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="13" />
+            <Button mnemonicParsing="false" onAction="#handleaddCompose" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="14" /> 
+            <Button mnemonicParsing="false" onAction="#handlesuppCompose" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="14" />
+            <Button mnemonicParsing="false" onAction="#handleaddIntervention" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            <Button mnemonicParsing="false" onAction="#handlesuppIntervention" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="15" />
+            <Button mnemonicParsing="false" onAction="#handleaddUtilisation" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="16" />
+            <Button mnemonicParsing="false" onAction="#handlesuppUtilisation" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="16" />
+            <Button mnemonicParsing="false" onAction="#handleaddEstMaintenu" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="17" />
+            <Button mnemonicParsing="false" onAction="#handlesuppEstMaintenu" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="17" />
+          
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

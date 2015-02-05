@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="571.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.DetailMachineController">
+   <children>
+      <SplitPane dividerPositions="0.38137082601054484" orientation="VERTICAL" prefHeight="571.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="798.0">
+               <children>
+                  <ImageView fx:id="imageType" fitHeight="150.0" fitWidth="200.0" layoutX="37.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="textSiteNomMachine" layoutX="371.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Site -&gt; NomMachine" wrappingWidth="167.6708984375" />
+                  <Text fx:id="textCheminDossierDrivers" layoutX="371.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chemin Dossier Drivers" />
+                  <Circle fx:id="colorCircle" fill="#0f8a2a" layoutX="245.0" layoutY="43.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button layoutX="629.0" layoutY="118.0" mnemonicParsing="false" text="Imprimer Rapport(s)" />
+                  <Button layoutX="665.0" layoutY="82.0" mnemonicParsing="false" onAction="#goBack" text="Retour" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="798.0">
+               <children>
+                  <TabPane layoutX="255.0" layoutY="67.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="363.0" prefWidth="798.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                      <Tab text="Materiel">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableViewMateriel" fixedCellSize="0.0" prefHeight="320.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="numImmoMateriel" prefWidth="75.0" text="N° Immo" />
+                                        <TableColumn fx:id="nomMateriel" prefWidth="75.0" text="Nom" />
+                                          <TableColumn fx:id="typeMateriel" prefWidth="75.0" text="Type" />
+                                          <TableColumn fx:id="seMateriel" prefWidth="75.0" text="SE" />
+                                          <TableColumn fx:id="etatMateriel" prefWidth="75.0" text="Etat" />
+                                          <TableColumn fx:id="finGarantieMateriel" prefWidth="75.0" text="Fin garantie" />
+                                          <TableColumn fx:id="driversMateriel" prefWidth="75.0" text="Rep drivers" />
+                                          <TableColumn fx:id="siteMateriel" prefWidth="75.0" text="Site" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Facture">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableViewFacture" prefHeight="320.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="numFacture" prefWidth="75.0" text="Numero" />
+                                          <TableColumn fx:id="dateFacture" prefWidth="75.0" text="Date" />
+                                          <TableColumn fx:id="montantFacture" prefWidth="75.0" text="Montant" />
+                                          <TableColumn fx:id="fournisseurFacture" prefWidth="75.0" text="Fournisseur" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Fabricant">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableViewFabricant" prefHeight="320.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="numSerieFabricant" prefWidth="75.0" text="N° de serie" />
+                                        <TableColumn fx:id="nomFabricant" prefWidth="75.0" text="Nom" />
+                                          <TableColumn fx:id="telFabricant" prefWidth="75.0" text="Telephone" />
+                                          <TableColumn fx:id="adresseFabricant" prefWidth="75.0" text="Adresse" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Revendeur">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableViewRevendeur" prefHeight="320.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="nomRevendeur" prefWidth="75.0" text="Nom" />
+                                        <TableColumn fx:id="telRevendeur" prefWidth="75.0" text="Telephone" />
+                                          <TableColumn fx:id="adresseRevendeur" prefWidth="75.0" text="Adresse" />
+                                          <TableColumn fx:id="numFactureRevendeur" prefWidth="75.0" text="N° Facture" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Maintenances">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableViewMaintenances" prefHeight="320.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="numMaintenance" prefWidth="92.0" text="N°" />
+                                        <TableColumn fx:id="dateMaintenance" prefWidth="91.0" text="Date" />
+                                          <TableColumn fx:id="objetMaintenance" prefWidth="100.0" text="Objet" />
+                                          <TableColumn fx:id="coutMaintenance" prefWidth="92.0" text="Cout" />
+                                          <TableColumn fx:id="descriptionMaintenance" prefWidth="422.0" text="Description" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Utilisateurs">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView prefHeight="320.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="Nom" />
+                                        <TableColumn prefWidth="75.0" text="Prenom" />
+                                          <TableColumn prefWidth="75.0" text="Telephone" />
+                                          <TableColumn prefWidth="75.0" text="Debut d'utilisation" />
+                                          <TableColumn prefWidth="75.0" text="Fin d'utilisation" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Logiciels">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableViewLogiciels" prefHeight="320.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="nomLogiciel" prefWidth="75.0" text="Nom" />
+                                          <TableColumn fx:id="versionLogiciel" prefWidth="75.0" text="Version" />
+                                          <TableColumn fx:id="finGarantieLogiciel" prefWidth="75.0" text="Fin de garantie" />
+                                          <TableColumn fx:id="numFactureLogiciel" prefWidth="75.0" text="N° Facture" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Composants">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableViewComposants" prefHeight="320.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="nomComposant" prefWidth="75.0" text="Nom" />
+                                        <TableColumn fx:id="caracteristiqueComposant" prefWidth="75.0" text="Caractéristique" />
+                                          <TableColumn fx:id="fabricantComposant" prefWidth="75.0" text="Fabricant" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

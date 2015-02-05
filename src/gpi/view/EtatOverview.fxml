@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.EtatController">
+   <children>
+      <BorderPane layoutX="157.0" layoutY="65.0" prefHeight="571.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <right>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </right>
+         <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </left>
+         <bottom>
+            <AnchorPane prefHeight="110.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="634.0" layoutY="40.0" mnemonicParsing="false" text="Imprimer" AnchorPane.rightAnchor="100.0" />
+               </children>
+            </AnchorPane>
+         </bottom>
+         <top>
+            <AnchorPane prefHeight="110.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutX="211.0" layoutY="45.0" spacing="50.0">
+                     <children>
+                        <CheckBox fx:id="checkBoxEnService" layoutX="132.0" layoutY="45.0" mnemonicParsing="false" selected="true" text="En marche" />
+                        <CheckBox fx:id="checkBoxEnReparation" layoutX="246.0" layoutY="34.0" mnemonicParsing="false" selected="true" text="En panne" />
+                        <CheckBox fx:id="checkBoxHorsService" layoutX="360.0" layoutY="45.0" mnemonicParsing="false" selected="true" text="Hors service" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <TableView fx:id="materielTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="nomMateriel" prefWidth="127.0" text="Nom" />
+                <TableColumn fx:id="etatMateriel" prefWidth="135.0" text="Etat" />
+                  <TableColumn fx:id="siteMateriel" prefWidth="108.0" text="Site" />
+                  <TableColumn fx:id="etatDepuisDateMateriel" prefWidth="230.0" text="Dans l'etat depuis le" />
+              </columns>
+            </TableView>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

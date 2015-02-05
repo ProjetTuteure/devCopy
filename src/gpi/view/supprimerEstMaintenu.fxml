@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="140.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.SupprimerEstMaintenu">
+  <children>
+    <GridPane prefHeight="117.0" prefWidth="360.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <children>
+        <Label text="Matériel ayant eu une opération de maintenance a supprimer" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label text="Opération de maintenance sur le matériel  a supprimer" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboboxMateriel" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="comboboxMaintenance" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="361.0" minWidth="120.0" prefWidth="328.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="202.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+      <HBox id="HBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" minWidth="-1.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleOk" prefWidth="80.0" text="Supprimer" />
+            <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="80.0" text="Annuler" />
+         </children>
+      </HBox>
+  </children>
+</AnchorPane>

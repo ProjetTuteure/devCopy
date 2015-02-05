@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.TypeOverviewController">
+    <children>
+        <BorderPane layoutX="300.0" layoutY="200.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <ScrollPane fx:id="sp_type" maxHeight="374.0" prefHeight="374.0" prefViewportHeight="584.0" prefViewportWidth="800.0" prefWidth="800.0">
+               <BorderPane.margin>
+                  <Insets top="25.0" />
+               </BorderPane.margin>
+               <content>
+                  <GridPane fx:id="gp_type" prefWidth="796.0">
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </center>
+         <top>
+            <BorderPane prefHeight="64.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <left>
+                  <Label fx:id="nomVille" text="Ville" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="50.0" top="20.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </left>
+               <right>
+                  <Button fx:id="b_type" mnemonicParsing="false" text="Retour" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets right="50.0" top="20.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </right>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </BorderPane>
+         </top>
+        </BorderPane>
+    </children>
+</AnchorPane>

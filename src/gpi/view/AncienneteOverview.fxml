@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.AncienneteController">
+   <children>
+      <BorderPane layoutX="59.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <TableView fx:id="materielTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="nomMateriel" minWidth="0.0" prefWidth="100.0" text="Materiel" />
+                  <TableColumn fx:id="numSerieMateriel" prefWidth="75.0" text="N° de serie" />
+                <TableColumn fx:id="dateAchatMateriel" minWidth="0.0" prefWidth="100.0" text="Date Achat" />
+                  <TableColumn fx:id="etatMateriel" minWidth="0.0" prefWidth="100.0" text="Etat" />
+                  <TableColumn fx:id="finGarantieMateriel" minWidth="0.0" prefWidth="100.0" text="Fin Garantie" />
+                  <TableColumn fx:id="revendeurMateriel" minWidth="0.0" prefWidth="100.0" text="Revendeur" />
+                  <TableColumn fx:id="fabricantMateriel" prefWidth="75.0" text="Fabricant" />
+                  <TableColumn fx:id="dernierUtilisateurMateriel" prefWidth="75.0" text="Utilisateur" />
+                  <TableColumn fx:id="siteMateriel" prefWidth="75.0" text="Site" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </center>
+         <left>
+            <VBox prefHeight="200.0" prefWidth="25.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <VBox prefHeight="200.0" prefWidth="25.0" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <AnchorPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="boutonPrint" layoutX="619.0" layoutY="40.0" mnemonicParsing="false" text="Imprimer" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0" />
+               </children>
+            </AnchorPane>
+         </bottom>
+         <top>
+            <AnchorPane prefHeight="110.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutX="151.0" layoutY="40.0" spacing="100.0">
+                     <children>
+                        <ComboBox fx:id="comboboxTypeAncienneteOverview" layoutX="98.0" layoutY="22.0" prefHeight="30.0" prefWidth="203.0" promptText="Selectionner par type" />
+                        <ComboBox fx:id="comboboxSiteAncienneteOverview" layoutX="373.0" layoutY="22.0" prefHeight="31.0" prefWidth="196.0" promptText="Sélectionner par site" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
