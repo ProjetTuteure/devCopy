@@ -1,15 +1,14 @@
 package ping;
 
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class ChangerCouleurPastille implements Runnable{
-
-	@FXML
-	private Circle pastille;
-	
+public class ChangerCouleurPastille  implements Runnable{
 	private PingWindows pingWindows;
+	private Circle pastille;
 	
 	public ChangerCouleurPastille(Circle pastille,PingWindows pingWindows)
 	{
