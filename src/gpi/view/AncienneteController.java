@@ -4,6 +4,8 @@ package gpi.view;
 import gpi.MainApp;
 import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
+import gpi.metier.Anciennete;
+import gpi.metier.AncienneteDAO;
 import gpi.metier.Facture;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
@@ -39,6 +41,8 @@ import java.util.ResourceBundle;
 
 
 
+
+
 import utils.Popup;
 
 /**
@@ -51,29 +55,29 @@ public class AncienneteController implements Initializable {
 	@FXML
 	private ComboBox<String> comboboxTypeAncienneteOverview;
 	@FXML
-	private TableView<Materiel> materielTable;
+	private TableView<Anciennete> materielTable;
 	@FXML
-	private TableColumn<Materiel, String> nomMateriel;
+	private TableColumn<Anciennete, String> nomMateriel;
 	@FXML
-	private TableColumn<Materiel, String> dateAchatMateriel;
+	private TableColumn<Anciennete, String> dateAchatMateriel;
 	@FXML
-	private TableColumn<Materiel, String> etatMateriel;
+	private TableColumn<Anciennete, String> etatMateriel;
 	@FXML
-	private TableColumn<Materiel, String> finGarantieMateriel;
+	private TableColumn<Anciennete, String> finGarantieMateriel;
 	@FXML
-	private TableColumn<Materiel, String> revendeurMateriel;
+	private TableColumn<Anciennete, String> revendeurMateriel;
 	@FXML
-	private TableColumn<Materiel, String> fabricantMateriel;
+	private TableColumn<Anciennete, String> fabricantMateriel;
 	@FXML
-	private TableColumn<Materiel, String> siteMateriel;
+	private TableColumn<Anciennete, String> siteMateriel;
 	@FXML
-	private TableColumn<Materiel, String> numSerieMateriel;
+	private TableColumn<Anciennete, String> numSerieMateriel;
 	@FXML
-	private TableColumn<Materiel, String> dernierUtilisateurMateriel;
+	private TableColumn<Anciennete, String> dernierUtilisateurMateriel;
 	
 	
 	
-	ObservableList<Materiel> listMateriel;
+	ObservableList<Anciennete> listMateriel;
 	ObservableList<String> listSite;
 	List<Integer> listSiteId;
 	ObservableList<String> listType;
@@ -101,12 +105,7 @@ public class AncienneteController implements Initializable {
 		listTypeId=new ArrayList<Integer>();
 		
 		try {
-			List<Materiel> AllMateriel = null;// = materielDAO.recupererAllMateriel();
-			/*if (AllMateriel != null){
-				for(Materiel materiel : AllMateriel){
-					listMateriel.add(materiel);
-				}
-			}*/
+			List<Materiel> AllMateriel = null;
 			for(Site site : siteDAO.recupererAllSite()){
 				listSite.add(site.getNomSiteString());
 				listSiteId.add(site.getIdSite());
@@ -132,25 +131,20 @@ public class AncienneteController implements Initializable {
 			actionOnCombo(listTypeId,listSiteId);
 		});
 		
-		/*materielTable.setOnMouseClicked(new EventHandler<MouseEvent>()){
-				@Override
-		        public void handle(MouseEvent event) {
-				 Materiel mat = materielTable.getSelectionModel().getSelectedItem();  
-					
-					if (mat != null){
-						MainApp.setCritere(mat);
-						MainApp.changerTab("DetailMachine");
-					}
-			 	}
-		});*/
+		
 	}
-//		materielTable.addEventFilter(MouseEvent.MOUSE_CLICKED, 
-//                new Event(arg0)
+
      
 	@FXML 
 	public void handleMouseClick(MouseEvent arg0) {
-		Materiel mat = materielTable.getSelectionModel().getSelectedItem();  
-		
+		MaterielDAO materielDAO = new MaterielDAO();
+		int idMachine = Integer.parseInt(materielTable.getSelectionModel().getSelectedItem().getIdMateriel());  
+		Materiel mat=null;
+		try {
+			mat = materielDAO.recupererMaterielParId(idMachine);
+		} catch (ConnexionBDException e) {
+			new Popup(e.getMessage());
+		}
 		if (mat != null){
 			MainApp.setCritere(mat);
 			MainApp.changerTab("DetailMachine");
@@ -193,18 +187,18 @@ public class AncienneteController implements Initializable {
 	 * ajoute les materiels dans les colonnes de la tableView
 	 * @param materiel la liste des materiels que l'on ajoute.
 	 */
-	public void setItemsTableMateriel(ObservableList<Materiel> materiel){
+	public void setItemsTableMateriel(ObservableList<Anciennete> materiel){
 		UtiliseDAO utiliseDAO = new UtiliseDAO();
 		materielTable.setItems(materiel);
-		nomMateriel.setCellValueFactory(cellData -> cellData.getValue().getNomMateriel());
-		numSerieMateriel.setCellValueFactory(cellData -> cellData.getValue().getNumeroSerieMateriel());
-		dateAchatMateriel.setCellValueFactory(cellData -> cellData.getValue().getFactureMateriel().getDateFacStringProperty());
-		etatMateriel.setCellValueFactory(cellData -> cellData.getValue().getEtatMaterielStringProperty());
-		finGarantieMateriel.setCellValueFactory(cellData -> cellData.getValue().getDateExpirationGarantieMaterielStringProperty());
-		revendeurMateriel.setCellValueFactory(cellData -> cellData.getValue().getFactureMateriel().getRevendeurFacture().getNomRevendeur());
-		fabricantMateriel.setCellValueFactory(cellData -> cellData.getValue().getFabricantMateriel().getNomFabricant());
-		dernierUtilisateurMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(utiliseDAO.recupererNomDernierUtilisateurMachine(cellData.getValue().getIdMateriel().getValue())));
-		siteMateriel.setCellValueFactory(cellData -> cellData.getValue().getSiteMateriel().getNomSiteProperty());
+		nomMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomMateriel()));
+		numSerieMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumSerieMateriel()));
+		dateAchatMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDateAchatMateriel()));
+		etatMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEtatMateriel()));
+		finGarantieMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDateAchatMateriel()));
+		revendeurMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomRevendeur()));
+		fabricantMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomFabricant()));
+		dernierUtilisateurMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(utiliseDAO.recupererNomDernierUtilisateurMachine(Integer.parseInt(cellData.getValue().getIdMateriel()))));
+		siteMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomSite()));
 	}
 	
 	
@@ -226,21 +220,21 @@ public class AncienneteController implements Initializable {
 	 * @param selectedType le type de mat�riel � afficher
 	 */
 	public void addDonneeRestrictTableView(String selectedSite, String selectedType){
-		ObservableList<Materiel> restrictedMateriel = FXCollections.observableArrayList();
-		MaterielDAO materielDAO = new MaterielDAO();
+		ObservableList<Anciennete> restrictedMateriel = FXCollections.observableArrayList();
+		AncienneteDAO ancienneteDAO = new AncienneteDAO();
 		try{
 			if(!selectedSite.equals("Tous") && !selectedType.equals("Tous")){
-				for(Materiel materiel : materielDAO.recupererMaterielParSiteEtType(new Site(Integer.parseInt(selectedSite), null, null), new Type(Integer.parseInt(selectedType),null,null)))
-					restrictedMateriel.add(materiel);
+				for(Anciennete  anciennete : ancienneteDAO.recupererAncienneteParSiteEtType(new Site(Integer.parseInt(selectedSite), null, null), new Type(Integer.parseInt(selectedType),null,null)))
+					restrictedMateriel.add(anciennete);
 			}else if(!selectedSite.equals("Tous")){
-				for(Materiel materiel : materielDAO.recupererMaterielParSite(new Site(Integer.parseInt(selectedSite), null, null)))
-					restrictedMateriel.add(materiel);
+				for(Anciennete anciennete : ancienneteDAO.recupererAncienneteParSite(new Site(Integer.parseInt(selectedSite), null, null)))
+					restrictedMateriel.add(anciennete);
 			}else if(!selectedType.equals("Tous")){
-				for(Materiel materiel : materielDAO.recupererMaterielParType(new Type(Integer.parseInt(selectedType),null,null)))
-					restrictedMateriel.add(materiel);
+				for(Anciennete anciennete : ancienneteDAO.recupererAncienneteParType(new Type(Integer.parseInt(selectedType),null,null)))
+					restrictedMateriel.add(anciennete);
 			}else{
-				for(Materiel materiel : materielDAO.recupererAllMateriel())
-					restrictedMateriel.add(materiel);
+				for(Anciennete anciennete  : ancienneteDAO.recupererAnciennete())
+					restrictedMateriel.add(anciennete);
 			}
 		}catch(ConnexionBDException e){
 			new Popup(e.getMessage());
