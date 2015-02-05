@@ -80,7 +80,11 @@ public class ModifierFacture {
 			int idFacture=listIdFacture.get(factureCombobox.getSelectionModel().getSelectedIndex());
 			try {
 				if(indexRevendeur==-1){
-					revendeur=factureDAO.recupererFactureParId(idFacture).getRevendeurFacture();
+					if(numRevendeurCombobox.getPromptText()==null){
+						revendeur=null;
+					}else{
+						revendeur=factureDAO.recupererFactureParId(idFacture).getRevendeurFacture();
+					}					
 				}else{
 					revendeur=revendeurDAO.recupererRevendeurParId(listRevendeurId.get(indexRevendeur));
 				}
@@ -90,7 +94,7 @@ public class ModifierFacture {
 			int indexFacture = factureCombobox.getSelectionModel().getSelectedIndex();
 			try {
 				factureDAO.modifierFacture(new Facture(idFacture,numFactureField.getText(),dateFacturePicker.getValue(),Float.parseFloat(montantFactureField.getText()),revendeur));
-				new Popup("Facture "+numFactureField.getText()+" ajouté !");
+				new Popup("Facture "+numFactureField.getText()+" modifiée !");
 			}  catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
@@ -101,6 +105,10 @@ public class ModifierFacture {
 	}
 
 	private boolean controlerSaisies() {
+		if(factureCombobox.getValue()==null){
+			new Popup("Le champ \"date de facture\" doit être saisi");
+			return false;
+		}
 		if(numFactureField.getText().isEmpty()){
 			new Popup("Le champ \"Numéro de facture\" doit être saisi");
 			return false;
@@ -144,7 +152,11 @@ public class ModifierFacture {
 		numFactureField.setText(factureAModifie.getNumFacture());
 		dateFacturePicker.setValue(factureAModifie.getDateFacture());
 		montantFactureField.setText(factureAModifie.getMontantFactureStringProperty().getValue());
-		String nomRevendeur=factureAModifie.getRevendeurFacture().getNomRevendeur().getValue();
+		String nomRevendeur=null;
+		if(factureAModifie.getRevendeurFacture()!=null){
+			nomRevendeur=factureAModifie.getRevendeurFacture().getNomRevendeur().getValue();
+		}
+		 
 		listRevendeurId=new ArrayList<Integer>();
 		listRevendeurObservable = FXCollections.observableArrayList();
 		try {

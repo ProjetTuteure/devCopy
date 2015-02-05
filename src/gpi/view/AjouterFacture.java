@@ -51,7 +51,6 @@ public class AjouterFacture {
 				listRevendeurId.add(revendeur.getIdRevendeur().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			// TODO Auto-generated catch block
 			new Popup(e.getMessage());
 		}
 		numRevendeurCombobox.setItems(listRevendeurObservable);
@@ -87,9 +86,13 @@ public class AjouterFacture {
 			FactureDAO factureDAO = new FactureDAO();
 			RevendeurDAO revendeurDAO = new RevendeurDAO();
 			int index=numRevendeurCombobox.getSelectionModel().getSelectedIndex();
+			Revendeur revendeurFacture=null;
 			try {
-				factureDAO.ajouterFacture(new Facture(0,numFactureField.getText(),dateFacturePicker.getValue(),Float.parseFloat(montantFactureField.getText()),revendeurDAO.recupererRevendeurParId(listRevendeurId.get(index))));
-				new Popup("Facture "+numFactureField.getText()+" ajouté !");
+				if(index!=-1){
+					revendeurFacture=revendeurDAO.recupererRevendeurParId(listRevendeurId.get(index));
+				}
+				factureDAO.ajouterFacture(new Facture(0,numFactureField.getText(),dateFacturePicker.getValue(),Float.parseFloat(montantFactureField.getText()),revendeurFacture));
+				new Popup("Facture "+numFactureField.getText()+" ajoutée !");
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}

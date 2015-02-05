@@ -105,6 +105,11 @@ public class ModifierType {
 	}
 
 	private boolean controlerSaisies() {
+		if(comboboxTypeMod==null)
+		{
+			new Popup("Vous devez selectionner le type à modifier");
+			return false;
+		}
 		if(nomTypeField.getText().isEmpty())
 		{
 			new Popup("Le champ \"Nom du type\" doit être saisi");

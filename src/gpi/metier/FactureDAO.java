@@ -28,7 +28,11 @@ public class FactureDAO {
 			prep.setString(1, facture.getNumFacture());
 			prep.setString(2, facture.getDateFacture().toString());
 			prep.setFloat(3, facture.getMontantFacture().get());
-			prep.setInt(4, facture.getRevendeurFacture().getIdRevendeur().get());
+			if(facture.getRevendeurFacture()==null){
+				prep.setString(4, null);
+			}else{
+				prep.setInt(4, facture.getRevendeurFacture().getIdRevendeur().get());
+			}
 			
 			resultat=prep.executeUpdate();
 			return resultat;
@@ -56,7 +60,11 @@ public class FactureDAO {
 			prep.setString(1, facture.getNumFacture());
 			prep.setString(2, facture.getDateFacture().toString());
 			prep.setFloat(3, facture.getMontantFacture().get());
-			prep.setInt(4, facture.getRevendeurFacture().getIdRevendeur().getValue());
+			if(facture.getRevendeurFacture()==null){
+				prep.setString(4, null);
+			}else{
+				prep.setInt(4, facture.getRevendeurFacture().getIdRevendeur().getValue());
+			}
 			prep.setInt(5, facture.getIdFacture().getValue());
 			
 			resultat=prep.executeUpdate();

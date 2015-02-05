@@ -115,6 +115,10 @@ public class ModifierSite {
 	}
 
 	private boolean controlerSaisies() {
+		if(comboboxSiteMod.getValue()==null){
+			new Popup("Vous devez selectionner le site à modifier");
+			return false;
+		}
 		if(NameSiteField.getText().isEmpty()){
 			new Popup("Le champ \"Nom du site\" doit être saisi");
 			return false;
