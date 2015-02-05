@@ -24,7 +24,7 @@
          <center>
             <ScrollPane fx:id="sp_materiel" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <content>
-                  <GridPane fx:id="gp_materiel" gridLinesVisible="true">
+                  <GridPane fx:id="gp_materiel">
                   </GridPane>
                </content>
             </ScrollPane>

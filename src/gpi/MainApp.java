@@ -23,12 +23,12 @@ public class MainApp extends Application {
 	public static Donnee donnee;
 	private static Stage primaryStage;
 	private static TabPane rootLayout;
-	private Tab SiteOverview;
-	private Tab AncienneteOverview;
-	private Tab EtatOverview;
+	private static Tab SiteOverview;
+	private static Tab AncienneteOverview;
+	private static Tab EtatOverview;
 	private static Tab AvanceOverview;
-	private Tab ParametreOverview;
-
+	private static Tab ParametreOverview;
+	private AnchorPane login;
     //pour garder en memoire l'etat des onglet : utiliser ces variable :
 	private static List<Object> tab0;
     private static List<Object> tab1;
@@ -39,7 +39,7 @@ public class MainApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-        tab0 = new ArrayList<Object>();
+		tab0 = new ArrayList<Object>();
         tab1 = new ArrayList<Object>();
         tab2 = new ArrayList<Object>();
         tab3 = new ArrayList<Object>();
@@ -49,18 +49,37 @@ public class MainApp extends Application {
 		this.primaryStage.setWidth(805);
 		this.primaryStage.setHeight(605);
 		this.primaryStage.setResizable(false);
+		initLoginLayout();
+	}
+	
+	public static void launch(){
 		initRootLayout();
 		new Popup("connection à la base");
-		Thread threadSite = new Thread(new OngletLoader(this.rootLayout,this.SiteOverview,"Site"));
-		Thread threadAnciennete = new Thread(new OngletLoader(this.rootLayout,this.AncienneteOverview,"Anciennete"));
-		Thread threadEtat = new Thread(new OngletLoader(this.rootLayout,this.EtatOverview,"Etat"));
-		Thread threadAvance = new Thread(new OngletLoader(this.rootLayout,this.AvanceOverview,"Avance"));
-		Thread threadParametre = new Thread(new OngletLoader(this.rootLayout,this.ParametreOverview,"Parametre"));
+		Thread threadSite = new Thread(new OngletLoader(rootLayout,SiteOverview,"Site"));
+		Thread threadAnciennete = new Thread(new OngletLoader(rootLayout,AncienneteOverview,"Anciennete"));
+		Thread threadEtat = new Thread(new OngletLoader(rootLayout,EtatOverview,"Etat"));
+		Thread threadAvance = new Thread(new OngletLoader(rootLayout,AvanceOverview,"Avance"));
+		Thread threadParametre = new Thread(new OngletLoader(rootLayout,ParametreOverview,"Parametre"));
 		Platform.runLater(threadSite);
 		Platform.runLater(threadAnciennete);
 		Platform.runLater(threadEtat);
 		Platform.runLater(threadAvance);
 		Platform.runLater(threadParametre);
+	}
+	
+	public void initLoginLayout() {
+		try {
+			// Load root layout from fxml file.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class
+					.getResource("view/LoginLayout.fxml"));
+			login= (AnchorPane) loader.load();
+			Scene scene = new Scene(login);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void initTabOverview(Tab tab, String nom) {
@@ -83,7 +102,7 @@ public class MainApp extends Application {
 	/**
 	 * Initializes the root layout.
 	 */
-	public void initRootLayout() {
+	public static void initRootLayout() {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();

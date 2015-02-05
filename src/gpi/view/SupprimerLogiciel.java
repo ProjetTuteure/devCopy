@@ -83,6 +83,7 @@ public class SupprimerLogiciel {
 		int id=listLogicielId.get(selected);
 		try {
 			logicielDAO.supprimerLogiciel(new Logiciel(id,null,null,null,null));
+			new Popup("Logiciel "+listLogiciel.get(selected)+" supprimé !");
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
 		}

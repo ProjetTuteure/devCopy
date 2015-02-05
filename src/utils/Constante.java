@@ -25,4 +25,6 @@ public class Constante {
 	public static final int LONGUEUR_NOM_SITE=20;
 	public static final int LONGUEUR_NUM_FACTURE=30;
 	public static final int LONGUEUR_MONTANT_FACTURE=11;
+	public static final int LONGUEUR_NOM_LOGICIEL=40;
+	public static final int LONGUEUR_VERSION_LOGICIEL=20;
 }

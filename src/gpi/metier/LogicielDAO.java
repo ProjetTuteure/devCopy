@@ -25,7 +25,11 @@ public class LogicielDAO {
 			PreparedStatement prep = connexion.prepareStatement("INSERT INTO LOGICIEL(nomLogiciel,versionLogiciel,dateExpirationLogiciel,idFacture) VALUES (?,?,?,?);");
 			prep.setString(1, logiciel.getNomLogiciel());
 			prep.setString(2, logiciel.getVersionLogiciel());
-			prep.setString(3, logiciel.getDateExpirationLogiciel().toString());
+			if(logiciel.getDateExpirationLogiciel()==null){
+				prep.setString(3, null);
+			}else{
+				prep.setString(3, logiciel.getDateExpirationLogicielStringProperty().getValue());
+			}			
 			prep.setInt(4, logiciel.getFactureLogiciel().getIdFacture().getValue());
 			
 			resultat=prep.executeUpdate();
@@ -54,7 +58,11 @@ public class LogicielDAO {
 			PreparedStatement prep = connexion.prepareStatement("UPDATE LOGICIEL SET nomLogiciel=?, versionLogiciel=?, dateExpirationLogiciel=?, idFacture=? WHERE idLogiciel=? ;");
 			prep.setString(1, logiciel.getNomLogiciel());
 			prep.setString(2, logiciel.getVersionLogiciel());
-			prep.setString(3, logiciel.getDateExpirationLogiciel().toString());
+			if(logiciel.getDateExpirationLogiciel()==null){
+				prep.setString(3, null);
+			}else{
+				prep.setString(3, logiciel.getDateExpirationLogiciel().toString());
+			}
 			prep.setInt(4, logiciel.getFactureLogiciel().getIdFacture().getValue());
 			prep.setInt(5, logiciel.getIdLogiciel());
 			
@@ -156,7 +164,11 @@ public class LogicielDAO {
 				idLogiciel=resultat.getInt(1);
 				nomLogiciel=resultat.getString(2);
 				versionLogiciel=resultat.getString(3);
-				dateExpirationLogiciel=LocalDate.parse(resultat.getString(4));
+				if(resultat.getString(4)!=null){
+					dateExpirationLogiciel=LocalDate.parse(resultat.getString(4));
+				}else{
+					dateExpirationLogiciel=null;
+				}
 				idFacture=resultat.getInt(5);
 				logiciel=new Logiciel(idLogiciel,nomLogiciel,versionLogiciel,dateExpirationLogiciel,factureDAO.recupererFactureParId(idFacture));
 				listLogiciel.add(logiciel);
