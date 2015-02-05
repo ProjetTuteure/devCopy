@@ -8,9 +8,9 @@
    <children>
       <BorderPane layoutX="59.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <TableView fx:id="materielTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="materielTable" onMouseClicked="#handleMouseClick" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="nomMateriel" onMouseClicked="#handleMouseClick" minWidth="0.0" prefWidth="100.0" text="Materiel" />
+                <TableColumn fx:id="nomMateriel" minWidth="0.0" prefWidth="100.0" text="Materiel" />
                   <TableColumn fx:id="numSerieMateriel" prefWidth="75.0" text="N° de serie" />
                 <TableColumn fx:id="dateAchatMateriel" minWidth="0.0" prefWidth="100.0" text="Date Achat" />
                   <TableColumn fx:id="etatMateriel" minWidth="0.0" prefWidth="100.0" text="Etat" />
