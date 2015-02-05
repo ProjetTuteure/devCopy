@@ -5,18 +5,21 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.LoginController">
    <children>
-      <HBox layoutX="225.0" layoutY="268.0" spacing="10.0">
+      <HBox layoutX="389.0" layoutY="342.0" spacing="10.0">
          <children>
             <Button fx:id="ok" layoutX="188.0" layoutY="292.0" mnemonicParsing="false" onAction="#eventOk" text="Connexion" />
             <Button layoutX="289.0" layoutY="292.0" mnemonicParsing="false" text="Quitter" />
          </children>
       </HBox>
-      <Label layoutX="110.0" layoutY="170.0" text="Identifiant" />
-      <Label layoutX="110.0" layoutY="216.0" text="Mot de passe" />
-      <TextField layoutX="219.0" layoutY="165.0" />
-      <TextField layoutX="219.0" layoutY="211.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="274.0" layoutY="244.0" text="Identifiant" />
+      <Label layoutX="274.0" layoutY="290.0" text="Mot de passe" />
+      <TextField layoutX="383.0" layoutY="239.0" />
+      <TextField layoutX="383.0" layoutY="285.0" />
+      <ImageView fitHeight="229.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../sources/images/ADAM.png" />
+         </image></ImageView>
    </children>
 </AnchorPane>
