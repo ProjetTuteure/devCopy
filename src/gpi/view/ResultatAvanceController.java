@@ -35,7 +35,7 @@ public class ResultatAvanceController implements Initializable {
     private ListView<Materiel> listMateriel;
 
     /**
-     * Initialise les donnï¿½es
+     * Initialise les donnéees
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
