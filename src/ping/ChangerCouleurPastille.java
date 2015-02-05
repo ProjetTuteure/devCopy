@@ -7,9 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class ChangerCouleurPastille extends Task<Circle>{
+public class ChangerCouleurPastille extends Task<Void>{
 	private PingWindows pingWindows;
 	private Circle pastille;
+	private boolean resultatPing;
 	
 	public ChangerCouleurPastille(Circle pastille,PingWindows pingWindows)
 	{
@@ -17,28 +18,27 @@ public class ChangerCouleurPastille extends Task<Circle>{
 		this.pingWindows=pingWindows;
 	}
 	@Override
-	protected Circle call() throws Exception {
+	protected Void call() throws Exception {
 		synchronized(pingWindows){
+			pingWindows.notify();
 			pingWindows.wait();
-			if(pingWindows.getResultatPing()==true)
-			{
-				pastille.setFill(Color.GREEN);
-				System.out.println("coucouVert");
-			}
-			else
-			{
-				pastille.setFill(Color.ORANGE);
-				System.out.println("coucouOrange");
-			}
-			Platform.runLater(new Runnable(){
-
-				@Override
-				public void run() {
-					pastille.setVisible(true);
-				}
-			});
-			return this.pastille;
 		}
+		resultatPing=pingWindows.getResultatPing();
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				if(resultatPing==true)
+				{
+					pastille.setFill(Color.GREEN);
+				}
+				else
+				{
+					pastille.setFill(Color.ORANGE);
+				}
+				pastille.setVisible(true);
+			}
+		});
+		return null;
 	}
 }
 /*public class ChangerCouleurPastille  implements Runnable{

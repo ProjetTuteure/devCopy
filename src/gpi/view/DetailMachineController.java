@@ -272,7 +272,8 @@ public class DetailMachineController{
 		ChangerCouleurPastille pastille=new ChangerCouleurPastille(colorCircle,pingWindows);
 		Thread threadPing=new Thread(pingWindows);
 		threadPing.start();
-		new Thread(pastille).start();
+		Thread changerCouleur=new Thread(pastille);
+		changerCouleur.start();
 	}
 	
 	/**

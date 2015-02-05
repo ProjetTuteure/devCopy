@@ -150,6 +150,7 @@ public class TypeOverviewController {
 	 * Permet d'ajouter les types dans le gridPane
 	 * @param types la liste des types � ajouter dans le gridPane
 	 */
+
 	@FXML
 	public void ajouterTypeGridPane(ObservableList<Type> types) {
 		int nbType,largeurCellule;

@@ -5,6 +5,7 @@ import com.sun.javafx.tk.Toolkit.Task;
 
 
 
+
 import javafx.concurrent.*;
 import javafx.scene.paint.Color;
 import gpi.metier.Materiel;
@@ -23,9 +24,14 @@ public class PingWindows implements Ping,Runnable {
 	@Override
 	public void run()
 	{
-		synchronized(this)
-		{
-			ping(materiel);	
+		synchronized(this){
+		try {
+			this.wait();
+			ping(materiel);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 	}
 	
@@ -38,12 +44,12 @@ public class PingWindows implements Ping,Runnable {
 	        if(exitValue==0)
 	        {
 	        	this.resultatPing=true;
-	        	this.notifyAll();
+	        	this.notify();
 	        }
 	        else
 	        {
 	        	this.resultatPing=false;
-	        	this.notifyAll();
+	        	this.notify();
 	        }
 		} catch (Exception e) {
 			e.printStackTrace();
