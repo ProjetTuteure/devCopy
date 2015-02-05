@@ -11,29 +11,29 @@
     <GridPane prefHeight="169.0" prefWidth="301.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
         <Label prefHeight="17.0" prefWidth="101.0" text="Nom du logiciel" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <TextField fx:id="NomLogicielField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <TextField fx:id="nomLogicielField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></TextField>
             <Label prefHeight="17.0" prefWidth="130.0" text="Version du logiciel" GridPane.rowIndex="3" />
             <Label prefHeight="17.0" prefWidth="168.0" text="Date d'expiration du logiciel" GridPane.rowIndex="4" />
             <Label prefHeight="17.0" prefWidth="128.0" text="Logiciel à modifier" />
-            <ComboBox fx:id="ComboboxLogiciel" onAction="#handlechange" prefWidth="200.0" GridPane.columnIndex="1">
+            <ComboBox fx:id="comboboxLogiciel" onAction="#handlechange" prefWidth="200.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" />
                </GridPane.margin></ComboBox>
             <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Separator prefWidth="200.0" GridPane.rowIndex="1" />
-            <TextField fx:id="VersionLogicielField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="versionLogicielField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></TextField>
             <Label prefHeight="17.0" prefWidth="129.0" text="Facture du logiciel" GridPane.rowIndex="5" />
-            <ComboBox fx:id="ComboboxFacture" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <ComboBox fx:id="comboboxFacture" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></ComboBox>
-            <DatePicker fx:id="DateExpirationLogiciel" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <DatePicker fx:id="dateExpirationLogicielPicker" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></DatePicker>

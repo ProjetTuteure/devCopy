@@ -34,7 +34,6 @@ public class Logiciel {
     }
     
     public String getNomLogiciel() {
-    	System.out.println(nomLogiciel);
         return nomLogiciel;
     }
 
