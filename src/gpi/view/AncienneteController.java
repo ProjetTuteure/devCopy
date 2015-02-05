@@ -90,7 +90,6 @@ public class AncienneteController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
-		MaterielDAO materielDAO = new MaterielDAO();
 		SiteDAO siteDAO = new SiteDAO();
 		TypeDAO typeDAO = new TypeDAO();
 		listMateriel=FXCollections.observableArrayList();
@@ -100,12 +99,12 @@ public class AncienneteController implements Initializable {
 		listTypeId=new ArrayList<Integer>();
 		
 		try {
-			List<Materiel> AllMateriel = materielDAO.recupererAllMateriel();
-			if (AllMateriel != null){
+			List<Materiel> AllMateriel = null;// = materielDAO.recupererAllMateriel();
+			/*if (AllMateriel != null){
 				for(Materiel materiel : AllMateriel){
 					listMateriel.add(materiel);
 				}
-			}
+			}*/
 			for(Site site : siteDAO.recupererAllSite()){
 				listSite.add(site.getNomSiteString());
 				listSiteId.add(site.getIdSite());
@@ -124,11 +123,11 @@ public class AncienneteController implements Initializable {
 		comboboxTypeAncienneteOverview.setItems(listType);
 		
 		comboboxSiteAncienneteOverview.setOnAction((event) -> {
-			actionOnCombo(listMateriel);
+			actionOnCombo(listTypeId,listSiteId);
 		});
 		
 		comboboxTypeAncienneteOverview.setOnAction((event) -> {
-			actionOnCombo(listMateriel);
+			actionOnCombo(listTypeId,listSiteId);
 		});
 		
 		materielTable.setOnMouseClicked((event) -> {
@@ -149,19 +148,23 @@ public class AncienneteController implements Initializable {
 	 * @param materiel la liste de materiel qui sera affichee dans la tableView en fonction
 	 * des restrictions
 	 */
-	public void actionOnCombo(ObservableList<Materiel> listMateriel){
+	public void actionOnCombo(List<Integer> listTypeId,List<Integer> listSiteId){
 		String selectedSite="";
 		String selectedType="";
 		selectedSite = comboboxSiteAncienneteOverview.getSelectionModel().getSelectedItem();
 	    selectedType = comboboxTypeAncienneteOverview.getSelectionModel().getSelectedItem();
-		if(selectedSite==null){
+		if(selectedSite==null || selectedSite.equals("Tous")){
 			selectedSite="Tous";
+		}else{
+			selectedSite=listSiteId.get(comboboxSiteAncienneteOverview.getSelectionModel().getSelectedIndex())+"";
 		}
-		if(selectedType==null){
+		if(selectedType==null || selectedType.equals("Tous")){
 			selectedType="Tous";
+		}else{		
+			selectedType=listTypeId.get(comboboxTypeAncienneteOverview.getSelectionModel().getSelectedIndex())+"";
 		}
 	    if(selectedSite!=null || selectedType!=null){
-	    	addDonneeRestrictTableView(listMateriel,selectedSite,selectedType);
+	    	addDonneeRestrictTableView(selectedSite,selectedType);
 	    }
 	}
 	
@@ -209,27 +212,28 @@ public class AncienneteController implements Initializable {
 	 * @param selectedSite le site dans lequel sont les mat�riels
 	 * @param selectedType le type de mat�riel � afficher
 	 */
-	public void addDonneeRestrictTableView(ObservableList<Materiel> listMateriel,String selectedSite, String selectedType){
+	public void addDonneeRestrictTableView(String selectedSite, String selectedType){
 		ObservableList<Materiel> restrictedMateriel = FXCollections.observableArrayList();
-		boolean isOk;
-		System.out.println(selectedSite+" "+selectedType);
-		for(Materiel materiel : listMateriel){
-			isOk=true;
-			if(selectedSite!="Tous"){
-				if(!materiel.getSiteMateriel().getNomSiteString().equals(selectedSite)){
-					isOk=false;
-				}
+		MaterielDAO materielDAO = new MaterielDAO();
+		try{
+			if(!selectedSite.equals("Tous") && !selectedType.equals("Tous")){
+				for(Materiel materiel : materielDAO.recupererMaterielParSiteEtType(new Site(Integer.parseInt(selectedSite), null, null), new Type(Integer.parseInt(selectedType),null,null)))
+					restrictedMateriel.add(materiel);
+			}else if(!selectedSite.equals("Tous")){
+				for(Materiel materiel : materielDAO.recupererMaterielParSite(new Site(Integer.parseInt(selectedSite), null, null)))
+					restrictedMateriel.add(materiel);
+			}else if(!selectedType.equals("Tous")){
+				for(Materiel materiel : materielDAO.recupererMaterielParType(new Type(Integer.parseInt(selectedType),null,null)))
+					restrictedMateriel.add(materiel);
+			}else{
+				for(Materiel materiel : materielDAO.recupererAllMateriel())
+					restrictedMateriel.add(materiel);
 			}
-			if(selectedType!="Tous"){
-				if(!materiel.getTypeMateriel().getNomTypeString().equals(selectedType)){
-					isOk=false;
-				}
-			}
-			if(isOk){
-				restrictedMateriel.add(materiel);
-			}
-			setItemsTableMateriel(restrictedMateriel);
+		}catch(ConnexionBDException e){
+			new Popup(e.getMessage());
 		}
+		setItemsTableMateriel(restrictedMateriel);
 	}
+
 	
 }

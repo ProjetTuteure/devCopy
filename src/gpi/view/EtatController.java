@@ -69,13 +69,13 @@ public class EtatController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		materielDAO = new MaterielDAO();
 		listMateriel = null;
-		try {
+		/*try {
 			listMateriel = this.materielDAO.recupererAllMateriel();
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
-		}
-		if (listMateriel != null){
-			final ObservableList<Materiel> materiel = FXCollections.observableArrayList(listMateriel);
+		}*/
+		//if (listMateriel != null){
+			final ObservableList<Materiel> materiel = null;//FXCollections.observableArrayList(listMateriel);
 			this.addDonneeTableView(materiel);
 			
 			checkBoxEnService.setOnAction((event) -> {
@@ -90,7 +90,7 @@ public class EtatController implements Initializable{
 			checkBoxHorsService.setOnAction((event) -> {
 				actionOnCheckBox(materiel);
 			});
-		}
+		//}
 		materielTable.setOnMouseClicked((event) -> {
 			Materiel materiel_clicked = materielTable.getSelectionModel().getSelectedItem();
 			if( materiel_clicked != null){
@@ -108,7 +108,7 @@ public class EtatController implements Initializable{
 		boolean checkEnService=checkBoxEnService.selectedProperty().getValue();
 		boolean checkEnReparation=checkBoxEnReparation.selectedProperty().getValue();
 		boolean checkHorsService=checkBoxHorsService.selectedProperty().getValue();
-		addDonneeRestrictTableView(materiel,checkEnService,checkEnReparation,checkHorsService);
+		addDonneeRestrictTableView(checkEnService,checkEnReparation,checkHorsService);
 	}
 	
 	/**
@@ -118,21 +118,28 @@ public class EtatController implements Initializable{
 	 * @param checkEnReparation est vrai si la checkBox enReparation est coch�e faux sinon
 	 * @param checkHorsService est vrai si la checkBox horsService est coch�e faux sinon
 	 */
-	private void addDonneeRestrictTableView(ObservableList<Materiel> materiel,boolean checkEnService, boolean checkEnReparation,boolean checkHorsService) {
+	private void addDonneeRestrictTableView(boolean checkEnService, boolean checkEnReparation,boolean checkHorsService) {
 		ObservableList<Materiel> restrictedMateriel = FXCollections.observableArrayList();
-		
-		boolean isOk;
-		for(Materiel m : materiel){
-			isOk=false;
-			if(m.getEtatMateriel()==Etat.EN_MARCHE && checkEnService){
-				isOk=true;
-			}else if(m.getEtatMateriel()==Etat.EN_PANNE && checkEnReparation){
-				isOk=true;
-			}else if(m.getEtatMateriel()==Etat.HS && checkHorsService){
-				isOk=true;
+		MaterielDAO materielDAO = new MaterielDAO();
+		List<Etat> etats=new ArrayList<Etat>();
+		if(!checkEnService && !checkEnReparation && !checkHorsService){
+			restrictedMateriel=null;
+		}else{
+			if(checkEnService){
+				etats.add(Etat.EN_MARCHE);
 			}
-			if(isOk){
-				restrictedMateriel.add(m);
+			if(checkEnReparation){
+				etats.add(Etat.EN_PANNE);
+			}
+			if(checkHorsService){
+				etats.add(Etat.HS);
+			}
+			try {
+				for(Materiel materiel : materielDAO.recupererMaterielParEtat(etats)){
+					restrictedMateriel.add(materiel);
+				}
+			} catch (ConnexionBDException e) {
+				new Popup(e.getMessage());
 			}
 		}
 		addDonneeTableView(restrictedMateriel);

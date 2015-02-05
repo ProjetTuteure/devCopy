@@ -27,9 +27,9 @@
                <children>
                   <HBox layoutX="211.0" layoutY="45.0" spacing="50.0">
                      <children>
-                        <CheckBox fx:id="checkBoxEnService" layoutX="132.0" layoutY="45.0" mnemonicParsing="false" selected="true" text="En marche" />
-                        <CheckBox fx:id="checkBoxEnReparation" layoutX="246.0" layoutY="34.0" mnemonicParsing="false" selected="true" text="En panne" />
-                        <CheckBox fx:id="checkBoxHorsService" layoutX="360.0" layoutY="45.0" mnemonicParsing="false" selected="true" text="Hors service" />
+                        <CheckBox fx:id="checkBoxEnService" layoutX="132.0" layoutY="45.0" mnemonicParsing="false" text="En marche" />
+                        <CheckBox fx:id="checkBoxEnReparation" layoutX="246.0" layoutY="34.0" mnemonicParsing="false" text="En panne" />
+                        <CheckBox fx:id="checkBoxHorsService" layoutX="360.0" layoutY="45.0" mnemonicParsing="false" text="Hors service" />
                      </children>
                   </HBox>
                </children>
