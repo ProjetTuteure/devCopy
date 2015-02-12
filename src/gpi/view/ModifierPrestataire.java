@@ -1,8 +1,6 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
-import gpi.metier.Composant;
 import gpi.metier.Prestataire;
 import gpi.metier.PrestataireDAO;
 import javafx.collections.FXCollections;
@@ -111,7 +109,7 @@ public class ModifierPrestataire {
 			return false;
 		} 
 		if (nomPrestataireField.getText().length()>Constante.LONGUEUR_NOM_PRESTATAIRE){
-			new Popup("Le nom du composant doit etre inférieur à "
+			new Popup("Le nom du prestataire doit etre inférieur à "
 					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractères");
 			return false;
 		} 

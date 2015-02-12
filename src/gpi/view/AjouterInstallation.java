@@ -1,9 +1,5 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
-import gpi.metier.Composant;
-import gpi.metier.Materiel;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -20,13 +16,11 @@ public class AjouterInstallation {
 	@FXML
 	private boolean okClicked = false;
 	@FXML
-	private ComboBox<String> comboboxnom;
+	private ComboBox<String> comboboxlog;
 	@FXML
 	private ComboBox<String> comboboxcarac;
 	@FXML
 	private ComboBox<String> comboboxmat;
-
-	private Donnee donnee = new Donnee();
 
 	private ObservableList<String> list1;
 	private ObservableList<String> list2;
@@ -37,12 +31,6 @@ public class AjouterInstallation {
 	 */
 	@FXML
 	private void initialize() {
-		list1 = FXCollections.observableArrayList();
-
-		for (Composant c : donnee.getComposantData()) {
-			list1.add(c.getNomComposant());
-		}
-		comboboxnom.setItems(list1);
 	}
 
 	/**
@@ -87,20 +75,6 @@ public class AjouterInstallation {
 
 	@FXML
 	private void handleChange() {
-		Composant selected = donnee.getComposant(comboboxnom.getValue());
-		list2 = FXCollections.observableArrayList();
 
-		for (Composant c : donnee.getComposantData()) {
-			if (c.getNomComposant().equals(selected.getNomComposant())) {
-				list2.add(selected.getcaracteristiqueComposant());
-			}
-		}
-		comboboxcarac.setItems(list2);
-
-		list3 = FXCollections.observableArrayList();
-		for (Materiel m : donnee.getMaterielData()) {
-			list3.add(m.getNumImmobMateriel().getValue());
-		}
-		comboboxmat.setItems(list3);
 	}
 }

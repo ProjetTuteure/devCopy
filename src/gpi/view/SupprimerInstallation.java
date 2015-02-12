@@ -20,13 +20,9 @@ public class SupprimerInstallation {
 	@FXML
 	private boolean okClicked = false;
 	@FXML
-	private ComboBox<String> comboboxnom;
-	@FXML
-	private ComboBox<String> comboboxcarac;
+	private ComboBox<String> comboboxlog;
 	@FXML
 	private ComboBox<String> comboboxmat;
-
-	private Donnee donnee = new Donnee();
 
 	private ObservableList<String> list1;
 	private ObservableList<String> list2;
@@ -37,12 +33,7 @@ public class SupprimerInstallation {
 	 */
 	@FXML
 	private void initialize() {
-		list1 = FXCollections.observableArrayList();
 
-		for (Composant c : donnee.getComposantData()) {
-			list1.add(c.getNomComposant());
-		}
-		comboboxnom.setItems(list1);
 	}
 
 	/**
@@ -87,20 +78,6 @@ public class SupprimerInstallation {
 
 	@FXML
 	private void handleChange() {
-		Composant selected = donnee.getComposant(comboboxnom.getValue());
-		list2 = FXCollections.observableArrayList();
-
-		for (Composant c : donnee.getComposantData()) {
-			if (c.getNomComposant().equals(selected.getNomComposant())) {
-				list2.add(selected.getcaracteristiqueComposant());
-			}
-		}
-		comboboxcarac.setItems(list2);
-
-		list3 = FXCollections.observableArrayList();
-		for (Materiel m : donnee.getMaterielData()) {
-			list3.add(m.getNumImmobMateriel().getValue());
-		}
-		comboboxmat.setItems(list3);
+	
 	}
 }
