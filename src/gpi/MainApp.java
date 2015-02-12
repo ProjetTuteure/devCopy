@@ -77,6 +77,8 @@ public class MainApp extends Application {
 			Scene scene = new Scene(login);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			LoginController controller = loader.getController();
+	        controller.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
