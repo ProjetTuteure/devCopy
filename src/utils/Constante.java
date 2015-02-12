@@ -27,4 +27,8 @@ public class Constante {
 	public static final int LONGUEUR_MONTANT_FACTURE=11;
 	public static final int LONGUEUR_NOM_LOGICIEL=40;
 	public static final int LONGUEUR_VERSION_LOGICIEL=20;
+	public static final int LONGUEUR_NUM_IMMO=20;
+	public static final int LONGUEUR_NUM_SERIE_MAT=50;
+	public static final int LONGUEUR_MODELE_MAT=20;
+	public static final int LONGUEUR_NOM_MATERIEL=20;
 }
