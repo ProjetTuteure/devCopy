@@ -607,6 +607,35 @@ public class ParametreController implements Initializable {
 
 		}
 	}
+	
+	/**
+	 * Action lorsqu'un le bouton ajouter type est clique
+	 * 
+	 * @param event
+	 *            un evenement sur le bouton ajouter uitilisation
+	 */
+	@FXML
+	private void handleaddInstallation(ActionEvent event) {
+		EstMaintenu mt = new EstMaintenu(null, null);
+		boolean okClicked = MainApp.showAddInstallationDialog(mt);
+		if (okClicked) {
+
+		}
+	}
+
+	/**
+	 * Action lorsqu'un le bouton supprimer type est clique
+	 * 
+	 * @param event
+	 *            un evenement sur le bouton supprimer uitilisation
+	 */
+	@FXML
+	private void handlesuppInstallation(ActionEvent event) {
+		boolean okClicked = MainApp.showSuppInstallationDialog();
+		if (okClicked) {
+
+		}
+	}
 
 	/**
 	 * Action lorsqu'un le bouton modifier type est clique
