@@ -40,12 +40,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="comboboxobj" onAction="#handleChange1" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <ComboBox fx:id="comboboxObjetMaintenanceIntervention" onAction="#handleChange1" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <ComboBox fx:id="comboboxdate" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <ComboBox fx:id="comboboxDateMaintenanceIntervention" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                      </GridPane.margin>
@@ -97,12 +97,12 @@
               </rowConstraints>
                <children>
                   <Label disable="true" prefHeight="17.0" prefWidth="83.0" text="Prestataire :" />
-                  <ComboBox fx:id="comboboxnom" onAction="#handleChange2" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <ComboBox fx:id="comboboxNomPrestataireIntervention" onAction="#handleChange2" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <ComboBox fx:id="comboboxprenom" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <ComboBox fx:id="comboboxPrenomPrestataireIntervention" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                      </GridPane.margin>
@@ -152,7 +152,7 @@
               </rowConstraints>
                <children>
                   <Label disable="true" prefHeight="17.0" prefWidth="83.0" text="Facture :" />
-                  <ComboBox fx:id="comboboxnum" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <ComboBox fx:id="comboboxNumFactureIntervention" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="5.0" />
                      </GridPane.margin>

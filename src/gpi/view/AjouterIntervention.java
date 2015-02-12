@@ -1,9 +1,24 @@
 package gpi.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import utils.Constante;
+import utils.Popup;
 import gpi.bd.Donnee;
+import gpi.exception.ConnexionBDException;
+import gpi.metier.EstIntervenu;
+import gpi.metier.EstIntervenuDAO;
+import gpi.metier.EstMaintenu;
+import gpi.metier.EstMaintenuDAO;
 import gpi.metier.Facture;
+import gpi.metier.FactureDAO;
+import gpi.metier.Logiciel;
+import gpi.metier.LogicielDAO;
 import gpi.metier.Maintenance;
+import gpi.metier.MaintenanceDAO;
 import gpi.metier.Prestataire;
+import gpi.metier.PrestataireDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,51 +36,100 @@ public class AjouterIntervention {
 
 	@FXML
 	private boolean okClicked = false;
-	
-	@FXML
-	private ComboBox<String> comboboxnom;
-	@FXML
-	private ComboBox<String> comboboxprenom;
-	@FXML
-	private ComboBox<String> comboboxnum;
-	@FXML
-	private ComboBox<String> comboboxobj;
-	@FXML
-	private ComboBox<String> comboboxdate;
 
-	private Donnee donnee = new Donnee();
+	@FXML
+	private ComboBox<String> comboboxNomPrestataireIntervention;
+	@FXML
+	private ComboBox<String> comboboxPrenomPrestataireIntervention;
+	@FXML
+	private ComboBox<String> comboboxNumFactureIntervention;
+	@FXML
+	private ComboBox<String> comboboxObjetMaintenanceIntervention;
+	@FXML
+	private ComboBox<String> comboboxDateMaintenanceIntervention;
 
-	private ObservableList<String> listnom;
-	private ObservableList<String> listprenom;
-	private ObservableList<String> listnum;
-	private ObservableList<String> listobj;
-	private ObservableList<String> listdate;
+	private ObservableList<String> listNomPrestataireIntervention;
+	private ObservableList<String> listPrenomPrestataireIntervention;
+	private ObservableList<String> listNumFactureIntervention;
+	private ObservableList<String> listObjetMaintenanceIntervention;
+	private ObservableList<String> listDateMaintenanceIntervention;
+
+	private List<Integer> listIdPrestataireIntervention;
+	private List<Integer> listIdMaintenanceIntervention;
 
 	/**
 	 * Initialise les données
 	 */
 	@FXML
 	private void initialize() {
-		listobj= FXCollections.observableArrayList();
 
-		for (Maintenance m : donnee.getMaintenanceData()) {
-			listobj.add(m.getObjetMaintenance());
-		}
-		comboboxobj.setItems(listobj);
-		
-		listnom = FXCollections.observableArrayList();
+		listObjetMaintenanceIntervention = FXCollections.observableArrayList();
+		listIdMaintenanceIntervention = new ArrayList<Integer>();
 
-		for (Prestataire pr : donnee.getPrestataireData()) {
-			listnom.add(pr.getNomPrestataire().getValue());
+		MaintenanceDAO maintenanceDAO = new MaintenanceDAO();
+		try {
+			for (Maintenance maintenance : maintenanceDAO.recupererAllMaintenance()) {
+				listObjetMaintenanceIntervention.add(maintenance.getObjetMaintenance());
+				listIdMaintenanceIntervention.add(maintenance.getIdMaintenance().getValue());
+			}
+		} catch (ConnexionBDException e) {
+			new Popup(e.getMessage());
 		}
-		comboboxnom.setItems(listnom);
-		
-		listnum = FXCollections.observableArrayList();
+		comboboxObjetMaintenanceIntervention.setItems(listObjetMaintenanceIntervention);
 
-		for (Facture fa : donnee.getFactureData()) {
-			listnum.add(fa.getNumFacture());
+		listNomPrestataireIntervention = FXCollections.observableArrayList();
+		listIdPrestataireIntervention = new ArrayList<Integer>();
+		PrestataireDAO prestataireDAO = new PrestataireDAO();
+		try {
+			for (Prestataire prestataire : prestataireDAO.recupererAllPrestataire()) {
+				listNomPrestataireIntervention.add(prestataire.getNomPrestataire().getValue());
+				listIdPrestataireIntervention.add(prestataire.getIdPrestataire().getValue());
+			}
+		} catch (ConnexionBDException e) {
+			new Popup(e.getMessage());
 		}
-		comboboxnum.setItems(listnum);
+		comboboxNomPrestataireIntervention.setItems(listNomPrestataireIntervention);
+
+		listNumFactureIntervention = FXCollections.observableArrayList();
+		FactureDAO factureDAO = new FactureDAO();
+		try {
+			for (Facture fa : factureDAO.recupererAllFacture()) {
+				listNumFactureIntervention.add(fa.getNumFacture());
+			}
+		} catch (ConnexionBDException e) {
+			new Popup(e.getMessage());
+		}
+		comboboxNumFactureIntervention.setItems(listNumFactureIntervention);
+
+	}
+
+	private boolean controlerSaisies() {
+		if (comboboxObjetMaintenanceIntervention.getValue() == null) {
+			new Popup(
+					"Le champ \"objet maintenance de l'intervention\" doit être saisi");
+			return false;
+		}
+		if (comboboxDateMaintenanceIntervention.getValue() == null) {
+			new Popup(
+					"Le champ \"date maintenance de l'intervention\" doit être saisi");
+			return false;
+		}
+		if (comboboxNomPrestataireIntervention.getValue() == null) {
+			new Popup(
+					"Le champ \"nom du prestataire de l'intervention\" doit être saisi");
+			return false;
+		}
+		if (comboboxPrenomPrestataireIntervention.getValue() == null) {
+			new Popup(
+					"Le champ \"prenom du prestataire de l'intervention\" doit être saisi");
+			return false;
+		}
+		if (comboboxNumFactureIntervention.getValue() == null) {
+			new Popup(
+					"Le champ \"numero facture de l'intervention\" doit être saisi");
+			return false;
+		}
+		return false;
 	}
 
 	/**
@@ -93,10 +157,15 @@ public class AjouterIntervention {
 	 */
 	@FXML
 	private void handleOk() {
-
-		okClicked = true;
-		dialogStage.close();
-
+		if(controlerSaisies()){
+			MaintenanceDAO maintenanceDAO = new MaintenanceDAO();
+			PrestataireDAO prestataireDAO =new PrestataireDAO();
+			FactureDAO factureDAO = new FactureDAO();			
+			EstIntervenuDAO estIntervenuDAO=new EstIntervenuDAO();
+			new Popup("Pas ajouté !");
+			okClicked = true;
+			dialogStage.close();
+		}
 	}
 
 	/**
@@ -107,34 +176,51 @@ public class AjouterIntervention {
 	private void handleCancel() {
 		dialogStage.close();
 	}
-	
+
 	@FXML
 	private void handleChange1() {
-		Maintenance selected = donnee.getMaintenance(comboboxobj.getValue());
-		listdate = FXCollections.observableArrayList();
-
-		for (Maintenance pr : donnee.getMaintenanceData()) {
-			if (pr.getObjetMaintenance()
-					.equals(selected.getObjetMaintenance())) {
-				listdate.add(pr.getdateMaintenance().toString());
-			}
+		MaintenanceDAO maintenanceDAO = new MaintenanceDAO();
+		Maintenance selected = null;
+		try {
+			selected = maintenanceDAO.recupererMaintenanceParId(listIdMaintenanceIntervention.get(comboboxObjetMaintenanceIntervention.getSelectionModel().getSelectedIndex()));
+		} catch (ConnexionBDException e) {
+			new Popup(e.getMessage());
 		}
-		comboboxdate.setItems(listdate);
+		listDateMaintenanceIntervention = FXCollections.observableArrayList();
+
+		try {
+			for (Maintenance pr : maintenanceDAO.recupererAllMaintenance()) {
+				if (pr.getObjetMaintenance().equals(selected.getObjetMaintenance())) {
+					listDateMaintenanceIntervention.add(pr.getdateMaintenanceStringProperty().getValue());
+				}
+			}
+		} catch (ConnexionBDException e) {
+			new Popup(e.getMessage());
+		}
+		comboboxDateMaintenanceIntervention.setItems(listDateMaintenanceIntervention);
 	}
 
 	@FXML
 	private void handleChange2() {
-		Prestataire selected = donnee.getPrestaire(comboboxnom.getValue());
-		listprenom = FXCollections.observableArrayList();
-
-		for (Prestataire pr : donnee.getPrestataireData()) {
-			if (pr.getNomPrestataire().getValue()
-					.equals(selected.getNomPrestataire().getValue())) {
-				listprenom.add(pr.getPrenomPrestataire().getValue());
-			}
+		PrestataireDAO prestataireDAO = new PrestataireDAO();
+		Prestataire selected = null;
+		try {
+			selected = prestataireDAO.recupererPrestataireParId(listIdPrestataireIntervention.get(comboboxNomPrestataireIntervention.getSelectionModel().getSelectedIndex()));
+		} catch (ConnexionBDException e) {
+			new Popup(e.getMessage());
 		}
-		comboboxprenom.setItems(listprenom);
+		listPrenomPrestataireIntervention = FXCollections.observableArrayList();
+
+		try {
+			for (Prestataire pr : prestataireDAO.recupererAllPrestataire()) {
+				if (pr.getNomPrestataire().getValue().equals(selected.getNomPrestataire().getValue())) {
+					listPrenomPrestataireIntervention.add(pr.getPrenomPrestataire().getValue());
+				}
+			}
+		} catch (ConnexionBDException e) {
+			new Popup(e.getMessage());
+		}
+		comboboxPrenomPrestataireIntervention.setItems(listPrenomPrestataireIntervention);
 	}
-	
 
 }
