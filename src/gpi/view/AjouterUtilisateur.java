@@ -1,5 +1,6 @@
 package gpi.view;
 
+import utils.Constante;
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Utilisateur;
@@ -24,6 +25,8 @@ public class AjouterUtilisateur {
 	private TextField telField;
 	@FXML
 	private Stage dialogStage;
+
+	UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
 
 	@FXML
 	private boolean okClicked = false;
@@ -56,31 +59,48 @@ public class AjouterUtilisateur {
 	}
 
 	/**
+	 * Controle les saisies
+	 * 
+	 * @return vrai si les données saisies sont cohérentes, faux sinon
+	 */
+	public boolean controlerSaisies() {
+		if (nomField.getText().equals("")) {
+			new Popup("Le champ \"Nom de l'Utilisateur\" doit être saisi");
+			return false;
+		}
+		if (prenomField.getText().equals("")) {
+			new Popup("Le champ \"Prenom de l'Utilisateur\" doit être saisi");
+			return false;
+		}
+		if(telField.getText().length()>Constante.LONGUEUR_NUM_TELEPHONE){
+			new Popup("Le numéro de téléphone saisi doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton AJOUTER
 	 * est clique
 	 */
 	@FXML
 	private void handleOk() {
-		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
-		if (nomField.getText().equals("")) {
-			new Popup("Le champ \"Nom de l'Utilisateur\" doit être saisi");
-		} else if (prenomField.getText().equals("")) {
-			new Popup("Le champ \"Prenom de l'Utilisateur\" doit être saisi");
-		} else {
+		if (controlerSaisies() == true) {
+
+			Utilisateur utilisateurAAjouter = new Utilisateur(null,
+					getNomUtilisateur(), getPrenomUtilisateur(),
+					getTelUtilisateur());
 			setNomUtilisateur(nomField.getText());
 			setPrenomUtilisateur(prenomField.getText());
 			setTelUtilisateur(telField.getText());
 			try {
-				utilisateurDAO.ajouterUtilisateur(new Utilisateur(null,
-						getNomUtilisateur(), getPrenomUtilisateur(),
-						getTelUtilisateur()));
+				utilisateurDAO.ajouterUtilisateur(utilisateurAAjouter);
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
 		}
 		okClicked = true;
 		dialogStage.close();
-
 	}
 
 	/**
