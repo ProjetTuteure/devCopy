@@ -1,8 +1,8 @@
 package utils;
 
 /**
- * Classe regroupant des constantes pour gérer la longueur des chaînes saisies
- * ex : numéro de téléphone : la chaîne ne doit pas être de longueur supérieure à 10
+ * Classe regroupant des constantes pour gï¿½rer la longueur des chaï¿½nes saisies
+ * ex : numï¿½ro de tï¿½lï¿½phone : la chaï¿½ne ne doit pas ï¿½tre de longueur supï¿½rieure ï¿½ 10
  * @author Cedric
  *
  */
@@ -32,4 +32,5 @@ public class Constante {
 	public static final int LONGUEUR_NUM_SERIE_MAT=50;
 	public static final int LONGUEUR_MODELE_MAT=20;
 	public static final int LONGUEUR_NOM_MATERIEL=20;
+	public static final String CHEMIN_VNC_VIEWER="C:\\Users\\Cedric\\Documents\\GitHub\\devCopy\\VNC\\vncviewer.exe";
 }
