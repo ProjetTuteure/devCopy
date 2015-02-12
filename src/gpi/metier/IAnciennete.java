@@ -1,6 +1,6 @@
 package gpi.metier;
 
-public class Anciennete {
+public class IAnciennete {
 
 	private String idMateriel;
 	private String nomMateriel;
@@ -13,7 +13,7 @@ public class Anciennete {
 	private String nomUtilisateur;
 	private String nomSite;
 	
-	public Anciennete(String idMateriel,String nomMateriel,String numSerieMateriel, String dateAchatMateriel, String etatMateriel, String finGarantieMateriel, String nomRevendeur, String nomFabricant, String nomUtilisateur, String nomSite){
+	public IAnciennete(String idMateriel,String nomMateriel,String numSerieMateriel, String dateAchatMateriel, String etatMateriel, String finGarantieMateriel, String nomRevendeur, String nomFabricant, String nomUtilisateur, String nomSite){
 		this.idMateriel=idMateriel;
 		this.setNomMateriel(nomMateriel);
 		this.numSerieMateriel=numSerieMateriel;

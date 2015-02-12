@@ -1,0 +1,16 @@
+CREATE TRIGGER supprimerType on TYPE 
+INSTEAD OF DELETE
+AS BEGIN
+	declare @idType int;
+	DECLARE CursorType CURSOR FOR SELECT idType FROM DELETED
+	OPEN CursorType
+	FETCH CursorType INTO @idType
+	WHILE @@FETCH_STATUS=0
+	BEGIN
+		DELETE MATERIEL WHERE idType=@idType
+		DELETE TYPE WHERE idType=@idType
+		FETCH CursorType INTO @idType
+	END
+	CLOSE CursorType
+	DEALLOCATE CursorType
+END

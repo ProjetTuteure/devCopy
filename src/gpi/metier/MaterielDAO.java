@@ -418,47 +418,4 @@ public class MaterielDAO {
 		}
 		return listMateriel;		
 	}
-	
-	public List<Materiel> recupererMaterielParEtat(List<Etat> etats)
-			throws ConnexionBDException {
-		List<Materiel> listMateriel = new ArrayList<Materiel>();
-		String sql;
-		ResultSet resultat;
-		Materiel materiel = null;
-		try {
-			connexion = MaConnexion.getInstance().getConnexion();
-			sql="SELECT * FROM MATERIEL WHERE ";
-			for(Etat etat : etats){
-				sql+="etat='"+etat.name()+"' OR ";
-			}
-			sql+="1=2";
-			PreparedStatement preparedStatement = connexion.prepareStatement(sql);
-			resultat = preparedStatement.executeQuery();
-			TypeDAO typeDAO = new TypeDAO();
-			SiteDAO siteDAO = new SiteDAO();
-			while (resultat.next()) {
-				Type typeMateriel = typeDAO.recupererTypeParId(resultat.getInt("idType"));
-				LocalDate dateExpirationGarantieMateriel = LocalDate.parse(resultat.getString("dateExpirationGarantieMateriel"));
-				FactureDAO factureDAO = new FactureDAO();
-				Facture factureMateriel = factureDAO.recupererFactureParId(resultat.getInt("idFacture"));
-				Site siteMateriel = siteDAO.recupererSiteParId(resultat.getInt("idSite"));
-				FabricantDAO fabricantDAO = new FabricantDAO();
-				Fabricant fabricantMateriel = fabricantDAO.recupererFabricantParId(resultat.getInt("idFabricant"));
-				listMateriel.add(new Materiel(resultat.getInt("idMateriel"),resultat.getString("numImmobMateriel"),resultat.getString("numeroSerieMateriel"),resultat.getString("systemeExploitationMateriel"),resultat.getString("nomMateriel"), typeMateriel, Etat.valueOf(resultat.getString("etat")), dateExpirationGarantieMateriel, resultat.getString("repertoireDrivers"), factureMateriel, siteMateriel, fabricantMateriel, resultat.getString("modeleMateriel")));
-			}
-			return listMateriel;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (connexion != null){
-					connexion.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return listMateriel;
-	}
-
 }

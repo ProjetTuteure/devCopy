@@ -4,9 +4,9 @@ package gpi.view;
 import gpi.MainApp;
 import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
-import gpi.metier.Anciennete;
-import gpi.metier.AncienneteDAO;
+import gpi.metier.IAnciennete;
 import gpi.metier.Facture;
+import gpi.metier.IAncienneteDAO;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
 import gpi.metier.Revendeur;
@@ -43,6 +43,7 @@ import java.util.ResourceBundle;
 
 
 
+
 import utils.Popup;
 
 /**
@@ -55,29 +56,29 @@ public class AncienneteController implements Initializable {
 	@FXML
 	private ComboBox<String> comboboxTypeAncienneteOverview;
 	@FXML
-	private TableView<Anciennete> materielTable;
+	private TableView<IAnciennete> materielTable;
 	@FXML
-	private TableColumn<Anciennete, String> nomMateriel;
+	private TableColumn<IAnciennete, String> nomMateriel;
 	@FXML
-	private TableColumn<Anciennete, String> dateAchatMateriel;
+	private TableColumn<IAnciennete, String> dateAchatMateriel;
 	@FXML
-	private TableColumn<Anciennete, String> etatMateriel;
+	private TableColumn<IAnciennete, String> etatMateriel;
 	@FXML
-	private TableColumn<Anciennete, String> finGarantieMateriel;
+	private TableColumn<IAnciennete, String> finGarantieMateriel;
 	@FXML
-	private TableColumn<Anciennete, String> revendeurMateriel;
+	private TableColumn<IAnciennete, String> revendeurMateriel;
 	@FXML
-	private TableColumn<Anciennete, String> fabricantMateriel;
+	private TableColumn<IAnciennete, String> fabricantMateriel;
 	@FXML
-	private TableColumn<Anciennete, String> siteMateriel;
+	private TableColumn<IAnciennete, String> siteMateriel;
 	@FXML
-	private TableColumn<Anciennete, String> numSerieMateriel;
+	private TableColumn<IAnciennete, String> numSerieMateriel;
 	@FXML
-	private TableColumn<Anciennete, String> dernierUtilisateurMateriel;
+	private TableColumn<IAnciennete, String> dernierUtilisateurMateriel;
 	
 	
 	
-	ObservableList<Anciennete> listMateriel;
+	ObservableList<IAnciennete> listMateriel;
 	ObservableList<String> listSite;
 	List<Integer> listSiteId;
 	ObservableList<String> listType;
@@ -187,7 +188,7 @@ public class AncienneteController implements Initializable {
 	 * ajoute les materiels dans les colonnes de la tableView
 	 * @param materiel la liste des materiels que l'on ajoute.
 	 */
-	public void setItemsTableMateriel(ObservableList<Anciennete> materiel){
+	public void setItemsTableMateriel(ObservableList<IAnciennete> materiel){
 		UtiliseDAO utiliseDAO = new UtiliseDAO();
 		materielTable.setItems(materiel);
 		nomMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomMateriel()));
@@ -220,20 +221,20 @@ public class AncienneteController implements Initializable {
 	 * @param selectedType le type de mat�riel � afficher
 	 */
 	public void addDonneeRestrictTableView(String selectedSite, String selectedType){
-		ObservableList<Anciennete> restrictedMateriel = FXCollections.observableArrayList();
-		AncienneteDAO ancienneteDAO = new AncienneteDAO();
+		ObservableList<IAnciennete> restrictedMateriel = FXCollections.observableArrayList();
+		IAncienneteDAO ancienneteDAO = new IAncienneteDAO();
 		try{
 			if(!selectedSite.equals("Tous") && !selectedType.equals("Tous")){
-				for(Anciennete  anciennete : ancienneteDAO.recupererAncienneteParSiteEtType(new Site(Integer.parseInt(selectedSite), null, null), new Type(Integer.parseInt(selectedType),null,null)))
+				for(IAnciennete  anciennete : ancienneteDAO.recupererAncienneteParSiteEtType(new Site(Integer.parseInt(selectedSite), null, null), new Type(Integer.parseInt(selectedType),null,null)))
 					restrictedMateriel.add(anciennete);
 			}else if(!selectedSite.equals("Tous")){
-				for(Anciennete anciennete : ancienneteDAO.recupererAncienneteParSite(new Site(Integer.parseInt(selectedSite), null, null)))
+				for(IAnciennete anciennete : ancienneteDAO.recupererAncienneteParSite(new Site(Integer.parseInt(selectedSite), null, null)))
 					restrictedMateriel.add(anciennete);
 			}else if(!selectedType.equals("Tous")){
-				for(Anciennete anciennete : ancienneteDAO.recupererAncienneteParType(new Type(Integer.parseInt(selectedType),null,null)))
+				for(IAnciennete anciennete : ancienneteDAO.recupererAncienneteParType(new Type(Integer.parseInt(selectedType),null,null)))
 					restrictedMateriel.add(anciennete);
 			}else{
-				for(Anciennete anciennete  : ancienneteDAO.recupererAnciennete())
+				for(IAnciennete anciennete  : ancienneteDAO.recupererAnciennete())
 					restrictedMateriel.add(anciennete);
 			}
 		}catch(ConnexionBDException e){

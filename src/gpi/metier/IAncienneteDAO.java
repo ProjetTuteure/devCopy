@@ -12,13 +12,13 @@ import java.util.List;
 import javafx.beans.property.SimpleIntegerProperty;
 import utils.MaConnexion;
 
-public class AncienneteDAO {
+public class IAncienneteDAO {
 
-	public AncienneteDAO(){}
+	public IAncienneteDAO(){}
 	
-	public List<Anciennete> recupererAnciennete() throws ConnexionBDException {
+	public List<IAnciennete> recupererAnciennete() throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
-		List<Anciennete> listAnciennete = new ArrayList<Anciennete>();
+		List<IAnciennete> listAnciennete = new ArrayList<IAnciennete>();
 
 		try {
 			PreparedStatement prep = connexion.prepareStatement(
@@ -30,7 +30,7 @@ public class AncienneteDAO {
 							" JOIN REVENDEUR r on f.idRevendeur=r.idRevendeur");	
 			ResultSet resultat = prep.executeQuery();
 			while (resultat.next()) {
-				listAnciennete.add(new Anciennete(resultat.getString("idMateriel"),
+				listAnciennete.add(new IAnciennete(resultat.getString("idMateriel"),
 						resultat.getString("nomMateriel"),resultat.getString("numeroSerieMateriel"),
 						resultat.getString("dateFacture"),resultat.getString("etat"),
 						resultat.getString("dateExpirationGarantieMateriel"),resultat.getString("nomRevendeur"),
@@ -50,9 +50,9 @@ public class AncienneteDAO {
 		return listAnciennete;
 	}
 	
-	public List<Anciennete> recupererAncienneteParSiteEtType(Site site, Type type) throws ConnexionBDException {
+	public List<IAnciennete> recupererAncienneteParSiteEtType(Site site, Type type) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
-		List<Anciennete> listAnciennete = new ArrayList<Anciennete>();
+		List<IAnciennete> listAnciennete = new ArrayList<IAnciennete>();
 
 		try {
 			PreparedStatement prep = connexion.prepareStatement(
@@ -67,7 +67,7 @@ public class AncienneteDAO {
 			prep.setInt(2, type.getIdType());
 			ResultSet resultat = prep.executeQuery();
 			while (resultat.next()) {
-				listAnciennete.add(new Anciennete(resultat.getString("idMateriel"),
+				listAnciennete.add(new IAnciennete(resultat.getString("idMateriel"),
 						resultat.getString("nomMateriel"),resultat.getString("numeroSerieMateriel"),
 						resultat.getString("dateFacture"),resultat.getString("etat"),
 						resultat.getString("dateExpirationGarantieMateriel"),resultat.getString("nomRevendeur"),
@@ -87,9 +87,9 @@ public class AncienneteDAO {
 		return listAnciennete;
 	}
 	
-	public List<Anciennete> recupererAncienneteParSite(Site site) throws ConnexionBDException {
+	public List<IAnciennete> recupererAncienneteParSite(Site site) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
-		List<Anciennete> listAnciennete = new ArrayList<Anciennete>();
+		List<IAnciennete> listAnciennete = new ArrayList<IAnciennete>();
 
 		try {
 			PreparedStatement prep = connexion.prepareStatement(
@@ -103,7 +103,7 @@ public class AncienneteDAO {
 			prep.setInt(1, site.getIdSite());
 			ResultSet resultat = prep.executeQuery();
 			while (resultat.next()) {
-				listAnciennete.add(new Anciennete(resultat.getString("idMateriel"),
+				listAnciennete.add(new IAnciennete(resultat.getString("idMateriel"),
 						resultat.getString("nomMateriel"),resultat.getString("numeroSerieMateriel"),
 						resultat.getString("dateFacture"),resultat.getString("etat"),
 						resultat.getString("dateExpirationGarantieMateriel"),resultat.getString("nomRevendeur"),
@@ -123,9 +123,9 @@ public class AncienneteDAO {
 		return listAnciennete;
 	}
 	
-	public List<Anciennete> recupererAncienneteParType(Type type) throws ConnexionBDException {
+	public List<IAnciennete> recupererAncienneteParType(Type type) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
-		List<Anciennete> listAnciennete = new ArrayList<Anciennete>();
+		List<IAnciennete> listAnciennete = new ArrayList<IAnciennete>();
 
 		try {
 			PreparedStatement prep = connexion.prepareStatement(
@@ -139,7 +139,7 @@ public class AncienneteDAO {
 			prep.setInt(1, type.getIdType());
 			ResultSet resultat = prep.executeQuery();
 			while (resultat.next()) {
-				listAnciennete.add(new Anciennete(resultat.getString("idMateriel"),
+				listAnciennete.add(new IAnciennete(resultat.getString("idMateriel"),
 						resultat.getString("nomMateriel"),resultat.getString("numeroSerieMateriel"),
 						resultat.getString("dateFacture"),resultat.getString("etat"),
 						resultat.getString("dateExpirationGarantieMateriel"),resultat.getString("nomRevendeur"),
