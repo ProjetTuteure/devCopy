@@ -1,7 +1,5 @@
 package gpi.view;
 
-import java.sql.SQLException;
-
 import utils.Constante;
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
