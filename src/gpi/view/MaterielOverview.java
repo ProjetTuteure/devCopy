@@ -5,6 +5,8 @@ import gpi.MainApp;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
+import gpi.metier.PageMateriel;
+import gpi.metier.PageMaterielDAO;
 import gpi.metier.Site;
 import gpi.metier.Type;
 import javafx.collections.FXCollections;
@@ -44,18 +46,22 @@ public class MaterielOverview {
 	private Label materielVille;
 
 	@FXML
-	private ObservableList<Materiel> materiel;
+	private ObservableList<PageMateriel> materiel;
 
 	@FXML
 	private MainApp mainApp;
 	
 	private MaterielDAO materielDAO;
 	
+	private PageMaterielDAO pageMaterielDAO;
+	
+	private ObservableList<PageMateriel> listMaterielOverviewController;
+	
 	
 	public MaterielOverview()
 	{
-		this.materielDAO = new MaterielDAO();
-		this.materiel=FXCollections.observableArrayList();
+		this.pageMaterielDAO=new PageMaterielDAO();
+		this.materielDAO=new MaterielDAO();
 	}
 	
 	/**
@@ -68,13 +74,13 @@ public class MaterielOverview {
 		Type type;
 		type=(Type)MainApp.getCritere(1);
 		try {
-			this.materiel=FXCollections.observableArrayList(materielDAO.recupererMaterielParSiteEtType(site, type));
+			this.listMaterielOverviewController=FXCollections.observableArrayList(pageMaterielDAO.getAllMaterielByTypeAndSite(type, site));
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
 		}
 		this.setLabelMaterielVille(site.getNomSiteString()+" -> "+type.getNomType().getValue());
 		this.sp_materiel.setHbarPolicy(ScrollBarPolicy.NEVER);
-		this.ajouterMaterielGridPane(materiel);
+		this.ajouterMaterielGridPane(listMaterielOverviewController);
 		this.ajouterActionBouton(b_retour);
 	}
 	
@@ -109,21 +115,21 @@ public class MaterielOverview {
 	 * @param materiels la liste des types � ajouter dans le gridPane
 	 */
 	@FXML
-	public void ajouterMaterielGridPane(ObservableList<Materiel> materiels) {
-		int nbType,largeurCellule;
-		nbType=materiels.size();
+	public void ajouterMaterielGridPane(ObservableList<PageMateriel> materiels) {
+		int nbMateriel,largeurCellule;
+		nbMateriel=materiels.size();
 		largeurCellule=getLargeurCellule(materiels);
 		for(int i=0;i<getNbLigne(materiels);i++)
 		{
 			for(int j=0;j<4;j++)
 			{
-				if(i*4+j<nbType)
+				if(i*4+j<nbMateriel)
 				{
-					Materiel materiel=materiels.get(i*4+j);
+					PageMateriel materiel=materiels.get(i*4+j);
 					BorderPane bp=new BorderPane();
-					Label label=new Label(materiels.get(i*4+j).getNomMateriel().getValue());
+					Label label=new Label(materiels.get(i*4+j).getNomMateriel());
 					label.setFont(new Font("Arial",20));
-					ImageView image=new ImageView(materiels.get(i*4+j).getTypeMateriel().getCheminImageType().getValue());
+					ImageView image=new ImageView(materiels.get(i*4+j).getCheminImageMateriel());
 					image.setFitHeight(100);
 					image.setFitWidth(100);
 					BorderPane.setAlignment(label,Pos.CENTER);
@@ -137,7 +143,15 @@ public class MaterielOverview {
 					button.setOnMouseClicked(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
-							MainApp.setCritere(materiel);
+							try {
+								MainApp.setCritere(materielDAO.recupererMaterielParId(Integer.parseInt(materiel.getIdMateriel())));
+							} catch (NumberFormatException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (ConnexionBDException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							MainApp.changerTab("DetailMachine");
 						}
 					});
@@ -145,50 +159,6 @@ public class MaterielOverview {
 				}
 			}
 		}
-		/*int ligne=0;
-		int colonne=0; 
-		int hauteurCellule=150;
-		int largeurCellule=getLargeurCellule(materiels);
-		String cheminImage;
-		for(int i=0;i<this.getNbMateriel();i++)
-		{
-			Materiel materiel= materiels.get(i);
-			cheminImage=materiel.getTypeMateriel().getCheminImageType().getValue();
-			ImageView image=new ImageView();
-			image.setImage(new Image(cheminImage));
-			image.setFitHeight(100);
-			image.setFitWidth(100);
-			Label label=new Label();
-			label.setText(materiels.get(i).getNomMateriel().getValue());
-            label.setId(materiels.get(i).getNumImmobMateriel().getValue());
-			label.setFont(new Font("Arial",20));
-			BorderPane bp_type=new BorderPane();
-			bp_type.setCenter(image);
-			bp_type.setBottom(label);
-			BorderPane.setAlignment(label,Pos.CENTER);
-			bp_type.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-                    MainApp.setCritere(materiel);
-					MainApp.changerTab("DetailMachine");
-				}
-			});
-			if(i%4==0 && i!=0)
-			{
-				ligne=ligne+1;
-				colonne=0;
-			}
-			this.gp_materiel.add(bp_type, colonne, ligne);
-			colonne=colonne+1;
-		}
-		for(int i=0;i<4;i++)
-		{
-			gp_materiel.getColumnConstraints().add(new ColumnConstraints(largeurCellule));
-		}
-		for(int i=0;i<getNbLigne(materiels);i++)
-		{
-			gp_materiel.getRowConstraints().add(new RowConstraints(hauteurCellule));
-		}*/
 	}
 	
 	/**
@@ -196,7 +166,7 @@ public class MaterielOverview {
 	 * @param materiel la liste de type
 	 * @return la largeur de la cellule
 	 */
-	private int getLargeurCellule(ObservableList<Materiel> materiel)
+	private int getLargeurCellule(ObservableList<PageMateriel> materiel)
 	{
 		if(materiel.size()<9)
 		{
@@ -215,9 +185,9 @@ public class MaterielOverview {
 	 * au GridPane
 	 * @return le nombre de ligne n�cessaire pour pouvoir afficher tous les types
 	 */
-	private int getNbLigne(ObservableList<Materiel> materiel)
+	private int getNbLigne(ObservableList<PageMateriel> materiel)
 	{
-		if(this.materiel.size()%4!=0)
+		if(materiel.size()%4!=0)
 		{
 			return 1+materiel.size()/4;
 		}
