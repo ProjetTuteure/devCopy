@@ -1201,7 +1201,7 @@ public class MainApp extends Application {
 		}
 	}
 
-	public static boolean showAddInterventionDialog(estIntervenu inter) {
+	public static boolean showAddInterventionDialog(EstIntervenu inter) {
 		try {
 			FXMLLoader loader = new FXMLLoader(
 					MainApp.class.getResource("view/ajouterIntervention.fxml"));

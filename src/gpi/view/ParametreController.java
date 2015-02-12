@@ -529,7 +529,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handleaddIntervention(ActionEvent event) {
-		estIntervenu inter = new estIntervenu(null, null, null);
+		EstIntervenu inter = new EstIntervenu(null, null, null);
 		boolean okClicked = MainApp.showAddInterventionDialog(inter);
 		if (okClicked) {
 
