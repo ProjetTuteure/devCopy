@@ -11,6 +11,11 @@ public class PageMateriel {
 		this.cheminImageMateriel=cheminImageMateriel;
 	}
 	
+	public PageMateriel(String idMateriel,String nomMateriel){
+		this.idMateriel=idMateriel;
+		this.nomMateriel=nomMateriel;
+	}
+	
 	public String getIdMateriel() {
 		return idMateriel;
 	}

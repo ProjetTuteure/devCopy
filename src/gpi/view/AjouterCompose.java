@@ -10,6 +10,8 @@ import gpi.metier.Composant;
 import gpi.metier.ComposantDAO;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
+import gpi.metier.PageMateriel;
+import gpi.metier.PageMaterielDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -38,8 +40,10 @@ public class AjouterCompose {
 	
 	private ObservableList<String> listeNomComposant;
 	private List<Integer> listeIdComposant;
-	private ObservableList<String> list2;
-	private ObservableList<String> list3;
+	private ObservableList<String> listeCaracterisiqueComposant;
+	private List<Integer> listeIdCaracteristique;
+	private ObservableList<String> listeNomMateriel;
+	private List<String> listeIdMateriel;
 	
 
 	/**
@@ -50,6 +54,8 @@ public class AjouterCompose {
 		this.listeNomComposant = FXCollections.observableArrayList();
 		this.listeIdComposant = new ArrayList<Integer>();
 		this.composantDAO = new ComposantDAO();
+		this.listeIdCaracteristique = new ArrayList<Integer>();
+		this.listeIdMateriel = new ArrayList<String>();
 		try {
 			for (Composant c : composantDAO.recupererAllComposant()) {
 				listeNomComposant.add(c.getNomComposant());
@@ -109,30 +115,32 @@ public class AjouterCompose {
 		} catch (ConnexionBDException e2) {
 			new Popup(e2.getMessage());
 		}
-		MaterielDAO materielDAO = new MaterielDAO();
-		list2 = FXCollections.observableArrayList();
+		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
+		listeCaracterisiqueComposant = FXCollections.observableArrayList();
 
 		try {
 			for (Composant c : this.composantDAO.recupererAllComposant()) {
 				if (c.getNomComposant().equals(selected.getNomComposant())) {
-					list2.add(selected.getcaracteristiqueComposant());
+					listeCaracterisiqueComposant.add(selected.getcaracteristiqueComposant());
+					listeIdCaracteristique.add(c.getIdComposant());
 				}
 			}
 		} catch (ConnexionBDException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		comboboxcarac.setItems(list2);
+		comboboxcarac.setItems(listeCaracterisiqueComposant);
 
-		list3 = FXCollections.observableArrayList();
+		listeNomMateriel = FXCollections.observableArrayList();
 		try {
-			for (Materiel m : materielDAO.recupererAllMateriel()) {
-				list3.add(m.getNumImmobMateriel().getValue());
+			for (PageMateriel p :  pageMaterielDAO.getAllMateriel()) {
+				listeNomMateriel.add(p.getNomMateriel());
+				listeIdMateriel.add(p.getIdMateriel());
 			}
 		} catch (ConnexionBDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		comboboxmat.setItems(list3);
+		comboboxmat.setItems(listeNomMateriel);
 	}
 }
