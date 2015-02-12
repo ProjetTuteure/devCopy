@@ -9,6 +9,7 @@ import gpi.exception.ConnexionBDException;
 import gpi.metier.Composant;
 import gpi.metier.ComposantDAO;
 import gpi.metier.Materiel;
+import gpi.metier.MaterielDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -102,20 +103,36 @@ public class AjouterCompose {
 	
 	@FXML
 	private void handleChange() {
-		/*Composant selected = composantDAO.recupererComposantParId(listeIdComposant.get(listeNomComposant.indexOf(comboboxnom.getValue())));
+		Composant selected = null;
+		try {
+			selected = composantDAO.recupererComposantParId(listeIdComposant.get(listeNomComposant.indexOf(comboboxnom.getValue())));
+		} catch (ConnexionBDException e2) {
+			new Popup(e2.getMessage());
+		}
+		MaterielDAO materielDAO = new MaterielDAO();
 		list2 = FXCollections.observableArrayList();
 
-		for (Composant c :) {
-			if (c.getNomComposant().equals(selected.getNomComposant())) {
-				list2.add(selected.getcaracteristiqueComposant());
+		try {
+			for (Composant c : this.composantDAO.recupererAllComposant()) {
+				if (c.getNomComposant().equals(selected.getNomComposant())) {
+					list2.add(selected.getcaracteristiqueComposant());
+				}
 			}
+		} catch (ConnexionBDException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		comboboxcarac.setItems(list2);
 
 		list3 = FXCollections.observableArrayList();
-		for (Materiel m : donnee.getMaterielData()) {
-			list3.add(m.getNumImmobMateriel().getValue());
+		try {
+			for (Materiel m : materielDAO.recupererAllMateriel()) {
+				list3.add(m.getNumImmobMateriel().getValue());
+			}
+		} catch (ConnexionBDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		comboboxmat.setItems(list3);*/
+		comboboxmat.setItems(list3);
 	}
 }
