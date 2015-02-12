@@ -72,8 +72,23 @@ public class AjouterUtilisateur {
 			new Popup("Le champ \"Prenom de l'Utilisateur\" doit être saisi");
 			return false;
 		}
-		if(telField.getText().length()>Constante.LONGUEUR_NUM_TELEPHONE){
-			new Popup("Le numéro de téléphone saisi doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
+		if (telField.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
+			new Popup("Le numéro de téléphone saisi doit être inférieur à "
+					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
+			return false;
+		}
+		if (nomField.getText().length() > Constante.LONGUEUR_NOM_UTILISATEUR) {
+			new Popup(
+					"La longueur du nom de l'utilisateur doit être inférieur à "
+							+ Constante.LONGUEUR_NOM_UTILISATEUR
+							+ " caractères");
+			return false;
+		}
+		if (prenomField.getText().length() > Constante.LONGUEUR_NOM_UTILISATEUR) {
+			new Popup(
+					"La longueur du prénom de l'utilisateur doit être inférieur à "
+							+ Constante.LONGUEUR_NOM_UTILISATEUR
+							+ " caractères");
 			return false;
 		}
 		return true;
@@ -88,19 +103,19 @@ public class AjouterUtilisateur {
 		if (controlerSaisies() == true) {
 
 			Utilisateur utilisateurAAjouter = new Utilisateur(null,
-					getNomUtilisateur(), getPrenomUtilisateur(),
-					getTelUtilisateur());
-			setNomUtilisateur(nomField.getText());
-			setPrenomUtilisateur(prenomField.getText());
-			setTelUtilisateur(telField.getText());
+					nomField.getText(),prenomField.getText(),telField.getText());
 			try {
 				utilisateurDAO.ajouterUtilisateur(utilisateurAAjouter);
+				new Popup("Utilisateur "
+						+ utilisateurAAjouter.getNomUtilisateur().getValue()
+						+ " ajouté !");
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
+
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
 	}
 
 	/**

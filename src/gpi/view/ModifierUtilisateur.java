@@ -3,6 +3,7 @@ package gpi.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.Constante;
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Utilisateur;
@@ -78,6 +79,24 @@ public class ModifierUtilisateur {
 		this.dialogStage = dialogStage;
 	}
 
+	private boolean controlerSaisies() {
+		if (nomfield.getText().equals("")) {
+			new Popup("Le champ \"Nom du utilisateur\" doit être rempli");
+			return false;
+		}
+		if (prenomfield.getText().equals("")) {
+			new Popup("Le champ \"Prenom du utilisateur\" doit être rempli");
+			return false;
+		}
+		if (telfield.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
+			new Popup("Le numéro de téléphone saisi doit être inférieur à "
+					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
+			return false;
+		}
+
+		return true;
+	}
+
 	/**
 	 * Cette methode permet de savoir si le bouton MODIFIER est clique ou pas
 	 * 
@@ -93,12 +112,8 @@ public class ModifierUtilisateur {
 	 */
 	@FXML
 	private void handleOk() {
-		okClicked = true;
-		if (nomfield.getText().equals("")) {
-			new Popup("Le champ \"Nom du utilisateur\" doit être rempli");
-		} else if (prenomfield.getText().equals("")) {
-			new Popup("Le champ \"Prenom du utilisateur\" doit être rempli");
-		} else {
+		if (controlerSaisies() == true) {
+
 			int indexRevendeurSelectionne = comboboxprenom.getSelectionModel()
 					.getSelectedIndex();
 			Utilisateur utilisateur = listePrenom
@@ -108,6 +123,9 @@ public class ModifierUtilisateur {
 			utilisateur.setTelUtilisateur(telfield.getText());
 			try {
 				utilisateurDAO.modifierUtilisateur(utilisateur);
+				new Popup("Utilisateur "
+						+ utilisateur.getNomUtilisateur().getValue()
+						+ " modifié !");
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
