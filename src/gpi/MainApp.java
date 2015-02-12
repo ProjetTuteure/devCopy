@@ -47,14 +47,14 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Adam SAS");
 		this.primaryStage.setWidth(805);
-		this.primaryStage.setHeight(605);
+		this.primaryStage.setHeight(665);
 		this.primaryStage.setResizable(false);
 		initLoginLayout();
 	}
 	
 	public static void launch(){
 		initRootLayout();
-		new Popup("connection à la base");
+		new Popup("connection ï¿½ la base");
 		Thread threadSite = new Thread(new OngletLoader(rootLayout,SiteOverview,"Site"));
 		Thread threadAnciennete = new Thread(new OngletLoader(rootLayout,AncienneteOverview,"Anciennete"));
 		Thread threadEtat = new Thread(new OngletLoader(rootLayout,EtatOverview,"Etat"));
@@ -197,7 +197,6 @@ public class MainApp extends Application {
 
     /**
 	 * Returns the main stage.
-	 * 
 	 * @return
 	 */
 	public Stage getPrimaryStage() {
