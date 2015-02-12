@@ -10,7 +10,7 @@
       <HBox layoutX="389.0" layoutY="342.0" spacing="10.0">
          <children>
             <Button fx:id="ok" layoutX="188.0" layoutY="292.0" mnemonicParsing="false" onAction="#eventOk" text="Connexion" />
-            <Button layoutX="289.0" layoutY="292.0" mnemonicParsing="false" text="Quitter" />
+            <Button layoutX="289.0" layoutY="292.0" mnemonicParsing="false" onAction="#eventQuit" text="Quitter" />
          </children>
       </HBox>
       <Label layoutX="274.0" layoutY="244.0" text="Identifiant" />
