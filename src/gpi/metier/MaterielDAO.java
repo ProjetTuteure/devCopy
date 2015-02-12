@@ -25,7 +25,7 @@ public class MaterielDAO {
 	 * Permet d'ajouter un materiel dans la base de donnees
 	 * 
 	 * @param materiel
-	 *            le materiel à ajouter dans la base de donnees
+	 *            le materiel ï¿½ ajouter dans la base de donnees
 	 */
 	public int ajouterMateriel(Materiel materiel) throws ConnexionBDException {
 		int nombreLigneAffectee = 0;
@@ -76,7 +76,7 @@ public class MaterielDAO {
 	 * Permet de modifier un materiel
 	 * 
 	 * @param materiel
-	 *            le materiel à modifier
+	 *            le materiel ï¿½ modifier
 	 */
 	public void modifierMateriel(Materiel materiel) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();

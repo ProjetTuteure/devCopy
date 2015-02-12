@@ -1,14 +1,12 @@
 package gpi.metier;
 
-/**
- * Created by thibault on 22/11/14.
- */
-public class estIntervenu {
+
+public class EstIntervenu {
     private Facture factureEstIntervenu;
     private Maintenance maintenanceEstIntervenu;
     private Prestataire prestataireEstIntervenu;
 
-    public estIntervenu(Facture factureEstIntervenu, Maintenance maintenanceEstIntervenu, Prestataire prestataireEstIntervenu) {
+    public EstIntervenu(Facture factureEstIntervenu, Maintenance maintenanceEstIntervenu, Prestataire prestataireEstIntervenu) {
         this.factureEstIntervenu = factureEstIntervenu;
         this.maintenanceEstIntervenu = maintenanceEstIntervenu;
         this.prestataireEstIntervenu = prestataireEstIntervenu;

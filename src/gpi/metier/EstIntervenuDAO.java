@@ -10,19 +10,19 @@ import java.util.List;
 
 import utils.MaConnexion;
 
-public class estIntervenueDAO {
-	public estIntervenueDAO(){}
+public class EstIntervenuDAO {
+	public EstIntervenuDAO(){}
 
-	public int ajouterEstIntervenu(estIntervenu estIntervenu) throws ConnexionBDException {
+	public int ajouterEstIntervenu(EstIntervenu EstIntervenu) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		int resultat;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prep = connexion
 					.prepareStatement("INSERT INTO ESTINTERVENU(idFacture, idPrestataire, idMaintenance)  VALUES (?,?,?);");
-				prep.setInt(1,estIntervenu.getFactureEstIntervenu().getIdFacture().get());
-			prep.setInt(2, estIntervenu.getPrestataireEstIntervenu().getIdPrestataire().get());
-			prep.setInt(2, estIntervenu.getMaintenanceEstIntervenu().getIdMaintenance().get());
+				prep.setInt(1,EstIntervenu.getFactureEstIntervenu().getIdFacture().get());
+			prep.setInt(2, EstIntervenu.getPrestataireEstIntervenu().getIdPrestataire().get());
+			prep.setInt(2, EstIntervenu.getMaintenanceEstIntervenu().getIdMaintenance().get());
 			resultat = prep.executeUpdate();
 			return resultat;
 		} catch (SQLException e) {
@@ -39,16 +39,16 @@ public class estIntervenueDAO {
 		return 0;
 	}
 
-	public int supprimerUtlise(estIntervenu estIntervenu) throws ConnexionBDException {
+	public int supprimerUtlise(EstIntervenu EstIntervenu) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		int resultat;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prep = connexion
 					.prepareStatement("DELETE FROM ESTINTERVENU WHERE idFacture=? And idMaintenance=? AND idPrestataire;");
-			prep.setInt(1,estIntervenu.getFactureEstIntervenu().getIdFacture().getValue());
-			prep.setInt(2, estIntervenu.getMaintenanceEstIntervenu().getIdMaintenance().getValue());
-			prep.setInt(3, estIntervenu.getPrestataireEstIntervenu().getIdPrestataire().getValue());
+			prep.setInt(1,EstIntervenu.getFactureEstIntervenu().getIdFacture().getValue());
+			prep.setInt(2, EstIntervenu.getMaintenanceEstIntervenu().getIdMaintenance().getValue());
+			prep.setInt(3, EstIntervenu.getPrestataireEstIntervenu().getIdPrestataire().getValue());
 			resultat = prep.executeUpdate();
 			return resultat;
 		} catch (SQLException e) {
