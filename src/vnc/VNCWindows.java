@@ -17,7 +17,7 @@ public class VNCWindows implements VNC{
 	@Override
 	public void lancerVNC(String IPDestination, String password) throws IOException {
 		Runtime runtime = Runtime.getRuntime();
-		String[] args = {Constante.CHEMIN_VNC_VIEWER,"192.168.137.123"};
+		String[] args = {Constante.CHEMIN_VNC_VIEWER,IPDestination};
 		final Process process = runtime.exec(args);
 	}	
 }

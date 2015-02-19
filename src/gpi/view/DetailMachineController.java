@@ -16,6 +16,7 @@ import ping.ChangerCouleurPastille;
 import ping.Ping;
 import ping.PingWindows;
 import utils.Popup;
+import vnc.VNCWindows;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -137,6 +138,8 @@ public class DetailMachineController{
 	private TableColumn<Composant,String> fabricantComposant;
 	@FXML
 	private ImageView imageType;
+	@FXML
+	private Button b_vnc;
 	
 	private Materiel materiel;
 	private int index=0;
@@ -264,16 +267,26 @@ public class DetailMachineController{
 		nomComposant.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomComposant()));
 		caracteristiqueComposant.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getcaracteristiqueComposant()));
 		fabricantComposant.setCellValueFactory(cellData -> cellData.getValue().getFabricantComposant().getNomFabricant());
-
+		
 		
 		colorCircle.setVisible(false);
-		//Condition si ordinateur ou non à rajouter
+		/*
+		 * Rajouter un test en fonction de la machine qui ping (linux ou windows ??)
+		 */
 		PingWindows pingWindows=new PingWindows(materiel);
 		ChangerCouleurPastille pastille=new ChangerCouleurPastille(colorCircle,pingWindows);
 		Thread threadPing=new Thread(pingWindows);
 		threadPing.start();
 		Thread changerCouleur=new Thread(pastille);
 		changerCouleur.start();
+	}
+	
+	/**
+	 * Permet de lancer VNC au clic du bouton VNC
+	 */
+	@FXML private void lancerVNC(){
+		System.out.println(this.materiel.getNomMateriel().getValue());
+		new VNCWindows(this.materiel.getNomMateriel().getValue(),"");
 	}
 	
 	/**
