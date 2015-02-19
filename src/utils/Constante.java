@@ -32,5 +32,5 @@ public class Constante {
 	public static final int LONGUEUR_NUM_SERIE_MAT=50;
 	public static final int LONGUEUR_MODELE_MAT=20;
 	public static final int LONGUEUR_NOM_MATERIEL=20;
-	public static final String CHEMIN_VNC_VIEWER="C:\\Users\\Cedric\\Documents\\GitHub\\devCopy\\VNC\\vncviewer.exe";
+	public static final String CHEMIN_VNC_VIEWER="./VNC/vncviewer.exe";
 }
