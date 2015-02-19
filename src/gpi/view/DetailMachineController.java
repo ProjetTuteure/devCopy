@@ -285,7 +285,6 @@ public class DetailMachineController{
 	 * Permet de lancer VNC au clic du bouton VNC
 	 */
 	@FXML private void lancerVNC(){
-		System.out.println(this.materiel.getNomMateriel().getValue());
 		new VNCWindows(this.materiel.getNomMateriel().getValue());
 	}
 	

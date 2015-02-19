@@ -14,6 +14,10 @@ public class VNCWindows implements VNC{
 		}
 	}
 
+	/**
+	 * Permet de lancer vnc
+	 * @param IPDestination, l'adresse IP ou le nom DNS de la machine à contrôler.
+	 */
 	@Override
 	public void lancerVNC(String IPDestination) throws IOException {
 		Runtime runtime = Runtime.getRuntime();
