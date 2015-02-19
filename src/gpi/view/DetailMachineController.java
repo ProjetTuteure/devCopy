@@ -286,7 +286,7 @@ public class DetailMachineController{
 	 */
 	@FXML private void lancerVNC(){
 		System.out.println(this.materiel.getNomMateriel().getValue());
-		new VNCWindows(this.materiel.getNomMateriel().getValue(),"");
+		new VNCWindows(this.materiel.getNomMateriel().getValue());
 	}
 	
 	/**
