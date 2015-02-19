@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import utils.Constante;
 import utils.Popup;
 import utils.Propriete;
 import gpi.bd.Donnee;
@@ -163,54 +164,91 @@ public class AjouterMateriel {
 	 */
 	@FXML
 	private void handleOk() {
-		MaterielDAO materielDAO=new MaterielDAO();
-		TypeDAO typeDAO = new TypeDAO();
-		Type typeMateriel=null;
-		try {
-			typeMateriel = typeDAO.recupererTypeParId(listIdTypeMateriel.get(comboboxTypeMateriel.getSelectionModel().getSelectedIndex()));
-		} catch (ConnexionBDException e1) {
-			new Popup(e1.getMessage());
+		if (controlerSaisies() == true) {
+			MaterielDAO materielDAO=new MaterielDAO();
+			TypeDAO typeDAO = new TypeDAO();
+			Type typeMateriel=null;
+			try {
+				if(comboboxTypeMateriel.getSelectionModel().getSelectedIndex()!=-1){
+					typeMateriel = typeDAO.recupererTypeParId(listIdTypeMateriel.get(comboboxTypeMateriel.getSelectionModel().getSelectedIndex()));
+				}
+			} catch (ConnexionBDException e1) {
+				new Popup(e1.getMessage());
+			}
+			LocalDate dateExpirationGarantieMateriel = dateMaterielPicker.getValue();
+			FactureDAO factureDAO = new FactureDAO();
+			Facture factureMateriel=null;
+			try {
+				if(comboboxFactureMateriel.getSelectionModel().getSelectedIndex()!=-1){
+					factureMateriel = factureDAO.recupererFactureParId(listIdFactureMateriel.get(comboboxFactureMateriel.getSelectionModel().getSelectedIndex()));
+				}
+			} catch (ConnexionBDException e1) {
+				new Popup(e1.getMessage());
+			}
+			SiteDAO siteDAO = new SiteDAO();
+			Site siteMateriel=null;
+			try {
+				if(comboboxSiteMateriel.getSelectionModel().getSelectedIndex()!=-1){
+					siteMateriel = siteDAO.recupererSiteParId(listIdSiteMateriel.get(comboboxSiteMateriel.getSelectionModel().getSelectedIndex()));
+				}
+			} catch (ConnexionBDException e1) {
+				new Popup(e1.getMessage());
+			}
+			FabricantDAO fabricantDAO = new FabricantDAO();
+			Fabricant fabricantMateriel=null;
+			try {
+				if(comboboxFabricantMateriel.getSelectionModel().getSelectedIndex()!=-1){
+					fabricantMateriel = fabricantDAO.recupererFabricantParId(listIdFabricantMateriel.get(comboboxFabricantMateriel.getSelectionModel().getSelectedIndex()));
+				}
+			} catch (ConnexionBDException e1) {
+				new Popup(e1.getMessage());
+			}
+			Etat etatMateriel=null;
+			if(comboboxEtatMateriel.getValue()!=null){
+				etatMateriel=Etat.valueOf(comboboxEtatMateriel.getValue());
+			}
+			try {
+				materielDAO.ajouterMateriel(new Materiel(0,immobMaterielField.getText(),
+						numeroSerieMaterielField.getText(),
+						systemeExploitationMaterielField.getText(),
+						nomMaterielField.getText(),
+						typeMateriel, etatMateriel,
+						dateExpirationGarantieMateriel,
+						"",
+						factureMateriel,
+						siteMateriel,
+						fabricantMateriel,
+						modeleMaterielField.getText()));
+			} catch (ConnexionBDException e) {
+				new Popup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		LocalDate dateExpirationGarantieMateriel = dateMaterielPicker.getValue();
-		FactureDAO factureDAO = new FactureDAO();
-		Facture factureMateriel=null;
-		try {
-			factureMateriel = factureDAO.recupererFactureParId(listIdFactureMateriel.get(comboboxFactureMateriel.getSelectionModel().getSelectedIndex()));
-		} catch (ConnexionBDException e1) {
-			new Popup(e1.getMessage());
-		}
-		SiteDAO siteDAO = new SiteDAO();
-		Site siteMateriel=null;
-		try {
-			siteMateriel = siteDAO.recupererSiteParId(listIdSiteMateriel.get(comboboxSiteMateriel.getSelectionModel().getSelectedIndex()));
-		} catch (ConnexionBDException e1) {
-			new Popup(e1.getMessage());
-		}
-		FabricantDAO fabricantDAO = new FabricantDAO();
-		Fabricant fabricantMateriel=null;
-		try {
-			fabricantMateriel = fabricantDAO.recupererFabricantParId(listIdFabricantMateriel.get(comboboxFabricantMateriel.getSelectionModel().getSelectedIndex()));
-		} catch (ConnexionBDException e1) {
-			new Popup(e1.getMessage());
-		}
-		try {
-			materielDAO.ajouterMateriel(new Materiel(0,immobMaterielField.getText(),
-					numeroSerieMaterielField.getText(),
-					systemeExploitationMaterielField.getText(),
-					nomMaterielField.getText(),
-					typeMateriel, Etat.valueOf(comboboxEtatMateriel.getValue()),
-					dateExpirationGarantieMateriel,
-					"",
-					factureMateriel,
-					siteMateriel,
-					fabricantMateriel,
-					modeleMaterielField.getText()));
-		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
-		}
-		okClicked = true;
-		dialogStage.close();
 
+	}
+	private boolean controlerSaisies() {
+		if (nomMaterielField.getText().equals("")) {
+			new Popup("Le champ \"Nom materiel\" doit etre rempli");
+			return false;
+		}
+		if (nomMaterielField.getText().length() > Constante.LONGUEUR_NOM_MATERIEL) {
+			new Popup("Le nom du materiel doit etre inferieur e " + Constante.LONGUEUR_NOM_MATERIEL + " caracteres");
+			return false;
+		}
+		if (immobMaterielField.getText().length() > Constante.LONGUEUR_NOM_MATERIEL) {
+			new Popup("Le nom du materiel doit etre inferieur a " + Constante.LONGUEUR_NOM_MATERIEL + " caracteres");
+			return false;
+		}
+		if (numeroSerieMaterielField.getText().length() > Constante.LONGUEUR_NUM_SERIE_MAT) {
+			new Popup("Le numero de serie du materiel doit etre inferieur a " + Constante.LONGUEUR_NUM_SERIE_MAT + " caracteres");
+			return false;
+		}
+		if (modeleMaterielField.getText().length() > Constante.LONGUEUR_MODELE_MAT) {
+			new Popup("Le modele du materiel doit etre inferieur a "+ Constante.LONGUEUR_MODELE_MAT + " caracteres");
+			return false;
+		}
+		return true;
 	}
 
 	/**
