@@ -6,6 +6,11 @@ import utils.Constante;
 import utils.Popup;
 
 public class VNCWindows implements VNC{
+	
+	/**
+	 * Constructeur de VNC Windows qui lance le VNC
+	 * @param IPDestination l'adresse IP ou le nom DNS de la machine dont on veut prendre le contrôle
+	 */
 	public VNCWindows(String IPDestination){
 		try {
 			this.lancerVNC(IPDestination);
@@ -16,7 +21,7 @@ public class VNCWindows implements VNC{
 
 	/**
 	 * Permet de lancer vnc
-	 * @param IPDestination, l'adresse IP ou le nom DNS de la machine à contrôler.
+	 * @param IPDestination, l'adresse IP ou le nom DNS de la machine dont on veut prendre le contrôle
 	 */
 	@Override
 	public void lancerVNC(String IPDestination) throws IOException {
