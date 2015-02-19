@@ -77,11 +77,10 @@ public class ModifierMateriel {
 		listIdTypeMateriel=new ArrayList<Integer>();
 		listIdMateriel = FXCollections.observableArrayList();
 		MaterielDAO materielDAO=new MaterielDAO();
-		PageMaterielDAO pageMaterielDAO=new PageMaterielDAO();
 		
 		try {
-			for (PageMateriel materiel : pageMaterielDAO.getAllMateriel()) {
-				listIdMateriel.add(materiel.getIdMateriel()+"- "+materiel.getNomMateriel());
+			for (Materiel materiel : materielDAO.recupererAllMateriel()) {
+				listIdMateriel.add(materiel.getIdMateriel().getValue().intValue()+"- "+materiel.getNomMateriel().getValue());
 			}
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
@@ -208,22 +207,13 @@ public class ModifierMateriel {
 		modeleMaterielField.setText(selected.getModeleMateriel());
 		nomMaterielField.setText(selected.getNomMateriel().getValue());
 		immobMaterielField.setText(selected.getNumImmobMateriel().getValue());
-		if(selected.getDateExpirationGarantieMateriel()==null){
-			dateMaterielPicker.setPromptText("");
-		}else{
-			dateMaterielPicker.setPromptText(selected.getDateExpirationGarantieMaterielStringProperty().getValue());			
-		}
+		dateMaterielPicker.setPromptText(selected.getDateExpirationGarantieMaterielStringProperty().getValue());
 
 		for (Etat etat : Etat.values()) {
 			listEtatMateriel.add(etat.name());
 		}
 		comboboxEtatMateriel.setItems(listEtatMateriel);
-		if(selected.getEtatMateriel()==null){
-			comboboxEtatMateriel.setPromptText("");
-		}else{
-			comboboxEtatMateriel.setPromptText(selected.getEtatMateriel().name());		
-		}
-
+		comboboxEtatMateriel.setPromptText(selected.getEtatMateriel().name());
 
 		FactureDAO factureDAO=new FactureDAO();
 		
@@ -236,11 +226,7 @@ public class ModifierMateriel {
 			new Popup(e.getMessage());
 		}
 		comboboxFactureMateriel.setItems(listFactureMateriel);
-		if(selected.getFactureMateriel()==null){
-			comboboxFactureMateriel.setPromptText("");
-		}else{
-			comboboxFactureMateriel.setPromptText(selected.getFactureMateriel().getNumFacture());
-		}		
+		comboboxFactureMateriel.setPromptText(selected.getFactureMateriel().getNumFacture());
 
 		FabricantDAO fabricantDAO=new FabricantDAO();
 				
@@ -253,12 +239,7 @@ public class ModifierMateriel {
 			new Popup(e.getMessage());
 		}
 		comboboxFabricantMateriel.setItems(listFabricantMateriel);
-		if(selected.getFabricantMateriel()==null){
-			comboboxFabricantMateriel.setPromptText("");
-		}else{
-			comboboxFabricantMateriel.setPromptText(selected.getFabricantMaterielString());
-		}
-		
+		comboboxFabricantMateriel.setPromptText(selected.getFabricantMaterielString());
 
 		SiteDAO siteDAO=new SiteDAO();
 		
@@ -271,30 +252,21 @@ public class ModifierMateriel {
 			new Popup(e.getMessage());
 		}
 		comboboxSiteMateriel.setItems(listSiteMateriel);
-		if(selected.getSiteMateriel()==null){
-			comboboxSiteMateriel.setPromptText("");
-		}else{
-			comboboxSiteMateriel.setPromptText(selected.getSiteMateriel().getNomSiteString());
-		}
-		
+		comboboxSiteMateriel.setPromptText(selected.getSiteMateriel().getNomSiteString());
 
 		TypeDAO typeDAO =new TypeDAO();
 		
 		try {
 			for (Type type : typeDAO.recupererAllType()){
 				listTypeMateriel.add(type.getNomTypeString());
+				System.out.println(type.idTypeProperty().getValue());
 				listIdTypeMateriel.add(type.idTypeProperty().getValue());
 			}
 		}catch (ConnexionBDException e){
 			new Popup(e.getMessage());
 		}
 		comboboxTypeMateriel.setItems(listTypeMateriel);
-		if(selected.getTypeMateriel()==null){
-			comboboxTypeMateriel.setPromptText("");
-		}else{
-			comboboxTypeMateriel.setPromptText(selected.getTypeMateriel().getNomTypeString());
-		}
-		
+		comboboxTypeMateriel.setPromptText(selected.getTypeMateriel().getNomTypeString());
 	}
 
 	public int getIdMateriel() {

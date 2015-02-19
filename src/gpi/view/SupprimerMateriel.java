@@ -7,8 +7,6 @@ import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
-import gpi.metier.PageMateriel;
-import gpi.metier.PageMaterielDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,11 +35,10 @@ public class SupprimerMateriel {
 	@FXML
 	private void initialize() {
 		listMateriel = FXCollections.observableArrayList();
-		PageMaterielDAO pageMaterielDAO=new PageMaterielDAO();
-		
+
 		try {
-			for (PageMateriel materiel : pageMaterielDAO.getAllMateriel()) {
-				listMateriel.add(materiel.getIdMateriel()+"- "+materiel.getNomMateriel());
+			for (Materiel materiel : materielDAO.recupererAllMateriel()) {
+				listMateriel.add(materiel.getIdMateriel().getValue()+"- "+materiel.getNomMateriel().getValue());
 			}
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
