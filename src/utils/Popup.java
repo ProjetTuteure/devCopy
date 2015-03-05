@@ -27,6 +27,8 @@ public final class Popup {
 	public Popup()
 	{
 		super();
+		this.dialogStage=new Stage();
+		this.buttonOk=new Button("Ok");
 	}
 	
 	public final static Popup getInstance() {
@@ -47,8 +49,6 @@ public final class Popup {
     }
 	
 	public void afficherPopup(String texteAAfficher){
-		this.dialogStage=new Stage();
-		this.buttonOk=new Button("Ok");
 		buttonOk.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
 		    public void handle(ActionEvent e) {
