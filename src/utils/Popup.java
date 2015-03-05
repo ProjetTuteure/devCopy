@@ -52,6 +52,7 @@ public final class Popup {
 		buttonOk.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override 
 		    public void handle(ActionEvent e) {
+		    	Popup.instance=null;
 		        dialogStage.close();
 		    }
 		});
