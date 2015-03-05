@@ -6,8 +6,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/javafx-dialogs-0.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/sqljdbc41.jar"/>
-	<classpathentry kind="lib" path="/home/vico/Téléchargements/iText/itextpdf-5.3.2.jar"/>
-	<classpathentry kind="lib" path="/home/vico/Téléchargements/iText/itextpdf-5.3.2-javadoc.jar"/>
-	<classpathentry kind="lib" path="/home/vico/Téléchargements/iText/itextpdf-5.3.2-sources.jar"/>
+	<classpathentry kind="lib" path="lib/itextpdf-5.3.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/itextpdf-5.3.2-sources.jar"/>
+	<classpathentry kind="lib" path="lib/itextpdf-5.3.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

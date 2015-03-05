@@ -46,14 +46,6 @@ public class SupprimerPrestataire {
 	private void initialize() {
 		listNomPrestataire = FXCollections.observableArrayList();
 		try {
-			/*for (Prestataire prestataire : prestataireDAO
-					.recupererAllPrestataire()) {
-				listNomPrestataire.add(prestataire.getNomPrestataire()
-						.getValue()+"- "+prestataire.getIdPrestataire()
-						.getValue());
-				listIdPrestataire
-						.add(prestataire.getIdPrestataire().getValue());
-			 	}*/
 				listNomPrestataire=prestataireDAO.recupererAllNomPrestataire();
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
@@ -131,17 +123,6 @@ public class SupprimerPrestataire {
 		for(Prestataire prestataire:listPrestataireParNom){
 			listPrenomPrestataire.add(prestataire.getPrenomPrestataire().getValue());
 		}
-		/*try {
-			for (Prestataire prestataire : prestataireDAO.recupererAllPrestataire()) {
-				if (prestataire.getNomPrestataire().getValue().equals(selected.getNomPrestataire().getValue())) {
-					listPrenomPrestataire.add(selected.getPrenomPrestataire().getValue());
-					listeIdPrestataire.add(selected.getIdPrestataire().getValue());
-					System.out.println(listPrenomPrestataire);
-				}
-			}
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
-		}*/
 		comboboxPrenomPrestataire.setItems(listPrenomPrestataire);
 	}
 

@@ -23,7 +23,7 @@ public class Rapports {
 
 	  public void GenerateMaterielParc(){
 	    try {
-	      String FILE = "/Rapports/MaterielParc.pdf";
+	      String FILE = "Rapports/MaterielParc.pdf";
 	      Document document = new Document();
 	      PdfWriter.getInstance(document, new FileOutputStream(FILE));
 	      document.open();
