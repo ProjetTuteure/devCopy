@@ -10,10 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
-
 public class ModifierCompose {
 
 	@FXML
@@ -35,8 +31,6 @@ public class ModifierCompose {
 
 	private Donnee donnee = new Donnee();
 	
-	private boolean test;
-
 	private ObservableList<String> list1;
 	private ObservableList<String> list2;
 	private ObservableList<String> list3;

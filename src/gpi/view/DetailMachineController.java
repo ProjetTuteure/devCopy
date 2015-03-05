@@ -22,10 +22,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
-/**
- * @author Victor
- *
- */
 public class DetailMachineController{
 
 	@FXML

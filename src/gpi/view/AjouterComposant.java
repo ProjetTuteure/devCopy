@@ -19,10 +19,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
-
 public class AjouterComposant {
 
 	@FXML

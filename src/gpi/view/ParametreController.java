@@ -4,17 +4,12 @@ import gpi.MainApp;
 import gpi.metier.*;
 
 import java.net.URL;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
-import utils.Propriete;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-/**
- * Created by Kevin
- */
 
 public class ParametreController implements Initializable {
 

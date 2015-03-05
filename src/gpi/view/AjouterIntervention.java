@@ -18,10 +18,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
-
 public class AjouterIntervention {
 
 	@FXML

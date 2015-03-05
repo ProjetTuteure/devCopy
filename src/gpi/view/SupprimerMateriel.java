@@ -13,10 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
-
 public class SupprimerMateriel {
 	@FXML
 	private Stage dialogStage;
@@ -24,8 +20,6 @@ public class SupprimerMateriel {
 	private boolean okClicked = false;
 	@FXML
 	private ComboBox<String> comboboxMateriel;
-
-	private MaterielDAO materielDAO=new MaterielDAO();
 
 	private ObservableList<String> listMateriel;
 

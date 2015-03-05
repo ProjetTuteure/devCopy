@@ -1,15 +1,10 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-
-/**
- * Created by Kevin
- */
 
 public class SupprimerIntervention {
 	@FXML
@@ -19,8 +14,6 @@ public class SupprimerIntervention {
 
 	@FXML
 	private ComboBox<String> comboboxfact;
-
-	private Donnee donnee = new Donnee();
 
 	private ObservableList<String> listfact;
 

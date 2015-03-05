@@ -1,6 +1,5 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.*;
 import javafx.collections.FXCollections;
@@ -10,12 +9,6 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import utils.Popup;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by Kevin
- */
 
 public class AjouterEstMaintenu {
 
@@ -27,8 +20,6 @@ public class AjouterEstMaintenu {
 	private ComboBox<String> comboboxMateriel;
 	@FXML
 	private ComboBox<String> comboboxMaintenance;
-
-	private EstMaintenuDAO estMaintenuDAO =new EstMaintenuDAO();
 
 	private ObservableList<String> listIdMateriel;
 	private ObservableList<String> listIdMaintenance;

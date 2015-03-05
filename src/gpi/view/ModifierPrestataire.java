@@ -15,10 +15,6 @@ import utils.Popup;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Kevin
- */
-
 public class ModifierPrestataire {
 	private int idPrestataire;
 

@@ -3,7 +3,6 @@ package gpi.view;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.PageMateriel;
 import gpi.metier.PageMaterielDAO;
-import gpi.metier.Prestataire;
 import gpi.metier.Utilisateur;
 import gpi.metier.UtilisateurDAO;
 import gpi.metier.UtiliseDAO;
@@ -17,10 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-
-/**
- * Created by Kevin
- */
 
 public class SupprimerUtilisation {
 	@FXML

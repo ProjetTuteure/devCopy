@@ -24,9 +24,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
-/**
- * Created by admin on 09/12/14.
- */
 public class TypeOverviewController {
 	
 	@FXML

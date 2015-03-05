@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utils.Popup;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Maintenance;
 import gpi.metier.MaintenanceDAO;
@@ -14,9 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
 
 public class SupprimerMaintenance {
 	@FXML
@@ -29,10 +25,8 @@ public class SupprimerMaintenance {
 	@FXML
 	private ComboBox<String> cb_dateMaintenance;
 
-	private Donnee donnee = new Donnee();
-
 	private ObservableList<String> listeObjet;
-	private ObservableList<String> listeDate;
+
 	
 	private List<Maintenance> listeMaintenance;
 	

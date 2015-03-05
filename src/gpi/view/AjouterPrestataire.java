@@ -9,9 +9,6 @@ import javafx.stage.Stage;
 import utils.Constante;
 import utils.Popup;
 
-/**
- * Created by Kevin
- */
 
 public class AjouterPrestataire {
 

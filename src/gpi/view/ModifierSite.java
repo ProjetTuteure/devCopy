@@ -19,10 +19,6 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 
-/**
- * Created by Kevin
- */
-
 public class ModifierSite {
 	int idSite;
 	String nomSite, cheminImageSite;

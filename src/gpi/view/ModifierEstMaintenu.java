@@ -1,14 +1,9 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-
-/**
- * Created by Kevin
- */
 
 public class ModifierEstMaintenu {
 
@@ -24,8 +19,6 @@ public class ModifierEstMaintenu {
 	private ComboBox<String> comboboxmat;
 	@FXML
 	private ComboBox<String> comboboxmaint1;
-
-	private Donnee donnee = new Donnee();
 
 	private ObservableList<String> list1;
 	private ObservableList<String> list2;

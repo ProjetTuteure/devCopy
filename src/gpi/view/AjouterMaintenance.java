@@ -1,8 +1,5 @@
 package gpi.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import utils.Constante;
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
@@ -14,9 +11,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
 
 public class AjouterMaintenance {
 	@FXML
@@ -38,14 +32,11 @@ public class AjouterMaintenance {
 	private TextArea ta_description;
 	
 	private MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
-	
-	private List<Maintenance> listMaintenance;
 	/**
 	 * Initialise les donn�es
 	 */
 	@FXML
 	private void initialize() {
-		listMaintenance=new ArrayList<Maintenance>();
 	}
 
 	/**

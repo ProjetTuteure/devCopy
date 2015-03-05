@@ -21,9 +21,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
 
 public class AjouterUtilisation {
 	@FXML

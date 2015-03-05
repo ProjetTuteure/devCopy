@@ -20,10 +20,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
-
 public class AjouterCompose {
 
 	@FXML
