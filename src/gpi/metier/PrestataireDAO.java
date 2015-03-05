@@ -181,7 +181,7 @@ public class PrestataireDAO {
 		Connection connexion=MaConnexion.getInstance().getConnexion();
 		List<Prestataire> list=null;
 		try {
-			PreparedStatement ps= connexion.prepareStatement("SELECT * FROM PRESTATAIRE WHERE nomPrestataire=?");
+			PreparedStatement ps= connexion.prepareStatement("SELECT DISTINCT * FROM PRESTATAIRE WHERE nomPrestataire=?");
 			ps.setString(1, nomPrestataire);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){

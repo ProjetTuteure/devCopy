@@ -1,5 +1,6 @@
 package gpi.view;
 
+import utils.Propriete;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -50,7 +51,7 @@ public class ModifierBD {
 	 */
 	@FXML
 	private void handleOk() {
-
+		Propriete.getInstance().setProperties("ipBD",cheminfield.getText());
 		okClicked = true;
 		dialogStage.close();
 

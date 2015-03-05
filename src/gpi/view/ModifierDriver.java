@@ -1,7 +1,6 @@
 package gpi.view;
 
 import java.io.File;
-import java.util.Properties;
 
 import utils.Propriete;
 import javafx.event.ActionEvent;
@@ -10,12 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
-
 public class ModifierDriver {
-
 	@FXML
 	private Stage dialogStage;
 	@FXML
@@ -56,21 +50,25 @@ public class ModifierDriver {
 	 */
 	@FXML
 	private void handleOk() {
-		Properties p = Propriete.getInstance().getProperties();
-		p.remove("driver");
-		p.setProperty("driver",cheminfield.getText());
+		Propriete.getInstance().setProperties("driver",cheminfield.getText());
 		okClicked = true;
 		dialogStage.close();
 
 	}
 
 	@FXML
-	private void handleBrowse(ActionEvent event) {
+	private void handleBrowse() {
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		directoryChooser.setTitle("Open directory");
 		File selectedDirectory = directoryChooser.showDialog(null);
 		if (selectedDirectory != null) {
-		}
+			String adresse=selectedDirectory.getAbsolutePath();
+			adresse=adresse.replace("\\", "/");
+			adresse="file:///"+adresse;
+			this.cheminfield.setText(adresse);
+        }else{
+        	this.cheminfield.setText("");
+        }
 	}
 
 	/**
@@ -81,4 +79,5 @@ public class ModifierDriver {
 	private void handleCancel() {
 		dialogStage.close();
 	}
+	
 }
