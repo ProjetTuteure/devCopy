@@ -13,7 +13,6 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import utils.Popup;
 
-
 public class SupprimerType {
 	@FXML
 	private Stage dialogStage;
@@ -24,21 +23,22 @@ public class SupprimerType {
 
 	private ObservableList<String> listNomType;
 
-	TypeDAO typeDAO=new TypeDAO();
+	TypeDAO typeDAO = new TypeDAO();
 
 	private List<Integer> listIdType;
+
 	/**
 	 * Initialise les donnees Ajoute les donnees aux combobox
 	 */
 	@FXML
 	private void initialize() {
 		listNomType = FXCollections.observableArrayList();
-		listIdType=new ArrayList<Integer>();
+		listIdType = new ArrayList<Integer>();
 		try {
 			for (Type type : typeDAO.recupererAllType()) {
-                listNomType.add(type.getNomTypeString());
-                listIdType.add(type.getIdType());
-            }
+				listNomType.add(type.getNomTypeString());
+				listIdType.add(type.getIdType());
+			}
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
 		}
@@ -65,20 +65,31 @@ public class SupprimerType {
 		return okClicked;
 	}
 
+	private boolean controlerSaisies() {
+		if (comboboxtype.getValue() == null) {
+			new Popup("Vous devez selectionner le type Ã  supprimer");
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton SUPPRIMER
 	 * est clique
 	 */
 	@FXML
 	private void handleOk() {
-		try {
-			typeDAO.supprimerType(new Type(listIdType.get(comboboxtype.getSelectionModel().getSelectedIndex()),"",""));
-			new Popup("Type "+comboboxtype.getValue()+" supprimé !");
-		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+		if (controlerSaisies()) {
+			try {
+				typeDAO.supprimerType(new Type(listIdType.get(comboboxtype
+						.getSelectionModel().getSelectedIndex()), "", ""));
+				new Popup("Type " + comboboxtype.getValue() + " supprimï¿½ !");
+			} catch (ConnexionBDException e) {
+				new Popup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
 	}
 
 	/**

@@ -16,7 +16,6 @@ import utils.Popup;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JFileChooser;
 
@@ -26,7 +25,7 @@ import javax.swing.JFileChooser;
 
 public class ModifierSite {
 	int idSite;
-	String nomSite,cheminImageSite;
+	String nomSite, cheminImageSite;
 	@FXML
 	private TextField NameSiteField;
 
@@ -42,23 +41,22 @@ public class ModifierSite {
 
 	private ObservableList<String> listSiteObservable;
 	List<Site> listSite;
-	
 
 	/**
 	 * Initialise les donnï¿½es Ajoute les donnï¿½es aux combobox
 	 */
 	@FXML
 	private void initialize() {
-		SiteDAO siteDAO=new SiteDAO();
-		
-		listSite=new ArrayList<Site>();
+		SiteDAO siteDAO = new SiteDAO();
+
+		listSite = new ArrayList<Site>();
 		listSiteObservable = FXCollections.observableArrayList();
 		try {
-			listSite=siteDAO.recupererAllSite();
+			listSite = siteDAO.recupererAllSite();
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
 		}
-		for (Site site : listSite){
+		for (Site site : listSite) {
 			listSiteObservable.add(site.getNomSiteString());
 		}
 		comboboxSiteMod.setItems(listSiteObservable);
@@ -97,36 +95,44 @@ public class ModifierSite {
 	 */
 	@FXML
 	private void handleOk() {
-		if(controlerSaisies()){
-			SiteDAO siteDAO=new SiteDAO();
+		if (controlerSaisies()) {
+			SiteDAO siteDAO = new SiteDAO();
 			setNomSite(NameSiteField.getText());
 			try {
-				siteDAO.modifierSite(new Site(getIdSite(),getNomSite(),getCheminImageSite()));
-				new Popup("Site "+getNomSite()+" ajouté !");
+				siteDAO.modifierSite(new Site(getIdSite(), getNomSite(),
+						getCheminImageSite()));
+				new Popup("Site " + getNomSite() + " modifiÃ© !");
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
 		}
-		
+
 	}
 
 	private boolean controlerSaisies() {
-		if(comboboxSiteMod.getValue()==null){
-			new Popup("Vous devez selectionner le site à modifier");
+		if (comboboxSiteMod.getValue() == null) {
+			new Popup("Vous devez selectionner le site ï¿½ modifier");
 			return false;
 		}
-		if(NameSiteField.getText().isEmpty()){
-			new Popup("Le champ \"Nom du site\" doit être saisi");
+		if (NameSiteField.getText().isEmpty()) {
+			new Popup("Le champ \"Nom du site\" doit ï¿½tre saisi");
 			return false;
 		}
-		if(NameSiteField.getText().length()>Constante.LONGUEUR_NOM_SITE){
-			new Popup("La longueur du nom du site saisi doit être inférieur à "+Constante.LONGUEUR_NOM_SITE+" caractères");
+		if (NameSiteField.getText().length() > Constante.LONGUEUR_NOM_SITE) {
+			new Popup("La longueur du nom du site saisi doit ï¿½tre infï¿½rieur ï¿½ "
+					+ Constante.LONGUEUR_NOM_SITE + " caractï¿½res");
 			return false;
-		}	
-		if(getCheminImageSite().length()>Constante.LONGUEUR_CHEMIN_IMAGE){
-			new Popup("La longueur du chemin saisi doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractères");
+		}
+		if (this.getCheminImageSite() != null) {
+			if (getCheminImageSite().length() > Constante.LONGUEUR_CHEMIN_IMAGE) {
+				new Popup("La longueur du chemin saisi doit ï¿½tre infï¿½rieur ï¿½ "
+						+ Constante.LONGUEUR_CHEMIN_IMAGE + " caractï¿½res");
+				return false;
+			}
+		} else {
+			new Popup("Une image doit Ãªtre sÃ©lectionnÃ©e");
 			return false;
 		}
 		return true;
@@ -153,13 +159,12 @@ public class ModifierSite {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Open File");
 		fileChooser.showOpenDialog(null); // you could pass a stage
-		File file = fileChooser.getSelectedFile();												// reference here if you
-
+		File file = fileChooser.getSelectedFile(); // reference here if you
 
 		if (file != null) {
-			String adresse=file.getAbsolutePath();
-			adresse=adresse.replace("\\", "/");
-			adresse="file:///"+adresse;
+			String adresse = file.getAbsolutePath();
+			adresse = adresse.replace("\\", "/");
+			adresse = "file:///" + adresse;
 			this.setCheminImageSite(adresse);
 		}
 
@@ -171,15 +176,15 @@ public class ModifierSite {
 	 */
 	@FXML
 	private void handlechange(ActionEvent event) {
-		int selected=comboboxSiteMod.getSelectionModel().getSelectedIndex();
-		String nom=comboboxSiteMod.getValue();
-		int id=listSite.get(selected).getIdSite();
+		int selected = comboboxSiteMod.getSelectionModel().getSelectedIndex();
+		String nom = comboboxSiteMod.getValue();
+		int id = listSite.get(selected).getIdSite();
 		NameSiteField.setText(nom);
 		setIdSite(id);
 		setNomSite(nom);
-		
-		for(Site site : listSite){
-			if(site.getIdSite()==id){
+
+		for (Site site : listSite) {
+			if (site.getIdSite() == id) {
 				setCheminImageSite(site.getCheminImageSite());
 			}
 		}

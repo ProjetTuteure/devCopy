@@ -1,8 +1,6 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
-import gpi.metier.Fabricant;
 import gpi.metier.Type;
 import gpi.metier.TypeDAO;
 import javafx.collections.FXCollections;
@@ -11,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import utils.*;
 import utils.Popup;
@@ -40,8 +37,8 @@ public class ModifierType {
 
 	TypeDAO typeDAO=new TypeDAO();
 
-	private ObservableList<String> listNomFabricant;
-	private List<Integer> listIdFabricant;
+	private ObservableList<String> listNomType;
+	private List<Integer> listIdType;
 
 	@FXML
 	private TextField nomTypeField;
@@ -51,17 +48,18 @@ public class ModifierType {
 	 */
 	@FXML
 	private void initialize() {
-		listNomFabricant = FXCollections.observableArrayList();
-		listIdFabricant=new ArrayList<Integer>();
+		listNomType = FXCollections.observableArrayList();
+		listIdType=new ArrayList<Integer>();
 		try {
 			for (Type type : typeDAO.recupererAllType()) {
-                listNomFabricant.add(type.getNomTypeString());
-				listIdFabricant.add(type.getIdType());
+                listNomType.add(type.getNomTypeString());
+				listIdType.add(type.getIdType());
+				
             }
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
 		}
-		comboboxTypeMod.setItems(listNomFabricant);
+		comboboxTypeMod.setItems(listNomType);
 	}
 
 	/**
@@ -95,7 +93,7 @@ public class ModifierType {
 			Type typeAModifie=new Type(this.getIdType(),nomTypeField.getText(),this.getCheminImageType());
 			try {
 				typeDAO.modifierType(typeAModifie);
-				new Popup("Type "+typeAModifie.getNomTypeString()+" modifi� !");
+				new Popup("Type "+typeAModifie.getNomTypeString()+" modifié !");
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
@@ -107,7 +105,7 @@ public class ModifierType {
 	private boolean controlerSaisies() {
 		if(comboboxTypeMod==null)
 		{
-			new Popup("Vous devez selectionner le type � modifier");
+			new Popup("Vous devez selectionner le type à modifier");
 			return false;
 		}
 		if(nomTypeField.getText().isEmpty())
@@ -116,12 +114,12 @@ public class ModifierType {
 			return false;
 		}
 		if(nomTypeField.getText().length()>Constante.LONGUEUR_NOM_TYPE){
-			new Popup("La longueur du nom du type doit �tre inf�rieur � "+Constante.LONGUEUR_NOM_TYPE+" caract�res");
+			new Popup("La longueur du nom du type doit être inférieur à "+Constante.LONGUEUR_NOM_TYPE+" caractères");
 			return false;
 		}
 		if(this.getCheminImageType()!=null){
 			if(this.getCheminImageType().length()>Constante.LONGUEUR_CHEMIN_IMAGE){
-				new Popup("La longueur du chemin doit �tre inf�rieur � "+Constante.LONGUEUR_CHEMIN_IMAGE+" caract�res");
+				new Popup("La longueur du chemin doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractères");
 				return false;
 			}
 		}
@@ -171,10 +169,11 @@ public class ModifierType {
 	 */
 	@FXML
 	private void handlechange() {
-		this.setIdType(listIdFabricant.get(comboboxTypeMod.getSelectionModel().getSelectedIndex()));
+		this.setIdType(listIdType.get(comboboxTypeMod.getSelectionModel().getSelectedIndex()));
 		Type selected= null;
 		try {
 			selected = typeDAO.recupererTypeParId(this.getIdType());
+			this.cheminImageType=selected.getCheminImageType().get();
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
 		}

@@ -1,6 +1,5 @@
 package gpi.view;
 
-
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Type;
 import gpi.metier.TypeDAO;
@@ -31,7 +30,7 @@ public class AjouterType {
 	@FXML
 	private boolean okClicked = false;
 
-	TypeDAO typeDAO=new TypeDAO();
+	TypeDAO typeDAO = new TypeDAO();
 
 	/**
 	 * Initialise les donnï¿½es
@@ -66,12 +65,13 @@ public class AjouterType {
 	 */
 	@FXML
 	private void handleOk() {
-		if(controlerSaisies())
-		{
-			Type typeAAjoute=new Type(0,nomTypeField.getText(),this.getCheminImageType());
+		if (controlerSaisies()) {
+			Type typeAAjoute = new Type(0, nomTypeField.getText(),
+					this.getCheminImageType());
 			try {
 				typeDAO.ajouterType(typeAAjoute);
-				new Popup("Type "+typeAAjoute.getNomTypeString()+" ajouté !");
+				new Popup("Type " + typeAAjoute.getNomTypeString()
+						+ " ajouté !");
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
@@ -82,16 +82,24 @@ public class AjouterType {
 	}
 
 	private boolean controlerSaisies() {
-		if(nomTypeField.getText().isEmpty()){
+		if (nomTypeField.getText().isEmpty()) {
 			new Popup("Le champ \"Nom du type\" doit être saisi");
 			return false;
 		}
-		if(nomTypeField.getText().length()>Constante.LONGUEUR_NOM_TYPE){
-			new Popup("La longueur du nom du type saisi doit être inférieur à "+Constante.LONGUEUR_NOM_TYPE+" caractères");
+		if (nomTypeField.getText().length() > Constante.LONGUEUR_NOM_TYPE) {
+			new Popup("La longueur du nom du type saisi doit être inférieur à "
+					+ Constante.LONGUEUR_NOM_TYPE + " caractères");
 			return false;
 		}
-		if(this.getCheminImageType().length()>Constante.LONGUEUR_CHEMIN_IMAGE){
-			new Popup("La longueur du chemin saisi doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractères");
+		if (this.getCheminImageType() != null) {
+			if (this.getCheminImageType().length() > Constante.LONGUEUR_CHEMIN_IMAGE) {
+				new Popup("La longueur du chemin saisi doit être inférieur à "
+						+ Constante.LONGUEUR_CHEMIN_IMAGE + " caractères");
+				return false;
+			}
+		}
+		else{
+			new Popup("Une image doit Ãªtre sélectionnée");
 			return false;
 		}
 		return true;
@@ -113,16 +121,14 @@ public class AjouterType {
 		fileChooser.showOpenDialog(null);
 		File file = fileChooser.getSelectedFile();
 
-
 		if (file != null) {
-			String adresse=file.getAbsolutePath();
-			adresse=adresse.replace("\\", "/");
-			adresse="file:///"+adresse;
+			String adresse = file.getAbsolutePath();
+			adresse = adresse.replace("\\", "/");
+			adresse = "file:///" + adresse;
 			this.setCheminImageType(adresse);
 		}
 
 	}
-
 
 	public String getCheminImageType() {
 		return cheminImageType;

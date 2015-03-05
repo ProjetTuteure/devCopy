@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import utils.Constante;
 import utils.Popup;
 
 
@@ -71,19 +72,27 @@ public class SupprimerSite {
 	 */
 	@FXML
 	private void handleOk() {
-
-		SiteDAO siteDAO=new SiteDAO();
-		int selected=comboboxSiteSupp.getSelectionModel().getSelectedIndex();
-		int id=listSiteId.get(selected);
-		try {
-			siteDAO.supprimerSite(new Site(id,null,null));
-			new Popup("Site "+comboboxSiteSupp.getValue()+" supprimé !");
-		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+		if(controlerSaisies()){
+			SiteDAO siteDAO=new SiteDAO();
+			int selected=comboboxSiteSupp.getSelectionModel().getSelectedIndex();
+			int id=listSiteId.get(selected);
+			try {
+				siteDAO.supprimerSite(new Site(id,null,null));
+				new Popup("Site "+comboboxSiteSupp.getValue()+" supprimé !");
+			} catch (ConnexionBDException e) {
+				new Popup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
-
+	}
+	
+	private boolean controlerSaisies() {
+		if(comboboxSiteSupp.getValue()==null){
+			new Popup("Vous devez selectionner le site à supprimer");
+			return false;
+		}
+		return true;
 	}
 
 	/**
