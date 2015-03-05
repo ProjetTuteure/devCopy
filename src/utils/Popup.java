@@ -50,7 +50,8 @@ public final class Popup {
 		this.dialogStage=new Stage();
 		this.buttonOk=new Button("Ok");
 		buttonOk.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override public void handle(ActionEvent e) {
+		    @Override 
+		    public void handle(ActionEvent e) {
 		        dialogStage.close();
 		    }
 		});
