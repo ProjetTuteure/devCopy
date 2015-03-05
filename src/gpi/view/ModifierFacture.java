@@ -91,10 +91,9 @@ public class ModifierFacture {
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
-			int indexFacture = factureCombobox.getSelectionModel().getSelectedIndex();
 			try {
 				factureDAO.modifierFacture(new Facture(idFacture,numFactureField.getText(),dateFacturePicker.getValue(),Float.parseFloat(montantFactureField.getText()),revendeur));
-				new Popup("Facture "+numFactureField.getText()+" modifiée !");
+				new Popup("Facture "+numFactureField.getText()+" modifiï¿½e !");
 			}  catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
@@ -106,29 +105,29 @@ public class ModifierFacture {
 
 	private boolean controlerSaisies() {
 		if(factureCombobox.getValue()==null){
-			new Popup("Le champ \"date de facture\" doit être saisi");
+			new Popup("Le champ \"date de facture\" doit ï¿½tre saisi");
 			return false;
 		}
 		if(numFactureField.getText().isEmpty()){
-			new Popup("Le champ \"Numéro de facture\" doit être saisi");
+			new Popup("Le champ \"Numï¿½ro de facture\" doit ï¿½tre saisi");
 			return false;
 		}
 		if(dateFacturePicker.getValue()==null){
-			new Popup("Le champ \"date de facture\" doit être saisi");
+			new Popup("Le champ \"date de facture\" doit ï¿½tre saisi");
 			return false;
 		}
 		if(numFactureField.getText().length()>Constante.LONGUEUR_NUM_FACTURE){
-			new Popup("La longueur du numero de facture saisi doit être inférieur à "+Constante.LONGUEUR_NUM_FACTURE+" caractères");
+			new Popup("La longueur du numero de facture saisi doit ï¿½tre infï¿½rieur ï¿½ "+Constante.LONGUEUR_NUM_FACTURE+" caractï¿½res");
 			return false;
 		}
 		if(montantFactureField.getText().length()>Constante.LONGUEUR_MONTANT_FACTURE){
-			new Popup("La longueur du montant de la facture saisi doit être inférieur à "+Constante.LONGUEUR_MONTANT_FACTURE+" caractères");
+			new Popup("La longueur du montant de la facture saisi doit ï¿½tre infï¿½rieur ï¿½ "+Constante.LONGUEUR_MONTANT_FACTURE+" caractï¿½res");
 			return false;
 		}
 		Pattern p = Pattern.compile("[0-9]{1,8}[.]{1}[0-9]{1,2}");
 		Matcher m = p.matcher(montantFactureField.getText());
 		if(!m.matches()){
-			new Popup("Le format du montant de la facture est erroné. Format : 123.45");
+			new Popup("Le format du montant de la facture est erronï¿½. Format : 123.45");
 			return false;
 		}
 		return true;

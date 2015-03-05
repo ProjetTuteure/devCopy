@@ -1,12 +1,9 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Fabricant;
 import gpi.metier.FabricantDAO;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -16,9 +13,7 @@ import utils.Constante;
 import utils.Popup;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Kevin
@@ -91,7 +86,7 @@ public class ModifierFabricant {
 			Fabricant fabricantAModifier=new Fabricant(this.getIdFabriquant(),nomFabricantField.getText(),telFabricantField.getText(),mobileFabricantField.getText(),faxFabricantField.getText(),emailFabricantField.getText(),adresseFabricantField.getText());
 			try {
 				fabricantDAO.modifierFabricant(fabricantAModifier);
-				new Popup("Fabricant "+fabricantAModifier.getNomFabricantString()+" modifié !");
+				new Popup("Fabricant "+fabricantAModifier.getNomFabricantString()+" modifiÃ© !");
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
@@ -102,31 +97,31 @@ public class ModifierFabricant {
 
 	private boolean controlerSaisies() {
 		if(nomFabricantField.getText().isEmpty()){
-			new Popup("Le champ \"Nom du fabricant\" doit être saisi");
+			new Popup("Le champ \"Nom du fabricant\" doit Ãªtre saisi");
 			return false;
 		}
 		if(nomFabricantField.getText().length()>Constante.LONGUEUR_NOM_FABRICANT){
-			new Popup("La longueur du nom du fabricant saisi doit être inférieur à "+Constante.LONGUEUR_NOM_FABRICANT+" caractères");
+			new Popup("La longueur du nom du fabricant saisi doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_NOM_FABRICANT+" caractÃ¨res");
 			return false;
 		}		
 		if(telFabricantField.getText().length()>Constante.LONGUEUR_NUM_TELEPHONE){
-			new Popup("Le numéro de téléphone saisi doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
+			new Popup("Le numÃ©ro de tÃ©lÃ©phone saisi doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_NUM_TELEPHONE+" caractÃ¨res");
 			return false;
 		}
 		if(mobileFabricantField.getText().length()>Constante.LONGUEUR_NUM_MOBILE){
-			new Popup("Le numéro de mobile saisi doit être inférieur à "+Constante.LONGUEUR_NUM_MOBILE+" caractères");
+			new Popup("Le numÃ©ro de mobile saisi doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_NUM_MOBILE+" caractÃ¨res");
 			return false;
 		}
 		if(faxFabricantField.getText().length()>Constante.LONGUEUR_NUM_FAX){
-			new Popup("Le numéro de fax saisi doit être inférieur à "+Constante.LONGUEUR_NUM_FAX+" caractères");
+			new Popup("Le numÃ©ro de fax saisi doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_NUM_FAX+" caractÃ¨res");
 			return false;
 		}
 		if(emailFabricantField.getText().length()>Constante.LONGUEUR_MAIL){
-			new Popup("Le numéro de fax saisi doit être inférieur à "+Constante.LONGUEUR_MAIL+" caractères");
+			new Popup("Le numÃ©ro de fax saisi doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_MAIL+" caractÃ¨res");
 			return false;
 		}
 		if(adresseFabricantField.getText().length()>Constante.LONGUEUR_ADRESSE){
-			new Popup("L'adresse saisie doit être inférieur à "+Constante.LONGUEUR_ADRESSE+" caractères");
+			new Popup("L'adresse saisie doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_ADRESSE+" caractÃ¨res");
 			return false;
 		}
 		return true;

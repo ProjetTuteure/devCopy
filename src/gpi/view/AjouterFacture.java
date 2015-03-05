@@ -38,7 +38,7 @@ public class AjouterFacture {
 	List<Integer> listRevendeurId;
 
 	/**
-	 * Initialise les données
+	 * Initialise les donnï¿½es
 	 */
 	@FXML
 	private void initialize() {
@@ -92,7 +92,7 @@ public class AjouterFacture {
 					revendeurFacture=revendeurDAO.recupererRevendeurParId(listRevendeurId.get(index));
 				}
 				factureDAO.ajouterFacture(new Facture(0,numFactureField.getText(),dateFacturePicker.getValue(),Float.parseFloat(montantFactureField.getText()),revendeurFacture));
-				new Popup("Facture "+numFactureField.getText()+" ajoutée !");
+				new Popup("Facture "+numFactureField.getText()+" ajoutï¿½e !");
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
@@ -104,25 +104,25 @@ public class AjouterFacture {
 
 	private boolean controlerSaisies() {
 		if(numFactureField.getText().isEmpty()){
-			new Popup("Le champ \"Numéro de facture\" doit être saisi");
+			new Popup("Le champ \"NumÃ©ro de facture\" doit Ãªtre saisi");
 			return false;
 		}
 		if(dateFacturePicker.getValue()==null){
-			new Popup("Le champ \"date de facture\" doit être saisi");
+			new Popup("Le champ \"date de facture\" doit Ãªtre saisi");
 			return false;
 		}
 		if(numFactureField.getText().length()>Constante.LONGUEUR_NUM_FACTURE){
-			new Popup("La longueur du numero de facture saisi doit être inférieur à "+Constante.LONGUEUR_NUM_FACTURE+" caractères");
+			new Popup("La longueur du numero de facture saisi doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_NUM_FACTURE+" caratÃ¨res");
 			return false;
 		}
 		if(montantFactureField.getText().length()>Constante.LONGUEUR_MONTANT_FACTURE){
-			new Popup("La longueur du montant de la facture saisi doit être inférieur à "+Constante.LONGUEUR_MONTANT_FACTURE+" caractères");
+			new Popup("La longueur du montant de la facture saisi doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_MONTANT_FACTURE+" caractÃ¨res");
 			return false;
 		}
 		Pattern p = Pattern.compile("[0-9]{1,8}[.]{1}[0-9]{1,2}");
 		Matcher m = p.matcher(montantFactureField.getText());
 		if(!m.matches()){
-			new Popup("Le format du montant de la facture est erroné. Format : 123.45");
+			new Popup("Le format du montant de la facture est erronÃ©. Format : 123.45");
 			return false;
 		}
 		return true;

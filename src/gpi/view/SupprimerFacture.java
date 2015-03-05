@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-
 public class SupprimerFacture {
 	@FXML
 	private Stage dialogStage;
@@ -22,7 +21,6 @@ public class SupprimerFacture {
 
 	@FXML
 	private ComboBox<String> comboboxFacture;
-
 
 	private ObservableList<String> listFacture;
 	List<Integer> listFactureId;
@@ -34,7 +32,7 @@ public class SupprimerFacture {
 	private void initialize() {
 		FactureDAO factureDAO = new FactureDAO();
 		listFacture = FXCollections.observableArrayList();
-		listFactureId=new ArrayList<Integer>();
+		listFactureId = new ArrayList<Integer>();
 		try {
 			for (Facture facture : factureDAO.recupererAllFacture()) {
 				listFacture.add(facture.getNumFacture());
@@ -65,23 +63,36 @@ public class SupprimerFacture {
 		return okClicked;
 	}
 
+	private boolean controlerSaisies() {
+		if (comboboxFacture.getValue() == null) {
+			new Popup("Vous devez selectionner la facture Ã  supprimer");
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton SUPPRIMER
 	 * est clique
 	 */
 	@FXML
 	private void handleOk() {
-		FactureDAO factureDAO=new FactureDAO();
-		int selected=comboboxFacture.getSelectionModel().getSelectedIndex();
-		int id=listFactureId.get(selected);
-		try {
-			factureDAO.supprimerFacture(new Facture(id,null,null,0,null));
-			new Popup("Facture "+comboboxFacture.getValue()+" supprimée !");
-		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+		if (controlerSaisies()) {
+			FactureDAO factureDAO = new FactureDAO();
+			int selected = comboboxFacture.getSelectionModel()
+					.getSelectedIndex();
+			int id = listFactureId.get(selected);
+			try {
+				factureDAO
+						.supprimerFacture(new Facture(id, null, null, 0, null));
+				new Popup("Facture " + comboboxFacture.getValue()
+						+ " supprimï¿½e !");
+			} catch (ConnexionBDException e) {
+				new Popup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
 	}
 
 	/**

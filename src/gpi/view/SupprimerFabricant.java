@@ -64,6 +64,14 @@ public class SupprimerFabricant {
 	public boolean isOkClicked() {
 		return okClicked;
 	}
+	
+	private boolean controlerSaisies() {
+		if (comboboxfabr.getValue() == null) {
+			new Popup("Vous devez selectionner le fabricant à supprimer");
+			return false;
+		}
+		return true;
+	}
 
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton SUPPRIMER
@@ -71,15 +79,16 @@ public class SupprimerFabricant {
 	 */
 	@FXML
 	private void handleOk() {
+		if (controlerSaisies()) {
 		try {
 			fabricantDAO.supprimerFabricant(new Fabricant(listIdFabricant.get(comboboxfabr.getSelectionModel().getSelectedIndex()),null, null, null, null, null,null));
-			new Popup("Fabricant "+comboboxfabr.getValue()+" supprimer !");
+			new Popup("Fabricant "+comboboxfabr.getValue()+" supprimé !");
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
 		}
 		okClicked = true;
 		dialogStage.close();
-	}
+	}}
 
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton ANNULER
