@@ -1,8 +1,6 @@
 Materiel (add/mod/suppr) => Sysout de partout
 Maintenance => Sysout
-Composant => si Caracteristique vide probleme sur modifier lors de la selection du la caracteristique
-Composition => Si caracteristique vide probleme
-	    => Supprimer composition fonctionne pas
+Composition  => Supprimer composition fonctionne pas
 Supprimer intervention
 
 Operation maint -> Ajouter : faut pas par id, il faut aussi le nom du materiel et pareil pour maintenance
@@ -13,3 +11,10 @@ Modifier chemin BD
 Modifier dossier driver
 
 Erreur sur les compose (add/suppr/mod)
+
+Gerer composant supprimer : fonctionne pas lorsqu'il y a 2 composants du même nom
+idem pour prestataire et utilisateur
+
+Ajouter composant : la caracteritique reste similaire si 2 composants ont le même nom même si ceux ci n'ont pas la même caracteristique
+
+Intervention : 2x mérillou : faire un distinct sur le nom pour avoir un seul nom mérillou avec stef et nico dedans
