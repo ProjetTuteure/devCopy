@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utils.Popup;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Revendeur;
 import gpi.metier.RevendeurDAO;
@@ -28,10 +27,10 @@ public class SupprimerRevendeur {
 	private ComboBox<String> comboboxrev;
 
 	private ObservableList<String> listrev;
-	
+
 	private List<Revendeur> listeRevendeur;
-	
-	private RevendeurDAO revendeurDAO=new RevendeurDAO();
+
+	private RevendeurDAO revendeurDAO = new RevendeurDAO();
 
 	/**
 	 * Initialise les donn�es Ajoute les donn�es aux combobox
@@ -39,19 +38,16 @@ public class SupprimerRevendeur {
 	@FXML
 	private void initialize() {
 		listrev = FXCollections.observableArrayList();
-		listeRevendeur=new ArrayList<Revendeur>();
-		try
-		{
-			listeRevendeur=revendeurDAO.recupererAllRevendeur();
-		}
-		catch(ConnexionBDException ce)
-		{
+		listeRevendeur = new ArrayList<Revendeur>();
+		try {
+			listeRevendeur = revendeurDAO.recupererAllRevendeur();
+		} catch (ConnexionBDException ce) {
 			new Popup(ce.getMessage());
 			this.dialogStage.close();
 		}
-		for(Revendeur revendeur : listeRevendeur)
-		{
-			listrev.add(revendeur.getIdRevendeur().getValue()+"- "+revendeur.getNomRevendeur().getValue());
+		for (Revendeur revendeur : listeRevendeur) {
+			listrev.add(revendeur.getIdRevendeur().getValue() + "- "
+					+ revendeur.getNomRevendeur().getValue());
 		}
 		comboboxrev.setItems(listrev);
 	}
@@ -81,21 +77,17 @@ public class SupprimerRevendeur {
 	 */
 	@FXML
 	private void handleOk() {
-		if(comboboxrev.getValue()==null)
-		{
-			new Popup("Veuillez choisir un revendeur");
-		}
-		else
-		{
-			Revendeur revendeur=listeRevendeur.get(comboboxrev.getSelectionModel().getSelectedIndex());
-			try 
-			{
+		if (comboboxrev.getValue() == null) {
+			new Popup("Veuillez selectionner un revendeur à supprimer");
+		} else {
+			Revendeur revendeur = listeRevendeur.get(comboboxrev
+					.getSelectionModel().getSelectedIndex());
+			try {
 				revendeurDAO.supprimerRevendeur(revendeur);
 				dialogStage.close();
-				new Popup("Revendeur "+ revendeur.getNomRevendeur().getValue()+" supprim� !");
-			}
-			catch (ConnexionBDException e) 
-			{
+				new Popup("Revendeur " + revendeur.getNomRevendeur().getValue()
+						+ " supprimé !");
+			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 				this.dialogStage.close();
 			}

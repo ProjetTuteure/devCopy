@@ -5,14 +5,11 @@ import java.util.List;
 
 import utils.Constante;
 import utils.Popup;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Facture;
 import gpi.metier.FactureDAO;
 import gpi.metier.Logiciel;
 import gpi.metier.LogicielDAO;
-import gpi.metier.Revendeur;
-import gpi.metier.RevendeurDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -86,7 +83,6 @@ public class ModifierLogiciel {
 				try {
 					facture=factureDAO.recupererFactureParId(listFactureId.get(indexFacture));
 				} catch (ConnexionBDException e) {
-					// TODO Auto-generated catch block
 					new Popup(e.getMessage());
 				}
 			}
@@ -94,7 +90,7 @@ public class ModifierLogiciel {
 			int idLogiciel=listObjetsLogiciel.get(indexLogiciel).getIdLogiciel();
 			try {
 				logicielDAO.modifierLogiciel(new Logiciel(idLogiciel,nomLogicielField.getText(),versionLogicielField.getText(),dateExpirationLogicielPicker.getValue(),facture));
-				new Popup("Logiciel "+nomLogicielField.getText()+" modifié !");
+				new Popup("Logiciel "+nomLogicielField.getText()+" modifiÃ© !");
 			}  catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
@@ -105,23 +101,23 @@ public class ModifierLogiciel {
 	
 	private boolean controlerSaisies() {
 		if(comboboxLogiciel.getValue()==null){
-			new Popup("Vous devez selectionner le logiciel à modifier");
+			new Popup("Vous devez selectionner le logiciel Ã  modifier");
 			return false;
 		}
 		if(nomLogicielField.getText().isEmpty()){
-			new Popup("Le champ \"Nom du logiciel\" doit être saisi");
+			new Popup("Le champ \"Nom du logiciel\" doit Ãªtre saisi");
 			return false;
 		}
 		if(comboboxFacture.getPromptText()==null){
-			new Popup("Le champ \"Facture du logiciel\" doit être saisi");
+			new Popup("Le champ \"Facture du logiciel\" doit Ãªtre saisi");
 			return false;
 		}
 		if(nomLogicielField.getText().length()>Constante.LONGUEUR_NOM_LOGICIEL){
-			new Popup("La longueur du nom du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_NOM_LOGICIEL+" caractères");
+			new Popup("La longueur du nom du logiciel saisi doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_NOM_LOGICIEL+" caractÃ¨res");
 			return false;
 		}
 		if(versionLogicielField.getText().length()>Constante.LONGUEUR_VERSION_LOGICIEL){
-			new Popup("La longueur de la version du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_VERSION_LOGICIEL+" caractères");
+			new Popup("La longueur de la version du logiciel saisi doit Ãªtre infÃ©rieur Ã  "+Constante.LONGUEUR_VERSION_LOGICIEL+" caractÃ¨res");
 			return false;
 		}	
 		return true;

@@ -42,7 +42,7 @@ public class AjouterRevendeur {
 	RevendeurDAO rdao = new RevendeurDAO();
 
 	/**
-	 * Initialise les données
+	 * Initialise les donnï¿½es
 	 */
 	@FXML
 	private void initialize() {
@@ -83,7 +83,7 @@ public class AjouterRevendeur {
 				rdao.ajouterRevendeur(revendeurAAjouter);
 				new Popup("Revendeur "
 						+ revendeurAAjouter.getNomRevendeur().getValue()
-						+ " ajouté !");
+						+ " ajoutÃ© !");
 			} catch (ConnexionBDException ce) {
 				new Popup(ce.getMessage());
 			}
@@ -95,41 +95,41 @@ public class AjouterRevendeur {
 	/**
 	 * Controle les saisies
 	 * 
-	 * @return vrai si les données saisies sont cohérentes, faux sinon
+	 * @return vrai si les donnï¿½es saisies sont cohï¿½rentes, faux sinon
 	 */
 	public boolean controlerSaisies() {
 		if (tf_nomRevendeur.getText().isEmpty()) {
-			new Popup("Le champ \"Nom du revendeur\" doit être saisi");
+			new Popup("Le champ \"Nom du revendeur\" doit Ãªtre saisi");
 			return false;
 		}
 		if (tf_nomRevendeur.getText().length() > Constante.LONGUEUR_NOM_REVENDEUR) {
-			new Popup("La longueur du nom du revendeur doit être inférieur à "
-					+ Constante.LONGUEUR_NOM_REVENDEUR + " caractères");
+			new Popup("La longueur du nom du revendeur doit Ãªtre infÃ©rieur Ã  "
+					+ Constante.LONGUEUR_NOM_REVENDEUR + " caractÃ¨res");
 			return false;
 		}
 		if (tf_telRevendeur.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
-			new Popup("Le numéro de téléphone saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
+			new Popup("Le numÃ©ro de tÃ©lÃ©phone saisi doit Ãªtre infÃ©rieur Ã  "
+					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractÃ¨res");
 			return false;
 		}
 		if (tf_mobileRevendeur.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
-			new Popup("Le numéro de mobile saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
+			new Popup("Le numÃ©ro de mobile saisi doit Ãªtre infÃ©rieur Ã "
+					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractÃ¨res");
 			return false;
 		}
 		if (tf_faxRevendeur.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
-			new Popup("Le numéro de fax saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
+			new Popup("Le numÃ©ro de fax saisi doit Ãªtre infÃ©rieur Ã  "
+					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractÃ¨res");
 			return false;
 		}
 		if (tf_emailRevendeur.getText().length() > Constante.LONGUEUR_MAIL) {
 			new Popup("Le mail saisi doit contenir " + Constante.LONGUEUR_MAIL
-					+ " caractères");
+					+ " caractÃ¨res");
 			return false;
 		}
 		if (tf_adresseRevendeur.getText().length() > Constante.LONGUEUR_ADRESSE) {
-			new Popup("L'adresse saisie doit être inférieur à "
-					+ Constante.LONGUEUR_ADRESSE + " caractères");
+			new Popup("L'adresse saisie doit Ãªtre infÃ©rieur Ã  "
+					+ Constante.LONGUEUR_ADRESSE + " caractÃ¨res");
 			return false;
 		}
 		return true;

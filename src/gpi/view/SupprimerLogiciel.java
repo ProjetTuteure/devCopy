@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utils.Popup;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
-import gpi.metier.Facture;
-import gpi.metier.FactureDAO;
 import gpi.metier.Logiciel;
 import gpi.metier.LogicielDAO;
 import javafx.collections.FXCollections;
@@ -29,7 +26,6 @@ public class SupprimerLogiciel {
 	@FXML
 	private ComboBox<String> ComboboxLogiciel;
 
-
 	private ObservableList<String> listLogiciel;
 	List<Integer> listLogicielId;
 
@@ -40,10 +36,11 @@ public class SupprimerLogiciel {
 	private void initialize() {
 		LogicielDAO logicielDAO = new LogicielDAO();
 		listLogiciel = FXCollections.observableArrayList();
-		listLogicielId=new ArrayList<Integer>();
+		listLogicielId = new ArrayList<Integer>();
 		try {
 			for (Logiciel logiciel : logicielDAO.recupererAllLogiciel()) {
-				listLogiciel.add(logiciel.getNomLogiciel()+" "+logiciel.getVersionLogiciel());
+				listLogiciel.add(logiciel.getNomLogiciel() + " "
+						+ logiciel.getVersionLogiciel());
 				listLogicielId.add(logiciel.getIdLogiciel());
 			}
 		} catch (ConnexionBDException e) {
@@ -77,18 +74,30 @@ public class SupprimerLogiciel {
 	 */
 	@FXML
 	private void handleOk() {
-
-		LogicielDAO logicielDAO=new LogicielDAO();
-		int selected=ComboboxLogiciel.getSelectionModel().getSelectedIndex();
-		int id=listLogicielId.get(selected);
-		try {
-			logicielDAO.supprimerLogiciel(new Logiciel(id,null,null,null,null));
-			new Popup("Logiciel "+listLogiciel.get(selected)+" supprim� !");
-		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+		if (controlerSaisies()) {
+			LogicielDAO logicielDAO = new LogicielDAO();
+			int selected = ComboboxLogiciel.getSelectionModel()
+					.getSelectedIndex();
+			int id = listLogicielId.get(selected);
+			try {
+				logicielDAO.supprimerLogiciel(new Logiciel(id, null, null,
+						null, null));
+				new Popup("Logiciel " + listLogiciel.get(selected)
+						+ " supprimé !");
+			} catch (ConnexionBDException e) {
+				new Popup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
+	}
+
+	private boolean controlerSaisies() {
+		if (ComboboxLogiciel.getValue() == null) {
+			new Popup("Vous devez selectionner le type à supprimer");
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -99,6 +108,5 @@ public class SupprimerLogiciel {
 	private void handleCancel() {
 		dialogStage.close();
 	}
-
 
 }

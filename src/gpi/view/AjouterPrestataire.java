@@ -74,51 +74,51 @@ public class AjouterPrestataire {
 	/**
 	 * Controle les saisies
 	 * 
-	 * @return vrai si les données saisies sont cohérentes, faux sinon
+	 * @return vrai si les donnï¿½es saisies sont cohï¿½rentes, faux sinon
 	 */
 	public boolean controlerSaisies() {
 		if (nomPrestataireField.getText().equals("")) {
-			new Popup("Le champ \"Nom du prestataire\" doit être saisi");
+			new Popup("Le champ \"Nom du prestataire\" doit Ãªtre saisi");
 			return false;
 		}
 		if (nomPrestataireField.getText().length() > Constante.LONGUEUR_NOM_PRESTATAIRE) {
-			new Popup("Le nom du prestataire saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractères");
+			new Popup("Le nom du prestataire saisi doit Ãªtre infÃ©rieur Ã  "
+					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractÃ¨res");
 			return false;
 		}
 		if (prenomPrestataireField.getText().equals("")) {
-			new Popup("Le champ \"Prenom du prestataire\" doit être saisi");
+			new Popup("Le champ \"Prenom du prestataire\" doit Ãªtre saisi");
 			return false;
 		}
 		if (prenomPrestataireField.getText().length() > Constante.LONGUEUR_NOM_PRESTATAIRE) {
-			new Popup("Le prenom du prestataire saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractères");
+			new Popup("Le prenom du prestataire saisi doit Ãªtre infÃ©rieur Ã  "
+					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractÃ¨res");
 			return false;
 		}
 		if (telPrestataireField.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
 			new Popup(
-					"Le téléphone du prestataire saisi doit être inférieur à "
-							+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
+					"Le tï¿½lï¿½phone du prestataire saisi doit Ãªtre infÃ©rieur Ã  "
+							+ Constante.LONGUEUR_NUM_TELEPHONE + " caractÃ¨res");
 			return false;
 		}
 		if (mobilePrestataireField.getText().length() > Constante.LONGUEUR_NUM_MOBILE) {
-			new Popup("Le mobile du prestataire saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NUM_MOBILE + " caractères");
+			new Popup("Le mobile du prestataire saisi doit Ãªtre infÃ©rieur Ã  "
+					+ Constante.LONGUEUR_NUM_MOBILE + " caractÃ¨res");
 			return false;
 		}
 		if (faxPrestataireField.getText().length() > Constante.LONGUEUR_NUM_FAX) {
-			new Popup("Le fax du prestataire saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NUM_FAX + " caractères");
+			new Popup("Le fax du prestataire saisi doit Ãªtre infï¿½rieur Ã  "
+					+ Constante.LONGUEUR_NUM_FAX + " caractÃ¨res");
 			return false;
 		}
 		if (emailPrestataireField.getText().length() > Constante.LONGUEUR_MAIL) {
-			new Popup("L'email du prestataire saisi doit être inférieur à "
-					+ Constante.LONGUEUR_MAIL + " caractères");
+			new Popup("L'email du prestataire saisi doit Ãªtre infï¿½rieur Ã  "
+					+ Constante.LONGUEUR_MAIL + " caractÃ¨res");
 			return false;
 		}
 		if (societePrestataireField.getText().length() > Constante.LONGUEUR_SOCIETE) {
-			new Popup("La societe du prestataire saisi doit être inférieur à "
-					+ Constante.LONGUEUR_SOCIETE + " caractères");
+			new Popup("La societe du prestataire saisi doit Ãªtre infï¿½rieur Ã  "
+					+ Constante.LONGUEUR_SOCIETE + " caractÃ¨res");
 			return false;
 		}
 		return true;
@@ -142,7 +142,7 @@ public class AjouterPrestataire {
 			try {
 				prestataireDAO.ajouterPrestataire(prestataireAAjouter);
 				new Popup("Prestataire " + nomPrestataireField.getText() + " "
-						+ prenomPrestataireField.getText() + " ajouté !");
+						+ prenomPrestataireField.getText() + " ajoutÃ© !");
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
