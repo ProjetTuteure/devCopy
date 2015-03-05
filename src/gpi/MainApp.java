@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utils.Popup;
+import utils.PopupChargement;
 import gpi.bd.Donnee;
 import gpi.metier.*;
 import gpi.view.*;
@@ -54,7 +55,6 @@ public class MainApp extends Application {
 	
 	public static void launch(){
 		initRootLayout();
-		new Popup("connexion � la base");
 		Thread threadSite = new Thread(new OngletLoader(rootLayout,SiteOverview,"Site"));
 		Thread threadAnciennete = new Thread(new OngletLoader(rootLayout,AncienneteOverview,"Anciennete"));
 		Thread threadEtat = new Thread(new OngletLoader(rootLayout,EtatOverview,"Etat"));

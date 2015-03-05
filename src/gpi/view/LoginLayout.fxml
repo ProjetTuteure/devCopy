@@ -15,8 +15,8 @@
       </HBox>
       <Label layoutX="274.0" layoutY="244.0" text="Identifiant" />
       <Label layoutX="274.0" layoutY="290.0" text="Mot de passe" />
-      <TextField layoutX="383.0" layoutY="239.0" />
-      <TextField layoutX="383.0" layoutY="285.0" />
+      <TextField fx:id="tf_identifiant" layoutX="383.0" layoutY="239.0" />
+      <TextField fx:id="tf_motDePasse" layoutX="383.0" layoutY="285.0" />
       <ImageView fitHeight="229.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../sources/images/ADAM.png" />
