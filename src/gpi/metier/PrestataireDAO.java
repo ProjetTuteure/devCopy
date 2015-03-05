@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import gpi.exception.ConnexionBDException;
 import utils.MaConnexion;
 
@@ -143,7 +145,30 @@ public class PrestataireDAO {
 		}
 		return prestataireList;
 	}
-
+	public ObservableList<String> recupererAllNomPrestataire() throws ConnexionBDException{
+		ResultSet resultat;
+		ObservableList<String> nomsPrestataire=FXCollections.observableArrayList();
+		try {
+			connexion = MaConnexion.getInstance().getConnexion();
+			PreparedStatement preparedStatement = connexion
+					.prepareStatement("SELECT DISTINCT nomPrestataire FROM PRESTATAIRE");
+			resultat = preparedStatement.executeQuery();
+			while(resultat.next()){
+				nomsPrestataire.add(resultat.getString("nomPrestataire"));
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return nomsPrestataire;
+	}
 	public Prestataire recupererPrestataireParId(int idPrestataire)
 			throws ConnexionBDException {
 		ResultSet resultat;
@@ -179,13 +204,12 @@ public class PrestataireDAO {
 	
 	public List<Prestataire> recupererPrestataireParNom(String nomPrestataire) throws ConnexionBDException {
 		Connection connexion=MaConnexion.getInstance().getConnexion();
-		List<Prestataire> list=null;
+		List<Prestataire> list=new ArrayList<Prestataire>();
 		try {
 			PreparedStatement ps= connexion.prepareStatement("SELECT DISTINCT * FROM PRESTATAIRE WHERE nomPrestataire=?");
 			ps.setString(1, nomPrestataire);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
-				list=new ArrayList<Prestataire>();
 				list.add(new Prestataire(rs.getInt("idPrestataire"),
 						rs.getString("nomPrestataire"),
 						rs.getString("prenomPrestataire"),
@@ -198,16 +222,13 @@ public class PrestataireDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				connexion.close();
-			}
-			catch(SQLException se)
-			{
-				se.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 		return list;

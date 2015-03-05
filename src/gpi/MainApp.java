@@ -1323,12 +1323,9 @@ public class MainApp extends Application {
 			dialogStage.setResizable(false);
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
-
 			AjouterEstMaintenu controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-
 			dialogStage.showAndWait();
-
 			return controller.isOkClicked();
 
 		} catch (IOException e) {

@@ -4,9 +4,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- * Created by thibault on 22/11/14.
- */
 public class Revendeur {
 	private IntegerProperty idRevendeur;
     private StringProperty nomRevendeur;
@@ -47,7 +44,7 @@ public class Revendeur {
 
     /**
      * setter de l'idRevendeur
-     * @param idRevendeur l'idRevendeur à setter
+     * @param idRevendeur l'idRevendeur ï¿½ setter
      */
     public void setIdRevendeur(IntegerProperty idRevendeur) {
         this.idRevendeur = idRevendeur;
@@ -63,23 +60,23 @@ public class Revendeur {
 
     /**
      * setter du nom du revendeur
-     * @param nomRevendeur le nom du revendeur à setter
+     * @param nomRevendeur le nom du revendeur ï¿½ setter
      */
     public void setNomRevendeur(String nomRevendeur) {
         this.nomRevendeur.set(nomRevendeur);
     }
 
     /**
-     * Retourne le téléphone du revendeur
-     * @return telRevendeur le téléphone du revendeur
+     * Retourne le tï¿½lï¿½phone du revendeur
+     * @return telRevendeur le tï¿½lï¿½phone du revendeur
      */
     public StringProperty getTelRevendeur() {
         return telRevendeur;
     }
 
     /**
-     * Setter du téléphone du revendeur
-     * @param telRevendeur le téléphone du revendeur à setter
+     * Setter du tï¿½lï¿½phone du revendeur
+     * @param telRevendeur le tï¿½lï¿½phone du revendeur ï¿½ setter
      */
     public void setTelRevendeur(String telRevendeur) {
         this.telRevendeur.setValue(telRevendeur);
@@ -95,15 +92,15 @@ public class Revendeur {
 
     /**
      * Setter de l'adresse du revendeur
-     * @param adresseRevendeur l'adresse du revendeur à setter
+     * @param adresseRevendeur l'adresse du revendeur ï¿½ setter
      */
     public void setAdresseRevendeur(String adresseRevendeur) {
         this.adresseRevendeur.setValue(adresseRevendeur);
     }
     
     /**
-     * Retourne le numéro de mobile du revendeur
-     * @return le numéro de mobile du revendeur
+     * Retourne le numï¿½ro de mobile du revendeur
+     * @return le numï¿½ro de mobile du revendeur
      */
     public StringProperty getMobileRevendeur()
     {
@@ -112,7 +109,7 @@ public class Revendeur {
     
     /**
      * Setter du mobile du revendeur
-     * @param mobileRevendeur le mobile du revendeur à setter
+     * @param mobileRevendeur le mobile du revendeur ï¿½ setter
      */
     public void setMobileRevendeur(String mobileRevendeur)
     {
@@ -130,7 +127,7 @@ public class Revendeur {
     
     /**
      * Setter du fax du revendeur
-     * @param faxRevendeur le numéro de fax du revendeur à setter
+     * @param faxRevendeur le numï¿½ro de fax du revendeur ï¿½ setter
      */
     public void setFaxRevendeur(String faxRevendeur)
     {
@@ -138,7 +135,7 @@ public class Revendeur {
     }
     /**
      * Setter du mail revendeur
-     * @param emailRevendeur l'email du revendeur à setter
+     * @param emailRevendeur l'email du revendeur ï¿½ setter
      */
     public void setEmailRevendeur(String emailRevendeur)
     {

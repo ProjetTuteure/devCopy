@@ -7,9 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Julien on 15/01/2015.
- */
 public class EstMaintenuDAO {
     private Connection connexion;
     public int ajouterEstMaintenu(EstMaintenu estMaintenu) throws ConnexionBDException {

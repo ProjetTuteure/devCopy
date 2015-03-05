@@ -6,9 +6,6 @@ import utils.MaConnexion;
 import java.sql.*;
 import java.util.*;
 
-/**
- * Created by Julien on 13/01/2015.
- */
 public class TypeDAO {
 
     private Connection connexion;

@@ -34,8 +34,10 @@ public class SupprimerPrestataire {
 
 	private ObservableList<String> listNomPrestataire;
 	private ObservableList<String> listPrenomPrestataire;
+	
+	private List<Prestataire> listPrestataireParNom;
 
-	private List<Integer> listIdPrestataire;
+	private int indicePrestataireASupprimer;
 
 	/**
 	 * Initialise les donn�es Ajoute les donn�es aux combobox
@@ -43,16 +45,16 @@ public class SupprimerPrestataire {
 	@FXML
 	private void initialize() {
 		listNomPrestataire = FXCollections.observableArrayList();
-		listIdPrestataire = new ArrayList<Integer>();
 		try {
-			for (Prestataire prestataire : prestataireDAO
+			/*for (Prestataire prestataire : prestataireDAO
 					.recupererAllPrestataire()) {
 				listNomPrestataire.add(prestataire.getNomPrestataire()
 						.getValue()+"- "+prestataire.getIdPrestataire()
 						.getValue());
 				listIdPrestataire
 						.add(prestataire.getIdPrestataire().getValue());
-			}
+			 	}*/
+				listNomPrestataire=prestataireDAO.recupererAllNomPrestataire();
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
@@ -86,10 +88,11 @@ public class SupprimerPrestataire {
 	private void handleOk() {
 		if (controlerSaisies()) {
 			try {
-				prestataireDAO.supprimerPrestataire(new Prestataire(
-						listIdPrestataire.get(comboboxPrenomPrestataire
-								.getSelectionModel().getSelectedIndex()), null,
-						null, null, null, null, null, null));
+				prestataireDAO.supprimerPrestataire(this.listPrestataireParNom.get(indicePrestataireASupprimer));
+				Popup.getInstance().afficherPopup("Prestataire "+this.listPrestataireParNom.get(indicePrestataireASupprimer).
+						getNomPrestataire().getValue()+" "+
+						this.listPrestataireParNom.get(indicePrestataireASupprimer).getPrenomPrestataire().getValue()
+						+" supprimé !");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
@@ -117,34 +120,36 @@ public class SupprimerPrestataire {
 	 */
 	@FXML
 	private void handlechange() {
-		this.setIdPrestataire(listIdPrestataire.get(comboboxNomPrestataire
-				.getSelectionModel().getSelectedIndex()));
-		Prestataire selected = null;
+		listPrestataireParNom=new ArrayList<Prestataire>();
+		String nomPrestataireSelected=comboboxNomPrestataire.getValue();
 		try {
-			selected = prestataireDAO.recupererPrestataireParId(this
-					.getIdPrestataire());
+			listPrestataireParNom = prestataireDAO.recupererPrestataireParNom(nomPrestataireSelected);
 		} catch (ConnexionBDException e) {
-			e.printStackTrace();
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		listIdPrestataire = new ArrayList<Integer>();
 		listPrenomPrestataire = FXCollections.observableArrayList();
-		try {
-			for (Prestataire prestataire : prestataireDAO
-					.recupererAllPrestataire()) {
-				if (prestataire.getNomPrestataire().getValue()
-						.equals(selected.getNomPrestataire().getValue())) {
-					listPrenomPrestataire.add(selected.getPrenomPrestataire()
-							.getValue());
-					listIdPrestataire.add(selected.getIdPrestataire()
-							.getValue());
+		for(Prestataire prestataire:listPrestataireParNom){
+			listPrenomPrestataire.add(prestataire.getPrenomPrestataire().getValue());
+		}
+		/*try {
+			for (Prestataire prestataire : prestataireDAO.recupererAllPrestataire()) {
+				if (prestataire.getNomPrestataire().getValue().equals(selected.getNomPrestataire().getValue())) {
+					listPrenomPrestataire.add(selected.getPrenomPrestataire().getValue());
+					listeIdPrestataire.add(selected.getIdPrestataire().getValue());
+					System.out.println(listPrenomPrestataire);
 				}
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
-		}
+		}*/
 		comboboxPrenomPrestataire.setItems(listPrenomPrestataire);
 	}
 
+	@FXML
+	private void handleChange2(){
+		this.indicePrestataireASupprimer=comboboxPrenomPrestataire.getSelectionModel().getSelectedIndex();
+	}
+	
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();

@@ -5,9 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- * Created by thibault on 22/11/14.
- */
+
 public class Fabricant {
     private IntegerProperty idFabricant;
     private StringProperty nomFabricant;

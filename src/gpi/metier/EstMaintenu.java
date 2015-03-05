@@ -1,7 +1,4 @@
 package gpi.metier;
-/*
-* Created by Julien on 15/01/2015.
-*/
 public class EstMaintenu {
    private Materiel materielEstMaintenu;
    private Maintenance maintenanceEstMaintenu;

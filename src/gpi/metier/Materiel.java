@@ -9,9 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by thibault on 22/11/14.
- */
 public class Materiel {
     private IntegerProperty idMateriel;
     private StringProperty numImmobMateriel;
