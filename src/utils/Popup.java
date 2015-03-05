@@ -63,6 +63,7 @@ public final class Popup {
 			    alignment(Pos.CENTER).padding(new Insets(5)).build()));
 			dialogStage.setAlwaysOnTop(true);
 			dialogStage.show();
+			Popup.instance=null;
 		}
 	}
 	
