@@ -3,10 +3,8 @@ Maintenance => Sysout
 Composant => si Caracteristique vide probleme sur modifier lors de la selection du la caracteristique
 Composition => Si caracteristique vide probleme
 	    => Supprimer composition fonctionne pas
-Supprimer utilisation
 Supprimer intervention
 
-Ajouter utilisation : très lent (plantage de l'appli)
 Supprimer utilisation
 Operation maint -> Ajouter : faut pas par id, il faut aussi le nom du materiel et pareil pour maintenance
 

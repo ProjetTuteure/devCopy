@@ -80,4 +80,35 @@ public class PageMaterielDAO {
 		}
 		return listePageMateriel;
 	}
+	
+	public ObservableList<PageMateriel> getMaterielByIdUtilisateur(int idUtilisateur) throws ConnexionBDException{
+		connexion = MaConnexion.getInstance().getConnexion();
+		ObservableList<PageMateriel> listePageMateriel=FXCollections.observableArrayList();
+	String requete="SELECT M.idMateriel,M.nomMateriel FROM MATERIEL M JOIN UTILISE U ON M.idMateriel = U.idMateriel WHERE "
+			+ "U.idUtilisateur = ?" 
+				+ " ORDER BY nomMateriel ASC";
+		
+		try {
+			PreparedStatement ps=connexion.prepareStatement(requete);
+			ps.setInt(1,idUtilisateur);
+			ResultSet resultat = ps.executeQuery();
+			while(resultat.next()){
+				listePageMateriel.add(new PageMateriel(resultat.getString("idMateriel"),
+						resultat.getString("nomMateriel")));
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		finally {
+			try {
+				if (connexion !=null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listePageMateriel;
+	}
 }

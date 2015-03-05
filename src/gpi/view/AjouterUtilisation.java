@@ -3,6 +3,8 @@ package gpi.view;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
+import gpi.metier.PageMateriel;
+import gpi.metier.PageMaterielDAO;
 import gpi.metier.Utilisateur;
 import gpi.metier.UtilisateurDAO;
 import gpi.metier.Utilise;
@@ -42,27 +44,27 @@ public class AjouterUtilisation {
 	private ObservableList<String> listNomUtilisateur;
 	private List<Integer> listIdUtilisateur;
 	private ObservableList<String> listNomMateriel;
-	private List<Integer> listIdMateriel;
+	private List<String> listIdMateriel;
 	/**
-	 * Initialise les données
+	 * Initialise les donnï¿½es
 	 */
 	@FXML
 	private void initialize() {
 		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
-		MaterielDAO materielDAO = new MaterielDAO();
+		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
 		listNomUtilisateur = FXCollections.observableArrayList();
 		listIdUtilisateur = new ArrayList<Integer>();
 		listNomMateriel = FXCollections.observableArrayList();
-		listIdMateriel = new ArrayList<Integer>();
+		listIdMateriel = new ArrayList<String>();
 		
 		try{
 			for(Utilisateur utilisateur : utilisateurDAO.recupererAllUtilisateur()){
 				listNomUtilisateur.add(utilisateur.getNomUtilisateur().getValue()+" "+utilisateur.getPrenomUtilisateur().getValue());
 				listIdUtilisateur.add(utilisateur.getIdUtilisateur().intValue());
 			}
-			for(Materiel materiel : materielDAO.recupererAllMateriel()){
-				listNomMateriel.add(materiel.getNomMateriel().getValue());
-				listIdMateriel.add(materiel.getIdMateriel().intValue());	
+			for(PageMateriel pageMateriel : pageMaterielDAO.getAllMateriel()){
+				listNomMateriel.add(pageMateriel.getNomMateriel());
+				listIdMateriel.add(pageMateriel.getIdMateriel());	
 			}
 		}catch(ConnexionBDException e){
 			new Popup(e.getMessage());
@@ -102,7 +104,7 @@ public class AjouterUtilisation {
 		int indexUtilisateur = ComboboxNomUtilisateur.getSelectionModel().getSelectedIndex();
 		int indexMateriel = ComboboxMateriel.getSelectionModel().getSelectedIndex();
 		try{
-			utiliseDAO.ajouterUtilise(new Utilise(dateDebutUtilisation.getValue(),utilisateurDAO.recupererUtilisateurParId(listIdUtilisateur.get(indexUtilisateur)), materielDAO.recupererMaterielParId(listIdMateriel.get(indexMateriel))));
+			utiliseDAO.ajouterUtilise(new Utilise(dateDebutUtilisation.getValue(),utilisateurDAO.recupererUtilisateurParId(listIdUtilisateur.get(indexUtilisateur)), materielDAO.recupererMaterielParId(Integer.parseInt(listIdMateriel.get(indexMateriel)))));
 		}catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
 		}

@@ -10,11 +10,9 @@
     <GridPane prefHeight="164.0" prefWidth="301.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
         <Label text="Nom de l'utilisateur" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Label text="Materiel utilisé" GridPane.rowIndex="2" />
-            <ComboBox fx:id="comboboxnom" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="comboboxmat" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Prenom de l'utilisateur" GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboboxprenom" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Materiel utilisé" GridPane.rowIndex="1" />
+            <ComboBox fx:id="ComboboxNomUtilisateur" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="ComboboxMateriel" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="120.0" prefWidth="169.0" />
@@ -22,7 +20,6 @@
       </columnConstraints>
       <rowConstraints>
         <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
