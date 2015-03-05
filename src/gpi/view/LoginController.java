@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController implements Initializable{
@@ -25,7 +26,7 @@ public class LoginController implements Initializable{
 	private TextField tf_identifiant;
 	
 	@FXML
-	private TextField tf_motDePasse;
+	private PasswordField pf_motDePasse;
 	
 	private MainApp mainApp;
 	
@@ -38,7 +39,7 @@ public class LoginController implements Initializable{
 	
 	public void eventOk(ActionEvent event){
 		String identifiant=this.tf_identifiant.getText();
-		String motDePasse=this.tf_motDePasse.getText();
+		String motDePasse=this.pf_motDePasse.getText();
 		try {
 			this.donneeLoginController.controllerLoginEtMotDePasse(identifiant,motDePasse);
 			MainApp.launch();
