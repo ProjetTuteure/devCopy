@@ -26,7 +26,8 @@ public class SupprimerEstMaintenu {
 
 	private EstMaintenuDAO estMaintenuDAO =new EstMaintenuDAO();
 
-	private ObservableList<String> listIdMateriel;
+	private ObservableList<String> listNomMateriel;
+	private ObservableList<Integer> listIdMateriel;
 	private ObservableList<String> listIdMaintenance;
 
 	/**
@@ -35,17 +36,19 @@ public class SupprimerEstMaintenu {
 	@FXML
 	private void initialize() {
 		MaterielDAO materielDAO=new MaterielDAO();
+		listNomMateriel = FXCollections.observableArrayList();
 		listIdMateriel = FXCollections.observableArrayList();
 		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
 		try {
 			
 			for (PageMateriel pageMateriel : pageMaterielDAO.getAllMateriel()){
-				listIdMateriel.add(String.valueOf( pageMateriel.getNomMateriel()));
+				listNomMateriel.add(String.valueOf( pageMateriel.getNomMateriel()));
+				listNomMateriel.add(String.valueOf( pageMateriel.getIdMateriel()));
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		comboboxMateriel.setItems(listIdMateriel);
+		comboboxMateriel.setItems(listNomMateriel);
 	}
 
 	/**
@@ -101,8 +104,9 @@ public class SupprimerEstMaintenu {
 	@FXML
 	private void handleChange() {
 		listIdMaintenance = FXCollections.observableArrayList();
+		int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxMaintenance.getValue()));
 		try {
-			for (Maintenance maintenance : estMaintenuDAO.recupererMaintenanceParMateriel(Integer.parseInt(comboboxMateriel.getValue()))){
+			for (Maintenance maintenance : estMaintenuDAO.recupererMaintenanceParMateriel(idMateriel)){
 				listIdMaintenance.add(String.valueOf(maintenance.getIdMaintenance().getValue()));
 			}
 		} catch (ConnexionBDException e) {
