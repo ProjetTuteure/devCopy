@@ -1,7 +1,9 @@
 package gpi.view;
 
 import java.io.File;
+import java.util.Properties;
 
+import utils.Propriete;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -54,7 +56,9 @@ public class ModifierDriver {
 	 */
 	@FXML
 	private void handleOk() {
-
+		Properties p = Propriete.getInstance().getProperties();
+		p.remove("driver");
+		p.setProperty("driver",cheminfield.getText());
 		okClicked = true;
 		dialogStage.close();
 

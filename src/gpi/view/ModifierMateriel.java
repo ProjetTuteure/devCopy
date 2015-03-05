@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 
 public class ModifierMateriel {
 	private int  idMateriel;
+	
+	private String repertoireDriver;
 	@FXML
 	private Stage dialogStage;
 	@FXML
@@ -156,12 +158,11 @@ public class ModifierMateriel {
 			}else{
 				etatMateriel=Etat.valueOf(comboboxEtatMateriel.getSelectionModel().getSelectedItem());
 			}
-			
 			comboboxTypeMateriel.getSelectionModel().getSelectedIndex();
 			materielDAO.modifierMateriel(new Materiel(this.getIdMateriel(), immobMaterielField.getText(),
 					numeroSerieMaterielField.getText(), systemeExploitationMaterielField.getText(),
 					nomMaterielField.getText(),typeMateriel,etatMateriel,
-					dateExpirationGarantieMateriel,"", factureMateriel, siteMateriel, fabricantMateriel, modeleMaterielField.getText()));
+					dateExpirationGarantieMateriel,this.getRepertoireDriver(), factureMateriel, siteMateriel, fabricantMateriel, modeleMaterielField.getText()));
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
@@ -180,9 +181,14 @@ public class ModifierMateriel {
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		directoryChooser.setTitle("Choisir un dossier");
 		File selectedDirectory = directoryChooser.showDialog(null);
-
 		if (selectedDirectory != null) {
-		}
+			String adresse=selectedDirectory.getAbsolutePath();
+			adresse=adresse.replace("\\", "/");
+			adresse="file:///"+adresse;
+			this.setRepertoireDriver(adresse);
+        }else{
+        	
+        }
 	}
 
 	@FXML
@@ -279,7 +285,6 @@ public class ModifierMateriel {
 		try {
 			for (Type type : typeDAO.recupererAllType()){
 				listTypeMateriel.add(type.getNomTypeString());
-				System.out.println(type.idTypeProperty().getValue());
 				listIdTypeMateriel.add(type.idTypeProperty().getValue());
 			}
 		}catch (ConnexionBDException e){
@@ -299,6 +304,14 @@ public class ModifierMateriel {
 
 	public void setIdMateriel(int idMateriel) {
 		this.idMateriel = idMateriel;
+	}
+
+	public String getRepertoireDriver() {
+		return repertoireDriver;
+	}
+
+	public void setRepertoireDriver(String repertoireDriver) {
+		this.repertoireDriver = repertoireDriver;
 	}
 	
 	
