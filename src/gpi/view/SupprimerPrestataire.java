@@ -30,7 +30,7 @@ public class SupprimerPrestataire {
 	@FXML
 	private ComboBox<String> comboboxPrenomPrestataire;
 
-	private PrestataireDAO prestataireDAO=new PrestataireDAO();
+	private PrestataireDAO prestataireDAO = new PrestataireDAO();
 
 	private ObservableList<String> listNomPrestataire;
 	private ObservableList<String> listPrenomPrestataire;
@@ -43,11 +43,15 @@ public class SupprimerPrestataire {
 	@FXML
 	private void initialize() {
 		listNomPrestataire = FXCollections.observableArrayList();
-		listIdPrestataire=new ArrayList<Integer>();
+		listIdPrestataire = new ArrayList<Integer>();
 		try {
-			for (Prestataire prestataire : prestataireDAO.recupererAllPrestataire()) {
-                listNomPrestataire.add(prestataire.getNomPrestataire().getValue());
-				listIdPrestataire.add(prestataire.getIdPrestataire().getValue());
+			for (Prestataire prestataire : prestataireDAO
+					.recupererAllPrestataire()) {
+				listNomPrestataire.add(prestataire.getNomPrestataire()
+						.getValue()+"- "+prestataire.getIdPrestataire()
+						.getValue());
+				listIdPrestataire
+						.add(prestataire.getIdPrestataire().getValue());
 			}
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
@@ -80,14 +84,31 @@ public class SupprimerPrestataire {
 	 */
 	@FXML
 	private void handleOk() {
-		try {
-			prestataireDAO.supprimerPrestataire(new Prestataire(listIdPrestataire.get(comboboxPrenomPrestataire.getSelectionModel().getSelectedIndex()), null, null,null,null,null,null,null));
-		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+		if (controlerSaisies()) {
+			try {
+				prestataireDAO.supprimerPrestataire(new Prestataire(
+						listIdPrestataire.get(comboboxPrenomPrestataire
+								.getSelectionModel().getSelectedIndex()), null,
+						null, null, null, null, null, null));
+			} catch (ConnexionBDException e) {
+				new Popup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
 
+	}
+
+	private boolean controlerSaisies() {
+		if (comboboxNomPrestataire.getValue() == null) {
+			new Popup("Vous devez selectionner le nom du prestataire à supprimer");
+			return false;
+		}
+		if (comboboxPrenomPrestataire.getValue() == null) {
+			new Popup("Vous devez selectionner le prenom du prestataire à supprimer");
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -96,22 +117,28 @@ public class SupprimerPrestataire {
 	 */
 	@FXML
 	private void handlechange() {
-		this.setIdPrestataire(listIdPrestataire.get(comboboxNomPrestataire.getSelectionModel().getSelectedIndex()));
+		this.setIdPrestataire(listIdPrestataire.get(comboboxNomPrestataire
+				.getSelectionModel().getSelectedIndex()));
 		Prestataire selected = null;
 		try {
-			selected = prestataireDAO.recupererPrestataireParId(this.getIdPrestataire());
+			selected = prestataireDAO.recupererPrestataireParId(this
+					.getIdPrestataire());
 		} catch (ConnexionBDException e) {
 			e.printStackTrace();
 		}
-		listIdPrestataire=new ArrayList<Integer>();
+		listIdPrestataire = new ArrayList<Integer>();
 		listPrenomPrestataire = FXCollections.observableArrayList();
 		try {
-			for (Prestataire prestataire : prestataireDAO.recupererAllPrestataire()) {
-                if (prestataire.getNomPrestataire().getValue().equals(selected.getNomPrestataire().getValue())) {
-                    listPrenomPrestataire.add(selected.getPrenomPrestataire().getValue());
-					listIdPrestataire.add(selected.getIdPrestataire().getValue());
-                }
-            }
+			for (Prestataire prestataire : prestataireDAO
+					.recupererAllPrestataire()) {
+				if (prestataire.getNomPrestataire().getValue()
+						.equals(selected.getNomPrestataire().getValue())) {
+					listPrenomPrestataire.add(selected.getPrenomPrestataire()
+							.getValue());
+					listIdPrestataire.add(selected.getIdPrestataire()
+							.getValue());
+				}
+			}
 		} catch (ConnexionBDException e) {
 			new Popup(e.getMessage());
 		}
