@@ -36,6 +36,7 @@ public class AjouterComposant {
 	@FXML
 	private TextArea caracteristiquesField;
 	
+	
 	ComposantDAO composantdao=new ComposantDAO();
 	FabricantDAO fabricantDAO=new FabricantDAO();
 
@@ -56,7 +57,7 @@ public class AjouterComposant {
 		}
 		catch(ConnexionBDException ce)
 		{
-			new Popup(ce.getMessage());
+			Popup.getInstance().afficherPopup(ce.getMessage());
 			this.dialogStage.close();
 		}
 		
@@ -94,15 +95,15 @@ public class AjouterComposant {
 		Composant composantAAjouter;
 		if(nomField.getText().isEmpty())
 		{
-			new Popup("Le champ \"Nom du composant\" doit être rempli");
+			new Popup("Le champ \"Nom du composant\" doit ï¿½tre rempli");
 		}
 		else if(nomField.getText().length()>Constante.LONGUEUR_NOM_COMPOSANT)
 		{
-			new Popup("Le nom du composant doit etre inférieur à "+Constante.LONGUEUR_NOM_COMPOSANT+" caractères");
+			new Popup("Le nom du composant doit etre infï¿½rieur ï¿½ "+Constante.LONGUEUR_NOM_COMPOSANT+" caractï¿½res");
 		}
 		else if(caracteristiquesField.getText().length()>Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT)
 		{
-			new Popup("Les caractéristiques ne peuvent pas dépasser "+Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT+" caractères");
+			new Popup("Les caractï¿½ristiques ne peuvent pas dï¿½passer "+Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT+" caractï¿½res");
 		}
 		else
 		{
@@ -111,7 +112,7 @@ public class AjouterComposant {
 			try
 			{
 				composantdao.ajouterComposant(composantAAjouter);;
-				new Popup("Composant "+composantAAjouter.getNomComposant()+" ajouté !");
+				new Popup("Composant "+composantAAjouter.getNomComposant()+" ajoutï¿½ !");
 			}
 			catch(ConnexionBDException ce)
 			{

@@ -55,7 +55,7 @@ public class SiteOverviewController {
 			this.sites = FXCollections.observableArrayList(siteDAO
 					.recupererAllSite());
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 	}
 

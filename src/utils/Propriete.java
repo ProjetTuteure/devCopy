@@ -23,7 +23,7 @@ public class Propriete {
 		try {
 			pro.load(new FileInputStream("C:\\Program Files\\Gpi\\Configuration.properties"));
 		} catch (IOException e) {
-			new Popup("Fichier Configuration.properties manquant.");
+			Popup.getInstance().afficherPopup("Fichier Configuration.properties manquant.");
 		}
 	}
 

@@ -12,20 +12,41 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Classe permettant de g�rer les popups d'erreurs
+ * Classe permettant de g�rer les popups d'erreurs
  * @author Cedric
  *
  */
-public class Popup {
+public final class Popup {
 	private Stage dialogStage;
 	private Button buttonOk;
-	
+	private static volatile Popup instance = null;
 	/**
 	 * Construit une popup avec un message d'erreur et un bouton OK
-	 * @param nomChamp le champ qui n'a pas �t� rempli
+	 * @param nomChamp le champ qui n'a pas �t� rempli
 	 */
-	public Popup(String texteAAfficher)
+	public Popup()
 	{
+		super();
+	}
+	
+	public final static Popup getInstance() {
+        //Le "Double-Checked Singleton"/"Singleton doublement vérifié" permet 
+        //d'éviter un appel coûteux à synchronized, 
+        //une fois que l'instanciation est faite.
+        if (Popup.instance == null) {
+           // Le mot-clé synchronized sur ce bloc empêche toute instanciation
+           // multiple même par différents "threads".
+           // Il est TRES important.
+           synchronized(Popup.class) {
+             if (Popup.instance == null) {
+               Popup.instance = new Popup();
+             }
+           }
+        }
+        return Popup.instance;
+    }
+	
+	public void afficherPopup(String texteAAfficher){
 		this.dialogStage=new Stage();
 		this.buttonOk=new Button("Ok");
 		buttonOk.setOnAction(new EventHandler<ActionEvent>() {

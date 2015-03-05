@@ -44,7 +44,7 @@ public class LoginController implements Initializable{
 			this.donneeLoginController.controllerLoginEtMotDePasse(identifiant,motDePasse);
 			MainApp.launch();
 		} catch (LoginException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 	}
 	
