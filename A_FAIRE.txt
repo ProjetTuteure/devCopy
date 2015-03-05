@@ -11,3 +11,8 @@ Supprimer utilisation
 Operation maint -> Ajouter : faut pas par id, il faut aussi le nom du materiel et pareil pour maintenance
 
 Installation logiciel
+
+Modifier chemin BD
+Modifier dossier driver
+
+Erreur sur les compose (add/suppr/mod)
