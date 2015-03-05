@@ -187,7 +187,7 @@ public class ModifierMateriel {
 			adresse="file:///"+adresse;
 			this.setRepertoireDriver(adresse);
         }else{
-        	
+        	this.setRepertoireDriver("");
         }
 	}
 

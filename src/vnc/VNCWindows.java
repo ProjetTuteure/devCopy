@@ -5,6 +5,7 @@ import java.io.IOException;
 import utils.Constante;
 import utils.Popup;
 
+
 public class VNCWindows implements VNC{
 	
 	/**
@@ -15,7 +16,7 @@ public class VNCWindows implements VNC{
 		try {
 			this.lancerVNC(IPDestination);
 		} catch (IOException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 	}
 

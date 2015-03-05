@@ -33,4 +33,5 @@ public class Constante {
 	public static final int LONGUEUR_MODELE_MAT=20;
 	public static final int LONGUEUR_NOM_MATERIEL=20;
 	public static final String CHEMIN_VNC_VIEWER="./VNC/vncviewer.exe";
+	public static final String CHEMIN_CONF_PROPERTIES="./Configuration.properties";
 }
