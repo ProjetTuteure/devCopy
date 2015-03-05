@@ -22,13 +22,13 @@ public class Propriete {
 		return pro;
 	}
 	
-	public void setPropertiesDriver(String driver,String chemin){
-		this.pro.setProperty(driver,chemin);
+	public void setProperties(String key,String chemin){
+		this.pro.setProperty(key,chemin);
 		FileOutputStream oStream=null;
 		try {
 			oStream = new FileOutputStream(this.fichier);
 			try {
-				this.pro.store(oStream,"Modification chemin repertoire driver") ;
+				this.pro.store(oStream,"Modification chemin repertoire "+key);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

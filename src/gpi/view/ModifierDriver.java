@@ -50,7 +50,7 @@ public class ModifierDriver {
 	 */
 	@FXML
 	private void handleOk() {
-		Propriete.getInstance().setPropertiesDriver("driver",cheminfield.getText());
+		Propriete.getInstance().setProperties("driver",cheminfield.getText());
 		okClicked = true;
 		dialogStage.close();
 
