@@ -21,7 +21,7 @@ public class Propriete {
 	private Propriete() {
 	this.pro= new Properties();
 		try {
-			pro.load(new FileInputStream("/home/vico/Documents/Configuration.properties"));
+			pro.load(new FileInputStream("C:\\Program Files\\Gpi\\Configuration.properties"));
 		} catch (IOException e) {
 			new Popup("Fichier Configuration.properties manquant.");
 		}
