@@ -29,18 +29,13 @@ public class MaintenanceDAO {
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
+		} finally {
+			try {
 				if (connexion != null){
 					connexion.close();
 				}
-			}
-			catch(SQLException se)
-			{
-				se.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -68,16 +63,12 @@ public class MaintenanceDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
+		} finally {
+			try {
 				if (connexion != null){
 					connexion.close();
 				}
-			}
-			catch (SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -110,6 +101,14 @@ public class MaintenanceDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return maintenance;
 	}
@@ -139,6 +138,14 @@ public class MaintenanceDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return listeMaintenance;
 	}
@@ -166,6 +173,14 @@ public class MaintenanceDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -184,6 +199,14 @@ public class MaintenanceDAO {
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

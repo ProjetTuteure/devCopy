@@ -144,9 +144,7 @@ public class SiteDAO {
 				idSite=resultat.getInt("idSite");
 				nomSite=resultat.getString("nomSite");
 				cheminImageSite=resultat.getString("cheminImageSite");
-				//System.out.println(idSite+" "+nomSite+" "+cheminImageSite);
 				site=new Site(idSite,nomSite,cheminImageSite);
-				//System.out.println(site);
 				listSite.add(site);
 			}
 			return listSite;

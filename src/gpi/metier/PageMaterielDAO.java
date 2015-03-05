@@ -38,10 +38,9 @@ public class PageMaterielDAO {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
-				if (connexion !=null){
+				if (connexion != null){
 					connexion.close();
 				}
 			} catch (SQLException e) {
@@ -67,10 +66,9 @@ public class PageMaterielDAO {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
-				if (connexion !=null){
+				if (connexion != null){
 					connexion.close();
 				}
 			} catch (SQLException e) {
@@ -98,10 +96,9 @@ public class PageMaterielDAO {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
-				if (connexion !=null){
+				if (connexion != null){
 					connexion.close();
 				}
 			} catch (SQLException e) {

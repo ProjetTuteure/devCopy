@@ -1,14 +1,11 @@
 package gpi.metier;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- * Created by thibault on 22/11/14.
- */
+
 public class Utilise {
 	private LocalDate dateUtilise;
     private Utilisateur utilisateurUtilise;

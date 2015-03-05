@@ -1,15 +1,10 @@
 package gpi.metier;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
 
-/**
- * Created by thibault on 22/11/14.
- */
 public class Logiciel {
     private Integer idLogiciel;
     private String nomLogiciel;

@@ -7,9 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Julien on 14/01/2015.
- */
 public class FabricantDAO {
     private Connection connexion;
     public int ajouterFabricant(Fabricant fabricant) throws ConnexionBDException{

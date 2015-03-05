@@ -24,7 +24,6 @@ public class RevendeurDAO {
 	public void ajouterRevendeur(Revendeur revendeur) throws ConnexionBDException
 	{
 		Connection connexion=MaConnexion.getInstance().getConnexion();
-		System.out.println(revendeur.getEmailRevendeur().getValue());
 		try {
 			PreparedStatement ps=connexion.prepareStatement("INSERT INTO REVENDEUR (nomRevendeur,telRevendeur,mobileRevendeur,faxRevendeur,emailRevendeur,adresseRevendeur)"
 					+ "VALUES (?,?,?,?,?,?)");
@@ -38,18 +37,13 @@ public class RevendeurDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
+		}  finally {
+			try {
 				if (connexion != null){
 					connexion.close();
 				}
-			}
-			catch(SQLException se)
-			{
-				se.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -75,18 +69,13 @@ public class RevendeurDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
+		}  finally {
+			try {
 				if (connexion != null){
 					connexion.close();
 				}
-			}
-			catch(SQLException se)
-			{
-				se.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -105,18 +94,13 @@ public class RevendeurDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
+		}  finally {
+			try {
 				if (connexion != null){
 					connexion.close();
 				}
-			}
-			catch(SQLException se)
-			{
-				se.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -141,18 +125,13 @@ public class RevendeurDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
+		} finally {
+			try {
 				if (connexion != null){
 					connexion.close();
 				}
-			}
-			catch(SQLException se)
-			{
-				se.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 		return listeRevendeur;
@@ -185,18 +164,13 @@ public class RevendeurDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
+		} finally {
+			try {
 				if (connexion != null){
 					connexion.close();
 				}
-			}
-			catch(SQLException se)
-			{
-				se.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 		return revendeurARetourner;

@@ -9,9 +9,6 @@ import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
 
-/**
- * Created by thibault on 22/11/14.
- */
 public class Facture {
 	private IntegerProperty idFacture;
     private StringProperty numFacture;

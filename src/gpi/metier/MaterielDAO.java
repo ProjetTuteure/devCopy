@@ -214,7 +214,6 @@ public class MaterielDAO {
 				etatMateriel=Etat.valueOf(resultat.getString("etat"));
 			}
 			materiel = new Materiel(resultat.getInt("idMateriel"),resultat.getString("numImmobMateriel"),resultat.getString("numeroSerieMateriel"),resultat.getString("systemeExploitationMateriel"),resultat.getString("nomMateriel"), typeMateriel, etatMateriel, dateExpirationGarantieMateriel, resultat.getString("repertoireDrivers"), factureMateriel, siteMateriel, fabricantMateriel, resultat.getString("modeleMateriel"));
-			System.out.println(materiel);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -267,7 +266,6 @@ public class MaterielDAO {
 			throws ConnexionBDException {
 		List<Materiel> listMateriel = new ArrayList<Materiel>();
 		ResultSet resultat;
-		Materiel materiel = null;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement preparedStatement = connexion.prepareStatement("SELECT * FROM MATERIEL WHERE idType=? And idSite=?;");
@@ -305,7 +303,6 @@ public class MaterielDAO {
 			throws ConnexionBDException {
 		List<Materiel> listMateriel = new ArrayList<Materiel>();
 		ResultSet resultat;
-		Materiel materiel = null;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement preparedStatement = connexion.prepareStatement("SELECT * FROM MATERIEL WHERE idSite=?;");
@@ -341,7 +338,6 @@ public class MaterielDAO {
 	public List<Materiel> recupererMaterielParType( Type type)	throws ConnexionBDException {
 		List<Materiel> listMateriel = new ArrayList<Materiel>();
 		ResultSet resultat;
-		Materiel materiel = null;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement preparedStatement = connexion.prepareStatement("SELECT * FROM MATERIEL WHERE idType=?;");

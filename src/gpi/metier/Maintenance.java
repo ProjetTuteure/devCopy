@@ -5,14 +5,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
-/**
- * Created by thibault on 22/11/14.
- */
+
+
 public class Maintenance {
     private IntegerProperty idMaintenance;
     private LocalDate dateMaintenance;

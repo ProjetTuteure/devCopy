@@ -4,9 +4,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- * Created by thibault on 22/11/14.
- */
 public class Utilisateur {
     private IntegerProperty idUtilisateur;
     private StringProperty nomUtilisateur;
@@ -76,7 +73,7 @@ public class Utilisateur {
 
     /**
      * Getter de telUtilisateur
-     * @return le numéro de telephone de l'utilisateur
+     * @return le numï¿½ro de telephone de l'utilisateur
      */
     public StringProperty getTelUtilisateur() {
         return telUtilisateur;
