@@ -36,10 +36,11 @@ public class SupprimerEstMaintenu {
 	private void initialize() {
 		MaterielDAO materielDAO=new MaterielDAO();
 		listIdMateriel = FXCollections.observableArrayList();
-
+		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
 		try {
-			for (Materiel materiel : materielDAO.recupererAllMateriel()){
-				listIdMateriel.add(String.valueOf(materiel.getIdMateriel().getValue()));
+			
+			for (PageMateriel pageMateriel : pageMaterielDAO.getAllMateriel()){
+				listIdMateriel.add(String.valueOf( pageMateriel.getNomMateriel()));
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
