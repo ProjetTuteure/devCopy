@@ -20,8 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
-
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -30,6 +28,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import utils.Popup;
+import utils.Rapports;
 
 /**
  * Created by Victor on 24/11/2014.
@@ -120,6 +119,11 @@ public class AncienneteController implements Initializable {
 		
 	}
 
+	@FXML
+	public void onClickButton(){
+		Rapports rapport=new Rapports();
+		rapport.GenerateMaterielParc();
+	}
      
 	@FXML 
 	public void handleMouseClick(MouseEvent arg0) {
