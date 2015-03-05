@@ -13,10 +13,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import utils.MaConnexion;
+import utils.Propriete;
 
 public class MaterielDAO {
 	private Connection connexion;
@@ -25,7 +27,7 @@ public class MaterielDAO {
 	 * Permet d'ajouter un materiel dans la base de donnees
 	 * 
 	 * @param materiel
-	 *            le materiel � ajouter dans la base de donnees
+	 *            le materiel ï¿½ ajouter dans la base de donnees
 	 */
 	public int ajouterMateriel(Materiel materiel) throws ConnexionBDException {
 		int nombreLigneAffectee = 0;
@@ -91,7 +93,7 @@ public class MaterielDAO {
 	 * Permet de modifier un materiel
 	 * 
 	 * @param materiel
-	 *            le materiel � modifier
+	 *            le materiel ï¿½ modifier
 	 */
 	public void modifierMateriel(Materiel materiel) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
@@ -340,8 +342,7 @@ public class MaterielDAO {
 		return listMateriel;
 	}
 	
-	public List<Materiel> recupererMaterielParType( Type type)
-			throws ConnexionBDException {
+	public List<Materiel> recupererMaterielParType( Type type)	throws ConnexionBDException {
 		List<Materiel> listMateriel = new ArrayList<Materiel>();
 		ResultSet resultat;
 		Materiel materiel = null;
@@ -473,5 +474,34 @@ public class MaterielDAO {
 			}
 		}
 		return listMateriel;		
+	}
+	
+	public void ajouterRepertoireDriverMateriel() throws ConnexionBDException{
+		connexion = MaConnexion.getInstance().getConnexion();
+		ResultSet resultat;
+		int idMateriel=-1;
+		try {
+			PreparedStatement preparedStatement = connexion.prepareStatement("SELECT IDENT_CURRENT('materiel');");
+			resultat = preparedStatement.executeQuery();
+			resultat.next();
+			idMateriel=resultat.getInt(1);
+			Properties p = Propriete.getInstance().getProperties();
+			String newRepertoire=p.getProperty("driver")+"\\"+idMateriel;
+			PreparedStatement preparedStatementAjout = connexion.prepareStatement("UPDATE materiel SET repertoireDrivers=? WHERE idMateriel=?;");
+			preparedStatementAjout.setString(1, newRepertoire);
+			preparedStatementAjout.setInt(2, idMateriel);
+			preparedStatementAjout.executeUpdate();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

@@ -89,7 +89,6 @@ public class AjouterMateriel {
 		for (Etat etat : Etat.values()) {
 			listEtatMateriel.add(etat.name());
 		}
-		System.out.println(listEtatMateriel);
 		comboboxEtatMateriel.setItems(listEtatMateriel);
 
 		FabricantDAO fabricantDAO=new FabricantDAO();
@@ -219,6 +218,7 @@ public class AjouterMateriel {
 						siteMateriel,
 						fabricantMateriel,
 						modeleMaterielField.getText()));
+				materielDAO.ajouterRepertoireDriverMateriel();
 			} catch (ConnexionBDException e) {
 				new Popup(e.getMessage());
 			}
