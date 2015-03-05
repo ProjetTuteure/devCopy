@@ -40,15 +40,16 @@ public class AjouterEstMaintenu {
 	private void initialize() {
 		MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
 		listIdMaintenance = FXCollections.observableArrayList();
-		MaterielDAO materielDAO=new MaterielDAO();
+		PageMaterielDAO pageMaterielDAO=new PageMaterielDAO();
 		listIdMateriel = FXCollections.observableArrayList();
-
+		
+			
 		try {
 			for (Maintenance maintenance : maintenanceDAO.recupererAllMaintenance()){
 				listIdMaintenance.add(String.valueOf(maintenance.getIdMaintenance().getValue()));
 			}
-			for (Materiel materiel : materielDAO.recupererAllMateriel()){
-				listIdMateriel.add(String.valueOf(materiel.getIdMateriel().getValue()));
+			for (PageMateriel pageMateriel : pageMaterielDAO.getAllMateriel()){
+				listIdMateriel.add(String.valueOf( pageMateriel.getNomMateriel()));
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
