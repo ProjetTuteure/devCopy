@@ -50,7 +50,7 @@ public class AjouterLogiciel {
 			}
 		} catch (ConnexionBDException e) {
 			// TODO Auto-generated catch block
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		ComboboxFacture.setItems(listFacture);
 	}
@@ -78,9 +78,9 @@ public class AjouterLogiciel {
 			int index=ComboboxFacture.getSelectionModel().getSelectedIndex();
 			try {
 				logicielDAO.ajouterLogiciel(new Logiciel(0,nomLogicielField.getText(),versionLogicielField.getText(),dateExpirationGarantieField.getValue(),factureDAO.recupererFactureParId(listFactureId.get(index))));
-				new Popup("Logiciel "+nomLogicielField.getText()+" ajouté !");
+				Popup.getInstance().afficherPopup("Logiciel "+nomLogicielField.getText()+" ajouté !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			dialogStage.close();
 			isOkClicked=true;
@@ -89,19 +89,19 @@ public class AjouterLogiciel {
 	
 	private boolean controlerSaisies() {
 		if(nomLogicielField.getText().isEmpty()){
-			new Popup("Le champ \"Nom du logiciel\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du logiciel\" doit être saisi");
 			return false;
 		}
 		if(ComboboxFacture.getValue()==null){
-			new Popup("Le champ \"Facture du logiciel\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Facture du logiciel\" doit être saisi");
 			return false;
 		}
 		if(nomLogicielField.getText().length()>Constante.LONGUEUR_NOM_LOGICIEL){
-			new Popup("La longueur du nom du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_NOM_LOGICIEL+" caractères");
+			Popup.getInstance().afficherPopup("La longueur du nom du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_NOM_LOGICIEL+" caractères");
 			return false;
 		}
 		if(versionLogicielField.getText().length()>Constante.LONGUEUR_VERSION_LOGICIEL){
-			new Popup("La longueur de la version du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_VERSION_LOGICIEL+" caractères");
+			Popup.getInstance().afficherPopup("La longueur de la version du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_VERSION_LOGICIEL+" caractères");
 			return false;
 		}	
 		return true;

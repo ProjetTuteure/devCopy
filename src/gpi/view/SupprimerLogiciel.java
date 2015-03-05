@@ -44,7 +44,7 @@ public class SupprimerLogiciel {
 				listLogicielId.add(logiciel.getIdLogiciel());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		ComboboxLogiciel.setItems(listLogiciel);
 	}
@@ -82,10 +82,10 @@ public class SupprimerLogiciel {
 			try {
 				logicielDAO.supprimerLogiciel(new Logiciel(id, null, null,
 						null, null));
-				new Popup("Logiciel " + listLogiciel.get(selected)
+				Popup.getInstance().afficherPopup("Logiciel " + listLogiciel.get(selected)
 						+ " supprimé !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
@@ -94,7 +94,7 @@ public class SupprimerLogiciel {
 
 	private boolean controlerSaisies() {
 		if (ComboboxLogiciel.getValue() == null) {
-			new Popup("Vous devez selectionner le type à supprimer");
+			Popup.getInstance().afficherPopup("Vous devez selectionner le type à supprimer");
 			return false;
 		}
 		return true;

@@ -99,7 +99,7 @@ public class AjouterMateriel {
 				listIdFabricantMateriel.add(fabricant.getIdFabricant().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxFabricantMateriel.setItems(listFabricantMateriel);
 
@@ -110,7 +110,7 @@ public class AjouterMateriel {
 				listIdFactureMateriel.add(facture.getIdFacture().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxFactureMateriel.setItems(listFactureMateriel);
 
@@ -121,7 +121,7 @@ public class AjouterMateriel {
 				listIdSiteMateriel.add(site.getIdSite());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxSiteMateriel.setItems(listSiteMateriel);
 		
@@ -132,7 +132,7 @@ public class AjouterMateriel {
 				listIdTypeMateriel.add(type.getIdType());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxTypeMateriel.setItems(listTypeMateriel);
 
@@ -172,7 +172,7 @@ public class AjouterMateriel {
 					typeMateriel = typeDAO.recupererTypeParId(listIdTypeMateriel.get(comboboxTypeMateriel.getSelectionModel().getSelectedIndex()));
 				}
 			} catch (ConnexionBDException e1) {
-				new Popup(e1.getMessage());
+				Popup.getInstance().afficherPopup(e1.getMessage());
 			}
 			LocalDate dateExpirationGarantieMateriel = dateMaterielPicker.getValue();
 			FactureDAO factureDAO = new FactureDAO();
@@ -182,7 +182,7 @@ public class AjouterMateriel {
 					factureMateriel = factureDAO.recupererFactureParId(listIdFactureMateriel.get(comboboxFactureMateriel.getSelectionModel().getSelectedIndex()));
 				}
 			} catch (ConnexionBDException e1) {
-				new Popup(e1.getMessage());
+				Popup.getInstance().afficherPopup(e1.getMessage());
 			}
 			SiteDAO siteDAO = new SiteDAO();
 			Site siteMateriel=null;
@@ -191,7 +191,7 @@ public class AjouterMateriel {
 					siteMateriel = siteDAO.recupererSiteParId(listIdSiteMateriel.get(comboboxSiteMateriel.getSelectionModel().getSelectedIndex()));
 				}
 			} catch (ConnexionBDException e1) {
-				new Popup(e1.getMessage());
+				Popup.getInstance().afficherPopup(e1.getMessage());
 			}
 			FabricantDAO fabricantDAO = new FabricantDAO();
 			Fabricant fabricantMateriel=null;
@@ -200,7 +200,7 @@ public class AjouterMateriel {
 					fabricantMateriel = fabricantDAO.recupererFabricantParId(listIdFabricantMateriel.get(comboboxFabricantMateriel.getSelectionModel().getSelectedIndex()));
 				}
 			} catch (ConnexionBDException e1) {
-				new Popup(e1.getMessage());
+				Popup.getInstance().afficherPopup(e1.getMessage());
 			}
 			Etat etatMateriel=null;
 			if(comboboxEtatMateriel.getValue()!=null){
@@ -220,7 +220,7 @@ public class AjouterMateriel {
 						modeleMaterielField.getText()));
 				materielDAO.ajouterRepertoireDriverMateriel();
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
@@ -229,23 +229,23 @@ public class AjouterMateriel {
 	}
 	private boolean controlerSaisies() {
 		if (nomMaterielField.getText().equals("")) {
-			new Popup("Le champ \"Nom materiel\" doit etre rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Nom materiel\" doit etre rempli");
 			return false;
 		}
 		if (nomMaterielField.getText().length() > Constante.LONGUEUR_NOM_MATERIEL) {
-			new Popup("Le nom du materiel doit etre inferieur e " + Constante.LONGUEUR_NOM_MATERIEL + " caracteres");
+			Popup.getInstance().afficherPopup("Le nom du materiel doit etre inferieur e " + Constante.LONGUEUR_NOM_MATERIEL + " caracteres");
 			return false;
 		}
 		if (immobMaterielField.getText().length() > Constante.LONGUEUR_NOM_MATERIEL) {
-			new Popup("Le nom du materiel doit etre inferieur a " + Constante.LONGUEUR_NOM_MATERIEL + " caracteres");
+			Popup.getInstance().afficherPopup("Le nom du materiel doit etre inferieur a " + Constante.LONGUEUR_NOM_MATERIEL + " caracteres");
 			return false;
 		}
 		if (numeroSerieMaterielField.getText().length() > Constante.LONGUEUR_NUM_SERIE_MAT) {
-			new Popup("Le numero de serie du materiel doit etre inferieur a " + Constante.LONGUEUR_NUM_SERIE_MAT + " caracteres");
+			Popup.getInstance().afficherPopup("Le numero de serie du materiel doit etre inferieur a " + Constante.LONGUEUR_NUM_SERIE_MAT + " caracteres");
 			return false;
 		}
 		if (modeleMaterielField.getText().length() > Constante.LONGUEUR_MODELE_MAT) {
-			new Popup("Le modele du materiel doit etre inferieur a "+ Constante.LONGUEUR_MODELE_MAT + " caracteres");
+			Popup.getInstance().afficherPopup("Le modele du materiel doit etre inferieur a "+ Constante.LONGUEUR_MODELE_MAT + " caracteres");
 			return false;
 		}
 		return true;

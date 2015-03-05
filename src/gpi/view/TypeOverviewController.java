@@ -90,7 +90,7 @@ public class TypeOverviewController {
 		try {
 			AllType = typeDAO.recupererAllType();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		if (AllType != null){
 			this.types=FXCollections.observableArrayList(AllType);

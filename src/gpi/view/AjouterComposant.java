@@ -95,15 +95,15 @@ public class AjouterComposant {
 		Composant composantAAjouter;
 		if(nomField.getText().isEmpty())
 		{
-			new Popup("Le champ \"Nom du composant\" doit �tre rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du composant\" doit �tre rempli");
 		}
 		else if(nomField.getText().length()>Constante.LONGUEUR_NOM_COMPOSANT)
 		{
-			new Popup("Le nom du composant doit etre inf�rieur � "+Constante.LONGUEUR_NOM_COMPOSANT+" caract�res");
+			Popup.getInstance().afficherPopup("Le nom du composant doit etre inf�rieur � "+Constante.LONGUEUR_NOM_COMPOSANT+" caract�res");
 		}
 		else if(caracteristiquesField.getText().length()>Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT)
 		{
-			new Popup("Les caract�ristiques ne peuvent pas d�passer "+Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT+" caract�res");
+			Popup.getInstance().afficherPopup("Les caract�ristiques ne peuvent pas d�passer "+Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT+" caract�res");
 		}
 		else
 		{
@@ -112,11 +112,11 @@ public class AjouterComposant {
 			try
 			{
 				composantdao.ajouterComposant(composantAAjouter);;
-				new Popup("Composant "+composantAAjouter.getNomComposant()+" ajout� !");
+				Popup.getInstance().afficherPopup("Composant "+composantAAjouter.getNomComposant()+" ajout� !");
 			}
 			catch(ConnexionBDException ce)
 			{
-				new Popup(ce.getMessage());
+				Popup.getInstance().afficherPopup(ce.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();

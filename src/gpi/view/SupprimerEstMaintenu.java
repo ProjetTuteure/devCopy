@@ -43,7 +43,7 @@ public class SupprimerEstMaintenu {
 				listIdMateriel.add(String.valueOf(materiel.getIdMateriel().getValue()));
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxMateriel.setItems(listIdMateriel);
 	}
@@ -82,7 +82,7 @@ public class SupprimerEstMaintenu {
 			EstMaintenu estMaintenuASupprime=new EstMaintenu(maintenance,materiel);
 			estMaintenuDAO.supprimerEstMaintenu(estMaintenuASupprime);
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		okClicked = true;
 		dialogStage.close();

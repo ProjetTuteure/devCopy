@@ -51,7 +51,7 @@ public class AjouterEstMaintenu {
 				listIdMateriel.add(String.valueOf(materiel.getIdMateriel().getValue()));
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxMaintenance.setItems(listIdMaintenance);
 		comboboxMateriel.setItems(listIdMateriel);
@@ -91,7 +91,7 @@ public class AjouterEstMaintenu {
 			EstMaintenu estMaintenuAAjoute=new EstMaintenu(maintenance,materiel);
 			estMaintenuDAO.ajouterEstMaintenu(estMaintenuAAjoute);
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		okClicked = true;
 		dialogStage.close();

@@ -51,7 +51,7 @@ public class AjouterFacture {
 				listRevendeurId.add(revendeur.getIdRevendeur().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		numRevendeurCombobox.setItems(listRevendeurObservable);
 	}
@@ -92,9 +92,9 @@ public class AjouterFacture {
 					revendeurFacture=revendeurDAO.recupererRevendeurParId(listRevendeurId.get(index));
 				}
 				factureDAO.ajouterFacture(new Facture(0,numFactureField.getText(),dateFacturePicker.getValue(),Float.parseFloat(montantFactureField.getText()),revendeurFacture));
-				new Popup("Facture "+numFactureField.getText()+" ajout�e !");
+				Popup.getInstance().afficherPopup("Facture "+numFactureField.getText()+" ajout�e !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
@@ -104,25 +104,25 @@ public class AjouterFacture {
 
 	private boolean controlerSaisies() {
 		if(numFactureField.getText().isEmpty()){
-			new Popup("Le champ \"Numéro de facture\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Numéro de facture\" doit être saisi");
 			return false;
 		}
 		if(dateFacturePicker.getValue()==null){
-			new Popup("Le champ \"date de facture\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"date de facture\" doit être saisi");
 			return false;
 		}
 		if(numFactureField.getText().length()>Constante.LONGUEUR_NUM_FACTURE){
-			new Popup("La longueur du numero de facture saisi doit être inférieur à "+Constante.LONGUEUR_NUM_FACTURE+" caratères");
+			Popup.getInstance().afficherPopup("La longueur du numero de facture saisi doit être inférieur à "+Constante.LONGUEUR_NUM_FACTURE+" caratères");
 			return false;
 		}
 		if(montantFactureField.getText().length()>Constante.LONGUEUR_MONTANT_FACTURE){
-			new Popup("La longueur du montant de la facture saisi doit être inférieur à "+Constante.LONGUEUR_MONTANT_FACTURE+" caractères");
+			Popup.getInstance().afficherPopup("La longueur du montant de la facture saisi doit être inférieur à "+Constante.LONGUEUR_MONTANT_FACTURE+" caractères");
 			return false;
 		}
 		Pattern p = Pattern.compile("[0-9]{1,8}[.]{1}[0-9]{1,2}");
 		Matcher m = p.matcher(montantFactureField.getText());
 		if(!m.matches()){
-			new Popup("Le format du montant de la facture est erroné. Format : 123.45");
+			Popup.getInstance().afficherPopup("Le format du montant de la facture est erroné. Format : 123.45");
 			return false;
 		}
 		return true;

@@ -118,7 +118,7 @@ public class AncienneteController implements Initializable {
 			}
 			listType.add("Tous");
 		}catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		setItemsTableMateriel(listMateriel);
 		comboboxSiteAncienneteOverview.setItems(listSite);
@@ -144,7 +144,7 @@ public class AncienneteController implements Initializable {
 		try {
 			mat = materielDAO.recupererMaterielParId(idMachine);
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		if (mat != null){
 			MainApp.setCritere(mat);
@@ -238,7 +238,7 @@ public class AncienneteController implements Initializable {
 					restrictedMateriel.add(anciennete);
 			}
 		}catch(ConnexionBDException e){
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		setItemsTableMateriel(restrictedMateriel);
 	}

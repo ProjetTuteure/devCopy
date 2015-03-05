@@ -81,11 +81,11 @@ public class AjouterRevendeur {
 					tf_adresseRevendeur.getText());
 			try {
 				rdao.ajouterRevendeur(revendeurAAjouter);
-				new Popup("Revendeur "
+				Popup.getInstance().afficherPopup("Revendeur "
 						+ revendeurAAjouter.getNomRevendeur().getValue()
 						+ " ajouté !");
 			} catch (ConnexionBDException ce) {
-				new Popup(ce.getMessage());
+				Popup.getInstance().afficherPopup(ce.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
@@ -99,36 +99,36 @@ public class AjouterRevendeur {
 	 */
 	public boolean controlerSaisies() {
 		if (tf_nomRevendeur.getText().isEmpty()) {
-			new Popup("Le champ \"Nom du revendeur\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du revendeur\" doit être saisi");
 			return false;
 		}
 		if (tf_nomRevendeur.getText().length() > Constante.LONGUEUR_NOM_REVENDEUR) {
-			new Popup("La longueur du nom du revendeur doit être inférieur à "
+			Popup.getInstance().afficherPopup("La longueur du nom du revendeur doit être inférieur à "
 					+ Constante.LONGUEUR_NOM_REVENDEUR + " caractères");
 			return false;
 		}
 		if (tf_telRevendeur.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
-			new Popup("Le numéro de téléphone saisi doit être inférieur à "
+			Popup.getInstance().afficherPopup("Le numéro de téléphone saisi doit être inférieur à "
 					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
 			return false;
 		}
 		if (tf_mobileRevendeur.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
-			new Popup("Le numéro de mobile saisi doit être inférieur à"
+			Popup.getInstance().afficherPopup("Le numéro de mobile saisi doit être inférieur à"
 					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
 			return false;
 		}
 		if (tf_faxRevendeur.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
-			new Popup("Le numéro de fax saisi doit être inférieur à "
+			Popup.getInstance().afficherPopup("Le numéro de fax saisi doit être inférieur à "
 					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
 			return false;
 		}
 		if (tf_emailRevendeur.getText().length() > Constante.LONGUEUR_MAIL) {
-			new Popup("Le mail saisi doit contenir " + Constante.LONGUEUR_MAIL
+			Popup.getInstance().afficherPopup("Le mail saisi doit contenir " + Constante.LONGUEUR_MAIL
 					+ " caractères");
 			return false;
 		}
 		if (tf_adresseRevendeur.getText().length() > Constante.LONGUEUR_ADRESSE) {
-			new Popup("L'adresse saisie doit être inférieur à "
+			Popup.getInstance().afficherPopup("L'adresse saisie doit être inférieur à "
 					+ Constante.LONGUEUR_ADRESSE + " caractères");
 			return false;
 		}

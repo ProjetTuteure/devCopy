@@ -42,7 +42,7 @@ public class AjouterMaintenance {
 	
 	private List<Maintenance> listMaintenance;
 	/**
-	 * Initialise les données
+	 * Initialise les donnï¿½es
 	 */
 	@FXML
 	private void initialize() {
@@ -69,7 +69,7 @@ public class AjouterMaintenance {
 	}
 
 	/**
-	 * Permet d'ajouter la maintenance à la base de données
+	 * Permet d'ajouter la maintenance ï¿½ la base de donnï¿½es
 	 * est clique
 	 */
 	@FXML
@@ -87,16 +87,16 @@ public class AjouterMaintenance {
 					coutMaintenance);
 			try {
 				maintenanceDAO.ajouterMaintenance(maintenance);
-				new Popup("Maintenance du "+maintenance.getdateMaintenanceStringProperty().getValue()+" ajoutée !");
+				Popup.getInstance().afficherPopup("Maintenance du "+maintenance.getdateMaintenanceStringProperty().getValue()+" ajoutï¿½e !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			dialogStage.close();
 		}
 	}
 
 	/**
-	 * Méthode qui permet de contrôler les valeurs saisies
+	 * Mï¿½thode qui permet de contrï¿½ler les valeurs saisies
 	 * par l'utilisateur dans les champs
 	 * @return
 	 */
@@ -104,17 +104,17 @@ public class AjouterMaintenance {
 	{
 		if(dp_dateMaintenance.getValue()==null)
 		{
-			new Popup("La date doit obligatoirement être remplie");
+			Popup.getInstance().afficherPopup("La date doit obligatoirement ï¿½tre remplie");
 			return false;
 		}
 		else if(tf_objetMaintenance.getText().length()>Constante.LONGUEUR_OBJET_MAINTENANCE)
 		{
-			new Popup("L'objet de la maintenance doit faire au maximum "+Constante.LONGUEUR_OBJET_MAINTENANCE+" caractères");
+			Popup.getInstance().afficherPopup("L'objet de la maintenance doit faire au maximum "+Constante.LONGUEUR_OBJET_MAINTENANCE+" caractï¿½res");
 			return false;
 		}
 		else if(ta_description.getText().length()>Constante.LONGUEUR_DESCRIPTION_MAINTENANCE)
 		{
-			new Popup("La description doit contenir au maximum "+Constante.LONGUEUR_DESCRIPTION_MAINTENANCE+" caractères");
+			Popup.getInstance().afficherPopup("La description doit contenir au maximum "+Constante.LONGUEUR_DESCRIPTION_MAINTENANCE+" caractï¿½res");
 			return false;
 		}
 		if(!tf_coutMaintenance.getText().isEmpty())
@@ -127,13 +127,13 @@ public class AjouterMaintenance {
 			{
 			if(Float.parseFloat(tf_coutMaintenance.getText())<0)
 			{
-				new Popup("La valeur du coût de la maintenance ne doit pas être négative");
+				Popup.getInstance().afficherPopup("La valeur du coï¿½t de la maintenance ne doit pas ï¿½tre nï¿½gative");
 				return false;
 			}
 			}
 			catch(NumberFormatException nfe)
 			{
-				new Popup("La valeur du coût saisie doit être un nombre");
+				Popup.getInstance().afficherPopup("La valeur du coï¿½t saisie doit ï¿½tre un nombre");
 				return false;
 			}
 		}

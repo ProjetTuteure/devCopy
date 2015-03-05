@@ -56,7 +56,7 @@ public class ModifierMaintenance {
 		try {
 			listeMaintenance=maintenanceDAO.recupererAllMaintenance();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 			dialogStage.close();
 		}
 		for(Maintenance maintenance:listeMaintenance)
@@ -89,39 +89,39 @@ public class ModifierMaintenance {
 						ta_descriptionMaintenance.getText(),
 						coutMaintenance);
 						maintenanceDAO.modifierMaintenance(maintenance);
-				new Popup("Maintenance du "+maintenanceAModifier.getdateMaintenanceStringProperty().getValue()+ " modifiée !");
+				Popup.getInstance().afficherPopup("Maintenance du "+maintenanceAModifier.getdateMaintenanceStringProperty().getValue()+ " modifiï¿½e !");
 				okClicked = true;
 				dialogStage.close();
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 	}
 
 	/**
 	 * Permet de controler la saisie de l'utilisateur
-	 * @return vrai si toutes les saisies sont cohérentes, faux sinon
+	 * @return vrai si toutes les saisies sont cohï¿½rentes, faux sinon
 	 */
 	public boolean controlerSaisies()
 	{
 		if(cb_objetMaintenance.getValue()==null)
 		{
-			new Popup("Une maintenance doit être sélectionnée");
+			Popup.getInstance().afficherPopup("Une maintenance doit ï¿½tre sï¿½lectionnï¿½e");
 			return false;
 		}
 		if(dp_dateMaintenance.getValue()==null)
 		{
-			new Popup("Une date doit être saisie");
+			Popup.getInstance().afficherPopup("Une date doit ï¿½tre saisie");
 			return false;
 		}
 		if(tf_objetMaintenance.getText().length()>Constante.LONGUEUR_OBJET_MAINTENANCE)
 		{
-			new Popup("La longueur de l'objet saisi doit être inférieur à "+Constante.LONGUEUR_OBJET_MAINTENANCE+" caractères");
+			Popup.getInstance().afficherPopup("La longueur de l'objet saisi doit ï¿½tre infï¿½rieur ï¿½ "+Constante.LONGUEUR_OBJET_MAINTENANCE+" caractï¿½res");
 			return false;
 		}
 		if(ta_descriptionMaintenance.getText().length()>Constante.LONGUEUR_DESCRIPTION_MAINTENANCE)
 		{
-			new Popup("La longueur de la description saisie doit être inférieur à "+Constante.LONGUEUR_OBJET_MAINTENANCE+" caractères");
+			Popup.getInstance().afficherPopup("La longueur de la description saisie doit ï¿½tre infï¿½rieur ï¿½ "+Constante.LONGUEUR_OBJET_MAINTENANCE+" caractï¿½res");
 			return false;
 		}		
 		if(!tf_coutMaintenance.getText().isEmpty())
@@ -134,13 +134,13 @@ public class ModifierMaintenance {
 			{
 				if(Float.parseFloat(tf_coutMaintenance.getText())<0)
 				{
-					new Popup("La valeur du coût de la maintenance ne doit pas être négative");
+					Popup.getInstance().afficherPopup("La valeur du coï¿½t de la maintenance ne doit pas ï¿½tre nï¿½gative");
 					return false;
 				}
 			}
 			catch(NumberFormatException nfe)
 			{
-				new Popup("La valeur du coût saisie doit être un nombre");
+				Popup.getInstance().afficherPopup("La valeur du coï¿½t saisie doit ï¿½tre un nombre");
 				return false;
 			}
 		}

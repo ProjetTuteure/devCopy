@@ -32,7 +32,7 @@ public class AjouterUtilisateur {
 	private boolean okClicked = false;
 
 	/**
-	 * Initialise les données
+	 * Initialise les donnï¿½es
 	 */
 	@FXML
 	private void initialize() {
@@ -61,34 +61,34 @@ public class AjouterUtilisateur {
 	/**
 	 * Controle les saisies
 	 * 
-	 * @return vrai si les données saisies sont cohérentes, faux sinon
+	 * @return vrai si les donnï¿½es saisies sont cohï¿½rentes, faux sinon
 	 */
 	public boolean controlerSaisies() {
 		if (nomField.getText().equals("")) {
-			new Popup("Le champ \"Nom de l'Utilisateur\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom de l'Utilisateur\" doit ï¿½tre saisi");
 			return false;
 		}
 		if (prenomField.getText().equals("")) {
-			new Popup("Le champ \"Prenom de l'Utilisateur\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Prenom de l'Utilisateur\" doit ï¿½tre saisi");
 			return false;
 		}
 		if (telField.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
-			new Popup("Le numéro de téléphone saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
+			Popup.getInstance().afficherPopup("Le numï¿½ro de tï¿½lï¿½phone saisi doit ï¿½tre infï¿½rieur ï¿½ "
+					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractï¿½res");
 			return false;
 		}
 		if (nomField.getText().length() > Constante.LONGUEUR_NOM_UTILISATEUR) {
-			new Popup(
-					"La longueur du nom de l'utilisateur doit être inférieur à "
+			Popup.getInstance().afficherPopup(
+					"La longueur du nom de l'utilisateur doit ï¿½tre infï¿½rieur ï¿½ "
 							+ Constante.LONGUEUR_NOM_UTILISATEUR
-							+ " caractères");
+							+ " caractï¿½res");
 			return false;
 		}
 		if (prenomField.getText().length() > Constante.LONGUEUR_NOM_UTILISATEUR) {
-			new Popup(
-					"La longueur du prénom de l'utilisateur doit être inférieur à "
+			Popup.getInstance().afficherPopup(
+					"La longueur du prï¿½nom de l'utilisateur doit ï¿½tre infï¿½rieur ï¿½ "
 							+ Constante.LONGUEUR_NOM_UTILISATEUR
-							+ " caractères");
+							+ " caractï¿½res");
 			return false;
 		}
 		return true;
@@ -106,11 +106,11 @@ public class AjouterUtilisateur {
 					nomField.getText(),prenomField.getText(),telField.getText());
 			try {
 				utilisateurDAO.ajouterUtilisateur(utilisateurAAjouter);
-				new Popup("Utilisateur "
+				Popup.getInstance().afficherPopup("Utilisateur "
 						+ utilisateurAAjouter.getNomUtilisateur().getValue()
-						+ " ajouté !");
+						+ " ajoutï¿½ !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 
 			okClicked = true;

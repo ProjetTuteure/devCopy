@@ -42,7 +42,7 @@ public class SupprimerRevendeur {
 		try {
 			listeRevendeur = revendeurDAO.recupererAllRevendeur();
 		} catch (ConnexionBDException ce) {
-			new Popup(ce.getMessage());
+			Popup.getInstance().afficherPopup(ce.getMessage());
 			this.dialogStage.close();
 		}
 		for (Revendeur revendeur : listeRevendeur) {
@@ -78,17 +78,17 @@ public class SupprimerRevendeur {
 	@FXML
 	private void handleOk() {
 		if (comboboxrev.getValue() == null) {
-			new Popup("Veuillez selectionner un revendeur à supprimer");
+			Popup.getInstance().afficherPopup("Veuillez selectionner un revendeur à supprimer");
 		} else {
 			Revendeur revendeur = listeRevendeur.get(comboboxrev
 					.getSelectionModel().getSelectedIndex());
 			try {
 				revendeurDAO.supprimerRevendeur(revendeur);
 				dialogStage.close();
-				new Popup("Revendeur " + revendeur.getNomRevendeur().getValue()
+				Popup.getInstance().afficherPopup("Revendeur " + revendeur.getNomRevendeur().getValue()
 						+ " supprimé !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 				this.dialogStage.close();
 			}
 		}

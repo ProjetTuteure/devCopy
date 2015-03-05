@@ -84,7 +84,7 @@ public class ModifierMateriel {
 				listIdMateriel.add(materiel.getIdMateriel()+"- "+materiel.getNomMateriel());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxIdMateriel.setItems(listIdMateriel);
 	}
@@ -110,7 +110,7 @@ public class ModifierMateriel {
 					typeMateriel = typeDAO.recupererTypeParId(listIdTypeMateriel.get(comboboxTypeMateriel.getSelectionModel().getSelectedIndex()));
 				}
 			} catch (ConnexionBDException e1) {
-				new Popup(e1.getMessage());
+				Popup.getInstance().afficherPopup(e1.getMessage());
 			}
 			LocalDate dateExpirationGarantieMateriel=null;
 			if(dateMaterielPicker.getValue()==null){
@@ -127,7 +127,7 @@ public class ModifierMateriel {
 					factureMateriel = factureDAO.recupererFactureParId(listIdFactureMateriel.get(comboboxFactureMateriel.getSelectionModel().getSelectedIndex()));
 				}
 			} catch (ConnexionBDException e1) {
-				new Popup(e1.getMessage());
+				Popup.getInstance().afficherPopup(e1.getMessage());
 			}
 			SiteDAO siteDAO = new SiteDAO();
 			Site siteMateriel=null;
@@ -138,7 +138,7 @@ public class ModifierMateriel {
 					siteMateriel = siteDAO.recupererSiteParId(listIdSiteMateriel.get(comboboxSiteMateriel.getSelectionModel().getSelectedIndex()));
 				}
 			} catch (ConnexionBDException e1) {
-				new Popup(e1.getMessage());
+				Popup.getInstance().afficherPopup(e1.getMessage());
 			}
 			FabricantDAO fabricantDAO = new FabricantDAO();
 			Fabricant fabricantMateriel=null;
@@ -149,7 +149,7 @@ public class ModifierMateriel {
 					fabricantMateriel = fabricantDAO.recupererFabricantParId(listIdFabricantMateriel.get(comboboxFabricantMateriel.getSelectionModel().getSelectedIndex()));
 				}
 			} catch (ConnexionBDException e1) {
-				new Popup(e1.getMessage());
+				Popup.getInstance().afficherPopup(e1.getMessage());
 			}
 			Etat etatMateriel;
 			if(comboboxEtatMateriel.getSelectionModel().getSelectedIndex()==-1){
@@ -164,7 +164,7 @@ public class ModifierMateriel {
 					nomMaterielField.getText(),typeMateriel,etatMateriel,
 					dateExpirationGarantieMateriel,"", factureMateriel, siteMateriel, fabricantMateriel, modeleMaterielField.getText()));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		okClicked = true;
 		dialogStage.close();
@@ -200,7 +200,7 @@ public class ModifierMateriel {
 			this.setIdMateriel(Integer.parseInt(listStrings[0]));
 			selected = materielDAO.recupererMaterielParId(this.getIdMateriel());
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 
 		numeroSerieMaterielField.setText(selected.getNumeroSerieMateriel().getValue());
@@ -232,7 +232,7 @@ public class ModifierMateriel {
 				listIdFactureMateriel.add(facture.getIdFacture().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxFactureMateriel.setItems(listFactureMateriel);
 		if(selected.getFactureMateriel()==null){
@@ -249,7 +249,7 @@ public class ModifierMateriel {
 				listIdFabricantMateriel.add(fabricant.getIdFabricant().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxFabricantMateriel.setItems(listFabricantMateriel);
 		if(selected.getFabricantMateriel()==null){
@@ -266,7 +266,7 @@ public class ModifierMateriel {
 				listIdSiteMateriel.add(site.getIdSite());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxSiteMateriel.setItems(listSiteMateriel);
 		if(selected.getSiteMateriel()==null){
@@ -284,7 +284,7 @@ public class ModifierMateriel {
 				listIdTypeMateriel.add(type.idTypeProperty().getValue());
 			}
 		}catch (ConnexionBDException e){
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxTypeMateriel.setItems(listTypeMateriel);
 		if(selected.getTypeMateriel()==null){

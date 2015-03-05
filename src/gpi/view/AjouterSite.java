@@ -76,9 +76,9 @@ public class AjouterSite {
 			setNomSite(NameSiteField.getText());
 			try {
 				siteDAO.ajouterSite(new Site(0,getNomSite(),getCheminImageSite()));
-				new Popup("Site "+getNomSite()+" ajouté !");
+				Popup.getInstance().afficherPopup("Site "+getNomSite()+" ajoutï¿½ !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			dialogStage.close();
 		}
@@ -86,16 +86,16 @@ public class AjouterSite {
 
 	private boolean controlerSaisies() {
 		if(NameSiteField.getText().isEmpty()){
-			new Popup("Le champ \"Nom du site\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du site\" doit ï¿½tre saisi");
 			return false;
 		}
 		if(NameSiteField.getText().length()>Constante.LONGUEUR_NOM_SITE){
-			new Popup("La longueur du nom du site saisi doit être inférieur à "+Constante.LONGUEUR_NOM_SITE+" caractères");
+			Popup.getInstance().afficherPopup("La longueur du nom du site saisi doit ï¿½tre infï¿½rieur ï¿½ "+Constante.LONGUEUR_NOM_SITE+" caractï¿½res");
 			return false;
 		}	
 		if(getCheminImageSite()!=null){
 			if(getCheminImageSite().length()>Constante.LONGUEUR_CHEMIN_IMAGE){
-				new Popup("La longueur du chemin saisi doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractères");
+				Popup.getInstance().afficherPopup("La longueur du chemin saisi doit ï¿½tre infï¿½rieur ï¿½ "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractï¿½res");
 				return false;
 			}
 		}

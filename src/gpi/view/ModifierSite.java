@@ -54,7 +54,7 @@ public class ModifierSite {
 		try {
 			listSite = siteDAO.recupererAllSite();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		for (Site site : listSite) {
 			listSiteObservable.add(site.getNomSiteString());
@@ -101,9 +101,9 @@ public class ModifierSite {
 			try {
 				siteDAO.modifierSite(new Site(getIdSite(), getNomSite(),
 						getCheminImageSite()));
-				new Popup("Site " + getNomSite() + " modifié !");
+				Popup.getInstance().afficherPopup("Site " + getNomSite() + " modifié !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
@@ -113,26 +113,26 @@ public class ModifierSite {
 
 	private boolean controlerSaisies() {
 		if (comboboxSiteMod.getValue() == null) {
-			new Popup("Vous devez selectionner le site � modifier");
+			Popup.getInstance().afficherPopup("Vous devez selectionner le site � modifier");
 			return false;
 		}
 		if (NameSiteField.getText().isEmpty()) {
-			new Popup("Le champ \"Nom du site\" doit �tre saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du site\" doit �tre saisi");
 			return false;
 		}
 		if (NameSiteField.getText().length() > Constante.LONGUEUR_NOM_SITE) {
-			new Popup("La longueur du nom du site saisi doit �tre inf�rieur � "
+			Popup.getInstance().afficherPopup("La longueur du nom du site saisi doit �tre inf�rieur � "
 					+ Constante.LONGUEUR_NOM_SITE + " caract�res");
 			return false;
 		}
 		if (this.getCheminImageSite() != null) {
 			if (getCheminImageSite().length() > Constante.LONGUEUR_CHEMIN_IMAGE) {
-				new Popup("La longueur du chemin saisi doit �tre inf�rieur � "
+				Popup.getInstance().afficherPopup("La longueur du chemin saisi doit �tre inf�rieur � "
 						+ Constante.LONGUEUR_CHEMIN_IMAGE + " caract�res");
 				return false;
 			}
 		} else {
-			new Popup("Une image doit être sélectionnée");
+			Popup.getInstance().afficherPopup("Une image doit être sélectionnée");
 			return false;
 		}
 		return true;

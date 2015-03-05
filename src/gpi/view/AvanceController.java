@@ -83,7 +83,7 @@ public class AvanceController implements Initializable {
 				listIdSite.add(site.getIdSite());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
     	listIdType=new ArrayList<Integer>();
     	listNomType=FXCollections.observableArrayList();
@@ -93,7 +93,7 @@ public class AvanceController implements Initializable {
 				listIdType.add(type.getIdType());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
         comboboxSiteAvanceOverview.setItems(listNomSite);
         comboboxAncienneteAvanceOverview.setItems(listAnciennete);

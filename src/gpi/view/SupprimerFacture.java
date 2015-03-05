@@ -39,7 +39,7 @@ public class SupprimerFacture {
 				listFactureId.add(facture.getIdFacture().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxFacture.setItems(listFacture);
 	}
@@ -65,7 +65,7 @@ public class SupprimerFacture {
 
 	private boolean controlerSaisies() {
 		if (comboboxFacture.getValue() == null) {
-			new Popup("Vous devez selectionner la facture à supprimer");
+			Popup.getInstance().afficherPopup("Vous devez selectionner la facture à supprimer");
 			return false;
 		}
 		return true;
@@ -85,10 +85,10 @@ public class SupprimerFacture {
 			try {
 				factureDAO
 						.supprimerFacture(new Facture(id, null, null, 0, null));
-				new Popup("Facture " + comboboxFacture.getValue()
+				Popup.getInstance().afficherPopup("Facture " + comboboxFacture.getValue()
 						+ " supprim�e !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();

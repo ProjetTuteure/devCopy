@@ -53,7 +53,7 @@ public class ModifierLogiciel {
 		try{
 			listObjetsLogiciel=logicielDAO.recupererAllLogiciel();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		for (Logiciel logiciel : listObjetsLogiciel) {
 			listLogiciel.add(logiciel.getNomLogiciel()+" "+logiciel.getVersionLogiciel());
@@ -83,16 +83,16 @@ public class ModifierLogiciel {
 				try {
 					facture=factureDAO.recupererFactureParId(listFactureId.get(indexFacture));
 				} catch (ConnexionBDException e) {
-					new Popup(e.getMessage());
+					Popup.getInstance().afficherPopup(e.getMessage());
 				}
 			}
 			int indexLogiciel = comboboxLogiciel.getSelectionModel().getSelectedIndex();
 			int idLogiciel=listObjetsLogiciel.get(indexLogiciel).getIdLogiciel();
 			try {
 				logicielDAO.modifierLogiciel(new Logiciel(idLogiciel,nomLogicielField.getText(),versionLogicielField.getText(),dateExpirationLogicielPicker.getValue(),facture));
-				new Popup("Logiciel "+nomLogicielField.getText()+" modifié !");
+				Popup.getInstance().afficherPopup("Logiciel "+nomLogicielField.getText()+" modifié !");
 			}  catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
@@ -101,23 +101,23 @@ public class ModifierLogiciel {
 	
 	private boolean controlerSaisies() {
 		if(comboboxLogiciel.getValue()==null){
-			new Popup("Vous devez selectionner le logiciel à modifier");
+			Popup.getInstance().afficherPopup("Vous devez selectionner le logiciel à modifier");
 			return false;
 		}
 		if(nomLogicielField.getText().isEmpty()){
-			new Popup("Le champ \"Nom du logiciel\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du logiciel\" doit être saisi");
 			return false;
 		}
 		if(comboboxFacture.getPromptText()==null){
-			new Popup("Le champ \"Facture du logiciel\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Facture du logiciel\" doit être saisi");
 			return false;
 		}
 		if(nomLogicielField.getText().length()>Constante.LONGUEUR_NOM_LOGICIEL){
-			new Popup("La longueur du nom du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_NOM_LOGICIEL+" caractères");
+			Popup.getInstance().afficherPopup("La longueur du nom du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_NOM_LOGICIEL+" caractères");
 			return false;
 		}
 		if(versionLogicielField.getText().length()>Constante.LONGUEUR_VERSION_LOGICIEL){
-			new Popup("La longueur de la version du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_VERSION_LOGICIEL+" caractères");
+			Popup.getInstance().afficherPopup("La longueur de la version du logiciel saisi doit être inférieur à "+Constante.LONGUEUR_VERSION_LOGICIEL+" caractères");
 			return false;
 		}	
 		return true;
@@ -144,7 +144,7 @@ public class ModifierLogiciel {
 				listFactureId.add(facture.getIdFacture().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxFacture.setItems(listFacture);
 		comboboxFacture.setPromptText(numFacture);

@@ -61,7 +61,7 @@ public class ModifierRevendeur {
 		}
 		catch(ConnexionBDException ce)
 		{
-			new Popup(ce.getMessage());
+			Popup.getInstance().afficherPopup(ce.getMessage());
 			this.dialogStage.close();
 		}
 		for(Revendeur revendeur : listeRevendeur)
@@ -111,11 +111,11 @@ public class ModifierRevendeur {
 			try
 			{
 				revendeurDAO.modifierRevendeur(revendeur);
-				new Popup("Revendeur "+revendeur.getNomRevendeur().getValue()+" modifié !");
+				Popup.getInstance().afficherPopup("Revendeur "+revendeur.getNomRevendeur().getValue()+" modifié !");
 			}
 			catch(ConnexionBDException ce)
 			{
-				new Popup(ce.getMessage());
+				Popup.getInstance().afficherPopup(ce.getMessage());
 			}
 			dialogStage.close();
 		}
@@ -125,36 +125,36 @@ public class ModifierRevendeur {
 	{
 		if(tf_nomRevendeur.getText().isEmpty())
 		{
-			new Popup("Le champ \"Nom du revendeur\" doit être rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du revendeur\" doit être rempli");
 			return false;
 		}
 		if(tf_nomRevendeur.getText().length()>Constante.LONGUEUR_NOM_REVENDEUR){
-			new Popup("La longueur du nom du revendeur doit être inférieur à "+Constante.LONGUEUR_NOM_REVENDEUR+" caractères");
+			Popup.getInstance().afficherPopup("La longueur du nom du revendeur doit être inférieur à "+Constante.LONGUEUR_NOM_REVENDEUR+" caractères");
 			return false;
 		}
 		if(!tf_telRevendeur.getText().isEmpty() && tf_telRevendeur.getText().length()>Constante.LONGUEUR_NUM_TELEPHONE)
 		{
-			new Popup("Le num�ro de t�l�phone saisi doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
+			Popup.getInstance().afficherPopup("Le num�ro de t�l�phone saisi doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
 			return false;
 		}
 		if(!tf_mobileRevendeur.getText().isEmpty() && tf_mobileRevendeur.getText().length()>Constante.LONGUEUR_NUM_MOBILE)
 		{
-			new Popup("Le num�ro de mobile saisi doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
+			Popup.getInstance().afficherPopup("Le num�ro de mobile saisi doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
 			return false;
 		}
 		if(!tf_faxRevendeur.getText().isEmpty() && tf_faxRevendeur.getText().length()>Constante.LONGUEUR_NUM_FAX)
 		{
-			new Popup("Le num�ro de fax saisi doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
+			Popup.getInstance().afficherPopup("Le num�ro de fax saisi doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
 			return false;
 		}
 		if(!tf_emailRevendeur.getText().isEmpty() && tf_emailRevendeur.getText().length()>Constante.LONGUEUR_MAIL)
 		{
-			new Popup("L'adresse email saisie doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
+			Popup.getInstance().afficherPopup("L'adresse email saisie doit être inférieur à "+Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
 			return false;
 		}
 		if(!tf_adresseRevendeur.getText().isEmpty() && tf_adresseRevendeur.getText().length()>Constante.LONGUEUR_ADRESSE)
 		{
-			new Popup("L'adresse saisie doit être inférieur à "+Constante.LONGUEUR_ADRESSE+" caractères");
+			Popup.getInstance().afficherPopup("L'adresse saisie doit être inférieur à "+Constante.LONGUEUR_ADRESSE+" caractères");
 			return false;
 		}
 		return true;

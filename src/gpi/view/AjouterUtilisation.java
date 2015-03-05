@@ -67,7 +67,7 @@ public class AjouterUtilisation {
 				listIdMateriel.add(pageMateriel.getIdMateriel());	
 			}
 		}catch(ConnexionBDException e){
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		ComboboxNomUtilisateur.setItems(listNomUtilisateur);
 		ComboboxMateriel.setItems(listNomMateriel);
@@ -106,7 +106,7 @@ public class AjouterUtilisation {
 		try{
 			utiliseDAO.ajouterUtilise(new Utilise(dateDebutUtilisation.getValue(),utilisateurDAO.recupererUtilisateurParId(listIdUtilisateur.get(indexUtilisateur)), materielDAO.recupererMaterielParId(Integer.parseInt(listIdMateriel.get(indexMateriel)))));
 		}catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		okClicked = true;
 		dialogStage.close();

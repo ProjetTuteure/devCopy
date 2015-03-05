@@ -47,7 +47,7 @@ public class SupprimerMaintenance {
 		try {
 			listeMaintenance=maintenanceDAO.recupererAllMaintenance();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		for (Maintenance m : listeMaintenance) {
 			listeObjet.add(m.getIdMaintenance().getValue()+"- "+m.getObjetMaintenance());
@@ -80,9 +80,9 @@ public class SupprimerMaintenance {
 			try {
 				maintenanceDAO.supprimerMaintenance(maintenanceASupprimer);
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
-			new Popup("Maintenance du "+maintenanceASupprimer.getdateMaintenanceStringProperty().getValue()+" supprimée");
+			Popup.getInstance().afficherPopup("Maintenance du "+maintenanceASupprimer.getdateMaintenanceStringProperty().getValue()+" supprimï¿½e");
 			okClicked = true;
 			dialogStage.close();
 		}
@@ -92,7 +92,7 @@ public class SupprimerMaintenance {
 	{
 		if(cb_objetMaintenance.getSelectionModel().getSelectedItem()==null)
 		{
-			new Popup("Un objet de maintenance doit être selectionné");
+			Popup.getInstance().afficherPopup("Un objet de maintenance doit ï¿½tre selectionnï¿½");
 			return false;
 		}
 		return true;

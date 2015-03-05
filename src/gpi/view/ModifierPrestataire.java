@@ -75,7 +75,7 @@ public class ModifierPrestataire {
 		try {
 			listeNom = prestataireDAO.recupererAllPrestataire();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		for (Prestataire prestataire : listeNom) {
 			listNom.add(prestataire.getNomPrestataire().get());
@@ -105,37 +105,37 @@ public class ModifierPrestataire {
 	private boolean controlerSaisies()
 	{
 		if(nomPrestataireField.getText().equals("")){
-			new Popup("Le champ \" Nom du prestataire doit être rempli");
+			Popup.getInstance().afficherPopup("Le champ \" Nom du prestataire doit ï¿½tre rempli");
 			return false;
 		} 
 		if (nomPrestataireField.getText().length()>Constante.LONGUEUR_NOM_PRESTATAIRE){
-			new Popup("Le nom du prestataire doit etre inférieur à "
-					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractères");
+			Popup.getInstance().afficherPopup("Le nom du prestataire doit etre infï¿½rieur ï¿½ "
+					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractï¿½res");
 			return false;
 		} 
 		if (prenomPrestataireField.getText().equals("")){
-			new Popup("Le champ \" Nom du prestataire doit être rempli");
+			Popup.getInstance().afficherPopup("Le champ \" Nom du prestataire doit ï¿½tre rempli");
 			return false;
 		} 
 		if (prenomPrestataireField.getText().length()>Constante.LONGUEUR_NOM_PRESTATAIRE){
-			new Popup("Le nom du composant doit etre inférieur à "
-					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractères");
+			Popup.getInstance().afficherPopup("Le nom du composant doit etre infï¿½rieur ï¿½ "
+					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractï¿½res");
 			return false;
 		} 
 		if(telPrestataireField.getText().length()>Constante.LONGUEUR_NUM_TELEPHONE){
-			new Popup("Le numéro de téléphone doit être inférieur à" + Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
+			Popup.getInstance().afficherPopup("Le numï¿½ro de tï¿½lï¿½phone doit ï¿½tre infï¿½rieur ï¿½" + Constante.LONGUEUR_NUM_TELEPHONE+" caractï¿½res");
 			return false;
 		} 
 		if(faxPrestataireField.getText().length()>Constante.LONGUEUR_NUM_FAX){
-			new Popup("Le numéro de fax doit être inférieur à" + Constante.LONGUEUR_NUM_FAX+" caractères");
+			Popup.getInstance().afficherPopup("Le numï¿½ro de fax doit ï¿½tre infï¿½rieur ï¿½" + Constante.LONGUEUR_NUM_FAX+" caractï¿½res");
 			return false;
 		} 
 		if(mobilePrestataireField.getText().length()>Constante.LONGUEUR_NUM_MOBILE){
-			new Popup("Le numéro de mobile doit être inférieur à" + Constante.LONGUEUR_NUM_MOBILE+" caractères");
+			Popup.getInstance().afficherPopup("Le numï¿½ro de mobile doit ï¿½tre infï¿½rieur ï¿½" + Constante.LONGUEUR_NUM_MOBILE+" caractï¿½res");
 			return false;
 		} 
 		if(emailPrestataireField.getText().length()>Constante.LONGUEUR_MAIL){
-			new Popup("L'adresse email doit être inférieur à" + Constante.LONGUEUR_MAIL+" caractères");
+			Popup.getInstance().afficherPopup("L'adresse email doit ï¿½tre infï¿½rieur ï¿½" + Constante.LONGUEUR_MAIL+" caractï¿½res");
 			return false;
 		}
 		return true;
@@ -165,7 +165,7 @@ public class ModifierPrestataire {
 				pr.setSocietePrestataire(societePrestataireField.getText());
 				
 				prestataireDAO.modifierPrestataire(pr);
-				new Popup("Prestataire "+pr.getNomPrestataire().get()+" "+pr.getSocieteePrestataire().get()+" modifié !");
+				Popup.getInstance().afficherPopup("Prestataire "+pr.getNomPrestataire().get()+" "+pr.getSocieteePrestataire().get()+" modifiï¿½ !");
 			} catch (ConnexionBDException e) {
 				e.printStackTrace();
 			}
@@ -198,7 +198,7 @@ public class ModifierPrestataire {
 			listePrenom = prestataireDAO.recupererPrestataireParNom((listNom
 					.get(comboboxnom.getSelectionModel().getSelectedIndex())));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		Prestataire selected = listeNom.get(indexPrestataireSelectionne);
 		for (Prestataire pr : listePrenom) {

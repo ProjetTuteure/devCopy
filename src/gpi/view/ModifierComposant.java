@@ -61,7 +61,7 @@ public class ModifierComposant {
 		try {
 			listeNom = composantDAO.recupererAllComposant();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		for (Composant composant : listeNom) {
 			listnom.add(composant.getNomComposant());
@@ -81,14 +81,14 @@ public class ModifierComposant {
 	private void handleOk() {
 		Fabricant fabricant = null;
 		if (nomfield.getText().equals("")) {
-			new Popup("Le champ \"Nom du composant\" doit être rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du composant\" doit ï¿½tre rempli");
 		} else if (nomfield.getText().length() > Constante.LONGUEUR_NOM_COMPOSANT) {
-			new Popup("Le nom du composant doit etre inférieur à "
-					+ Constante.LONGUEUR_NOM_COMPOSANT + " caractères");
+			Popup.getInstance().afficherPopup("Le nom du composant doit etre infï¿½rieur ï¿½ "
+					+ Constante.LONGUEUR_NOM_COMPOSANT + " caractï¿½res");
 		} else if (caracfield.getText().length() > Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT) {
-			new Popup("Les caractéristiques ne peuvent pas dépasser "
+			Popup.getInstance().afficherPopup("Les caractï¿½ristiques ne peuvent pas dï¿½passer "
 					+ Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT
-					+ " caractères");
+					+ " caractï¿½res");
 		} else {
 			try {
 
@@ -112,13 +112,13 @@ public class ModifierComposant {
 										indexFabricant).getIdFabricant()
 										.getValue()));
 					} catch (ConnexionBDException e) {
-						new Popup(e.getMessage());
+						Popup.getInstance().afficherPopup(e.getMessage());
 					}
 				}
 				composant.setFabricantComposant(fabricant);
 
 				composantDAO.modifierComposant(composant);
-				new Popup("Composant "+composant.getNomComposant()+" modifié !");
+				Popup.getInstance().afficherPopup("Composant "+composant.getNomComposant()+" modifiï¿½ !");
 			} catch (ConnexionBDException e) {
 				e.printStackTrace();
 			}
@@ -141,7 +141,7 @@ public class ModifierComposant {
 			listeCarac = composantDAO.recupererComposantParNom((listnom
 					.get(comboboxnom.getSelectionModel().getSelectedIndex())));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		Composant selected = listeNom.get(indexComposantSelectionne);
 
@@ -161,7 +161,7 @@ public class ModifierComposant {
 			try {
 				listeFabricant = fabricantDAO.recupererAllFabricant();
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 
 			int indexComposantSelectionne = comboboxcarac.getSelectionModel()

@@ -57,7 +57,7 @@ public class ModifierType {
 				
             }
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxTypeMod.setItems(listNomType);
 	}
@@ -93,9 +93,9 @@ public class ModifierType {
 			Type typeAModifie=new Type(this.getIdType(),nomTypeField.getText(),this.getCheminImageType());
 			try {
 				typeDAO.modifierType(typeAModifie);
-				new Popup("Type "+typeAModifie.getNomTypeString()+" modifié !");
+				Popup.getInstance().afficherPopup("Type "+typeAModifie.getNomTypeString()+" modifié !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			dialogStage.close();
 		}
@@ -105,26 +105,26 @@ public class ModifierType {
 	private boolean controlerSaisies() {
 		if(comboboxTypeMod==null)
 		{
-			new Popup("Vous devez selectionner le type à modifier");
+			Popup.getInstance().afficherPopup("Vous devez selectionner le type à modifier");
 			return false;
 		}
 		if(nomTypeField.getText().isEmpty())
 		{
-			new Popup("Le champ \"Nom du type\" doit �tre saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du type\" doit �tre saisi");
 			return false;
 		}
 		if(nomTypeField.getText().length()>Constante.LONGUEUR_NOM_TYPE){
-			new Popup("La longueur du nom du type doit être inférieur à "+Constante.LONGUEUR_NOM_TYPE+" caractères");
+			Popup.getInstance().afficherPopup("La longueur du nom du type doit être inférieur à "+Constante.LONGUEUR_NOM_TYPE+" caractères");
 			return false;
 		}
 		if(this.getCheminImageType()!=null){
 			if(this.getCheminImageType().length()>Constante.LONGUEUR_CHEMIN_IMAGE){
-				new Popup("La longueur du chemin doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractères");
+				Popup.getInstance().afficherPopup("La longueur du chemin doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractères");
 				return false;
 			}
 		}
 		else{
-			new Popup("Une image doit être sélectionnée");
+			Popup.getInstance().afficherPopup("Une image doit être sélectionnée");
 			return false;
 		}
 		return true;
@@ -175,7 +175,7 @@ public class ModifierType {
 			selected = typeDAO.recupererTypeParId(this.getIdType());
 			this.cheminImageType=selected.getCheminImageType().get();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		nomTypeField.setText(selected.getNomTypeString());
 

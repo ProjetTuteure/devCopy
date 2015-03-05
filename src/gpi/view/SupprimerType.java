@@ -40,7 +40,7 @@ public class SupprimerType {
 				listIdType.add(type.getIdType());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxtype.setItems(listNomType);
 
@@ -67,7 +67,7 @@ public class SupprimerType {
 
 	private boolean controlerSaisies() {
 		if (comboboxtype.getValue() == null) {
-			new Popup("Vous devez selectionner le type à supprimer");
+			Popup.getInstance().afficherPopup("Vous devez selectionner le type à supprimer");
 			return false;
 		}
 		return true;
@@ -83,9 +83,9 @@ public class SupprimerType {
 			try {
 				typeDAO.supprimerType(new Type(listIdType.get(comboboxtype
 						.getSelectionModel().getSelectedIndex()), "", ""));
-				new Popup("Type " + comboboxtype.getValue() + " supprimé !");
+				Popup.getInstance().afficherPopup("Type " + comboboxtype.getValue() + " supprimé !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();

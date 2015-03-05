@@ -35,7 +35,7 @@ public class ResultatAvanceController implements Initializable {
     private ListView<Materiel> listMateriel;
 
     /**
-     * Initialise les donnéees
+     * Initialise les donnï¿½ees
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,7 +44,7 @@ public class ResultatAvanceController implements Initializable {
 		try {
 			resultatMateriels = materielDAO.recupererRechercheAvanceeMateriel();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
     	listMateriel.getItems().addAll(resultatMateriels);
 

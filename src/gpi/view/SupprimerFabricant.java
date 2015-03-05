@@ -41,7 +41,7 @@ public class SupprimerFabricant {
 				listIdFabricant.add(fabricant.getIdFabricant().getValue());
             }
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxfabr.setItems(listNomFabricant);
 	}
@@ -67,7 +67,7 @@ public class SupprimerFabricant {
 	
 	private boolean controlerSaisies() {
 		if (comboboxfabr.getValue() == null) {
-			new Popup("Vous devez selectionner le fabricant à supprimer");
+			Popup.getInstance().afficherPopup("Vous devez selectionner le fabricant à supprimer");
 			return false;
 		}
 		return true;
@@ -82,9 +82,9 @@ public class SupprimerFabricant {
 		if (controlerSaisies()) {
 		try {
 			fabricantDAO.supprimerFabricant(new Fabricant(listIdFabricant.get(comboboxfabr.getSelectionModel().getSelectedIndex()),null, null, null, null, null,null));
-			new Popup("Fabricant "+comboboxfabr.getValue()+" supprimé !");
+			Popup.getInstance().afficherPopup("Fabricant "+comboboxfabr.getValue()+" supprimé !");
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		okClicked = true;
 		dialogStage.close();

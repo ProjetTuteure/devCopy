@@ -54,7 +54,7 @@ public class SupprimerPrestataire {
 						.add(prestataire.getIdPrestataire().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxNomPrestataire.setItems(listNomPrestataire);
 	}
@@ -91,7 +91,7 @@ public class SupprimerPrestataire {
 								.getSelectionModel().getSelectedIndex()), null,
 						null, null, null, null, null, null));
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
@@ -101,11 +101,11 @@ public class SupprimerPrestataire {
 
 	private boolean controlerSaisies() {
 		if (comboboxNomPrestataire.getValue() == null) {
-			new Popup("Vous devez selectionner le nom du prestataire à supprimer");
+			Popup.getInstance().afficherPopup("Vous devez selectionner le nom du prestataire à supprimer");
 			return false;
 		}
 		if (comboboxPrenomPrestataire.getValue() == null) {
-			new Popup("Vous devez selectionner le prenom du prestataire à supprimer");
+			Popup.getInstance().afficherPopup("Vous devez selectionner le prenom du prestataire à supprimer");
 			return false;
 		}
 		return true;
@@ -140,7 +140,7 @@ public class SupprimerPrestataire {
 				}
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxPrenomPrestataire.setItems(listPrenomPrestataire);
 	}

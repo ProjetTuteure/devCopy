@@ -43,7 +43,7 @@ public class SupprimerComposant {
 		try {
 			listeNom = composantDAO.recupererAllComposant();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		for (Composant composant : listeNom) {
 			listnom.add(composant.getNomComposant());
@@ -73,9 +73,9 @@ public class SupprimerComposant {
 		okClicked = true;
 
 		if (comboboxnom.getValue() == null) {
-			new Popup("Veuillez choisir un nom de composant");
+			Popup.getInstance().afficherPopup("Veuillez choisir un nom de composant");
 		} else if (comboboxcarac.getValue() == null) {
-			new Popup("Veuillez choisir une caractéristique de composant");
+			Popup.getInstance().afficherPopup("Veuillez choisir une caractï¿½ristique de composant");
 		} else {
 			int indexComposantSelectionne = comboboxcarac.getSelectionModel()
 					.getSelectedIndex();
@@ -83,12 +83,12 @@ public class SupprimerComposant {
 			try {
 				if (composantDAO.supprimerComposant(composant) == true) {
 					dialogStage.close();
-					new Popup("Composant supprimé !");
+					Popup.getInstance().afficherPopup("Composant supprimï¿½ !");
 				} else {
-					new Popup("Echec lors de la suppression");
+					Popup.getInstance().afficherPopup("Echec lors de la suppression");
 				}
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 		}
 
@@ -112,7 +112,7 @@ public class SupprimerComposant {
 			listeCarac = composantDAO.recupererComposantParNom(listnom
 					.get(comboboxnom.getSelectionModel().getSelectedIndex()));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		Composant selected = listeNom.get(indexComposantSelectionne);
 

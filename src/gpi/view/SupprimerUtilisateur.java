@@ -46,7 +46,7 @@ public class SupprimerUtilisateur {
 		try {
 			listeNom = utilisateurDAO.recupererAllUtilisateur();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		for (Utilisateur utilisateur : listeNom) {
 			listnom.add(utilisateur.getNomUtilisateur().getValue());
@@ -82,9 +82,9 @@ public class SupprimerUtilisateur {
 		okClicked = true;
 		
 		if (comboboxnom.getValue() == null) {
-			new Popup("Veuillez choisir un nom d'utilisateur");
+			Popup.getInstance().afficherPopup("Veuillez choisir un nom d'utilisateur");
 		} else if (comboboxprenom.getValue() == null) {
-			new Popup("Veuillez choisir un prenom d'utilisateur");
+			Popup.getInstance().afficherPopup("Veuillez choisir un prenom d'utilisateur");
 		} else {
 			int indexRevendeurSelectionne = comboboxprenom.getSelectionModel()
 					.getSelectedIndex();
@@ -93,12 +93,12 @@ public class SupprimerUtilisateur {
 			try {
 				if (utilisateurDAO.supprimerUtilisateur(utilisateur) == true) {
 					dialogStage.close();
-					new Popup("Utilisateur supprimé !");
+					Popup.getInstance().afficherPopup("Utilisateur supprimï¿½ !");
 				} else {
-					new Popup("Echec lors de la suppression");
+					Popup.getInstance().afficherPopup("Echec lors de la suppression");
 				}
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 		}
 	}
@@ -125,7 +125,7 @@ public class SupprimerUtilisateur {
 			listePrenom = utilisateurDAO.recupererUtilisateurParNom(listnom
 					.get(comboboxnom.getSelectionModel().getSelectedIndex()));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		Utilisateur selected = listeNom.get(indexUtilisateurSelectionne);
 

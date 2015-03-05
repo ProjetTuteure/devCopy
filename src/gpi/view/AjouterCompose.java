@@ -65,7 +65,7 @@ public class AjouterCompose {
 				listeIdComposant.add(c.getIdComposant());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxnom.setItems(listeNomComposant);
 	}
@@ -106,7 +106,7 @@ public class AjouterCompose {
 			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxmat.getValue()))));
 			composeDAO.ajouterCompose(new Compose(composantSelected.getIdComposant(),materielSelected.getIdMateriel().getValue()));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		dialogStage.close();
 
@@ -127,7 +127,7 @@ public class AjouterCompose {
 		try {
 			selected = composantDAO.recupererComposantParId(listeIdComposant.get(listeNomComposant.indexOf(comboboxnom.getValue())));
 		} catch (ConnexionBDException e2) {
-			new Popup(e2.getMessage());
+			Popup.getInstance().afficherPopup(e2.getMessage());
 		}
 		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
 		listeCaracterisiqueComposant = FXCollections.observableArrayList();

@@ -42,7 +42,7 @@ public class SupprimerSite {
 				listSiteId.add(site.getIdSite());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxSiteSupp.setItems(listSiteObservable);
 	}
@@ -78,9 +78,9 @@ public class SupprimerSite {
 			int id=listSiteId.get(selected);
 			try {
 				siteDAO.supprimerSite(new Site(id,null,null));
-				new Popup("Site "+comboboxSiteSupp.getValue()+" supprimé !");
+				Popup.getInstance().afficherPopup("Site "+comboboxSiteSupp.getValue()+" supprimï¿½ !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
@@ -89,7 +89,7 @@ public class SupprimerSite {
 	
 	private boolean controlerSaisies() {
 		if(comboboxSiteSupp.getValue()==null){
-			new Popup("Vous devez selectionner le site à supprimer");
+			Popup.getInstance().afficherPopup("Vous devez selectionner le site ï¿½ supprimer");
 			return false;
 		}
 		return true;

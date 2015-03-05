@@ -58,7 +58,7 @@ public class AjouterIntervention {
 	private List<Integer> listIdMaintenanceIntervention;
 
 	/**
-	 * Initialise les données
+	 * Initialise les donnï¿½es
 	 */
 	@FXML
 	private void initialize() {
@@ -73,7 +73,7 @@ public class AjouterIntervention {
 				listIdMaintenanceIntervention.add(maintenance.getIdMaintenance().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxObjetMaintenanceIntervention.setItems(listObjetMaintenanceIntervention);
 
@@ -86,7 +86,7 @@ public class AjouterIntervention {
 				listIdPrestataireIntervention.add(prestataire.getIdPrestataire().getValue());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxNomPrestataireIntervention.setItems(listNomPrestataireIntervention);
 
@@ -97,7 +97,7 @@ public class AjouterIntervention {
 				listNumFactureIntervention.add(fa.getNumFacture());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxNumFactureIntervention.setItems(listNumFactureIntervention);
 
@@ -105,28 +105,28 @@ public class AjouterIntervention {
 
 	private boolean controlerSaisies() {
 		if (comboboxObjetMaintenanceIntervention.getValue() == null) {
-			new Popup(
-					"Le champ \"objet maintenance de l'intervention\" doit être saisi");
+			Popup.getInstance().afficherPopup(
+					"Le champ \"objet maintenance de l'intervention\" doit ï¿½tre saisi");
 			return false;
 		}
 		if (comboboxDateMaintenanceIntervention.getValue() == null) {
-			new Popup(
-					"Le champ \"date maintenance de l'intervention\" doit être saisi");
+			Popup.getInstance().afficherPopup(
+					"Le champ \"date maintenance de l'intervention\" doit ï¿½tre saisi");
 			return false;
 		}
 		if (comboboxNomPrestataireIntervention.getValue() == null) {
-			new Popup(
-					"Le champ \"nom du prestataire de l'intervention\" doit être saisi");
+			Popup.getInstance().afficherPopup(
+					"Le champ \"nom du prestataire de l'intervention\" doit ï¿½tre saisi");
 			return false;
 		}
 		if (comboboxPrenomPrestataireIntervention.getValue() == null) {
-			new Popup(
-					"Le champ \"prenom du prestataire de l'intervention\" doit être saisi");
+			Popup.getInstance().afficherPopup(
+					"Le champ \"prenom du prestataire de l'intervention\" doit ï¿½tre saisi");
 			return false;
 		}
 		if (comboboxNumFactureIntervention.getValue() == null) {
-			new Popup(
-					"Le champ \"numero facture de l'intervention\" doit être saisi");
+			Popup.getInstance().afficherPopup(
+					"Le champ \"numero facture de l'intervention\" doit ï¿½tre saisi");
 			return false;
 		}
 		return false;
@@ -162,7 +162,7 @@ public class AjouterIntervention {
 			PrestataireDAO prestataireDAO =new PrestataireDAO();
 			FactureDAO factureDAO = new FactureDAO();			
 			EstIntervenuDAO estIntervenuDAO=new EstIntervenuDAO();
-			new Popup("Pas ajouté !");
+			Popup.getInstance().afficherPopup("Pas ajoutï¿½ !");
 			okClicked = true;
 			dialogStage.close();
 		}
@@ -184,7 +184,7 @@ public class AjouterIntervention {
 		try {
 			selected = maintenanceDAO.recupererMaintenanceParId(listIdMaintenanceIntervention.get(comboboxObjetMaintenanceIntervention.getSelectionModel().getSelectedIndex()));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		listDateMaintenanceIntervention = FXCollections.observableArrayList();
 
@@ -195,7 +195,7 @@ public class AjouterIntervention {
 				}
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxDateMaintenanceIntervention.setItems(listDateMaintenanceIntervention);
 	}
@@ -207,7 +207,7 @@ public class AjouterIntervention {
 		try {
 			selected = prestataireDAO.recupererPrestataireParId(listIdPrestataireIntervention.get(comboboxNomPrestataireIntervention.getSelectionModel().getSelectedIndex()));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		listPrenomPrestataireIntervention = FXCollections.observableArrayList();
 
@@ -218,7 +218,7 @@ public class AjouterIntervention {
 				}
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxPrenomPrestataireIntervention.setItems(listPrenomPrestataireIntervention);
 	}

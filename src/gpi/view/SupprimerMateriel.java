@@ -44,7 +44,7 @@ public class SupprimerMateriel {
 				listMateriel.add(materiel.getIdMateriel()+"- "+materiel.getNomMateriel());
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxMateriel.setItems(listMateriel);
 	}
@@ -79,9 +79,9 @@ public class SupprimerMateriel {
 		try {
 			materielDAO.supprimerMateriel(new Materiel(Integer.parseInt(listStrings[0]), null, null, null, null, null, null, null, null, null, null,null,null));
 		} catch (NumberFormatException e) {
-			new Popup("L'id du materiel doit être un entier");
+			Popup.getInstance().afficherPopup("L'id du materiel doit ï¿½tre un entier");
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		okClicked = true;
 		dialogStage.close();

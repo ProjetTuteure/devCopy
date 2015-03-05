@@ -74,7 +74,7 @@ public class EtatController implements Initializable{
 		/*try {
 			listMateriel = this.materielDAO.recupererAllMateriel();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}*/
 		//if (listMateriel != null){
 			final ObservableList<IEtat> materiel = null;//FXCollections.observableArrayList(listMateriel);
@@ -141,7 +141,7 @@ public class EtatController implements Initializable{
 					restrictedMateriel.add(data);
 				}
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 		}
 		addDonneeTableView(restrictedMateriel);

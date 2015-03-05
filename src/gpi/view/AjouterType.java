@@ -70,10 +70,10 @@ public class AjouterType {
 					this.getCheminImageType());
 			try {
 				typeDAO.ajouterType(typeAAjoute);
-				new Popup("Type " + typeAAjoute.getNomTypeString()
-						+ " ajouté !");
+				Popup.getInstance().afficherPopup("Type " + typeAAjoute.getNomTypeString()
+						+ " ajoutï¿½ !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
@@ -83,23 +83,23 @@ public class AjouterType {
 
 	private boolean controlerSaisies() {
 		if (nomTypeField.getText().isEmpty()) {
-			new Popup("Le champ \"Nom du type\" doit être saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du type\" doit ï¿½tre saisi");
 			return false;
 		}
 		if (nomTypeField.getText().length() > Constante.LONGUEUR_NOM_TYPE) {
-			new Popup("La longueur du nom du type saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NOM_TYPE + " caractères");
+			Popup.getInstance().afficherPopup("La longueur du nom du type saisi doit ï¿½tre infï¿½rieur ï¿½ "
+					+ Constante.LONGUEUR_NOM_TYPE + " caractï¿½res");
 			return false;
 		}
 		if (this.getCheminImageType() != null) {
 			if (this.getCheminImageType().length() > Constante.LONGUEUR_CHEMIN_IMAGE) {
-				new Popup("La longueur du chemin saisi doit être inférieur à "
-						+ Constante.LONGUEUR_CHEMIN_IMAGE + " caractères");
+				Popup.getInstance().afficherPopup("La longueur du chemin saisi doit ï¿½tre infï¿½rieur ï¿½ "
+						+ Constante.LONGUEUR_CHEMIN_IMAGE + " caractï¿½res");
 				return false;
 			}
 		}
 		else{
-			new Popup("Une image doit Ãªtre sélectionnée");
+			Popup.getInstance().afficherPopup("Une image doit Ãªtre sï¿½lectionnï¿½e");
 			return false;
 		}
 		return true;

@@ -76,7 +76,7 @@ public class MaterielOverview {
 		try {
 			this.listMaterielOverviewController=FXCollections.observableArrayList(pageMaterielDAO.getAllMaterielByTypeAndSite(type, site));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		this.setLabelMaterielVille(site.getNomSiteString()+" -> "+type.getNomType().getValue());
 		this.sp_materiel.setHbarPolicy(ScrollBarPolicy.NEVER);

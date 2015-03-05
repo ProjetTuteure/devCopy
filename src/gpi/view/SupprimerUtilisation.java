@@ -63,7 +63,7 @@ public class SupprimerUtilisation {
 				listIdMateriel.add(pageMateriel.getIdMateriel());	
 			}
 		}catch(ConnexionBDException e){
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		ComboboxNomUtilisateur.setItems(listNomUtilisateur);
 		ComboboxMateriel.setItems(listNomMateriel);
@@ -81,7 +81,7 @@ public class SupprimerUtilisation {
 				listIdMateriel.add(pageMateriel.getIdMateriel());	
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		ComboboxMateriel.setItems(listNomMateriel);
 	}

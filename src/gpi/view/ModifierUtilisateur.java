@@ -61,7 +61,7 @@ public class ModifierUtilisateur {
 		try {
 			listeNom = utilisateurDAO.recupererAllUtilisateur();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		for (Utilisateur utilisateur : listeNom) {
 			listnom.add(utilisateur.getNomUtilisateur().getValue());
@@ -81,16 +81,16 @@ public class ModifierUtilisateur {
 
 	private boolean controlerSaisies() {
 		if (nomfield.getText().equals("")) {
-			new Popup("Le champ \"Nom du utilisateur\" doit être rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du utilisateur\" doit ï¿½tre rempli");
 			return false;
 		}
 		if (prenomfield.getText().equals("")) {
-			new Popup("Le champ \"Prenom du utilisateur\" doit être rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Prenom du utilisateur\" doit ï¿½tre rempli");
 			return false;
 		}
 		if (telfield.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
-			new Popup("Le numéro de téléphone saisi doit être inférieur à "
-					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
+			Popup.getInstance().afficherPopup("Le numï¿½ro de tï¿½lï¿½phone saisi doit ï¿½tre infï¿½rieur ï¿½ "
+					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractï¿½res");
 			return false;
 		}
 
@@ -123,11 +123,11 @@ public class ModifierUtilisateur {
 			utilisateur.setTelUtilisateur(telfield.getText());
 			try {
 				utilisateurDAO.modifierUtilisateur(utilisateur);
-				new Popup("Utilisateur "
+				Popup.getInstance().afficherPopup("Utilisateur "
 						+ utilisateur.getNomUtilisateur().getValue()
-						+ " modifié !");
+						+ " modifiï¿½ !");
 			} catch (ConnexionBDException e) {
-				new Popup(e.getMessage());
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 			dialogStage.close();
 		}
@@ -155,7 +155,7 @@ public class ModifierUtilisateur {
 			listePrenom = utilisateurDAO.recupererUtilisateurParNom(listnom
 					.get(comboboxnom.getSelectionModel().getSelectedIndex()));
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		Utilisateur selected = listeNom.get(indexUtilisateurSelectionne);
 

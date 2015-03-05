@@ -230,7 +230,7 @@ public class DetailMachineController{
 				listMaintenance.add(maintenance);
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		tableViewMaintenances.setItems(listMaintenance);
 		numMaintenance.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdMaintenance().getValue()+""));
@@ -247,7 +247,7 @@ public class DetailMachineController{
 				listLogiciel.add(logiciel);
 			}
 		} catch (ConnexionBDException e1) {
-			new Popup(e1.getMessage());
+			Popup.getInstance().afficherPopup(e1.getMessage());
 		}
 		tableViewLogiciels.setItems(listLogiciel);
 		nomLogiciel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomLogiciel()));
@@ -261,7 +261,7 @@ public class DetailMachineController{
 				listComposant.add(composant);
 			}
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		tableViewComposants.setItems(listComposant);
 		nomComposant.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomComposant()));
