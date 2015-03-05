@@ -1,9 +1,7 @@
 package gpi.view;
 
-import java.util.List;
 
 import utils.Popup;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;

@@ -1,9 +1,5 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
-import gpi.metier.Composant;
-import gpi.metier.Materiel;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;

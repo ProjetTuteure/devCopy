@@ -3,7 +3,6 @@ package gpi.view;
 import utils.Popup;
 import gpi.MainApp;
 import gpi.exception.ConnexionBDException;
-import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
 import gpi.metier.PageMateriel;
 import gpi.metier.PageMaterielDAO;
@@ -19,13 +18,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 
 

@@ -1,10 +1,5 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
-import gpi.metier.Facture;
-import gpi.metier.Maintenance;
-import gpi.metier.Prestataire;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -35,9 +30,6 @@ public class ModifierUtilisation {
 	@FXML
 	private ComboBox<String> comboboxmat1;
 
-
-	private Donnee donnee = new Donnee();
-
 	private ObservableList<String> listnom;
 	private ObservableList<String> listnom1;
 	private ObservableList<String> listprenom1;
@@ -47,7 +39,7 @@ public class ModifierUtilisation {
 
 
 	/**
-	 * Initialise les données
+	 * Initialise les donnï¿½es
 	 */
 	@FXML
 	private void initialize() {

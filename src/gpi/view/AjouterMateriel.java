@@ -4,12 +4,9 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import utils.Constante;
 import utils.Popup;
-import utils.Propriete;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Etat;
 import gpi.metier.Fabricant;

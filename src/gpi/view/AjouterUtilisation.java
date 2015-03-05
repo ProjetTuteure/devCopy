@@ -1,7 +1,6 @@
 package gpi.view;
 
 import gpi.exception.ConnexionBDException;
-import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
 import gpi.metier.PageMateriel;
 import gpi.metier.PageMaterielDAO;
@@ -13,7 +12,6 @@ import gpi.metier.UtiliseDAO;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.plaf.ListUI;
 
 import utils.Popup;
 import javafx.collections.FXCollections;

@@ -1,6 +1,5 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.*;
 import javafx.collections.FXCollections;

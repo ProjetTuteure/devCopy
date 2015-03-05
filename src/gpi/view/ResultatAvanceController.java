@@ -5,19 +5,13 @@ import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
-import gpi.metier.Utilise;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 
-import java.awt.event.MouseEvent;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 
 import utils.Popup;

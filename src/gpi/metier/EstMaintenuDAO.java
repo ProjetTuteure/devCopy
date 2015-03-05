@@ -4,7 +4,6 @@ import gpi.exception.ConnexionBDException;
 import utils.MaConnexion;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

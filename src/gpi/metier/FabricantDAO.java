@@ -1,7 +1,6 @@
 package gpi.metier;
 
 import gpi.exception.ConnexionBDException;
-import javafx.beans.property.SimpleIntegerProperty;
 import utils.MaConnexion;
 
 import java.sql.*;
@@ -13,7 +12,6 @@ import java.util.List;
  */
 public class FabricantDAO {
     private Connection connexion;
-
     public int ajouterFabricant(Fabricant fabricant) throws ConnexionBDException{
         int nombreLigneAffectee=0;
         try {

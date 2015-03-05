@@ -1,38 +1,27 @@
 package gpi.view;
 
 import gpi.MainApp;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Etat;
 import gpi.metier.IEtat;
 import gpi.metier.IEtatDAO;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
-import gpi.metier.SiteDAO;
-import gpi.metier.TypeDAO;
 
 import javafx.beans.property.SimpleStringProperty;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 import utils.Popup;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
-import javafx.util.Callback;
 
 /**
  * @author Victor

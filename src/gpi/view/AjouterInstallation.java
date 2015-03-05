@@ -1,6 +1,5 @@
 package gpi.view;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
@@ -21,10 +20,6 @@ public class AjouterInstallation {
 	private ComboBox<String> comboboxcarac;
 	@FXML
 	private ComboBox<String> comboboxmat;
-
-	private ObservableList<String> list1;
-	private ObservableList<String> list2;
-	private ObservableList<String> list3;
 
 	/**
 	 * Initialise les donnees Ajoute les donnees aux combobox

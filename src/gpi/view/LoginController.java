@@ -4,11 +4,9 @@ import gpi.MainApp;
 import gpi.exception.LoginException;
 
 import java.net.URL;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 import utils.Popup;
-import utils.Propriete;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

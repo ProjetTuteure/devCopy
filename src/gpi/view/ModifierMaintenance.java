@@ -43,7 +43,6 @@ public class ModifierMaintenance {
 	private ComboBox<String> cb_objetMaintenance;
 
 	private ObservableList<String> listeObjet;
-	private ObservableList<String> listeDate;
 	
 	private List<Maintenance> listeMaintenance;
 	private MaintenanceDAO maintenanceDAO=new MaintenanceDAO();

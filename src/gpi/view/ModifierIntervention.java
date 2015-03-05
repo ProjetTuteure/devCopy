@@ -1,10 +1,6 @@
 package gpi.view;
 
 import gpi.bd.Donnee;
-import gpi.metier.Facture;
-import gpi.metier.Maintenance;
-import gpi.metier.Prestataire;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -45,7 +41,7 @@ public class ModifierIntervention {
 	private ObservableList<String> listdate;
 
 	/**
-	 * Initialise les données
+	 * Initialise les donnï¿½es
 	 */
 	@FXML
 	private void initialize() {

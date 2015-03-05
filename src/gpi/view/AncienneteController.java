@@ -2,28 +2,21 @@ package gpi.view;
 
 
 import gpi.MainApp;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.IAnciennete;
-import gpi.metier.Facture;
 import gpi.metier.IAncienneteDAO;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
-import gpi.metier.Revendeur;
 import gpi.metier.Site;
 import gpi.metier.SiteDAO;
 import gpi.metier.Type;
-import gpi.metier.Materiel;
 import gpi.metier.TypeDAO;
 import gpi.metier.UtiliseDAO;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Cell;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,18 +24,10 @@ import javafx.scene.control.TableView;
 
 import javafx.scene.input.MouseEvent;
 
-import java.beans.EventHandler;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-
-
-
-
-
-
 
 import utils.Popup;
 

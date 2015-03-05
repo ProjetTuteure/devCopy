@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import utils.MaConnexion;
 
 public class RevendeurDAO {
@@ -20,8 +18,8 @@ public class RevendeurDAO {
 	{}
 	
 	/**
-	 * Permet d'ajouter un revendeur à la bd
-	 * @param revendeur le revendeur à ajouter à la base de données
+	 * Permet d'ajouter un revendeur ï¿½ la bd
+	 * @param revendeur le revendeur ï¿½ ajouter ï¿½ la base de donnï¿½es
 	 */
 	public void ajouterRevendeur(Revendeur revendeur) throws ConnexionBDException
 	{
@@ -58,7 +56,7 @@ public class RevendeurDAO {
 	
 	/**
 	 * Permet de modifier un revendeur
-	 * @param revendeur le revendeur à modifier
+	 * @param revendeur le revendeur ï¿½ modifier
 	 */
 	public void modifierRevendeur(Revendeur revendeur) throws ConnexionBDException
 	{
@@ -95,7 +93,7 @@ public class RevendeurDAO {
 	
 	/**
 	 * Permet de supprimer un revendeur
-	 * @param revendeur le revendeur à supprimer
+	 * @param revendeur le revendeur ï¿½ supprimer
 	 */
 	public void supprimerRevendeur(Revendeur revendeur) throws ConnexionBDException
 	{
@@ -162,8 +160,8 @@ public class RevendeurDAO {
 	
 	/**
 	 * Retourne un revendeur par son id
-	 * @param idRevendeur l'id du revendeur à retourner
-	 * @return revendeur le revendeur correspondant à l'id passé en paramètre
+	 * @param idRevendeur l'id du revendeur ï¿½ retourner
+	 * @return revendeur le revendeur correspondant ï¿½ l'id passï¿½ en paramï¿½tre
 	 */
 	public Revendeur recupererRevendeurParId(int idRevendeur) throws ConnexionBDException
 	{

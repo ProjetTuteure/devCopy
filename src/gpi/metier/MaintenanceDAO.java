@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import utils.MaConnexion;
 import gpi.exception.ConnexionBDException;
 
@@ -54,7 +53,6 @@ public class MaintenanceDAO {
 	public List<Maintenance> recupererAllMaintenance() throws ConnexionBDException
 	{
 		List<Maintenance> listeARetourner=new ArrayList<Maintenance>();
-		System.out.println(listeARetourner);
 		Connection connexion=MaConnexion.getInstance().getConnexion();
 		try {
 			PreparedStatement ps=connexion.prepareStatement("SELECT * FROM MAINTENANCE");
@@ -90,8 +88,8 @@ public class MaintenanceDAO {
 	/**
 	 * Retourne un maintenance par son id
 	 * @param idMaintenance
-	 * @return la maintenance correspondant à l'id maintenance
-	 * @throws ConnexionBDException si un problème de connexion a la bd survient
+	 * @return la maintenance correspondant ï¿½ l'id maintenance
+	 * @throws ConnexionBDException si un problï¿½me de connexion a la bd survient
 	 */
 	public Maintenance recupererMaintenanceParId(int idMaintenance) throws ConnexionBDException {
 		Connection connexion=MaConnexion.getInstance().getConnexion();
@@ -117,7 +115,7 @@ public class MaintenanceDAO {
 	}
 	
 	/**
-	 * Récupere une maintenance par objet
+	 * Rï¿½cupere une maintenance par objet
 	 * @param objetMaintenance
 	 * @return une liste de maintenance correspondant a l'objet
 	 * @throws ConnexionBDException
@@ -147,8 +145,8 @@ public class MaintenanceDAO {
 	
 	/**
 	 * Modifie une maintenance
-	 * @param maintenance la maintenance à modifier
-	 * @throws ConnexionBDException si l'accès à la bd a échoué
+	 * @param maintenance la maintenance ï¿½ modifier
+	 * @throws ConnexionBDException si l'accï¿½s ï¿½ la bd a ï¿½chouï¿½
 	 */
 	public void modifierMaintenance(Maintenance maintenance) throws ConnexionBDException
 	{
@@ -173,8 +171,8 @@ public class MaintenanceDAO {
 	
 	/**
 	 * Supprime une maintenance
-	 * @param maintenance la maintenance à supprimer
-	 * @throws ConnexionBDException si la connexion à la BD a échoué
+	 * @param maintenance la maintenance ï¿½ supprimer
+	 * @throws ConnexionBDException si la connexion ï¿½ la BD a ï¿½chouï¿½
 	 */
 	public void supprimerMaintenance(Maintenance maintenance)throws ConnexionBDException
 	{

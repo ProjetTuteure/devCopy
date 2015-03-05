@@ -3,18 +3,11 @@ package gpi.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.Constante;
 import utils.Popup;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
-import gpi.metier.EstIntervenu;
 import gpi.metier.EstIntervenuDAO;
-import gpi.metier.EstMaintenu;
-import gpi.metier.EstMaintenuDAO;
 import gpi.metier.Facture;
 import gpi.metier.FactureDAO;
-import gpi.metier.Logiciel;
-import gpi.metier.LogicielDAO;
 import gpi.metier.Maintenance;
 import gpi.metier.MaintenanceDAO;
 import gpi.metier.Prestataire;
