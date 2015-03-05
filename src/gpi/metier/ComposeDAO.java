@@ -19,7 +19,7 @@ public class ComposeDAO {
 		try {
 			connection = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prepareStatement = connection
-					.prepareStatement("INSERT INTO Compose (idComposant,idMateriel VALUES(?,?)");
+					.prepareStatement("INSERT INTO Compose (idComposant,idMateriel) VALUES(?,?)");
 			prepareStatement.setString(1, compose.getIdComposant());
 			prepareStatement.setString(2, compose.getIdMateriel());
 			nombreLigneAffectee = prepareStatement.executeUpdate();

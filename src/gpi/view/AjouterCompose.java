@@ -8,6 +8,8 @@ import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Composant;
 import gpi.metier.ComposantDAO;
+import gpi.metier.Compose;
+import gpi.metier.ComposeDAO;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
 import gpi.metier.PageMateriel;
@@ -16,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -31,7 +34,7 @@ public class AjouterCompose {
 	@FXML
 	private ComboBox<String> comboboxnom;
 	@FXML
-	private ComboBox<String> comboboxcarac;
+	private Label labelCarac;
 	@FXML
 	private ComboBox<String> comboboxmat;
 
@@ -89,11 +92,22 @@ public class AjouterCompose {
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton AJOUTER
 	 * est clique
+	 * 
 	 */
 	@FXML
 	private void handleOk() {
-
+		Composant composantSelected = null;
+		Materiel materielSelected = null;
+		MaterielDAO materielDAO = new MaterielDAO();
+		ComposeDAO composeDAO = new ComposeDAO();
 		okClicked = true;
+		try {
+			composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(listeNomComposant.indexOf(comboboxnom.getValue())));
+			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxmat.getValue()))));
+			composeDAO.ajouterCompose(new Compose(composantSelected.getIdComposant(),materielSelected.getIdMateriel().getValue()));
+		} catch (ConnexionBDException e) {
+			new Popup(e.getMessage());
+		}
 		dialogStage.close();
 
 	}
@@ -118,18 +132,8 @@ public class AjouterCompose {
 		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
 		listeCaracterisiqueComposant = FXCollections.observableArrayList();
 
-		try {
-			for (Composant c : this.composantDAO.recupererAllComposant()) {
-				if (c.getNomComposant().equals(selected.getNomComposant())) {
-					listeCaracterisiqueComposant.add(selected.getcaracteristiqueComposant());
-					listeIdCaracteristique.add(c.getIdComposant());
-				}
-			}
-		} catch (ConnexionBDException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		comboboxcarac.setItems(listeCaracterisiqueComposant);
+		
+		labelCarac.setText(selected.getcaracteristiqueComposant());
 
 		listeNomMateriel = FXCollections.observableArrayList();
 		try {
