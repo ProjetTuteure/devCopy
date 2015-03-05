@@ -7,9 +7,6 @@ Operation maint -> Ajouter : faut pas par id, il faut aussi le nom du materiel e
 
 Installation logiciel
 
-Modifier chemin BD
-Modifier dossier driver
-
 Erreur sur les compose (add/suppr/mod)
 
 Gerer composant supprimer : fonctionne pas lorsqu'il y a 2 composants du même nom

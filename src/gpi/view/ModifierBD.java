@@ -50,7 +50,7 @@ public class ModifierBD {
 	 */
 	@FXML
 	private void handleOk() {
-
+		
 		okClicked = true;
 		dialogStage.close();
 
