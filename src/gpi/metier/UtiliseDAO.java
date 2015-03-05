@@ -6,13 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import gpi.exception.ConnexionBDException;
 import utils.MaConnexion;
-import utils.Popup;
 
 public class UtiliseDAO {
 
@@ -46,15 +44,15 @@ public class UtiliseDAO {
 		return 0;
 	}
 
-	public int supprimerUtlise(int idUtilisateur, int idMateriel) throws ConnexionBDException {
+	public int supprimerUtlise(Utilise utilise) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		int resultat;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prep = connexion
 					.prepareStatement("DELETE FROM UTILISE WHERE idUtilisateur=? And idMateriel=?;");
-			prep.setInt(1, idUtilisateur);
-			prep.setInt(2, idMateriel);
+			prep.setInt(1, utilise.getUtilisateurUtilise().getIdUtilisateur().getValue());
+			prep.setInt(2, utilise.getMaterielUtilise().getIdMateriel().getValue());
 			resultat = prep.executeUpdate();
 			return resultat;
 		} catch (SQLException e) {
@@ -96,7 +94,7 @@ public class UtiliseDAO {
 					connexion.close();
 				}
 			} catch (SQLException e) {
-				new Popup(e.getMessage());
+				 e.printStackTrace();
 			}
 		}
 		return listUtilise;
@@ -126,7 +124,7 @@ public class UtiliseDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ConnexionBDException e) {
-			new Popup(e.getMessage());
+			 e.printStackTrace();
 		}
 		return nomUtilisateur;
 		
