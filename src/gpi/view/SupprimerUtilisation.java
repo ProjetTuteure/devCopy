@@ -6,6 +6,7 @@ import gpi.metier.PageMaterielDAO;
 import gpi.metier.Prestataire;
 import gpi.metier.Utilisateur;
 import gpi.metier.UtilisateurDAO;
+import gpi.metier.UtiliseDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,8 @@ public class SupprimerUtilisation {
 	private ObservableList<String> listprenom;
 
 	private int idUtilisateur;
+
+	private String idMateriel;
 	
 	/**
 	 * Initialise les donn�es
@@ -112,7 +115,14 @@ public class SupprimerUtilisation {
 	 */
 	@FXML
 	private void handleOk() {
-
+		UtiliseDAO utiliseDAO = new UtiliseDAO();
+		this.idUtilisateur = (listIdUtilisateur.get(ComboboxNomUtilisateur.getSelectionModel().getSelectedIndex()));
+		this.idMateriel = (listIdMateriel.get(ComboboxMateriel.getSelectionModel().getSelectedIndex()));
+		try {
+			utiliseDAO.supprimerUtlise(this.idUtilisateur, Integer.parseInt(this.idMateriel));
+		} catch (NumberFormatException | ConnexionBDException e) {
+			/*Todo*/
+		}
 		okClicked = true;
 		dialogStage.close();
 

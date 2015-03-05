@@ -46,15 +46,15 @@ public class UtiliseDAO {
 		return 0;
 	}
 
-	public int supprimerUtlise(Utilise utilise) throws ConnexionBDException {
+	public int supprimerUtlise(int idUtilisateur, int idMateriel) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		int resultat;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prep = connexion
 					.prepareStatement("DELETE FROM UTILISE WHERE idUtilisateur=? And idMateriel=?;");
-			prep.setInt(1, utilise.getUtilisateurUtilise().getIdUtilisateur().getValue());
-			prep.setInt(2, utilise.getMaterielUtilise().getIdMateriel().getValue());
+			prep.setInt(1, idUtilisateur);
+			prep.setInt(2, idMateriel);
 			resultat = prep.executeUpdate();
 			return resultat;
 		} catch (SQLException e) {
