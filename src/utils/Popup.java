@@ -49,19 +49,21 @@ public final class Popup {
     }
 	
 	public void afficherPopup(String texteAAfficher){
-		buttonOk.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override 
-		    public void handle(ActionEvent e) {
-		    	Popup.instance=null;
-		        dialogStage.close();
-		    }
-		});
-		dialogStage.initModality(Modality.WINDOW_MODAL);
-		dialogStage.setScene(new Scene(VBoxBuilder.create().
-		    children(new Text(texteAAfficher),buttonOk).
-		    alignment(Pos.CENTER).padding(new Insets(5)).build()));
-		dialogStage.setAlwaysOnTop(true);
-		dialogStage.show();
+		if(Popup.instance!=null){
+			buttonOk.setOnAction(new EventHandler<ActionEvent>() {
+			    @Override 
+			    public void handle(ActionEvent e) {
+			    	Popup.instance=null;
+			        dialogStage.close();
+			    }
+			});
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.setScene(new Scene(VBoxBuilder.create().
+			    children(new Text(texteAAfficher),buttonOk).
+			    alignment(Pos.CENTER).padding(new Insets(5)).build()));
+			dialogStage.setAlwaysOnTop(true);
+			dialogStage.show();
+		}
 	}
 	
 }
