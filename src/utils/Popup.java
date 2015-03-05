@@ -28,8 +28,8 @@ public final class Popup {
 	{
 		super();
 		this.dialogStage=new Stage();
-		dialogStage.initModality(Modality.WINDOW_MODAL);
 		this.buttonOk=new Button("Ok");
+		this.dialogStage.initModality(Modality.APPLICATION_MODAL);
 	}
 	
 	public final static Popup getInstance() {
