@@ -1317,7 +1317,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/ajouterEstMaintenu.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Ajouter une op�ration de maintenance");
+			dialogStage.setTitle("Ajouter une opération de maintenance");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);
