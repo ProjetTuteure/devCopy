@@ -54,7 +54,7 @@ public class MainApp extends Application {
 	
 	public static void launch(){
 		initRootLayout();
-		new Popup("connection ï¿½ la base");
+		new Popup("connexion ï¿½ la base");
 		Thread threadSite = new Thread(new OngletLoader(rootLayout,SiteOverview,"Site"));
 		Thread threadAnciennete = new Thread(new OngletLoader(rootLayout,AncienneteOverview,"Anciennete"));
 		Thread threadEtat = new Thread(new OngletLoader(rootLayout,EtatOverview,"Etat"));
@@ -1372,7 +1372,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/ajouterInstallation.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Ajouter une opération d'Installation");
+			dialogStage.setTitle("Ajouter une opï¿½ration d'Installation");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);
@@ -1400,7 +1400,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/supprimerInstallation.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Supprimer une opération d'Installation");
+			dialogStage.setTitle("Supprimer une opï¿½ration d'Installation");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);
