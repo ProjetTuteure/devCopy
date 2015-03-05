@@ -222,16 +222,13 @@ public class PrestataireDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				connexion.close();
-			}
-			catch(SQLException se)
-			{
-				se.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 		return list;
