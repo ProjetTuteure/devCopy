@@ -5,7 +5,6 @@ Composition => Si caracteristique vide probleme
 	    => Supprimer composition fonctionne pas
 Supprimer intervention
 
-Supprimer utilisation
 Operation maint -> Ajouter : faut pas par id, il faut aussi le nom du materiel et pareil pour maintenance
 
 Installation logiciel
