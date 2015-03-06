@@ -8,7 +8,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import utils.MaConnexion;
+import utils.Popup;
 import gpi.exception.ConnexionBDException;
 
 public class MaintenanceDAO {
@@ -208,5 +211,55 @@ public class MaintenanceDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+	public ObservableList<String> recupererDateMaintenanceParObjet(String objetMaintenance) throws ConnexionBDException{
+		ObservableList<String> listARetourner=FXCollections.observableArrayList();
+		Connection connexion=null;
+		connexion = MaConnexion.getInstance().getConnexion();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("SELECT dateMaintenance FROM MAINTENANCE where objetMaintenance=?");
+			ps.setString(1,objetMaintenance);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				listARetourner.add(rs.getString("dateMaintenance"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listARetourner;
+	}
+	
+	public ObservableList<String> recupererAllObjetMaintenanceString() throws ConnexionBDException{
+		ObservableList<String> listARetourner=FXCollections.observableArrayList();
+		Connection connexion=null;
+		connexion = MaConnexion.getInstance().getConnexion();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("SELECT DISTINCT objetMaintenance FROM MAINTENANCE");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				listARetourner.add(rs.getString("objetMaintenance"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listARetourner;
 	}
 }
