@@ -1,11 +1,9 @@
-Operation maint -> Ajouter : faut pas par id, il faut aussi le nom du materiel
-
 Erreur sur les compose supprimer
 
 Gerer composant supprimer : fonctionne pas lorsqu'il y a 2 composants du même nom
 idem pour prestataire et utilisateur
 
-Ajouter composant : la caracteritique reste similaire si 2 composants ont le même nom même si ceux ci n'ont pas la même caracteristique
+Modifier composant : la caracteritique reste similaire si 2 composants ont le même nom même si ceux ci n'ont pas la même caracteristique
 
 Intervention : 2x mérillou : faire un distinct sur le nom pour avoir un seul nom mérillou avec stef et nico dedans
 
