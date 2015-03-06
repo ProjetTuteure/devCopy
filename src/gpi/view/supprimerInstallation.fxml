@@ -10,9 +10,9 @@
     <GridPane prefHeight="71.0" prefWidth="360.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
         <Label text="Materiel Ã  supprimer l'installation" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Label text="Logiciel à  supprimer " GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboboxmat" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="comboboxlog" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Logiciel ï¿½ supprimer " GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboboxNomMateriel" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="comboboxLogiciel" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="120.0" prefWidth="169.0" />

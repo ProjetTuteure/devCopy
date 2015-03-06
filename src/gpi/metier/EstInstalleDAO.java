@@ -19,7 +19,7 @@ private Connection connection;
 		try {
 			connection = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prepareStatement = connection
-					.prepareStatement("INSERT INTO ESTINSTALLE (idLogiciel,idMateriel VALUES(?,?)");
+					.prepareStatement("INSERT INTO ESTINSTALLE (idLogiciel,idMateriel) VALUES(?,?)");
 			prepareStatement.setString(1, estInstalle.getIdLogiciel());
 			prepareStatement.setString(2, estInstalle.getIdMateriel());
 			nombreLigneAffectee = prepareStatement.executeUpdate();

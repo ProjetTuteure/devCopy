@@ -86,19 +86,6 @@ public class AjouterInstallation {
 	 * @return vrai si le bouton AJOUTER est clique, faux sinon
 	 */
 	public boolean isOkClicked() {
-		EstInstalleDAO estInstalleDAO=new EstInstalleDAO();
-		LogicielDAO logicielDAO=new LogicielDAO();
-		MaterielDAO materielDAO=new MaterielDAO();
-		int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxNomMateriel.getValue()));
-		int idLogiciel = listIdLogiciel.get(listNomLogiciel.indexOf(comboboxLogiciel.getValue()));
-		try {
-			EstInstalle estInstalle=new EstInstalle(idLogiciel,idMateriel);
-			estInstalleDAO.ajouterEstInstalle(estInstalle);
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
-		}
-		okClicked = true;
-		dialogStage.close();
 		return okClicked;
 	}
 
@@ -108,7 +95,15 @@ public class AjouterInstallation {
 	 */
 	@FXML
 	private void handleOk() {
-
+		EstInstalleDAO estInstalleDAO=new EstInstalleDAO();
+		int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxNomMateriel.getValue()));
+		int idLogiciel = listIdLogiciel.get(listNomLogiciel.indexOf(comboboxLogiciel.getValue()));
+		try {
+			EstInstalle estInstalle=new EstInstalle(idMateriel,idLogiciel);
+			estInstalleDAO.ajouterEstInstalle(estInstalle);
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
 		okClicked = true;
 		dialogStage.close();
 
