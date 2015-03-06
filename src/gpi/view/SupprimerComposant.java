@@ -38,12 +38,9 @@ public class SupprimerComposant {
 		listnom = FXCollections.observableArrayList();
 		listeNom = new ArrayList<Composant>();
 		try {
-			listeNom = composantDAO.recupererAllComposant();
+			listnom.addAll(composantDAO.recupererAllNomComposant());
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
-		}
-		for (Composant composant : listeNom) {
-			listnom.add(composant.getNomComposant());
 		}
 		comboboxnom.setItems(listnom);
 	}
@@ -72,7 +69,7 @@ public class SupprimerComposant {
 		if (comboboxnom.getValue() == null) {
 			Popup.getInstance().afficherPopup("Veuillez choisir un nom de composant");
 		} else if (comboboxcarac.getValue() == null) {
-			Popup.getInstance().afficherPopup("Veuillez choisir une caract�ristique de composant");
+			Popup.getInstance().afficherPopup("Veuillez choisir une caractéristique de composant");
 		} else {
 			int indexComposantSelectionne = comboboxcarac.getSelectionModel()
 					.getSelectedIndex();
@@ -80,7 +77,7 @@ public class SupprimerComposant {
 			try {
 				if (composantDAO.supprimerComposant(composant) == true) {
 					dialogStage.close();
-					Popup.getInstance().afficherPopup("Composant supprim� !");
+					Popup.getInstance().afficherPopup("Composant supprimé !");
 				} else {
 					Popup.getInstance().afficherPopup("Echec lors de la suppression");
 				}
@@ -103,15 +100,12 @@ public class SupprimerComposant {
 	@FXML
 	private void handlechange() {
 		listcarac = FXCollections.observableArrayList();
-		int indexComposantSelectionne = comboboxnom.getSelectionModel()
-				.getSelectedIndex();
 		try {
 			listeCarac = composantDAO.recupererComposantParNom(listnom
 					.get(comboboxnom.getSelectionModel().getSelectedIndex()));
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		Composant selected = listeNom.get(indexComposantSelectionne);
 
 		for (Composant composant : listeCarac) {
 			listcarac.add(composant.getCaracteristiqueComposant());

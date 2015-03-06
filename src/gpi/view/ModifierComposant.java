@@ -55,12 +55,9 @@ public class ModifierComposant {
 		listnom = FXCollections.observableArrayList();
 		listeNom = new ArrayList<Composant>();
 		try {
-			listeNom = composantDAO.recupererAllComposant();
+			listnom.addAll(composantDAO.recupererAllNomComposant());
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
-		}
-		for (Composant composant : listeNom) {
-			listnom.add(composant.getNomComposant());
 		}
 		comboboxnom.setItems(listnom);
 	}
@@ -131,20 +128,14 @@ public class ModifierComposant {
 	private void handlechange1() {
 		listcarac = FXCollections.observableArrayList();
 		listeCarac = new ArrayList<Composant>();
-		int indexComposantSelectionne = comboboxnom.getSelectionModel()
-				.getSelectedIndex();
 		try {
 			listeCarac = composantDAO.recupererComposantParNom((listnom
 					.get(comboboxnom.getSelectionModel().getSelectedIndex())));
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		Composant selected = listeNom.get(indexComposantSelectionne);
-
 		for (Composant cp : listeCarac) {
-			if (cp.getNomComposant().equals(selected.getNomComposant())) {
-				listcarac.add(cp.getCaracteristiqueComposant());
-			}
+			listcarac.add(cp.getCaracteristiqueComposant());
 		}
 		comboboxcarac.setItems(listcarac);
 	}

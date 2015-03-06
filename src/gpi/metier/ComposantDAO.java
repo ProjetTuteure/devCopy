@@ -192,4 +192,31 @@ public class ComposantDAO {
 		}
 		return list;
 	}
+	
+	
+	public List<String> recupererAllNomComposant() throws ConnexionBDException {
+		Connection connexion = MaConnexion.getInstance().getConnexion();
+		List<String> listComposant = new ArrayList<String>();
+
+		try {
+			PreparedStatement prep = connexion
+					.prepareStatement("SELECT Distinct nomComposant from COMPOSANT");
+			ResultSet resultat = prep.executeQuery();
+			while (resultat.next()) {
+				listComposant.add(resultat.getString("nomComposant"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return listComposant;
+	}
 }
+
