@@ -1,6 +1,7 @@
 package gpi.view;
 
 import utils.Popup;
+import utils.Rapports;
 import gpi.MainApp;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Site;
@@ -154,5 +155,11 @@ public class SiteOverviewController {
 	 */
 	public int getOnglet() {
 		return 0;
+	}
+	
+	@FXML
+	public void onClickButton(){
+		Rapports rapport = new Rapports();
+		rapport.GenerateMaterielParc();
 	}
 }
