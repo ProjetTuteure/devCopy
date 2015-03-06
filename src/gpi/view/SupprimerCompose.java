@@ -1,17 +1,25 @@
 package gpi.view;
 
-import gpi.bd.Donnee;
+import java.util.ArrayList;
+import java.util.List;
+
+import utils.Popup;
+import gpi.exception.ConnexionBDException;
 import gpi.metier.Composant;
+import gpi.metier.ComposantDAO;
+import gpi.metier.Compose;
+import gpi.metier.ComposeDAO;
 import gpi.metier.Materiel;
+import gpi.metier.MaterielDAO;
+import gpi.metier.PageMateriel;
+import gpi.metier.PageMaterielDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-/**
- * Created by Kevin
- */
+
 
 public class SupprimerCompose {
 
@@ -19,30 +27,43 @@ public class SupprimerCompose {
 	private Stage dialogStage;
 	@FXML
 	private boolean okClicked = false;
-	@FXML
-	private ComboBox<String> comboboxnom;
-	@FXML
-	private ComboBox<String> comboboxcarac;
-	@FXML
-	private ComboBox<String> comboboxmat;
 
-	private Donnee donnee = new Donnee();
-
-	private ObservableList<String> list1;
-	private ObservableList<String> list2;
-	private ObservableList<String> list3;
+	private ComposeDAO composeDAO;
+	private ComposantDAO composantDAO;
+	
+	@FXML
+	private ComboBox<String> comboboxNomComposant;
+	@FXML
+	private ComboBox<String> comboboxCaracteristiqueComposant;
+	@FXML
+	private ComboBox<String> comboboxMateriel;
+	
+	private ObservableList<String> listeNomComposant;
+	private List<Integer> listeIdComposant;
+	private ObservableList<String> listeCaracterisiqueComposant;
+	private ObservableList<String> listeNomMateriel;
+	private List<String> listeIdMateriel;
 
 	/**
 	 * Initialise les donnees Ajoute les donnees aux combobox
 	 */
 	@FXML
 	private void initialize() {
-		list1 = FXCollections.observableArrayList();
+		this.listeNomComposant = FXCollections.observableArrayList();
+		this.listeIdComposant = new ArrayList<Integer>();
+		this.composeDAO = new ComposeDAO();
+		this.listeIdMateriel = new ArrayList<String>();
 
-		for (Composant c : donnee.getComposantData()) {
-			list1.add(c.getNomComposant());
+		try {
+			for (Compose c : composeDAO.recupererAllComposant()) {
+				if(!listeNomComposant.contains(c.getComposant().getNomComposant())){
+					listeNomComposant.add(c.getComposant().getNomComposant());
+				}
+			}
+		} catch (ConnexionBDException e) {
+			e.printStackTrace();
 		}
-		comboboxnom.setItems(list1);
+		comboboxNomComposant.setItems(listeNomComposant);
 	}
 
 	/**
@@ -70,10 +91,19 @@ public class SupprimerCompose {
 	 */
 	@FXML
 	private void handleOk() {
-
+		Composant composantSelected = null;
+		Materiel materielSelected = null;
+		MaterielDAO materielDAO = new MaterielDAO();
+		
 		okClicked = true;
+		try {
+			composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
+			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxMateriel.getValue()))));
+			composeDAO.supprimerCompose(new Compose(composantSelected,materielSelected));
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
 		dialogStage.close();
-
 	}
 
 	/**
@@ -87,20 +117,32 @@ public class SupprimerCompose {
 
 	@FXML
 	private void handleChange() {
-		Composant selected = donnee.getComposant(comboboxnom.getValue());
-		list2 = FXCollections.observableArrayList();
+		List<Composant> listComposant = null;
+		composantDAO = new ComposantDAO();
+		try {
+			listComposant = composantDAO.recupererComposantParNom(comboboxNomComposant.getValue());
+		} catch (ConnexionBDException e2) {
+			Popup.getInstance().afficherPopup(e2.getMessage());
+		}
+		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
+		listeCaracterisiqueComposant = FXCollections.observableArrayList();
+		
+		for (Composant composant :listComposant) {
+			listeCaracterisiqueComposant.add(composant.getFabricantComposant().getNomFabricantString()+"- "+composant.getCaracteristiqueComposant());
+			listeIdComposant.add(composant.getIdComposant());
+		}
+		
+		comboboxCaracteristiqueComposant.setItems(listeCaracterisiqueComposant);
 
-		for (Composant c : donnee.getComposantData()) {
-			if (c.getNomComposant().equals(selected.getNomComposant())) {
-				list2.add(selected.getcaracteristiqueComposant());
+		listeNomMateriel = FXCollections.observableArrayList();
+		try {
+			for (PageMateriel p :  pageMaterielDAO.getAllMateriel()) {
+				listeNomMateriel.add(p.getNomMateriel());
+				listeIdMateriel.add(p.getIdMateriel());
 			}
+		} catch (ConnexionBDException e) {
+			e.printStackTrace();
 		}
-		comboboxcarac.setItems(list2);
-
-		list3 = FXCollections.observableArrayList();
-		for (Materiel m : donnee.getMaterielData()) {
-			list3.add(m.getNumImmobMateriel().getValue());
-		}
-		comboboxmat.setItems(list3);
+		comboboxMateriel.setItems(listeNomMateriel);
 	}
 }

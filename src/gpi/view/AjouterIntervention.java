@@ -43,6 +43,8 @@ public class AjouterIntervention {
 	ObservableList<String> listNomPrestataire;
 	ObservableList<String> listPrenomPrestataire;
 	
+	ObservableList<String> listFacture;
+	
 	private PrestataireDAO prestataireDAO;
 	private MaintenanceDAO maintenanceDAO;
 	private FactureDAO factureDAO;
@@ -78,6 +80,12 @@ public class AjouterIntervention {
 		}
 		comboboxNomPrestataireIntervention.setItems(this.listNomPrestataire);
 		
+		try{
+			this.listFacture=this.factureDAO.recupererAllNumeroFacture();
+		}catch(ConnexionBDException e){
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+		comboboxNumFactureIntervention.setItems(this.listFacture);
 //		listObjetMaintenanceIntervention = FXCollections.observableArrayList();
 //		listIdMaintenanceIntervention = new ArrayList<Integer>();
 //

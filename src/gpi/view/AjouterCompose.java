@@ -17,7 +17,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class AjouterCompose {
@@ -27,11 +26,11 @@ public class AjouterCompose {
 	@FXML
 	private boolean okClicked = false;
 	@FXML
-	private ComboBox<String> comboboxnom;
+	private ComboBox<String> comboboxNomComposant;
 	@FXML
-	private Label labelCarac;
+	private ComboBox<String> comboboxCaracteristiqueComposant;
 	@FXML
-	private ComboBox<String> comboboxmat;
+	private ComboBox<String> comboboxMateriel;
 
 	private ComposantDAO composantDAO;
 
@@ -39,7 +38,6 @@ public class AjouterCompose {
 	private ObservableList<String> listeNomComposant;
 	private List<Integer> listeIdComposant;
 	private ObservableList<String> listeCaracterisiqueComposant;
-	private List<Integer> listeIdCaracteristique;
 	private ObservableList<String> listeNomMateriel;
 	private List<String> listeIdMateriel;
 	
@@ -52,17 +50,17 @@ public class AjouterCompose {
 		this.listeNomComposant = FXCollections.observableArrayList();
 		this.listeIdComposant = new ArrayList<Integer>();
 		this.composantDAO = new ComposantDAO();
-		this.listeIdCaracteristique = new ArrayList<Integer>();
 		this.listeIdMateriel = new ArrayList<String>();
 		try {
 			for (Composant c : composantDAO.recupererAllComposant()) {
-				listeNomComposant.add(c.getNomComposant());
-				listeIdComposant.add(c.getIdComposant());
+				if(!listeNomComposant.contains(c.getNomComposant())){
+					listeNomComposant.add(c.getNomComposant());
+				}				
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		comboboxnom.setItems(listeNomComposant);
+		comboboxNomComposant.setItems(listeNomComposant);
 	}
 
 	/**
@@ -97,9 +95,9 @@ public class AjouterCompose {
 		ComposeDAO composeDAO = new ComposeDAO();
 		okClicked = true;
 		try {
-			composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(listeNomComposant.indexOf(comboboxnom.getValue())));
-			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxmat.getValue()))));
-			composeDAO.ajouterCompose(new Compose(composantSelected.getIdComposant(),materielSelected.getIdMateriel().getValue()));
+			composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
+			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxMateriel.getValue()))));
+			composeDAO.ajouterCompose(new Compose(composantSelected,materielSelected));
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
@@ -118,17 +116,22 @@ public class AjouterCompose {
 	
 	@FXML
 	private void handleChange() {
-		Composant selected = null;
+		List<Composant> listComposant = null;
 		try {
-			selected = composantDAO.recupererComposantParId(listeIdComposant.get(listeNomComposant.indexOf(comboboxnom.getValue())));
+			listComposant = composantDAO.recupererComposantParNom(comboboxNomComposant.getValue());
+			System.out.println(listComposant);
 		} catch (ConnexionBDException e2) {
 			Popup.getInstance().afficherPopup(e2.getMessage());
 		}
 		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
 		listeCaracterisiqueComposant = FXCollections.observableArrayList();
-
 		
-		labelCarac.setText(selected.getcaracteristiqueComposant());
+		for (Composant composant :listComposant) {
+			listeCaracterisiqueComposant.add(composant.getFabricantComposant().getNomFabricantString()+"- "+composant.getCaracteristiqueComposant());
+			listeIdComposant.add(composant.getIdComposant());
+		}
+		
+		comboboxCaracteristiqueComposant.setItems(listeCaracterisiqueComposant);
 
 		listeNomMateriel = FXCollections.observableArrayList();
 		try {
@@ -137,9 +140,8 @@ public class AjouterCompose {
 				listeIdMateriel.add(p.getIdMateriel());
 			}
 		} catch (ConnexionBDException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		comboboxmat.setItems(listeNomMateriel);
+		comboboxMateriel.setItems(listeNomMateriel);
 	}
 }

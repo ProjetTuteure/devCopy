@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import utils.MaConnexion;
 
 public class FactureDAO {
@@ -173,6 +175,35 @@ public class FactureDAO {
 				listFacture.add(facture);
 			}
 			return listFacture;
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	public ObservableList<String> recupererAllNumeroFacture() throws ConnexionBDException{
+		ObservableList<String> numeroFactureARetourner;
+		numeroFactureARetourner=FXCollections.observableArrayList();
+		Connection connexion=null;
+		ResultSet resultat;
+		try{
+			connexion=MaConnexion.getInstance().getConnexion();
+			PreparedStatement prep = connexion.prepareStatement("SELECT numFacture FROM FACTURE");
+			
+			resultat=prep.executeQuery();
+			while(resultat.next()){
+				numeroFactureARetourner.add(resultat.getString("numFacture"));
+			}
+			return numeroFactureARetourner;
 		}catch(SQLException e){
 			e.printStackTrace();
 		}finally{
