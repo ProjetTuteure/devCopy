@@ -5,8 +5,8 @@ import gpi.exception.ConnexionBDException;
 import gpi.metier.Etat;
 import gpi.metier.IEtat;
 import gpi.metier.IEtatDAO;
-
 import javafx.beans.property.SimpleStringProperty;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.util.Callback;
 
 public class EtatController implements Initializable{
 	
@@ -51,7 +52,8 @@ public class EtatController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		final ObservableList<IEtat> materiel = null;//FXCollections.observableArrayList(listMateriel);
+		
+		final ObservableList<IEtat> materiel = FXCollections.observableArrayList();
 		this.addDonneeTableView(materiel);
 			
 		checkBoxEnService.setOnAction((event) -> {
@@ -69,12 +71,13 @@ public class EtatController implements Initializable{
 			IEtat materiel_clicked=null;
 			try{
 				materiel_clicked = materielTable.getSelectionModel().getSelectedItem();
+				if( materiel_clicked != null){
+					MainApp.setCritere(materiel_clicked);
+					MainApp.changerTab("DetailMachine");
+				}
 			}catch(NullPointerException e){}	
-			if( materiel_clicked != null){
-				MainApp.setCritere(materiel_clicked);
-				MainApp.changerTab("DetailMachine");
-			}
-		});
+				
+			});
 	}
 
 	/**
