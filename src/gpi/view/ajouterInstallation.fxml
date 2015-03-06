@@ -11,8 +11,8 @@
       <children>
         <Label text="Materiel à ajouter l'installation" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Label text="Logiciel à ajouter" GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboboxmat" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="comboboxlog" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboboxNomMateriel" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="comboboxLogiciel" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="120.0" prefWidth="169.0" />

@@ -2,6 +2,16 @@ package gpi.view;
 
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
+import gpi.metier.EstInstalle;
+import gpi.metier.EstInstalleDAO;
+import gpi.metier.EstMaintenu;
+import gpi.metier.EstMaintenuDAO;
+import gpi.metier.Logiciel;
+import gpi.metier.LogicielDAO;
+import gpi.metier.Maintenance;
+import gpi.metier.MaintenanceDAO;
+import gpi.metier.Materiel;
+import gpi.metier.MaterielDAO;
 import gpi.metier.PageMateriel;
 import gpi.metier.PageMaterielDAO;
 import javafx.collections.FXCollections;
@@ -22,7 +32,7 @@ public class AjouterInstallation {
 	private ComboBox<String> comboboxLogiciel;
 
 	@FXML
-	private ComboBox<String> comboboxNomMatariel;
+	private ComboBox<String> comboboxNomMateriel;
 	
 	private ObservableList<String> listNomMateriel;
 	private ObservableList<Integer> listIdMateriel;
@@ -36,13 +46,28 @@ public class AjouterInstallation {
 	private void initialize() {
 		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
 		listNomMateriel = FXCollections.observableArrayList();
+		listIdMateriel = FXCollections.observableArrayList();
+		LogicielDAO  logicielDAO = new LogicielDAO();
+		listIdLogiciel = FXCollections.observableArrayList();
+		listNomLogiciel = FXCollections.observableArrayList();
 		try {
 			for(PageMateriel pageMateriel : pageMaterielDAO.getAllMateriel()){
-				
+				listIdMateriel.add(Integer.parseInt(pageMateriel.getIdMateriel()));
+				listNomMateriel.add(pageMateriel.getNomMateriel());
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
+		comboboxNomMateriel.setItems(listNomMateriel);
+		try {
+			for(Logiciel logiciel : logicielDAO.recupererAllLogiciel()){
+				listIdLogiciel.add(logiciel.getIdLogiciel());
+				listNomLogiciel.add(logiciel.getNomLogiciel() + " " + logiciel.getVersionLogiciel());
+			}
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+		comboboxLogiciel.setItems(listNomLogiciel);
 	}
 
 	/**
@@ -61,6 +86,19 @@ public class AjouterInstallation {
 	 * @return vrai si le bouton AJOUTER est clique, faux sinon
 	 */
 	public boolean isOkClicked() {
+		EstInstalleDAO estInstalleDAO=new EstInstalleDAO();
+		LogicielDAO logicielDAO=new LogicielDAO();
+		MaterielDAO materielDAO=new MaterielDAO();
+		int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxNomMateriel.getValue()));
+		int idLogiciel = listIdLogiciel.get(listNomLogiciel.indexOf(comboboxLogiciel.getValue()));
+		try {
+			EstInstalle estInstalle=new EstInstalle(idLogiciel,idMateriel);
+			estInstalleDAO.ajouterEstInstalle(estInstalle);
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+		okClicked = true;
+		dialogStage.close();
 		return okClicked;
 	}
 
@@ -87,6 +125,5 @@ public class AjouterInstallation {
 
 	@FXML
 	private void handleChange() {
-
 	}
 }
