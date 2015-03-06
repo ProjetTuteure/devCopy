@@ -1,7 +1,6 @@
 package gpi.view;
 
 import gpi.MainApp;
-import gpi.bd.Donnee;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
@@ -16,13 +15,7 @@ import java.util.*;
 
 import utils.Popup;
 
-/**
- * Created by Julien on 13/12/2014.
- */
 public class ResultatAvanceController implements Initializable {
-    private boolean test=false;
-    private Donnee donnee=new Donnee();
-    private List<Materiel> materielObservableList;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yy");
 
     @FXML

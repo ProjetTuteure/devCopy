@@ -5,8 +5,6 @@ import gpi.exception.ConnexionBDException;
 import gpi.metier.Etat;
 import gpi.metier.IEtat;
 import gpi.metier.IEtatDAO;
-import gpi.metier.Materiel;
-import gpi.metier.MaterielDAO;
 
 import javafx.beans.property.SimpleStringProperty;
 import java.net.URL;
@@ -23,10 +21,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-/**
- * @author Victor
- *
- */
 public class EtatController implements Initializable{
 	
 	@FXML
@@ -48,9 +42,7 @@ public class EtatController implements Initializable{
 
 
 	
-	private MaterielDAO materielDAO;
-	private List<Materiel> listMateriel;
-	private ObservableList<Object> materiel;
+
 	public EtatController() {
     }
 	
@@ -59,29 +51,20 @@ public class EtatController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		listMateriel = null;
-		/*try {
-			listMateriel = this.materielDAO.recupererAllMateriel();
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
-		}*/
-		//if (listMateriel != null){
-			final ObservableList<IEtat> materiel = null;//FXCollections.observableArrayList(listMateriel);
-			this.addDonneeTableView(materiel);
+		final ObservableList<IEtat> materiel = null;//FXCollections.observableArrayList(listMateriel);
+		this.addDonneeTableView(materiel);
 			
-			checkBoxEnService.setOnAction((event) -> {
-				actionOnCheckBox(materiel);
-			});
+		checkBoxEnService.setOnAction((event) -> {
+			actionOnCheckBox(materiel);
+		});
 		
-		
-			checkBoxEnReparation.setOnAction((event) -> {
-				actionOnCheckBox(materiel);
-			});
+		checkBoxEnReparation.setOnAction((event) -> {
+			actionOnCheckBox(materiel);
+		});
 			
-			checkBoxHorsService.setOnAction((event) -> {
-				actionOnCheckBox(materiel);
-			});
-		//}
+		checkBoxHorsService.setOnAction((event) -> {
+			actionOnCheckBox(materiel);
+		});
 		materielTable.setOnMouseClicked((event) -> {
 			IEtat materiel_clicked = materielTable.getSelectionModel().getSelectedItem();
 			if( materiel_clicked != null){

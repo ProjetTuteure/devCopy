@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.concurrent.Executors;
 
 
 public class MaConnexion {
@@ -29,7 +28,7 @@ public class MaConnexion {
 			DriverManager.setLoginTimeout(2);
 			connexion = DriverManager.getConnection(url,user,mdp);
 		} catch (SQLException e) {
-			throw new ConnexionBDException("Problème de connexion à la bd");
+			throw new ConnexionBDException("Problï¿½me de connexion ï¿½ la bd");
 		}
 		return connexion;
 	}

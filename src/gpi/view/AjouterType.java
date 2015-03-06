@@ -14,10 +14,6 @@ import javax.swing.*;
 
 import java.io.File;
 
-/**
- * Created by Kevin
- */
-
 public class AjouterType {
 	private String cheminImageType;
 

@@ -77,7 +77,6 @@ public class ModifierMateriel {
 		listTypeMateriel=FXCollections.observableArrayList();
 		listIdTypeMateriel=new ArrayList<Integer>();
 		listIdMateriel = FXCollections.observableArrayList();
-		MaterielDAO materielDAO=new MaterielDAO();
 		PageMaterielDAO pageMaterielDAO=new PageMaterielDAO();
 		
 		try {

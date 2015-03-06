@@ -19,10 +19,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Kevin
- */
-
 public class ModifierType {
 	private int idType;
 	private String cheminImageType;
