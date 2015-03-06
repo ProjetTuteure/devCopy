@@ -29,6 +29,7 @@ public final class Popup {
 		super();
 		if(instance==null){
 			this.dialogStage=new Stage();
+			this.dialogStage.setResizable(false);
 			this.buttonOk=new Button("Ok");
 			this.dialogStage.initModality(Modality.WINDOW_MODAL);	
 		}
