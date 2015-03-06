@@ -1,15 +1,6 @@
 package ping;
 
-import com.sun.javafx.tk.Toolkit.Task;
-
-
-
-
-
-import javafx.concurrent.*;
-import javafx.scene.paint.Color;
 import gpi.metier.Materiel;
-import gpi.view.DetailMachineController;
 
 public class PingWindows implements Ping,Runnable {
 

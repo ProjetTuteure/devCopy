@@ -1039,32 +1039,6 @@ public class MainApp extends Application {
 		}
 	}
 
-	public static boolean showModComposeDialog() {
-		try {
-			FXMLLoader loader = new FXMLLoader(
-					MainApp.class.getResource("view/modifierCompose.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Modifier une composition");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(primaryStage);
-			dialogStage.setResizable(false);
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			ModifierCompose controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-
-			dialogStage.showAndWait();
-
-			return controller.isOkClicked();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-			return false;
-		}
-	}
 
 	public static boolean showSuppComposeDialog() {
 		try {
