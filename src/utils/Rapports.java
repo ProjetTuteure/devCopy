@@ -45,7 +45,7 @@ public class Rapports {
 			  
 			  Paragraph preface = new Paragraph();
 
-			  Paragraph titre=new Paragraph("Materiel en Fin de garantie", titleFont);
+			  Paragraph titre=new Paragraph("Materiel en fin de garantie", titleFont);
 			  titre.setAlignment(Element.ALIGN_CENTER);
 			  preface.add(titre);
 
@@ -87,16 +87,12 @@ public class Rapports {
 		  }
 	  
 	  private static void createTableFinGarantie(Paragraph paragraph,int chapter) throws DocumentException {
-		    PdfPTable table = new PdfPTable(7);
+		    PdfPTable table = new PdfPTable(8);
 
-		    table.setWidths(new int[]{12,9,10,5,13,11,8});
+		    table.setWidths(new int[]{12,9,10,5,10,13,11,8});
 		    table.setHorizontalAlignment(Element.ALIGN_CENTER);
 		    
 		    PdfPCell c1 = new PdfPCell(new Phrase("Nom"));
-		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		    table.addCell(c1);
-		    
-		    c1 = new PdfPCell(new Phrase("N° Série"));
 		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		    table.addCell(c1);
 
@@ -109,6 +105,14 @@ public class Rapports {
 		    table.addCell(c1);
 		    
 		    c1 = new PdfPCell(new Phrase("Etat"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    c1 = new PdfPCell(new Phrase("Revendeur"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    c1 = new PdfPCell(new Phrase("Date d'achat"));
 		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		    table.addCell(c1);
 		    
@@ -125,9 +129,8 @@ public class Rapports {
 		    RapportsDAO rapportsDAO = new RapportsDAO();
 		    String[][] rapport=null;
 		    try {
-				rapport=rapportsDAO.getRapportMaterielParc();
+				rapport=rapportsDAO.getRapportFinGarantie(chapter);
 			} catch (ConnexionBDException e) {
-				// TODO Auto-generated catch block
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
 		    
@@ -161,6 +164,9 @@ public class Rapports {
 		    	table.addCell(cell);
 		    	
 		    	cell.setPhrase(new Phrase(rapport[i][6],cellFont));
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][7],cellFont));
 		    	table.addCell(cell);
 		    }
 		    paragraph.add(table);
