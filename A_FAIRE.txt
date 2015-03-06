@@ -1,10 +1,6 @@
-Composition  => Supprimer composition fonctionne pas
+Operation maint -> Ajouter : faut pas par id, il faut aussi le nom du materiel
 
-Operation maint -> Ajouter : faut pas par id, il faut aussi le nom du materiel et pareil pour maintenance
-
-Installation logiciel
-
-Erreur sur les compose (add/suppr/mod)
+Erreur sur les compose supprimer
 
 Gerer composant supprimer : fonctionne pas lorsqu'il y a 2 composants du même nom
 idem pour prestataire et utilisateur
