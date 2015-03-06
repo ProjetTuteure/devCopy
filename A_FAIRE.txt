@@ -1,5 +1,3 @@
-Materiel (add/mod/suppr) => Sysout de partout
-Maintenance => Sysout
 Composition  => Supprimer composition fonctionne pas
 Supprimer intervention
 
@@ -18,6 +16,7 @@ Intervention : 2x mérillou : faire un distinct sur le nom pour avoir un seul nom
 
 Modifier/supprimer facture : numéro facture pas unique
 
+sysout fait sauf pour :
 AjouterCompose
 AjouterIntervention
 AncienneteController
