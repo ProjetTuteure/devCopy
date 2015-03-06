@@ -27,9 +27,11 @@ public final class Popup {
 	public Popup()
 	{
 		super();
-		this.dialogStage=new Stage();
-		this.buttonOk=new Button("Ok");
-		this.dialogStage.initModality(Modality.APPLICATION_MODAL);
+		if(instance==null){
+			this.dialogStage=new Stage();
+			this.buttonOk=new Button("Ok");
+			this.dialogStage.initModality(Modality.WINDOW_MODAL);	
+		}
 	}
 	
 	public final static Popup getInstance() {
@@ -58,13 +60,12 @@ public final class Popup {
 			        dialogStage.close();
 			    }
 			});
-			dialogStage.setScene(new Scene(VBoxBuilder.create().
+		}
+		dialogStage.setScene(new Scene(VBoxBuilder.create().
 			    children(new Text(texteAAfficher),buttonOk).
 			    alignment(Pos.CENTER).padding(new Insets(5)).build()));
 			dialogStage.setAlwaysOnTop(true);
 			dialogStage.show();
-			Popup.instance=null;
-		}
 	}
 	
 }
