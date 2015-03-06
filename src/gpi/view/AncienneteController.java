@@ -128,13 +128,14 @@ public class AncienneteController implements Initializable {
 	@FXML 
 	public void handleMouseClick(MouseEvent arg0) {
 		MaterielDAO materielDAO = new MaterielDAO();
-		int idMachine = Integer.parseInt(materielTable.getSelectionModel().getSelectedItem().getIdMateriel());  
 		Materiel mat=null;
-		try {
+		Integer idMachine=null;
+		try{
+			idMachine = Integer.parseInt(materielTable.getSelectionModel().getSelectedItem().getIdMateriel());  
 			mat = materielDAO.recupererMaterielParId(idMachine);
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
-		}
+		} catch(NullPointerException e){}
 		if (mat != null){
 			MainApp.setCritere(mat);
 			MainApp.changerTab("DetailMachine");

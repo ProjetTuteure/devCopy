@@ -50,7 +50,7 @@ public class Rapports {
 		  
 		  Paragraph paragraph=new Paragraph("",tableFont);
 
-		    // add a table
+		  // add a table
 		  createTableMaterielParc(paragraph);
 
 		  document.add(paragraph);
@@ -63,12 +63,16 @@ public class Rapports {
 
 
 	  private static void createTableMaterielParc(Paragraph paragraph) throws DocumentException {
-	    PdfPTable table = new PdfPTable(6);
+	    PdfPTable table = new PdfPTable(7);
 
-	    table.setWidths(new int[]{12,10,5,13,10,8});
+	    table.setWidths(new int[]{12,10,10,5,13,10,8});
 	    table.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    
-	    PdfPCell c1 = new PdfPCell(new Phrase("Nom"));
+	    PdfPCell c1 = new PdfPCell(new Phrase("N° Série"));
+	    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    table.addCell(c1);
+	    
+	    c1 = new PdfPCell(new Phrase("Nom"));
 	    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    table.addCell(c1);
 
@@ -98,6 +102,9 @@ public class Rapports {
   	cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    for(int i=0;i<50;i++){
 	    	cell.setPhrase(new Phrase("PC-Martine"));
+	    	table.addCell(cell);
+	    	
+	    	cell.setPhrase(new Phrase("123soleil"));
 	    	table.addCell(cell);
 	    	
 	    	cell.setPhrase(new Phrase("1IMMO"));
