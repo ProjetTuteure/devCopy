@@ -66,7 +66,10 @@ public class EtatController implements Initializable{
 			actionOnCheckBox(materiel);
 		});
 		materielTable.setOnMouseClicked((event) -> {
-			IEtat materiel_clicked = materielTable.getSelectionModel().getSelectedItem();
+			IEtat materiel_clicked=null;
+			try{
+				materiel_clicked = materielTable.getSelectionModel().getSelectedItem();
+			}catch(NullPointerException e){}	
 			if( materiel_clicked != null){
 				MainApp.setCritere(materiel_clicked);
 				MainApp.changerTab("DetailMachine");
