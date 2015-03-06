@@ -1,5 +1,4 @@
 Composition  => Supprimer composition fonctionne pas
-Supprimer intervention
 
 Operation maint -> Ajouter : faut pas par id, il faut aussi le nom du materiel et pareil pour maintenance
 
