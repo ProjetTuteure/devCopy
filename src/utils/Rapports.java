@@ -1,5 +1,8 @@
 package utils;
 
+import gpi.exception.ConnexionBDException;
+import gpi.metier.RapportsDAO;
+
 import java.io.FileOutputStream;
 
 import com.itextpdf.text.Document;
@@ -65,14 +68,14 @@ public class Rapports {
 	  private static void createTableMaterielParc(Paragraph paragraph) throws DocumentException {
 	    PdfPTable table = new PdfPTable(7);
 
-	    table.setWidths(new int[]{12,10,10,5,13,10,8});
+	    table.setWidths(new int[]{12,9,10,5,13,11,8});
 	    table.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    
-	    PdfPCell c1 = new PdfPCell(new Phrase("N° Série"));
+	    PdfPCell c1 = new PdfPCell(new Phrase("Nom"));
 	    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    table.addCell(c1);
 	    
-	    c1 = new PdfPCell(new Phrase("Nom"));
+	    c1 = new PdfPCell(new Phrase("N° Série"));
 	    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    table.addCell(c1);
 
@@ -98,28 +101,39 @@ public class Rapports {
 	    
 	    table.setHeaderRows(1);
 	    
+	    RapportsDAO rapportsDAO = new RapportsDAO();
+	    String[][] rapport=null;
+	    try {
+			rapport=rapportsDAO.getRapportMaterielParc();
+		} catch (ConnexionBDException e) {
+			// TODO Auto-generated catch block
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+	    
+	    
+	    
 	    PdfPCell cell=new PdfPCell();
-  	cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-	    for(int i=0;i<50;i++){
-	    	cell.setPhrase(new Phrase("PC-Martine"));
+	    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    for(int i=0;i<rapport.length;i++){
+	    	cell.setPhrase(new Phrase(rapport[i][0]));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase("123soleil"));
+	    	cell.setPhrase(new Phrase(rapport[i][1]));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase("1IMMO"));
+	    	cell.setPhrase(new Phrase(rapport[i][2]));
 	    	table.addCell(cell);
 	
-	    	cell.setPhrase(new Phrase("PC"));
+	    	cell.setPhrase(new Phrase(rapport[i][3]));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase("EN_MARCHE"));
+	    	cell.setPhrase(new Phrase(rapport[i][4]));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase("12/05/2015"));
+	    	cell.setPhrase(new Phrase(rapport[i][5]));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase("Brive"));
+	    	cell.setPhrase(new Phrase(rapport[i][6]));
 	    	table.addCell(cell);
 	    }
 	    paragraph.add(table);
