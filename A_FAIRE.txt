@@ -1,8 +1,7 @@
 Erreur sur les compose supprimer
 
-Gerer composant supprimer : fonctionne pas lorsqu'il y a 2 composants du même nom
-idem pour prestataire et utilisateur
-
+prestataire modifier et supprimer
+utlisiateur modifier et supprimer
 Intervention : 2x mérillou : faire un distinct sur le nom pour avoir un seul nom mérillou avec stef et nico dedans
 
 Modifier/supprimer facture : numéro facture pas unique
