@@ -20,8 +20,8 @@ public class ComposeDAO {
 			connection = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prepareStatement = connection
 					.prepareStatement("INSERT INTO Compose (idComposant,idMateriel) VALUES(?,?)");
-			prepareStatement.setString(1, compose.getIdComposant());
-			prepareStatement.setString(2, compose.getIdMateriel());
+			prepareStatement.setInt(1, compose.getComposant().getIdComposant());
+			prepareStatement.setInt(2, compose.getMateriel().getIdMateriel().getValue());
 			nombreLigneAffectee = prepareStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,8 +48,8 @@ public class ComposeDAO {
 		try {
 			PreparedStatement preparedStatement = connexion
 					.prepareStatement("DELETE FROM COMPOSE WHERE idMateriel=? AND idComposant=?");
-			preparedStatement.setString(1, compose.getIdMateriel());
-			preparedStatement.setString(2, compose.getIdComposant());
+			preparedStatement.setInt(1, compose.getComposant().getIdComposant());
+			preparedStatement.setInt(2, compose.getMateriel().getIdMateriel().getValue());
 			preparedStatement.executeUpdate();
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -87,4 +87,57 @@ public class ComposeDAO {
         }
         return composantList;
     }
+	
+	public List<Materiel> recupererMaterielParComposant(int idComposant) throws ConnexionBDException{
+        ResultSet resultat;
+        List<Materiel> materielList=new ArrayList<Materiel>();
+        try{
+            connection=MaConnexion.getInstance().getConnexion();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT idComposant FROM COMPOSE WHERE idComposant=?;");
+            preparedStatement.setInt(1, idComposant);
+            resultat=preparedStatement.executeQuery();
+            ComposantDAO composantDAO = new ComposantDAO();
+            MaterielDAO materielDAO = new MaterielDAO();
+            Materiel materiel;
+            while(resultat.next()){
+            	materiel=materielDAO.recupererMaterielParId(resultat.getInt("idMateriel"));
+            	materielList.add(materiel);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return materielList;
+    }
+	
+	
+	public List<Compose> recupererAllComposant() throws ConnexionBDException {
+		Connection connexion = MaConnexion.getInstance().getConnexion();
+		List<Compose> listCompose = new ArrayList<Compose>();
+		MaterielDAO materielDAO=new MaterielDAO();
+		ComposantDAO composantDAO=new ComposantDAO();
+		try {
+			PreparedStatement prep = connexion.prepareStatement("SELECT * from COMPOSE");
+			ResultSet resultat = prep.executeQuery();
+			while (resultat.next()) {
+				listCompose.add(new Compose(composantDAO.recupererComposantParId(resultat.getInt("idComposant")),materielDAO.recupererMaterielParId(resultat.getInt("idMateriel"))));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return listCompose;
+	}
 }

@@ -28,7 +28,7 @@ public class ComposantDAO {
 							+ "VALUES (?,?,?);");
 
 			prep.setString(1, composant.getNomComposant());
-			prep.setString(2, composant.getcaracteristiqueComposant());
+			prep.setString(2, composant.getCaracteristiqueComposant());
 			prep.setInt(3, composant.getFabricantComposant().getIdFabricant()
 					.getValue());
 			prep.executeUpdate();
@@ -76,7 +76,7 @@ public class ComposantDAO {
 					.prepareStatement("UPDATE COMPOSANT SET nomComposant=?, caracteristiqueComposant=?, idFabricant=? WHERE idComposant=?");
 
 			prep.setString(1, composant.getNomComposant());
-			prep.setString(2, composant.getcaracteristiqueComposant());
+			prep.setString(2, composant.getCaracteristiqueComposant());
 			prep.setInt(3, composant.getFabricantComposant().getIdFabricant()
 					.getValue());
 			prep.setInt(4, composant.getIdComposant());
@@ -164,9 +164,9 @@ public class ComposantDAO {
 			PreparedStatement ps=connexion.prepareStatement("SELECT * FROM COMPOSANT WHERE nomComposant=?");
 			ps.setString(1,nomComposant);
 			ResultSet rs=ps.executeQuery();
+			list=new ArrayList<Composant>();
 			while(rs.next())
 			{
-				list=new ArrayList<Composant>();
 				list.add(new Composant(new SimpleIntegerProperty(rs.getInt("idComposant")),
 						rs.getString("nomComposant"),
 						rs.getString("caracteristiqueComposant"),

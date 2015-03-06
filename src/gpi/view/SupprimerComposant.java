@@ -115,7 +115,7 @@ public class SupprimerComposant {
 
 		for (Composant composant : listeCarac) {
 			if (composant.getNomComposant().equals(selected.getNomComposant())) {
-				listcarac.add(composant.getcaracteristiqueComposant());
+				listcarac.add(composant.getCaracteristiqueComposant());
 			}
 		}
 		comboboxcarac.setItems(listcarac);

@@ -249,7 +249,7 @@ public class DetailMachineController{
 		}
 		tableViewComposants.setItems(listComposant);
 		nomComposant.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomComposant()));
-		caracteristiqueComposant.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getcaracteristiqueComposant()));
+		caracteristiqueComposant.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCaracteristiqueComposant()));
 		fabricantComposant.setCellValueFactory(cellData -> cellData.getValue().getFabricantComposant().getNomFabricant());
 		
 		

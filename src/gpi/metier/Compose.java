@@ -1,29 +1,32 @@
 package gpi.metier;
 
 public class Compose {
-	private int idComposant;
-	private int idMateriel;
+	private Composant composant;
+	private Materiel Materiel;
 	
-	public Compose(int idComposant,int idMateriel){
-		this.setIdComposant(idComposant);
-		this.setIdMateriel(idMateriel);
+	
+
+	public Compose(Composant composant, Materiel materiel) {
+		this.composant = composant;
+		Materiel = materiel;
 	}
 
-	public String getIdMateriel() {
-		return ""+idMateriel;
+	public Composant getComposant() {
+		return composant;
 	}
 
-	public void setIdMateriel(int idMateriel) {
-		this.idMateriel = idMateriel;
+	public void setComposant(Composant composant) {
+		this.composant = composant;
 	}
 
-	public String getIdComposant() {
-		return ""+idComposant;
+	public Materiel getMateriel() {
+		return Materiel;
 	}
 
-	public void setIdComposant(int idComposant) {
-		this.idComposant = idComposant;
+	public void setMateriel(Materiel materiel) {
+		Materiel = materiel;
 	}
+
 	
 	
 }

@@ -44,7 +44,7 @@ public class Composant {
         this.nomComposant.set(nomComposant);
     }
 
-    public String getcaracteristiqueComposant() {
+    public String getCaracteristiqueComposant() {
         return caracteristiqueComposant.get();
     }
 

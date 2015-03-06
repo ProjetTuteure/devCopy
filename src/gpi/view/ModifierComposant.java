@@ -143,7 +143,7 @@ public class ModifierComposant {
 
 		for (Composant cp : listeCarac) {
 			if (cp.getNomComposant().equals(selected.getNomComposant())) {
-				listcarac.add(cp.getcaracteristiqueComposant());
+				listcarac.add(cp.getCaracteristiqueComposant());
 			}
 		}
 		comboboxcarac.setItems(listcarac);
@@ -165,7 +165,7 @@ public class ModifierComposant {
 			Composant selected2 = listeCarac.get(indexComposantSelectionne);
 
 			nomfield.setText(selected2.getNomComposant());
-			caracfield.setText(selected2.getcaracteristiqueComposant());
+			caracfield.setText(selected2.getCaracteristiqueComposant());
 
 			for (Fabricant fab : listeFabricant) {
 				listfabr.add(fab.getNomFabricant().getValue());

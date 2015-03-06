@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="370.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.AjouterMateriel">
+<AnchorPane prefHeight="340.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.AjouterMateriel">
   <children>
     <GridPane prefHeight="305.0" prefWidth="330.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
@@ -22,13 +22,11 @@
             <Label prefHeight="17.0" prefWidth="202.0" text="Fabricant du materiel" GridPane.rowIndex="8" />
             <Label prefHeight="17.0" prefWidth="202.0" text="Facture du materiel" GridPane.rowIndex="9" />
             <Label prefHeight="17.0" prefWidth="202.0" text="Site du materiel" GridPane.rowIndex="10" />
-            <Label prefHeight="17.0" prefWidth="202.0" text="Répertoire Driver" GridPane.rowIndex="11" />
             <ComboBox fx:id="comboboxEtatMateriel" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <DatePicker fx:id="dateMaterielPicker" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <ComboBox fx:id="comboboxFabricantMateriel" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <ComboBox fx:id="comboboxFactureMateriel" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <ComboBox fx:id="comboboxSiteMateriel" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" onAction="#handleChoose" text="Choisir le repertoire Driver..." GridPane.columnIndex="1" GridPane.rowIndex="11" />
             <ComboBox fx:id="comboboxTypeMateriel" maxWidth="175.0" minWidth="160.0" prefHeight="25.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label text="Numero de serie" GridPane.rowIndex="2" />
             <Label text="Système d'exploitation" GridPane.rowIndex="3" />

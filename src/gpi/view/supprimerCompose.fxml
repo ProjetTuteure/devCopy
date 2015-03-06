@@ -12,9 +12,9 @@
         <Label text="Nom du composant" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Label text="Caractéristique du composant" GridPane.rowIndex="1" />
             <Label text="Materiel ayant le composant" GridPane.rowIndex="2" />
-            <ComboBox fx:id="comboboxnom" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="comboboxcarac" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboboxmat" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboboxNomComposant" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="comboboxCaracteristiqueComposant" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboboxMateriel" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="120.0" prefWidth="169.0" />
