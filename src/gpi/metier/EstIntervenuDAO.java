@@ -11,16 +11,19 @@ import utils.MaConnexion;
 public class EstIntervenuDAO {
 	public EstIntervenuDAO(){}
 
-	public int ajouterEstIntervenu(EstIntervenu EstIntervenu) throws ConnexionBDException {
+	public int ajouterEstIntervenu(int idMaintenance,int idPrestataire, int idFacture) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		int resultat;
+		System.out.println(idMaintenance);
+		System.out.println(idPrestataire);
+		System.out.println(idFacture);
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prep = connexion
 					.prepareStatement("INSERT INTO ESTINTERVENU(idFacture, idPrestataire, idMaintenance)  VALUES (?,?,?);");
-				prep.setInt(1,EstIntervenu.getFactureEstIntervenu().getIdFacture().get());
-			prep.setInt(2, EstIntervenu.getPrestataireEstIntervenu().getIdPrestataire().get());
-			prep.setInt(2, EstIntervenu.getMaintenanceEstIntervenu().getIdMaintenance().get());
+				prep.setInt(1,idFacture);
+			prep.setInt(2, idPrestataire);
+			prep.setInt(3, idMaintenance);
 			resultat = prep.executeUpdate();
 			return resultat;
 		} catch (SQLException e) {

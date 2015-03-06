@@ -206,7 +206,7 @@ public class PrestataireDAO {
 		Connection connexion=MaConnexion.getInstance().getConnexion();
 		List<Prestataire> list=new ArrayList<Prestataire>();
 		try {
-			PreparedStatement ps= connexion.prepareStatement("SELECT DISTINCT * FROM PRESTATAIRE WHERE nomPrestataire=?");
+			PreparedStatement ps= connexion.prepareStatement("SELECT * FROM PRESTATAIRE WHERE nomPrestataire=?");
 			ps.setString(1, nomPrestataire);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
@@ -237,12 +237,14 @@ public class PrestataireDAO {
 	public ObservableList<String> recupererPrenomPrestataireParNom(String nomPrestataire) throws ConnexionBDException {
 		Connection connexion=MaConnexion.getInstance().getConnexion();
 		ObservableList<String> list=FXCollections.observableArrayList();
+		String prenomPrestataireARetourner;
 		try {
-			PreparedStatement ps= connexion.prepareStatement("SELECT prenomPrestataire FROM PRESTATAIRE WHERE nomPrestataire=?");
+			PreparedStatement ps= connexion.prepareStatement("SELECT idPrestataire,prenomPrestataire FROM PRESTATAIRE WHERE nomPrestataire=?");
 			ps.setString(1, nomPrestataire);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
-				list.add(rs.getString("prenomPrestataire"));
+				prenomPrestataireARetourner=rs.getString("idPrestataire")+"- "+rs.getString("prenomPrestataire");
+				list.add(prenomPrestataireARetourner);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

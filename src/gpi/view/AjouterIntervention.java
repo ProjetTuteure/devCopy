@@ -48,7 +48,7 @@ public class AjouterIntervention {
 	private PrestataireDAO prestataireDAO;
 	private MaintenanceDAO maintenanceDAO;
 	private FactureDAO factureDAO;
-	
+	private EstIntervenuDAO estIntervenuDAO;
 //	private ObservableList<String> listNomPrestataireIntervention;
 //	private ObservableList<String> listPrenomPrestataireIntervention;
 //	private ObservableList<String> listNumFactureIntervention;
@@ -66,6 +66,7 @@ public class AjouterIntervention {
 		this.maintenanceDAO=new MaintenanceDAO();
 		this.prestataireDAO=new PrestataireDAO();
 		this.factureDAO=new FactureDAO();
+		this.estIntervenuDAO=new EstIntervenuDAO();
 		try {
 			this.listObjetIntervention=this.maintenanceDAO.recupererAllObjetMaintenanceString();
 		} catch (ConnexionBDException e) {
@@ -86,44 +87,6 @@ public class AjouterIntervention {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxNumFactureIntervention.setItems(this.listFacture);
-//		listObjetMaintenanceIntervention = FXCollections.observableArrayList();
-//		listIdMaintenanceIntervention = new ArrayList<Integer>();
-//
-//		MaintenanceDAO maintenanceDAO = new MaintenanceDAO();
-//		try {
-//			for (Maintenance maintenance : maintenanceDAO.recupererAllMaintenance()) {
-//				listObjetMaintenanceIntervention.add(maintenance.getObjetMaintenance());
-//				listIdMaintenanceIntervention.add(maintenance.getIdMaintenance().getValue());
-//			}
-//		} catch (ConnexionBDException e) {
-//			Popup.getInstance().afficherPopup(e.getMessage());
-//		}
-//		comboboxObjetMaintenanceIntervention.setItems(listObjetMaintenanceIntervention);
-//
-//		listNomPrestataireIntervention = FXCollections.observableArrayList();
-//		listIdPrestataireIntervention = new ArrayList<Integer>();
-//		PrestataireDAO prestataireDAO = new PrestataireDAO();
-//		try {
-//			for (Prestataire prestataire : prestataireDAO.recupererAllPrestataire()) {
-//				listNomPrestataireIntervention.add(prestataire.getNomPrestataire().getValue());
-//				listIdPrestataireIntervention.add(prestataire.getIdPrestataire().getValue());
-//			}
-//		} catch (ConnexionBDException e) {
-//			Popup.getInstance().afficherPopup(e.getMessage());
-//		}
-//		comboboxNomPrestataireIntervention.setItems(listNomPrestataireIntervention);
-//
-//		listNumFactureIntervention = FXCollections.observableArrayList();
-//		FactureDAO factureDAO = new FactureDAO();
-//		try {
-//			for (Facture fa : factureDAO.recupererAllFacture()) {
-//				listNumFactureIntervention.add(fa.getNumFacture());
-//			}
-//		} catch (ConnexionBDException e) {
-//			Popup.getInstance().afficherPopup(e.getMessage());
-//		}
-//		comboboxNumFactureIntervention.setItems(listNumFactureIntervention);
-
 	}
 
 	private boolean controlerSaisies() {
@@ -152,7 +115,7 @@ public class AjouterIntervention {
 					"Le champ \"numero facture de l'intervention\" doit être saisi");
 			return false;
 		}
-		return false;
+		return true;
 	}
 
 	/**
@@ -180,6 +143,23 @@ public class AjouterIntervention {
 	 */
 	@FXML
 	private void handleOk() {
+		int idPrestataireAAjouter;
+		int idMaintenanceAAjouter;
+		int idFactureAAjouter;
+		if(controlerSaisies()){
+			System.out.println("Coucou2");
+			idMaintenanceAAjouter=Integer.parseInt(comboboxDateMaintenanceIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
+			idPrestataireAAjouter=Integer.parseInt(comboboxPrenomPrestataireIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
+			idFactureAAjouter=Integer.parseInt(comboboxNumFactureIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
+			try {
+				estIntervenuDAO.ajouterEstIntervenu(idMaintenanceAAjouter,idPrestataireAAjouter,idFactureAAjouter);
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+			Popup.getInstance().afficherPopup("Maintenance ajoutée !");
+			okClicked = true;
+			dialogStage.close();
+		}
 //		if(controlerSaisies()){
 //			MaintenanceDAO maintenanceDAO = new MaintenanceDAO();
 //			PrestataireDAO prestataireDAO =new PrestataireDAO();

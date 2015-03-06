@@ -10,6 +10,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import utils.DateConverter;
 import utils.MaConnexion;
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
@@ -215,14 +216,16 @@ public class MaintenanceDAO {
 	public ObservableList<String> recupererDateMaintenanceParObjet(String objetMaintenance) throws ConnexionBDException{
 		ObservableList<String> listARetourner=FXCollections.observableArrayList();
 		Connection connexion=null;
+		String dateMaintenanceARenvoyer;
 		connexion = MaConnexion.getInstance().getConnexion();
 		try {
-			PreparedStatement ps=connexion.prepareStatement("SELECT dateMaintenance FROM MAINTENANCE where objetMaintenance=?");
+			PreparedStatement ps=connexion.prepareStatement("SELECT idMaintenance,dateMaintenance FROM MAINTENANCE where objetMaintenance=?");
 			ps.setString(1,objetMaintenance);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
-				listARetourner.add(rs.getString("dateMaintenance"));
+				dateMaintenanceARenvoyer=rs.getString("idMaintenance")+"- "+DateConverter.getFrenchDate(rs.getString("dateMaintenance"));
+				listARetourner.add(dateMaintenanceARenvoyer);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -195,13 +195,15 @@ public class FactureDAO {
 		numeroFactureARetourner=FXCollections.observableArrayList();
 		Connection connexion=null;
 		ResultSet resultat;
+		String factureARetourner;
 		try{
 			connexion=MaConnexion.getInstance().getConnexion();
-			PreparedStatement prep = connexion.prepareStatement("SELECT numFacture FROM FACTURE");
+			PreparedStatement prep = connexion.prepareStatement("SELECT idFacture,numFacture FROM FACTURE");
 			
 			resultat=prep.executeQuery();
 			while(resultat.next()){
-				numeroFactureARetourner.add(resultat.getString("numFacture"));
+				factureARetourner=resultat.getString("idFacture")+"- "+resultat.getString("numFacture");
+				numeroFactureARetourner.add(factureARetourner);
 			}
 			return numeroFactureARetourner;
 		}catch(SQLException e){
