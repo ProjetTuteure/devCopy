@@ -50,8 +50,8 @@ public class PrestataireDAO {
 		return nombreLigneAffectee;
 	}
 
-	public int modifierPrestataire(Prestataire prestataire)
-			throws ConnexionBDException {
+	public int modifierPrestataire(Prestataire prestataire) throws ConnexionBDException {
+		System.out.println(prestataire);
 		int nombreLigneAffectee = 0;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
@@ -214,8 +214,8 @@ public class PrestataireDAO {
 						rs.getString("nomPrestataire"),
 						rs.getString("prenomPrestataire"),
 						rs.getString("telPrestataire"),
-						rs.getString("faxPrestataire"),
 						rs.getString("mobilePrestataire"),
+						rs.getString("faxPrestataire"),
 						rs.getString("emailPrestataire"),
 						rs.getString("societePrestataire")));
 			}

@@ -54,29 +54,25 @@ public class ModifierPrestataire {
 
 	private PrestataireDAO prestataireDAO = new PrestataireDAO();
 
-	private ObservableList<String> listNom;
-	private ObservableList<String> listPrenom;
-
-	private List<Prestataire> listeNom;
-	private List<Prestataire> listePrenom;
+	private ObservableList<String> listNomPrestataire;
+	private ObservableList<String> listPrenomPrestataire;
+	
+	private List<Prestataire> listPrestataireParNom;
+	private Prestataire prestataireAModifier;
+	private int indicePrestataireAModifier;
 
 	/**
 	 * Initialise les donn�es Ajoute les donn�es aux combobox
 	 */
 	@FXML
 	private void initialize() {
-		listNom = FXCollections.observableArrayList();
-		listeNom = new ArrayList<Prestataire>();
-
+		listNomPrestataire = FXCollections.observableArrayList();
 		try {
-			listeNom = prestataireDAO.recupererAllPrestataire();
+				listNomPrestataire=prestataireDAO.recupererAllNomPrestataire();
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		for (Prestataire prestataire : listeNom) {
-			listNom.add(prestataire.getNomPrestataire().get());
-		}
-		comboboxnom.setItems(listNom);
+		comboboxnom.setItems(listNomPrestataire);
 	}
 
 	/**
@@ -101,37 +97,37 @@ public class ModifierPrestataire {
 	private boolean controlerSaisies()
 	{
 		if(nomPrestataireField.getText().equals("")){
-			Popup.getInstance().afficherPopup("Le champ \" Nom du prestataire doit �tre rempli");
+			Popup.getInstance().afficherPopup("Le champ \" Nom du prestataire doit être rempli\"");
 			return false;
 		} 
 		if (nomPrestataireField.getText().length()>Constante.LONGUEUR_NOM_PRESTATAIRE){
-			Popup.getInstance().afficherPopup("Le nom du prestataire doit etre inf�rieur � "
-					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caract�res");
+			Popup.getInstance().afficherPopup("Le nom du prestataire doit etre inférieur à "
+					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractères");
 			return false;
 		} 
 		if (prenomPrestataireField.getText().equals("")){
-			Popup.getInstance().afficherPopup("Le champ \" Nom du prestataire doit �tre rempli");
+			Popup.getInstance().afficherPopup("Le champ \" Nom du prestataire doit être rempli\"");
 			return false;
 		} 
 		if (prenomPrestataireField.getText().length()>Constante.LONGUEUR_NOM_PRESTATAIRE){
-			Popup.getInstance().afficherPopup("Le nom du composant doit etre inf�rieur � "
-					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caract�res");
+			Popup.getInstance().afficherPopup("Le nom du composant doit etre inférieur à "
+					+ Constante.LONGUEUR_NOM_PRESTATAIRE + " caractères");
 			return false;
 		} 
 		if(telPrestataireField.getText().length()>Constante.LONGUEUR_NUM_TELEPHONE){
-			Popup.getInstance().afficherPopup("Le num�ro de t�l�phone doit �tre inf�rieur �" + Constante.LONGUEUR_NUM_TELEPHONE+" caract�res");
+			Popup.getInstance().afficherPopup("Le numéro de téléphone doit être inférieur à " + Constante.LONGUEUR_NUM_TELEPHONE+" caractères");
 			return false;
 		} 
 		if(faxPrestataireField.getText().length()>Constante.LONGUEUR_NUM_FAX){
-			Popup.getInstance().afficherPopup("Le num�ro de fax doit �tre inf�rieur �" + Constante.LONGUEUR_NUM_FAX+" caract�res");
+			Popup.getInstance().afficherPopup("Le numéro de fax doit être inférieur à " + Constante.LONGUEUR_NUM_FAX+" caractères");
 			return false;
 		} 
 		if(mobilePrestataireField.getText().length()>Constante.LONGUEUR_NUM_MOBILE){
-			Popup.getInstance().afficherPopup("Le num�ro de mobile doit �tre inf�rieur �" + Constante.LONGUEUR_NUM_MOBILE+" caract�res");
+			Popup.getInstance().afficherPopup("Le numéro de mobile doit être inférieur à " + Constante.LONGUEUR_NUM_MOBILE+" caractères");
 			return false;
 		} 
 		if(emailPrestataireField.getText().length()>Constante.LONGUEUR_MAIL){
-			Popup.getInstance().afficherPopup("L'adresse email doit �tre inf�rieur �" + Constante.LONGUEUR_MAIL+" caract�res");
+			Popup.getInstance().afficherPopup("L'adresse email doit être inférieur à " + Constante.LONGUEUR_MAIL+" caractères");
 			return false;
 		}
 		return true;
@@ -149,19 +145,19 @@ public class ModifierPrestataire {
 		if(controlerSaisies()==true)
 		{
 			try {
-				int indexPrestataireSelectionne=comboboxprenom.getSelectionModel().getSelectedIndex();
-				Prestataire pr = listePrenom.get(indexPrestataireSelectionne);
+				/*int indexPrestataireSelectionne=comboboxprenom.getSelectionModel().getSelectedIndex();
+				Prestataire pr = listePrenom.get(indexPrestataireSelectionne);*/
 				
-				pr.setNomPrestataire(nomPrestataireField.getText());
-				pr.setPrenomPrestataire(prenomPrestataireField.getText());
-				pr.setTelPrestataire(telPrestataireField.getText());
-				pr.setMobilePrestataire(mobilePrestataireField.getText());
-				pr.setFaxPrestataire(faxPrestataireField.getText());
-				pr.setEmailPrestataire(emailPrestataireField.getText());
-				pr.setSocietePrestataire(societePrestataireField.getText());
+				prestataireAModifier.setNomPrestataire(nomPrestataireField.getText());
+				prestataireAModifier.setPrenomPrestataire(prenomPrestataireField.getText());
+				prestataireAModifier.setTelPrestataire(telPrestataireField.getText());
+				prestataireAModifier.setMobilePrestataire(mobilePrestataireField.getText());
+				prestataireAModifier.setFaxPrestataire(faxPrestataireField.getText());
+				prestataireAModifier.setEmailPrestataire(emailPrestataireField.getText());
+				prestataireAModifier.setSocietePrestataire(societePrestataireField.getText());
 				
-				prestataireDAO.modifierPrestataire(pr);
-				Popup.getInstance().afficherPopup("Prestataire "+pr.getNomPrestataire().get()+" "+pr.getSocieteePrestataire().get()+" modifi� !");
+				prestataireDAO.modifierPrestataire(prestataireAModifier);
+				Popup.getInstance().afficherPopup("Prestataire "+prestataireAModifier.getNomPrestataire().getValue()+" "+prestataireAModifier.getPrenomPrestataire().getValue()+" modifié !");
 			} catch (ConnexionBDException e) {
 				e.printStackTrace();
 			}
@@ -184,55 +180,53 @@ public class ModifierPrestataire {
 	 */
 	@FXML
 	private void handlechange1() {
-		listPrenom = FXCollections.observableArrayList();
-		listePrenom = new ArrayList<Prestataire>();
-
-		int indexPrestataireSelectionne = comboboxnom.getSelectionModel()
-				.getSelectedIndex();
-
+		listPrestataireParNom=new ArrayList<Prestataire>();
+		comboboxprenom.setItems(null);
+		String nomPrestataireSelected=comboboxnom.getValue();
 		try {
-			listePrenom = prestataireDAO.recupererPrestataireParNom((listNom
-					.get(comboboxnom.getSelectionModel().getSelectedIndex())));
+			listPrestataireParNom = prestataireDAO.recupererPrestataireParNom(nomPrestataireSelected);
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		Prestataire selected = listeNom.get(indexPrestataireSelectionne);
-		for (Prestataire pr : listePrenom) {
-			if (pr.getNomPrestataire().getValue().equals(selected.getNomPrestataire().getValue())) {
-				
-				listPrenom.add(pr.getPrenomPrestataire().get());
-			}
+		listPrenomPrestataire = FXCollections.observableArrayList();
+		for(Prestataire prestataire:listPrestataireParNom){
+			listPrenomPrestataire.add(prestataire.getPrenomPrestataire().getValue());
 		}
-		comboboxprenom.setItems(listPrenom);
-		
+		comboboxprenom.setItems(listPrenomPrestataire);
+		desinitTextArea();
 	}
 
+	private void desinitTextArea(){
+		nomPrestataireField.setText("");
+		prenomPrestataireField.setText("");
+		telPrestataireField.setText("");
+		mobilePrestataireField.setText("");
+		faxPrestataireField.setText("");
+		emailPrestataireField
+				.setText("");
+		societePrestataireField.setText("");
+	}
 	/**
 	 * Cette methode permet de pre remplir les champs lorsqu'un prestataire est
 	 * selectionne avec son pr�nom et son nom
 	 */
 	@FXML
 	private void handlechange2() {
-		try {
-			int indexPrestataireSelectionne = comboboxprenom
-					.getSelectionModel().getSelectedIndex();
-			Prestataire selected2 = listePrenom
-					.get(indexPrestataireSelectionne);
+		this.indicePrestataireAModifier=comboboxprenom.getSelectionModel().getSelectedIndex();
+		if(this.indicePrestataireAModifier!=-1){
+			this.prestataireAModifier=this.listPrestataireParNom.get(indicePrestataireAModifier);
 
-			nomPrestataireField.setText(selected2.getNomPrestataire().get());
-			prenomPrestataireField.setText(selected2.getPrenomPrestataire()
+			nomPrestataireField.setText(prestataireAModifier.getNomPrestataire().get());
+			prenomPrestataireField.setText(prestataireAModifier.getPrenomPrestataire()
 					.get());
-			telPrestataireField.setText(selected2.getTelPrestataire().get());
-			mobilePrestataireField.setText(selected2.getMobilePrestataire()
+			telPrestataireField.setText(prestataireAModifier.getTelPrestataire().get());
+			mobilePrestataireField.setText(prestataireAModifier.getMobilePrestataire()
 					.get());
-			faxPrestataireField.setText(selected2.getFaxPrestataire().get());
+			faxPrestataireField.setText(prestataireAModifier.getFaxPrestataire().get());
 			emailPrestataireField
-					.setText(selected2.getEmailPrestataire().get());
-			societePrestataireField.setText(selected2.getSocieteePrestataire()
+					.setText(prestataireAModifier.getEmailPrestataire().get());
+			societePrestataireField.setText(prestataireAModifier.getSocieteePrestataire()
 					.get());
-
-		} catch (NullPointerException e) {
-			// tripotasse
 		}
 	}
 

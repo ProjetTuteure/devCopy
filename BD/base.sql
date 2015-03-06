@@ -58,7 +58,7 @@ CREATE TABLE MATERIEL(
 	systemeExploitationMateriel text,
 	nomMateriel varchar(20) NOT NULL,
 	dateExpirationGarantieMateriel DATE,
-	repertoireDrivers varchar(30),
+	repertoireDrivers varchar(500),
 	modeleMateriel varchar(20),
 	etat varchar(20),
 	dateModifierEtat DATETIME DEFAULT GETDATE(),

@@ -1,5 +1,11 @@
 package gpi.view;
 
+import utils.Popup;
+import gpi.exception.ConnexionBDException;
+import gpi.metier.PageMateriel;
+import gpi.metier.PageMaterielDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
@@ -11,18 +17,32 @@ public class AjouterInstallation {
 	private Stage dialogStage;
 	@FXML
 	private boolean okClicked = false;
+	
 	@FXML
-	private ComboBox<String> comboboxlog;
+	private ComboBox<String> comboboxLogiciel;
+
 	@FXML
-	private ComboBox<String> comboboxcarac;
-	@FXML
-	private ComboBox<String> comboboxmat;
+	private ComboBox<String> comboboxNomMatariel;
+	
+	private ObservableList<String> listNomMateriel;
+	private ObservableList<Integer> listIdMateriel;
+	private ObservableList<String> listNomLogiciel;
+	private ObservableList<Integer> listIdLogiciel;
 
 	/**
 	 * Initialise les donnees Ajoute les donnees aux combobox
 	 */
 	@FXML
 	private void initialize() {
+		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
+		listNomMateriel = FXCollections.observableArrayList();
+		try {
+			for(PageMateriel pageMateriel : pageMaterielDAO.getAllMateriel()){
+				
+			}
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
 	}
 
 	/**
