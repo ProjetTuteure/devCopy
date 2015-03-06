@@ -122,7 +122,7 @@ public class AncienneteController implements Initializable {
 	@FXML
 	public void onClickButton(){
 		Rapports rapport=new Rapports();
-		rapport.GenerateMaterielParc();
+		rapport.GenerateFinGarantie();
 	}
      
 	@FXML 

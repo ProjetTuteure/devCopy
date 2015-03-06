@@ -5,10 +5,13 @@ import gpi.metier.RapportsDAO;
 
 import java.io.FileOutputStream;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -19,11 +22,52 @@ public class Rapports {
 
 	  private static Font headFont = new Font(Font.FontFamily.TIMES_ROMAN, 40,
 	      Font.BOLD);
-	  private static Font tableFont = new Font(Font.FontFamily.TIMES_ROMAN, 8,
+	  private static Font cellFont = new Font(Font.FontFamily.TIMES_ROMAN, 8,
 	      Font.NORMAL);
 	  private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 	      Font.BOLD);
 
+	  public void GenerateFinGarantie(){
+		  try {
+		      String FILE = Constante.CHEMIN_RAPPORTS+"FinGarantie.pdf";
+		      Document document = new Document();
+		      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+		      document.open();
+		      
+		      document.addTitle("Rapport");
+			  document.addAuthor("ADAM SAS");
+			  document.addCreator("ADAM SAS");
+			  
+			  Paragraph preface = new Paragraph();
+
+			  Paragraph titre=new Paragraph("Materiel en Fin de garantie", headFont);
+			  titre.setAlignment(Element.ALIGN_CENTER);
+			  preface.add(titre);
+
+			  addEmptyLine(preface, 1);
+
+			  Paragraph description=new Paragraph("Liste des biens du parc informatique de ADAM SAS selon la fin de leur garantie",smallBold);
+			  description.setAlignment(Element.ALIGN_CENTER);
+			  preface.add(description);
+
+			  addEmptyLine(preface, 3);
+
+			  document.add(preface);
+			  Chapter chapter1 = new Chapter("Moins d'un mois", 1);
+			  document.add(chapter1);
+			  
+			  Paragraph paragraph=new Paragraph("");
+
+			  // add a table
+			  createTableMaterielParc(paragraph);
+
+			  document.add(paragraph);
+			  
+		      document.close();
+		    } catch (Exception e) {
+		      e.printStackTrace();
+		    }
+		  }
 	  public void GenerateMaterielParc(){
 	    try {
 	      String FILE = Constante.CHEMIN_RAPPORTS+"MaterielParc.pdf";
@@ -36,7 +80,9 @@ public class Rapports {
 		  document.addCreator("ADAM SAS");
 		  
 		  Paragraph preface = new Paragraph();
-
+		  Image image=Image.getInstance("src/sources/images/ADAM.png");
+		  document.add(image);
+		  
 		  Paragraph titre=new Paragraph("Au rapport", headFont);
 		  titre.setAlignment(Element.ALIGN_CENTER);
 		  preface.add(titre);
@@ -51,7 +97,7 @@ public class Rapports {
 
 		  document.add(preface);
 		  
-		  Paragraph paragraph=new Paragraph("",tableFont);
+		  Paragraph paragraph=new Paragraph("");
 
 		  // add a table
 		  createTableMaterielParc(paragraph);
@@ -114,30 +160,35 @@ public class Rapports {
 	    
 	    PdfPCell cell=new PdfPCell();
 	    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    boolean pair;
+	    BaseColor color;
 	    for(int i=0;i<rapport.length;i++){
-	    	cell.setPhrase(new Phrase(rapport[i][0]));
+	    	pair=(i%2==0)?true:false;
+	    	color=pair?BaseColor.LIGHT_GRAY:BaseColor.WHITE;
+	    	
+	    	cell.setPhrase(new Phrase(rapport[i][0],cellFont));
+	    	cell.setBackgroundColor(color);
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase(rapport[i][1]));
+	    	cell.setPhrase(new Phrase(rapport[i][1],cellFont));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase(rapport[i][2]));
+	    	cell.setPhrase(new Phrase(rapport[i][2],cellFont));
 	    	table.addCell(cell);
 	
-	    	cell.setPhrase(new Phrase(rapport[i][3]));
+	    	cell.setPhrase(new Phrase(rapport[i][3],cellFont));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase(rapport[i][4]));
+	    	cell.setPhrase(new Phrase(rapport[i][4],cellFont));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase(rapport[i][5]));
+	    	cell.setPhrase(new Phrase(rapport[i][5],cellFont));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase(rapport[i][6]));
+	    	cell.setPhrase(new Phrase(rapport[i][6],cellFont));
 	    	table.addCell(cell);
 	    }
 	    paragraph.add(table);
-
 	  }
 	  
 	  private static void addEmptyLine(Paragraph paragraph, int number) {
