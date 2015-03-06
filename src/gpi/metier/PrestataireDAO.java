@@ -233,4 +233,29 @@ public class PrestataireDAO {
 		}
 		return list;
 	}
+	
+	public ObservableList<String> recupererPrenomPrestataireParNom(String nomPrestataire) throws ConnexionBDException {
+		Connection connexion=MaConnexion.getInstance().getConnexion();
+		ObservableList<String> list=FXCollections.observableArrayList();
+		try {
+			PreparedStatement ps= connexion.prepareStatement("SELECT prenomPrestataire FROM PRESTATAIRE WHERE nomPrestataire=?");
+			ps.setString(1, nomPrestataire);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				list.add(rs.getString("prenomPrestataire"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 }

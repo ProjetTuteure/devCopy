@@ -40,7 +40,13 @@ public class AjouterIntervention {
 	ObservableList<String> listObjetIntervention;
 	ObservableList<String> listDateMaintenanceParObjet;
 	
+	ObservableList<String> listNomPrestataire;
+	ObservableList<String> listPrenomPrestataire;
+	
+	private PrestataireDAO prestataireDAO;
 	private MaintenanceDAO maintenanceDAO;
+	private FactureDAO factureDAO;
+	
 //	private ObservableList<String> listNomPrestataireIntervention;
 //	private ObservableList<String> listPrenomPrestataireIntervention;
 //	private ObservableList<String> listNumFactureIntervention;
@@ -56,12 +62,21 @@ public class AjouterIntervention {
 	@FXML
 	private void initialize() {
 		this.maintenanceDAO=new MaintenanceDAO();
+		this.prestataireDAO=new PrestataireDAO();
+		this.factureDAO=new FactureDAO();
 		try {
 			this.listObjetIntervention=this.maintenanceDAO.recupererAllObjetMaintenanceString();
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxObjetMaintenanceIntervention.setItems(listObjetIntervention);
+		
+		try{
+			this.listNomPrestataire=this.prestataireDAO.recupererAllNomPrestataire();
+		}catch(ConnexionBDException e){
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+		comboboxNomPrestataireIntervention.setItems(this.listNomPrestataire);
 		
 //		listObjetMaintenanceIntervention = FXCollections.observableArrayList();
 //		listIdMaintenanceIntervention = new ArrayList<Integer>();
@@ -210,6 +225,15 @@ public class AjouterIntervention {
 
 	@FXML
 	private void handleChange2() {
+		String nomPrestataireMaintenanceSelected;
+		nomPrestataireMaintenanceSelected=this.listNomPrestataire.get(this.comboboxNomPrestataireIntervention.getSelectionModel().getSelectedIndex());
+		try {
+			this.listPrenomPrestataire=this.prestataireDAO.recupererPrenomPrestataireParNom(nomPrestataireMaintenanceSelected);
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+			e.printStackTrace();
+		}
+		comboboxPrenomPrestataireIntervention.setItems(this.listPrenomPrestataire);
 //		PrestataireDAO prestataireDAO = new PrestataireDAO();
 //		Prestataire selected = null;
 //		try {
