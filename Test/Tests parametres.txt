@@ -1,0 +1,6 @@
+Changer caractères spéciaux de tous les popup de pb de connexion à la BD
+Changer l'URL de la BD : mettre popup si champ URL vide...
+Ajouter site : changer la fenêtre de choix... et fait freeze l'application !!! pb caractères spéciaux lors du popup
+Modifier site : pb caractères spéciaux lors du popup, changer la fenêtre du choix du chemin de l'image
+Supprimer site : popup affichage
+
