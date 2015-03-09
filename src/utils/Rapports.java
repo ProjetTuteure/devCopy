@@ -65,21 +65,21 @@ public class Rapports {
 			  Paragraph paragraph=new Paragraph("En fonctionnement",headFont);
 			  addEmptyLine(paragraph, 2);
 			  // add a table
-			  createTableFinGarantie(paragraph,1);
+			  createTableEtat(paragraph,1);
 			  document.add(paragraph);
 			  document.newPage();
 			  
 			  Paragraph paragraph2=new Paragraph("En panne",headFont);
 			  addEmptyLine(paragraph2, 2);
 			  // add a table
-			  createTableFinGarantie(paragraph2,2);
+			  createTableEtat(paragraph2,2);
 			  document.add(paragraph2);
 			  document.newPage();
 			  
 			  Paragraph paragraph3=new Paragraph("Hors service",headFont);
 			  addEmptyLine(paragraph3, 2);
 			  // add a table
-			  createTableFinGarantie(paragraph3,3);
+			  createTableEtat(paragraph3,3);
 			  document.add(paragraph3);
 			  
 		      document.close();
@@ -91,7 +91,7 @@ public class Rapports {
 	  private static void createTableEtat(Paragraph paragraph,int chapter) throws DocumentException {
 		    PdfPTable table = new PdfPTable(7);
 
-		    table.setWidths(new int[]{9,9,8,12,12,8,10});
+		    table.setWidths(new int[]{9,9,8,12,12,8,14});
 		    table.setHorizontalAlignment(Element.ALIGN_CENTER);
 		    
 		    PdfPCell c1 = new PdfPCell(new Phrase("Nom"));

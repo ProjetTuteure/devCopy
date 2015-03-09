@@ -122,9 +122,8 @@ private Connection connexion;
 				break;
 		}
 		try{
-			String sql="SELECT COUNT(*) as nbLigne FROM MATERIEL WHERE etat="+etat+";";
+			String sql="SELECT COUNT(*) as nbLigne FROM MATERIEL WHERE etat='"+etat+"';";
 			PreparedStatement ps=connexion.prepareStatement(sql);
-		
 			ResultSet resultat = ps.executeQuery();
 			resultat.next();
 			int nbLignes=resultat.getInt("nbLigne");
@@ -138,8 +137,8 @@ private Connection connexion;
 				+ " FROM MATERIEL m1 JOIN TYPE t ON m1.idType=t.idType" 
 				+ " JOIN SITE s ON m1.idSite=s.idSite" 
 				+ " LEFT JOIN ESTMAINTENU em ON m1.idMateriel=em.idMateriel" 
-				+ "LEFT JOIN MAINTENANCE ma ON em.idMaintenance=ma.idMaintenance"
-				+ "WHERE etat="+etat;
+				+ " LEFT JOIN MAINTENANCE ma ON em.idMaintenance=ma.idMaintenance"
+				+ " WHERE etat='"+etat+"';";
 			ps=connexion.prepareStatement(requete);
 			resultat = ps.executeQuery();
 			rapport=new String[nbLignes][8];
