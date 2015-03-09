@@ -11,8 +11,6 @@ import gpi.metier.Compose;
 import gpi.metier.ComposeDAO;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
-import gpi.metier.PageMateriel;
-import gpi.metier.PageMaterielDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -39,6 +37,7 @@ public class SupprimerCompose {
 	private ComboBox<String> comboboxMateriel;
 	
 	private ObservableList<String> listeNomComposant;
+	private List<Integer> listeIdComposantPourNom;
 	private List<Integer> listeIdComposant;
 	private ObservableList<String> listeCaracterisiqueComposant;
 	private ObservableList<String> listeNomMateriel;
@@ -50,14 +49,15 @@ public class SupprimerCompose {
 	@FXML
 	private void initialize() {
 		this.listeNomComposant = FXCollections.observableArrayList();
-		this.listeIdComposant = new ArrayList<Integer>();
+		this.listeIdComposantPourNom = new ArrayList<Integer>();
 		this.composeDAO = new ComposeDAO();
 		this.listeIdMateriel = new ArrayList<String>();
 
 		try {
-			for (Compose c : composeDAO.recupererAllComposant()) {
+			for (Compose c : composeDAO.recupererAllCompose()) {
 				if(!listeNomComposant.contains(c.getComposant().getNomComposant())){
 					listeNomComposant.add(c.getComposant().getNomComposant());
+					listeIdComposantPourNom.add(c.getComposant().getIdComposant());
 				}
 			}
 		} catch (ConnexionBDException e) {
@@ -98,7 +98,7 @@ public class SupprimerCompose {
 		okClicked = true;
 		try {
 			composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
-			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxMateriel.getValue()))));
+			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex())));
 			composeDAO.supprimerCompose(new Compose(composantSelected,materielSelected));
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
@@ -119,26 +119,31 @@ public class SupprimerCompose {
 	private void handleChange() {
 		List<Composant> listComposant = null;
 		composantDAO = new ComposantDAO();
+		this.listeIdComposant = new ArrayList<Integer>();
 		try {
 			listComposant = composantDAO.recupererComposantParNom(comboboxNomComposant.getValue());
 		} catch (ConnexionBDException e2) {
 			Popup.getInstance().afficherPopup(e2.getMessage());
 		}
-		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
 		listeCaracterisiqueComposant = FXCollections.observableArrayList();
 		
 		for (Composant composant :listComposant) {
-			listeCaracterisiqueComposant.add(composant.getFabricantComposant().getNomFabricantString()+"- "+composant.getCaracteristiqueComposant());
-			listeIdComposant.add(composant.getIdComposant());
+			if(listeIdComposantPourNom.contains(composant.getIdComposant())){
+				listeCaracterisiqueComposant.add(composant.getFabricantComposant().getNomFabricantString()+"- "+composant.getCaracteristiqueComposant());
+				listeIdComposant.add(composant.getIdComposant());
+			}			
 		}
 		
 		comboboxCaracteristiqueComposant.setItems(listeCaracterisiqueComposant);
-
+	}
+	
+	@FXML
+	private void handleChange1() {
 		listeNomMateriel = FXCollections.observableArrayList();
 		try {
-			for (PageMateriel p :  pageMaterielDAO.getAllMateriel()) {
-				listeNomMateriel.add(p.getNomMateriel());
-				listeIdMateriel.add(p.getIdMateriel());
+			for (Materiel materiel :  composeDAO.recupererMaterielParComposant(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()))) {
+				listeNomMateriel.add(materiel.getNomMateriel().getValue());
+				listeIdMateriel.add(materiel.getIdMateriel().getValue().toString());
 			}
 		} catch (ConnexionBDException e) {
 			e.printStackTrace();
