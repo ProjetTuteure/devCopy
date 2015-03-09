@@ -46,10 +46,9 @@ public class ComposeDAO {
 			throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		try {
-			PreparedStatement preparedStatement = connexion
-					.prepareStatement("DELETE FROM COMPOSE WHERE idMateriel=? AND idComposant=?");
-			preparedStatement.setInt(1, compose.getComposant().getIdComposant());
-			preparedStatement.setInt(2, compose.getMateriel().getIdMateriel().getValue());
+			PreparedStatement preparedStatement = connexion.prepareStatement("DELETE FROM COMPOSE WHERE idMateriel=? AND idComposant=?");
+			preparedStatement.setInt(1, compose.getMateriel().getIdMateriel().getValue());
+			preparedStatement.setInt(2, compose.getComposant().getIdComposant());			
 			preparedStatement.executeUpdate();
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -93,10 +92,9 @@ public class ComposeDAO {
         List<Materiel> materielList=new ArrayList<Materiel>();
         try{
             connection=MaConnexion.getInstance().getConnexion();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT idComposant FROM COMPOSE WHERE idComposant=?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT idMateriel FROM COMPOSE WHERE idComposant=?;");
             preparedStatement.setInt(1, idComposant);
             resultat=preparedStatement.executeQuery();
-            ComposantDAO composantDAO = new ComposantDAO();
             MaterielDAO materielDAO = new MaterielDAO();
             Materiel materiel;
             while(resultat.next()){
@@ -116,7 +114,7 @@ public class ComposeDAO {
     }
 	
 	
-	public List<Compose> recupererAllComposant() throws ConnexionBDException {
+	public List<Compose> recupererAllCompose() throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		List<Compose> listCompose = new ArrayList<Compose>();
 		MaterielDAO materielDAO=new MaterielDAO();

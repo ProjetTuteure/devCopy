@@ -13,7 +13,7 @@
             <Label text="Caractéristique du composant" GridPane.rowIndex="1" />
             <Label text="Materiel ayant le composant" GridPane.rowIndex="2" />
             <ComboBox fx:id="comboboxNomComposant" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="comboboxCaracteristiqueComposant" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboboxCaracteristiqueComposant" onAction="#handleChange1" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ComboBox fx:id="comboboxMateriel" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       </children>
       <columnConstraints>
