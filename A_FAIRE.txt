@@ -3,9 +3,6 @@ TESTER TOUS LES MESSAGES DES POPUP ERREURS
 
 Changer l'URL de la BD : mettre popup si champ URL vide...
 
-Ajouter site : changer la fenêtre de choix... et fait freeze l'application !!! pb caractères spéciaux lors du popup
-Modifier site : pb caractères spéciaux lors du popup, changer la fenêtre du choix du chemin de l'image
-Supprimer site : popup affichage
 
 Ajouter Materiel : Changer l'ordre des champs dans le FXML
 Changer le numéro d'immobilisation obligatoire.
@@ -14,22 +11,19 @@ Modifier un materiel : rechercher le nom du materiel par nom et pas par numéro d
 
 Supprimer un matériel : IDEM rechercher le materiel par son nom et pas par numéro d'immobilisation !!
 
-Supprimer type : erreur orthographe popup erreur
-
 Modifier facture : Dans facture à modifier : mettre l'id facture+numéro facture
 changer popup erreur caractère spécial...
 
 Ajouter fabricant : vérifier caractères spéciaux popup erreur
 
 Ajouter logiciel : mettre numéro de facture + numéro d'immobilisation
+
 Modifier logiciel :
 Supprimer logiciel : Trigger à faire
 
 Ajouter un composant : Changer les label : nom du composant, Fabricant ...
 Modifier composant : retourner l'id du composant dans les caractéristiques ?
 Supprimer composant : idem
-
-Gerer les compositions mat/comp : Faire les controles de champs vides.
 
 Supprimer Intervention : recherche de l'intervention par numéro de facture ???
 
@@ -38,14 +32,15 @@ Ajouter une maintenance sur le matériel : Maintenance sur le matériel : mettre l
 Ajouter maintenance : faute d'orthographe "ayant eu une opérationde maintance"...
 Supprimer une opération de maintenance : orthographe
 
-Installation logiciel : gérer les champs vides
-Supprimer logiciel sur une machine : gérer les champs vides
-
 prestataire modifier et supprimer
 utlisiateur modifier et supprimer
 Intervention : 2x mérillou : faire un distinct sur le nom pour avoir un seul nom mérillou avec stef et nico dedans
 
 Modifier/supprimer facture : numéro facture pas unique
+
+Installation logiciel : gérer les champs vides
+Supprimer logiciel sur une machine : gérer les champs vides
+Gerer les compositions mat/comp : Faire les controles de champs vides.
 
 sysout fait sauf pour :
 AjouterCompose

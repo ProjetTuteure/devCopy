@@ -82,16 +82,16 @@ public class AjouterSite {
 
 	private boolean controlerSaisies() {
 		if(NameSiteField.getText().isEmpty()){
-			Popup.getInstance().afficherPopup("Le champ \"Nom du site\" doit �tre saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du site\" doit être saisi");
 			return false;
 		}
 		if(NameSiteField.getText().length()>Constante.LONGUEUR_NOM_SITE){
-			Popup.getInstance().afficherPopup("La longueur du nom du site saisi doit �tre inf�rieur � "+Constante.LONGUEUR_NOM_SITE+" caract�res");
+			Popup.getInstance().afficherPopup("La longueur du nom du site saisi doit être inférieur à "+Constante.LONGUEUR_NOM_SITE+" caractéres");
 			return false;
 		}	
 		if(getCheminImageSite()!=null){
 			if(getCheminImageSite().length()>Constante.LONGUEUR_CHEMIN_IMAGE){
-				Popup.getInstance().afficherPopup("La longueur du chemin saisi doit �tre inf�rieur � "+Constante.LONGUEUR_CHEMIN_IMAGE+" caract�res");
+				Popup.getInstance().afficherPopup("La longueur du chemin saisi doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractéres");
 				return false;
 			}
 		}

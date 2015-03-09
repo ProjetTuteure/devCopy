@@ -77,7 +77,7 @@ public class SupprimerSite {
 			int id=listSiteId.get(selected);
 			try {
 				siteDAO.supprimerSite(new Site(id,null,null));
-				Popup.getInstance().afficherPopup("Site "+comboboxSiteSupp.getValue()+" supprim� !");
+				Popup.getInstance().afficherPopup("Site "+comboboxSiteSupp.getValue()+" supprimé !");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
@@ -88,7 +88,7 @@ public class SupprimerSite {
 	
 	private boolean controlerSaisies() {
 		if(comboboxSiteSupp.getValue()==null){
-			Popup.getInstance().afficherPopup("Vous devez selectionner le site � supprimer");
+			Popup.getInstance().afficherPopup("Vous devez sélectionner le site à supprimer");
 			return false;
 		}
 		return true;
