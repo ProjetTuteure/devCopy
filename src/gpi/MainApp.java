@@ -316,7 +316,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/ajouterType.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Ajouter un nouveau Type");
+			dialogStage.setTitle("Ajouter un nouveau type");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);
@@ -343,7 +343,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/modifierType.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Modifier un Type");
+			dialogStage.setTitle("Modifier un type");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);

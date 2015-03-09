@@ -53,7 +53,7 @@
             <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label text="Gérer les composants" GridPane.rowIndex="12" />
-            <Label text="Gérer les composition mat/comp" GridPane.rowIndex="14" />
+            <Label text="Gérer les compositions mat/comp" GridPane.rowIndex="14" />
             <Label prefHeight="17.0" prefWidth="252.0" text="URL de la Base de Donnée" GridPane.rowIndex="1" />
             <Label text="Gérer les utilisateurs" GridPane.rowIndex="13" />
             <Label text="Gérer les interventions" GridPane.rowIndex="15" />
