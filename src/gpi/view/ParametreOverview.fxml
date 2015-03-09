@@ -61,6 +61,7 @@
             <Label text="Gérer les opérations maintenance" GridPane.rowIndex="17" />
             
                   <Button mnemonicParsing="false" onAction="#handleDriver" prefHeight="25.0" prefWidth="190.0" text="Changer chemin dossier driver..." GridPane.columnIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#onClickButtonRapport" text="Rapport Logiciels" GridPane.columnIndex="3" />
             <Button mnemonicParsing="false" onAction="#handleBD" text="Changer l'URL de la BD..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
             
                   <Button mnemonicParsing="false" onAction="#handleaddSite" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -107,7 +108,6 @@
             <Label text="Gérer les installations logiciel" GridPane.rowIndex="18" />
             <Button mnemonicParsing="false" onAction="#handleaddInstallation" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="18" />
             <Button mnemonicParsing="false" onAction="#handlesuppInstallation" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="18" />
-            <Button mnemonicParsing="false" onAction="#onClickButtonRapport" text="Rapport Logiciels" GridPane.columnIndex="3" />
           
                </children>
       </GridPane>
