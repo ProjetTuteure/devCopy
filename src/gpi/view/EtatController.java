@@ -5,6 +5,8 @@ import gpi.exception.ConnexionBDException;
 import gpi.metier.Etat;
 import gpi.metier.IEtat;
 import gpi.metier.IEtatDAO;
+import gpi.metier.Materiel;
+import gpi.metier.MaterielDAO;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.net.URL;
@@ -54,6 +56,7 @@ public class EtatController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		final ObservableList<IEtat> materiel = FXCollections.observableArrayList();
+		MaterielDAO materielDAO = new MaterielDAO();
 		this.addDonneeTableView(materiel);
 			
 		checkBoxEnService.setOnAction((event) -> {
@@ -68,13 +71,15 @@ public class EtatController implements Initializable{
 			actionOnCheckBox(materiel);
 		});
 		materielTable.setOnMouseClicked((event) -> {
-			IEtat materiel_clicked=null;
+			Materiel materiel_clicked=null;
 			try{
-				materiel_clicked = materielTable.getSelectionModel().getSelectedItem();
+				materiel_clicked = materielDAO.recupererMaterielParId(Integer.parseInt(materielTable.getSelectionModel().getSelectedItem().getIdMateriel()));
 				if( materiel_clicked != null){
 					MainApp.setCritere(materiel_clicked);
 					MainApp.changerTab("DetailMachine");
 				}
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
 			}catch(NullPointerException e){}	
 				
 			});

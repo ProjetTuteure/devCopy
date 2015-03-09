@@ -60,21 +60,21 @@ public class Rapports {
 			  document.add(preface);
 			  
 
-			  Paragraph paragraph=new Paragraph("Moins d'un mois",headFont);
+			  Paragraph paragraph=new Paragraph("Expiration dans moins d'un mois",headFont);
 			  addEmptyLine(paragraph, 2);
 			  // add a table
 			  createTableFinGarantie(paragraph,1);
 			  document.add(paragraph);
 			  document.newPage();
 			  
-			  Paragraph paragraph2=new Paragraph("Moins de deux mois",headFont);
+			  Paragraph paragraph2=new Paragraph("Expiration entre un et deux mois",headFont);
 			  addEmptyLine(paragraph2, 2);
 			  // add a table
 			  createTableFinGarantie(paragraph2,2);
 			  document.add(paragraph2);
 			  document.newPage();
 			  
-			  Paragraph paragraph3=new Paragraph("Moins de trois mois",headFont);
+			  Paragraph paragraph3=new Paragraph("Expiration entre deux et trois mois",headFont);
 			  addEmptyLine(paragraph3, 2);
 			  // add a table
 			  createTableFinGarantie(paragraph3,3);
@@ -89,7 +89,7 @@ public class Rapports {
 	  private static void createTableFinGarantie(Paragraph paragraph,int chapter) throws DocumentException {
 		    PdfPTable table = new PdfPTable(8);
 
-		    table.setWidths(new int[]{12,9,10,5,10,13,11,8});
+		    table.setWidths(new int[]{9,9,8,12,12,8,10,8});
 		    table.setHorizontalAlignment(Element.ALIGN_CENTER);
 		    
 		    PdfPCell c1 = new PdfPCell(new Phrase("Nom"));
