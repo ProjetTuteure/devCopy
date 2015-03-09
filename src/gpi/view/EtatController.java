@@ -145,7 +145,7 @@ public class EtatController implements Initializable{
 		materielTable.setItems(materiel);
 		nomMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomMateriel()));
 		etatMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEtatMateriel()));
-		siteMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomMateriel()));
+		siteMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSiteMateriel()));
 		etatDepuisDateMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDateModifEtatMateriel()));
 	}
 
