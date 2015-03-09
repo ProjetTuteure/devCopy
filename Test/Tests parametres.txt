@@ -1,5 +1,5 @@
 Changer caractères spéciaux de tous les popup de pb de connexion à la BD
-TESTER TOUTES LES 
+TESTER TOUS LES MESSAGES DES POPUP ERREURS
 
 Changer l'URL de la BD : mettre popup si champ URL vide...
 Ajouter site : changer la fenêtre de choix... et fait freeze l'application !!! pb caractères spéciaux lors du popup
@@ -30,7 +30,26 @@ Ajouter logiciel : mettre numéro de facture + numéro d'immobilisation
 Modifier logiciel :
 Supprimer logiciel : Trigger à faire
 
-Ajouter un composant : Changer les label : nom du composant, Fabricant 
+Ajouter un composant : Changer les label : nom du composant, Fabricant ...
+Modifier composant : retourner l'id du composant dans les caractéristiques ?
+Supprimer composant : idem
+
+Gerer les compositions mat/comp : Faire les controles de champs vides.
+
+Supprimer Intervention : recherche de l'intervention par numéro de facture ???
+
+Ajouter une maintenance sur le matériel : Maintenance sur le matériel : mettre les idMateriel
+
+Ajouter maintenance : faute d'orthographe "ayant eu une opérationde maintance"...
+Supprimer une opération de maintenance : orthographe
+
+Installation logiciel : gérer les champs vides
+Supprimer logiciel sur une machine : gérer les champs vides
+
+
+
+
+
 
 
 
