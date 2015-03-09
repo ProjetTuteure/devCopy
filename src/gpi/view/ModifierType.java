@@ -9,9 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import utils.*;
+import utils.Popup;
+
+import javax.swing.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -142,9 +145,9 @@ public class ModifierType {
 	 */
 	@FXML
 	private void handleChoose(ActionEvent event) {
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Open directory");
-		File selectedDirectory = directoryChooser.showDialog(null);
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Choisir une image");
+		File selectedDirectory = fileChooser.showOpenDialog(null);
 		if (selectedDirectory != null) {
 			String adresse=selectedDirectory.getAbsolutePath();
 			adresse=adresse.replace("\\", "/");
@@ -162,17 +165,16 @@ public class ModifierType {
 	 */
 	@FXML
 	private void handlechange() {
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Open directory");
-		File selectedDirectory = directoryChooser.showDialog(null);
-		if (selectedDirectory != null) {
-			String adresse=selectedDirectory.getAbsolutePath();
-			adresse=adresse.replace("\\", "/");
-			adresse="file:///"+adresse;
-			this.setCheminImageType(adresse);
-        }else{
-        	this.setCheminImageType("");
-        }
+		this.setIdType(listIdType.get(comboboxTypeMod.getSelectionModel().getSelectedIndex()));
+		Type selected= null;
+		try {
+			selected = typeDAO.recupererTypeParId(this.getIdType());
+			this.cheminImageType=selected.getCheminImageType().get();
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+		nomTypeField.setText(selected.getNomTypeString());
+
 	}
 
 	public int getIdType() {

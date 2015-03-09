@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import utils.Constante;
 import utils.Popup;
@@ -109,9 +110,9 @@ public class AjouterSite {
 
 	@FXML
 	private void handleChoose(ActionEvent event) {
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Open directory");
-		File selectedDirectory = directoryChooser.showDialog(null);
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Choisir une image");
+		File selectedDirectory = fileChooser.showOpenDialog(null);
 		if (selectedDirectory != null) {
 			String adresse=selectedDirectory.getAbsolutePath();
 			adresse=adresse.replace("\\", "/");
