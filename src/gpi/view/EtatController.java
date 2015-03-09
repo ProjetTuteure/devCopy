@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import utils.DateConverter;
 import utils.Popup;
 import utils.Rapports;
 import javafx.collections.FXCollections;
@@ -146,7 +147,7 @@ public class EtatController implements Initializable{
 		nomMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomMateriel()));
 		etatMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEtatMateriel()));
 		siteMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSiteMateriel()));
-		etatDepuisDateMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDateModifEtatMateriel()));
+		etatDepuisDateMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(DateConverter.getFrenchDate(cellData.getValue().getDateModifEtatMateriel().split(" ")[0])));
 	}
 
 }

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import utils.DateConverter;
 import utils.Popup;
 import utils.Rapports;
 
@@ -183,9 +184,9 @@ public class AncienneteController implements Initializable {
 		materielTable.setItems(materiel);
 		nomMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomMateriel()));
 		numSerieMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumSerieMateriel()));
-		dateAchatMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDateAchatMateriel()));
+		dateAchatMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(DateConverter.getFrenchDate(cellData.getValue().getDateAchatMateriel())));
 		etatMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEtatMateriel()));
-		finGarantieMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDateAchatMateriel()));
+		finGarantieMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(DateConverter.getFrenchDate(cellData.getValue().getDateAchatMateriel())));
 		revendeurMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomRevendeur()));
 		fabricantMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomFabricant()));
 		dernierUtilisateurMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(utiliseDAO.recupererNomDernierUtilisateurMachine(Integer.parseInt(cellData.getValue().getIdMateriel()))));

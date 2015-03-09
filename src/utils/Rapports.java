@@ -61,10 +61,10 @@ public class Rapports {
 			  document.add(preface);
 			  
 
-			  Paragraph paragraph=new Paragraph("En fonctionnement",headFont);
+			  Paragraph paragraph=new Paragraph("Logiciels",headFont);
 			  addEmptyLine(paragraph, 2);
 			  // add a table
-			  createTableEtat(paragraph,1);
+			  createTableLogiciels(paragraph);
 			  document.add(paragraph);
 			  document.newPage();
 			  
@@ -74,7 +74,7 @@ public class Rapports {
 		    }
 		  }
 	  
-	  private static void createTableEtat(Paragraph paragraph) throws DocumentException {
+	  private static void createTableLogiciels(Paragraph paragraph) throws DocumentException {
 		    PdfPTable table = new PdfPTable(5);
 
 		    table.setWidths(new int[]{14,14,14,14,14});
@@ -127,10 +127,10 @@ public class Rapports {
 		    	cell.setPhrase(new Phrase(rapport[i][1],cellFont));
 		    	table.addCell(cell);
 		    	
-		    	cell.setPhrase(new Phrase(rapport[i][2],cellFont));
+		    	cell.setPhrase(new Phrase(DateConverter.getFrenchDate(rapport[i][2]),cellFont));
 		    	table.addCell(cell);
 		
-		    	cell.setPhrase(new Phrase(rapport[i][3],cellFont));
+		    	cell.setPhrase(new Phrase(DateConverter.getFrenchDate(rapport[i][3]),cellFont));
 		    	table.addCell(cell);
 		    	
 		    	cell.setPhrase(new Phrase(rapport[i][4],cellFont));
@@ -264,16 +264,16 @@ public class Rapports {
 		    	cell.setPhrase(new Phrase(rapport[i][2],cellFont));
 		    	table.addCell(cell);
 		
-		    	cell.setPhrase(new Phrase(rapport[i][3],cellFont));
+		    	cell.setPhrase(new Phrase(DateConverter.getFrenchDate(rapport[i][3].split(" ")[0]),cellFont));
 		    	table.addCell(cell);
 		    	
-		    	cell.setPhrase(new Phrase(rapport[i][4],cellFont));
+		    	cell.setPhrase(new Phrase(DateConverter.getFrenchDate(rapport[i][4]),cellFont));
 		    	table.addCell(cell);
 		    	
 		    	cell.setPhrase(new Phrase(rapport[i][5],cellFont));
 		    	table.addCell(cell);
 		    	
-		    	cell.setPhrase(new Phrase(rapport[i][6],cellFont));
+		    	cell.setPhrase(new Phrase(DateConverter.getFrenchDate(rapport[i][6]),cellFont));
 		    	table.addCell(cell);
 
 		    }
@@ -415,10 +415,10 @@ public class Rapports {
 		    	cell.setPhrase(new Phrase(rapport[i][4],cellFont));
 		    	table.addCell(cell);
 		    	
-		    	cell.setPhrase(new Phrase(rapport[i][5],cellFont));
+		    	cell.setPhrase(new Phrase(DateConverter.getFrenchDate(rapport[i][5]),cellFont));
 		    	table.addCell(cell);
 		    	
-		    	cell.setPhrase(new Phrase(rapport[i][6],cellFont));
+		    	cell.setPhrase(new Phrase(DateConverter.getFrenchDate(rapport[i][6]),cellFont));
 		    	table.addCell(cell);
 		    	
 		    	cell.setPhrase(new Phrase(rapport[i][7],cellFont));
@@ -553,7 +553,7 @@ public class Rapports {
 	    	cell.setPhrase(new Phrase(rapport[i][4],cellFont));
 	    	table.addCell(cell);
 	    	
-	    	cell.setPhrase(new Phrase(rapport[i][5],cellFont));
+	    	cell.setPhrase(new Phrase(DateConverter.getFrenchDate(rapport[i][5]),cellFont));
 	    	table.addCell(cell);
 	    	
 	    	cell.setPhrase(new Phrase(rapport[i][6],cellFont));
