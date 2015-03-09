@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import utils.Popup;
+import utils.Rapports;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -83,6 +84,12 @@ public class EtatController implements Initializable{
 			}catch(NullPointerException e){}	
 				
 			});
+	}
+	
+	@FXML
+	public void onClickButton(){
+		Rapports rapport=new Rapports();
+		rapport.GenerateEtat();
 	}
 
 	/**

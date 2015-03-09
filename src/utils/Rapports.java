@@ -163,9 +163,7 @@ public class Rapports {
 		    	
 		    	cell.setPhrase(new Phrase(rapport[i][6],cellFont));
 		    	table.addCell(cell);
-		    	
-		    	cell.setPhrase(new Phrase(rapport[i][7],cellFont));
-		    	table.addCell(cell);
+
 		    }
 		    paragraph.add(table);
 		  }
