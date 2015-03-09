@@ -9,11 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import utils.*;
-import utils.Popup;
-
-import javax.swing.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -144,18 +142,17 @@ public class ModifierType {
 	 */
 	@FXML
 	private void handleChoose(ActionEvent event) {
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Open File");
-		fileChooser.showOpenDialog(null); // you could pass a stage
-		File file = fileChooser.getSelectedFile();												// reference here if you
-
-
-		if (file != null) {
-			String adresse=file.getAbsolutePath();
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+		directoryChooser.setTitle("Open directory");
+		File selectedDirectory = directoryChooser.showDialog(null);
+		if (selectedDirectory != null) {
+			String adresse=selectedDirectory.getAbsolutePath();
 			adresse=adresse.replace("\\", "/");
 			adresse="file:///"+adresse;
 			this.setCheminImageType(adresse);
-		}
+        }else{
+        	this.setCheminImageType("");
+        }
 
 	}
 
@@ -165,16 +162,17 @@ public class ModifierType {
 	 */
 	@FXML
 	private void handlechange() {
-		this.setIdType(listIdType.get(comboboxTypeMod.getSelectionModel().getSelectedIndex()));
-		Type selected= null;
-		try {
-			selected = typeDAO.recupererTypeParId(this.getIdType());
-			this.cheminImageType=selected.getCheminImageType().get();
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
-		}
-		nomTypeField.setText(selected.getNomTypeString());
-
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+		directoryChooser.setTitle("Open directory");
+		File selectedDirectory = directoryChooser.showDialog(null);
+		if (selectedDirectory != null) {
+			String adresse=selectedDirectory.getAbsolutePath();
+			adresse=adresse.replace("\\", "/");
+			adresse="file:///"+adresse;
+			this.setCheminImageType(adresse);
+        }else{
+        	this.setCheminImageType("");
+        }
 	}
 
 	public int getIdType() {
