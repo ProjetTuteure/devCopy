@@ -78,11 +78,11 @@ public class AjouterFabricant {
 
 	private boolean controlerSaisies() {
 		if(nomFabricantField.getText().isEmpty()){
-			Popup.getInstance().afficherPopup("Le champ \"Nom du fabricant\" doit �tre saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du fabricant\" doit être saisi");
 			return false;
 		}
 		if(nomFabricantField.getText().length()>Constante.LONGUEUR_NOM_FABRICANT){
-			Popup.getInstance().afficherPopup("La longueur du nom du fabricant saisi doit �tre inf�rieur � "+Constante.LONGUEUR_NOM_FABRICANT+" caract�res");
+			Popup.getInstance().afficherPopup("La longueur du nom du fabricant saisi doit être inférieur à "+Constante.LONGUEUR_NOM_FABRICANT+" caractères");
 			return false;
 		}		
 		if(telFabricantField.getText().length()>Constante.LONGUEUR_NUM_TELEPHONE){
