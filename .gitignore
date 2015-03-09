@@ -2,3 +2,4 @@
 /out/
 /src/utils/Propriete.java
 /Configuration.properties
+*.properties
