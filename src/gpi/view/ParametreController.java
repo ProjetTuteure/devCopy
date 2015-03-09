@@ -44,7 +44,7 @@ public class ParametreController implements Initializable {
 	}
 	
 	@FXML
-	public void onClickButton(){
+	public void onClickButtonRapport(){
 		Rapports rapport=new Rapports();
 		rapport.GenerateFinGarantie();
 	}
