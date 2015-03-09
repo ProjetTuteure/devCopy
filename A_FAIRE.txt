@@ -14,12 +14,6 @@ Modifier un materiel : rechercher le nom du materiel par nom et pas par numéro d
 
 Supprimer un matériel : IDEM rechercher le materiel par son nom et pas par numéro d'immobilisation !!
 
-Ajouter un type : Changer la popup de choix de l'image : fait freeze l'appli !
-Changer la popup d'erreur.
-
-Modifier type : Changer la popup de choix de l'image : fait freeze l'appli !
-Changer la popup d'erreur : caractères spéciaux
-
 Supprimer type : erreur orthographe popup erreur
 
 Modifier facture : Dans facture à modifier : mettre l'id facture+numéro facture
@@ -62,7 +56,5 @@ LoginController
 SupprimerCompose
 SupprimerIntervention
 SupprimerInstallation
-
-TRIGGER A FAIRE POUR LES LOGICIELS ETC...
 
 
