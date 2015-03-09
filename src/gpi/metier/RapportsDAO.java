@@ -63,18 +63,8 @@ private Connection connexion;
 		connexion = MaConnexion.getInstance().getConnexion();
 		String rapport[][] = null;
 		try{
-			String sql="SELECT COUNT(*) as nbLigne FROM MATERIEL WHERE dateExpirationGarantieMateriel BETWEEN GETDATE() AND DATEADD(month,"+chapter+",GETDATE());";
-			PreparedStatement ps=connexion.prepareStatement(sql);
-			LocalDate localDate=LocalDate.now();
-			localDate=localDate.plusMonths(chapter);
-			String chaine1="";
-	        String chaine2="";
-	        if(localDate.getDayOfMonth()<10){
-	            chaine1="0";
-	        }
-	        if(localDate.getMonthValue()<10){
-	            chaine2="0";
-	        }			
+			String sql="SELECT COUNT(*) as nbLigne FROM MATERIEL WHERE dateExpirationGarantieMateriel BETWEEN DATEADD(month,"+(chapter-1)+",GETDATE()) AND DATEADD(month,"+chapter+",GETDATE());";
+			PreparedStatement ps=connexion.prepareStatement(sql);		
 			ResultSet resultat = ps.executeQuery();
 			resultat.next();
 			int nbLignes=resultat.getInt("nbLigne");
@@ -83,7 +73,7 @@ private Connection connexion;
 				+ " JOIN SITE s ON m.idSite=s.idSite"
 				+ " JOIN FACTURE f ON m.idFacture=f.idFacture"
 				+ " JOIN REVENDEUR r ON f.idRevendeur=r.idRevendeur"
-				+ " WHERE dateExpirationGarantieMateriel BETWEEN GETDATE() AND DATEADD(month,"+chapter+",GETDATE())"
+				+ " WHERE dateExpirationGarantieMateriel BETWEEN DATEADD(month,"+(chapter-1)+",GETDATE()) AND DATEADD(month,"+chapter+",GETDATE())"
 				+ " ORDER BY m.dateExpirationGarantieMateriel ASC;";
 			ps=connexion.prepareStatement(requete);
 			resultat = ps.executeQuery();
