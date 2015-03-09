@@ -2,6 +2,7 @@ package gpi.view;
 
 import java.io.File;
 
+import utils.Popup;
 import utils.Propriete;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -49,9 +50,14 @@ public class ModifierDriver {
 	 */
 	@FXML
 	private void handleOk() {
-		Propriete.getInstance().setProperties("driver",cheminfield.getText());
-		okClicked = true;
-		dialogStage.close();
+		if (!(cheminfield.getText().isEmpty())){
+			Propriete.getInstance().setProperties("driver",cheminfield.getText());
+			okClicked = true;
+			dialogStage.close();
+		}
+		else{
+			Popup.getInstance().afficherPopup("le chemin spécifié est vide");
+		}
 
 	}
 
