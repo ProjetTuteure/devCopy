@@ -265,4 +265,30 @@ public class MaintenanceDAO {
 		}
 		return listARetourner;
 	}
+	
+	public ObservableList<String> recupererAllObjetMaintenanceParEstMaintenuString() throws ConnexionBDException{
+		ObservableList<String> listARetourner=FXCollections.observableArrayList();
+		Connection connexion=null;
+		connexion = MaConnexion.getInstance().getConnexion();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("SELECT DISTINCT objetMaintenance FROM MAINTENANCE M JOIN ESTMAINTENU EM ON "
+					+ "M.idMaintenance=EM.idMaintenance");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				listARetourner.add(rs.getString("objetMaintenance"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listARetourner;
+	}
 }

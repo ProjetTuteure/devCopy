@@ -1,0 +1,1 @@
+SELECT nomMateriel,numImmobMateriel,nomType,dateModifierEtat,dateExpirationGarantieMateriel,nomSite,TOP 1 dateMaintenance FROM MATERIEL m JOIN TYPE t ON m.idType=t.idType JOIN SITE s ON m.idSite=s.idSite JOIN ESTMAINTENU em ON m.idMateriel=em.idMateriel JOIN MAINTENANCE ma ON em.idMaintenance=ma.idMaitenance WHERE etat='EN_MARCHE' ORDER BY m.nomMateriel,ma.dateMaintenance ASC;
