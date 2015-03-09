@@ -1,5 +1,6 @@
 package gpi.view;
 
+import utils.Popup;
 import utils.Propriete;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -47,10 +48,19 @@ public class ModifierBD {
 	 */
 	@FXML
 	private void handleOk() {
-		Propriete.getInstance().setProperties("ipBD",cheminfield.getText());
-		okClicked = true;
-		dialogStage.close();
-
+		if(controlerSaisies()){
+			Propriete.getInstance().setProperties("ipBD",cheminfield.getText());
+			okClicked = true;
+			dialogStage.close();
+		}
+	}
+	
+	private boolean controlerSaisies() {
+		if(cheminfield.getText().equals("")){
+			Popup.getInstance().afficherPopup("Le champ \"chemin de la base de données\" doit être saisi");
+			return false;
+		}
+		return true;
 	}
 
 	/**
