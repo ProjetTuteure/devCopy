@@ -29,6 +29,151 @@ public class Rapports {
 	  private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 	      Font.BOLD);
 
+	  
+	  
+	  public void GenerateEtat(){
+		  try {
+		      String FILE = Constante.CHEMIN_RAPPORTS+"Etat.pdf";
+		      Document document = new Document();
+		      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+		      document.open();
+		      
+		      document.addTitle("Rapport");
+			  document.addAuthor("ADAM SAS");
+			  document.addCreator("ADAM SAS");
+			  
+			  Image image=Image.getInstance("src/sources/images/ADAM_RAPPORT.png");
+			  document.add(image);
+			  
+			  Paragraph preface = new Paragraph();
+
+			  Paragraph titre=new Paragraph("Materiel par état", titleFont);
+			  titre.setAlignment(Element.ALIGN_CENTER);
+			  preface.add(titre);
+
+			  addEmptyLine(preface, 1);
+
+			  Paragraph description=new Paragraph("Liste des biens du parc informatique de ADAM SAS selon leur état",smallBold);
+			  description.setAlignment(Element.ALIGN_CENTER);
+			  preface.add(description);
+
+			  addEmptyLine(preface, 3);
+
+			  document.add(preface);
+			  
+
+			  Paragraph paragraph=new Paragraph("En fonctionnement",headFont);
+			  addEmptyLine(paragraph, 2);
+			  // add a table
+			  createTableFinGarantie(paragraph,1);
+			  document.add(paragraph);
+			  document.newPage();
+			  
+			  Paragraph paragraph2=new Paragraph("En panne",headFont);
+			  addEmptyLine(paragraph2, 2);
+			  // add a table
+			  createTableFinGarantie(paragraph2,2);
+			  document.add(paragraph2);
+			  document.newPage();
+			  
+			  Paragraph paragraph3=new Paragraph("Hors service",headFont);
+			  addEmptyLine(paragraph3, 2);
+			  // add a table
+			  createTableFinGarantie(paragraph3,3);
+			  document.add(paragraph3);
+			  
+		      document.close();
+		    } catch (Exception e) {
+		      e.printStackTrace();
+		    }
+		  }
+	  
+	  private static void createTableEtat(Paragraph paragraph,int chapter) throws DocumentException {
+		    PdfPTable table = new PdfPTable(7);
+
+		    table.setWidths(new int[]{9,9,8,12,12,8,10});
+		    table.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    
+		    PdfPCell c1 = new PdfPCell(new Phrase("Nom"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+
+		    c1 = new PdfPCell(new Phrase("N° Immo"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+
+		    c1 = new PdfPCell(new Phrase("Type"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    c1 = new PdfPCell(new Phrase("Dans l'etat depuis le"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    c1 = new PdfPCell(new Phrase("Fin garantie"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    c1 = new PdfPCell(new Phrase("Site"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    c1 = new PdfPCell(new Phrase("Dernière maintenance"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    table.setHeaderRows(1);
+		    
+		    RapportsDAO rapportsDAO = new RapportsDAO();
+		    String[][] rapport=null;
+		    try {
+				rapport=rapportsDAO.getRapportEtat(chapter);
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+		    
+		    
+		    
+		    PdfPCell cell=new PdfPCell();
+		    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    boolean pair;
+		    BaseColor color;
+		    for(int i=0;i<rapport.length;i++){
+		    	pair=(i%2==0)?true:false;
+		    	color=pair?BaseColor.LIGHT_GRAY:BaseColor.WHITE;
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][0],cellFont));
+		    	cell.setBackgroundColor(color);
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][1],cellFont));
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][2],cellFont));
+		    	table.addCell(cell);
+		
+		    	cell.setPhrase(new Phrase(rapport[i][3],cellFont));
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][4],cellFont));
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][5],cellFont));
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][6],cellFont));
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][7],cellFont));
+		    	table.addCell(cell);
+		    }
+		    paragraph.add(table);
+		  }
+	  
+	  
+	  
+	  
+	  
 	  public void GenerateFinGarantie(){
 		  try {
 		      String FILE = Constante.CHEMIN_RAPPORTS+"FinGarantie.pdf";

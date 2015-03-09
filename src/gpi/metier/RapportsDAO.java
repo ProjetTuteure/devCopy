@@ -64,7 +64,8 @@ private Connection connexion;
 		String rapport[][] = null;
 		try{
 			String sql="SELECT COUNT(*) as nbLigne FROM MATERIEL WHERE dateExpirationGarantieMateriel BETWEEN DATEADD(month,"+(chapter-1)+",GETDATE()) AND DATEADD(month,"+chapter+",GETDATE());";
-			PreparedStatement ps=connexion.prepareStatement(sql);		
+			PreparedStatement ps=connexion.prepareStatement(sql);
+		
 			ResultSet resultat = ps.executeQuery();
 			resultat.next();
 			int nbLignes=resultat.getInt("nbLigne");
@@ -75,6 +76,65 @@ private Connection connexion;
 				+ " JOIN REVENDEUR r ON f.idRevendeur=r.idRevendeur"
 				+ " WHERE dateExpirationGarantieMateriel BETWEEN DATEADD(month,"+(chapter-1)+",GETDATE()) AND DATEADD(month,"+chapter+",GETDATE())"
 				+ " ORDER BY m.dateExpirationGarantieMateriel ASC;";
+			ps=connexion.prepareStatement(requete);
+			resultat = ps.executeQuery();
+			rapport=new String[nbLignes][8];
+			int i=0;
+			while(resultat.next()){
+				rapport[i][0]=resultat.getString("nomMateriel");
+				rapport[i][1]=resultat.getString("numImmobMateriel");
+				rapport[i][2]=resultat.getString("nomType");
+				rapport[i][3]=resultat.getString("etat");
+				rapport[i][4]=resultat.getString("nomRevendeur");
+				rapport[i][5]=resultat.getString("dateFacture");
+				rapport[i][6]=resultat.getString("dateExpirationGarantieMateriel");
+				rapport[i][7]=resultat.getString("nomSite");
+				i++;
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return rapport;
+	}
+	
+	public String[][] getRapportEtat(int chapter) throws ConnexionBDException {
+		connexion = MaConnexion.getInstance().getConnexion();
+		String etat=null;
+		String rapport[][] = null;
+		switch(chapter){
+			case 1:
+				etat="EN_MARCHE";
+				break;
+			case 2:
+				etat="EN_PANNE";
+				break;
+			case 3:
+				etat="HS";
+				break;
+		}
+		try{
+			String sql="SELECT COUNT(*) as nbLigne FROM MATERIEL WHERE etat="+etat+";";
+			PreparedStatement ps=connexion.prepareStatement(sql);
+		
+			ResultSet resultat = ps.executeQuery();
+			resultat.next();
+			int nbLignes=resultat.getInt("nbLigne");
+			String requete="SELECT nomMateriel,numImmobMateriel,nomType,dateModifierEtat,dateExpirationGarantieMateriel,nomSite,TOP 1 dateMaintenance FROM MATERIEL m"
+				+ " JOIN TYPE t ON m.idType=t.idType"
+				+ " JOIN SITE s ON m.idSite=s.idSite"
+				+ " JOIN ESTMAINTENU em ON m.idMateriel=em.idMateriel"
+				+ " JOIN MAINTENANCE ma ON em.idMaintenance=ma.idMaitenance"
+				+ " WHERE etat="+etat
+				+ " ORDER BY m.nomMateriel,ma.dateMaintenance ASC;";
 			ps=connexion.prepareStatement(requete);
 			resultat = ps.executeQuery();
 			rapport=new String[nbLignes][8];
