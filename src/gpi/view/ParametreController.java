@@ -6,6 +6,7 @@ import gpi.metier.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import utils.Rapports;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,6 +41,12 @@ public class ParametreController implements Initializable {
 		if (okClicked) {
 
 		}
+	}
+	
+	@FXML
+	public void onClickButton(){
+		Rapports rapport=new Rapports();
+		rapport.GenerateFinGarantie();
 	}
 
 	/**
