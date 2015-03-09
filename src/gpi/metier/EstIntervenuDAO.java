@@ -40,16 +40,16 @@ public class EstIntervenuDAO {
 		return 0;
 	}
 
-	public int supprimerUtlise(EstIntervenu EstIntervenu) throws ConnexionBDException {
+	public int supprimerUtlise(int idMaintenance, int idPrestataire, int idFacture) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		int resultat;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prep = connexion
 					.prepareStatement("DELETE FROM ESTINTERVENU WHERE idFacture=? And idMaintenance=? AND idPrestataire;");
-			prep.setInt(1,EstIntervenu.getFactureEstIntervenu().getIdFacture().getValue());
-			prep.setInt(2, EstIntervenu.getMaintenanceEstIntervenu().getIdMaintenance().getValue());
-			prep.setInt(3, EstIntervenu.getPrestataireEstIntervenu().getIdPrestataire().getValue());
+			prep.setInt(1,idFacture);
+			prep.setInt(2, idMaintenance);
+			prep.setInt(3,idPrestataire);
 			resultat = prep.executeUpdate();
 			return resultat;
 		} catch (SQLException e) {
