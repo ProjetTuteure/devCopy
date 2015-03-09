@@ -78,19 +78,18 @@ public class ModifierUtilisateur {
 
 	private boolean controlerSaisies() {
 		if (nomfield.getText().equals("")) {
-			Popup.getInstance().afficherPopup("Le champ \"Nom du utilisateur\" doit �tre rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du utilisateur\" doit être rempli");
 			return false;
 		}
 		if (prenomfield.getText().equals("")) {
-			Popup.getInstance().afficherPopup("Le champ \"Prenom du utilisateur\" doit �tre rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Prenom du utilisateur\" doit être rempli");
 			return false;
 		}
 		if (telfield.getText().length() > Constante.LONGUEUR_NUM_TELEPHONE) {
-			Popup.getInstance().afficherPopup("Le num�ro de t�l�phone saisi doit �tre inf�rieur � "
-					+ Constante.LONGUEUR_NUM_TELEPHONE + " caract�res");
+			Popup.getInstance().afficherPopup("Le numéro de téléphone saisi doit être inférieur à "
+					+ Constante.LONGUEUR_NUM_TELEPHONE + " caractères");
 			return false;
 		}
-
 		return true;
 	}
 
