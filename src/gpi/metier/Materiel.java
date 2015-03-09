@@ -28,7 +28,7 @@ public class Materiel {
         this.idMateriel=new SimpleIntegerProperty(idMateriel);
         this.numImmobMateriel = new SimpleStringProperty(numImmobMateriel);
         this.numeroSerieMateriel= new SimpleStringProperty(numeroSerieMateriel);
-        this.systemeExploitationMateriel=new SimpleStringProperty(nomMateriel);
+        this.systemeExploitationMateriel=new SimpleStringProperty(systemeExploitationMateriel);
         this.nomMateriel= new SimpleStringProperty(nomMateriel);
         this.typeMateriel = typeMateriel;
         this.etatMateriel = etatMateriel;

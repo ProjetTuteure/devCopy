@@ -721,7 +721,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/ajouterMateriel.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Ajouter un nouveau materiel");
+			dialogStage.setTitle("Ajouter un nouveau matériel");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);
@@ -748,7 +748,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/modifierMateriel.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Modifier un materiel");
+			dialogStage.setTitle("Modifier un matériel");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);
@@ -775,7 +775,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/supprimerMateriel.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Supprimer une maintenance");
+			dialogStage.setTitle("Supprimer un matériel");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);

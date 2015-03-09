@@ -226,23 +226,23 @@ public class AjouterMateriel {
 	}
 	private boolean controlerSaisies() {
 		if (nomMaterielField.getText().equals("")) {
-			Popup.getInstance().afficherPopup("Le champ \"Nom materiel\" doit etre rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Nom matériel\" doit être rempli");
 			return false;
 		}
 		if (nomMaterielField.getText().length() > Constante.LONGUEUR_NOM_MATERIEL) {
-			Popup.getInstance().afficherPopup("Le nom du materiel doit etre inferieur e " + Constante.LONGUEUR_NOM_MATERIEL + " caracteres");
+			Popup.getInstance().afficherPopup("Le nom du matériel doit être inférieur à " + Constante.LONGUEUR_NOM_MATERIEL + " caractères");
 			return false;
 		}
 		if (immobMaterielField.getText().length() > Constante.LONGUEUR_NOM_MATERIEL) {
-			Popup.getInstance().afficherPopup("Le nom du materiel doit etre inferieur a " + Constante.LONGUEUR_NOM_MATERIEL + " caracteres");
+			Popup.getInstance().afficherPopup("Le nom du matériel doit être inférieur a " + Constante.LONGUEUR_NOM_MATERIEL + " caractères");
 			return false;
 		}
 		if (numeroSerieMaterielField.getText().length() > Constante.LONGUEUR_NUM_SERIE_MAT) {
-			Popup.getInstance().afficherPopup("Le numero de serie du materiel doit etre inferieur a " + Constante.LONGUEUR_NUM_SERIE_MAT + " caracteres");
+			Popup.getInstance().afficherPopup("Le numero de série du matériel doit être inférieur à " + Constante.LONGUEUR_NUM_SERIE_MAT + " caractères");
 			return false;
 		}
 		if (modeleMaterielField.getText().length() > Constante.LONGUEUR_MODELE_MAT) {
-			Popup.getInstance().afficherPopup("Le modele du materiel doit etre inferieur a "+ Constante.LONGUEUR_MODELE_MAT + " caracteres");
+			Popup.getInstance().afficherPopup("Le modèle du matériel doit être inférieur à "+ Constante.LONGUEUR_MODELE_MAT + " caractères");
 			return false;
 		}
 		return true;

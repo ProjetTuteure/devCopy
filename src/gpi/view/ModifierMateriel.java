@@ -206,7 +206,6 @@ public class ModifierMateriel {
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-
 		numeroSerieMaterielField.setText(selected.getNumeroSerieMateriel().getValue());
 		systemeExploitationMaterielField.setText(selected.getSystemeExploitationMateriel().getValue());
 		modeleMaterielField.setText(selected.getModeleMateriel());

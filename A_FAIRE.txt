@@ -7,7 +7,6 @@ Ajouter site : changer la fenêtre de choix... et fait freeze l'application !!! p
 Modifier site : pb caractères spéciaux lors du popup, changer la fenêtre du choix du chemin de l'image
 Supprimer site : popup affichage
 
-Ajouter Materiel : Changer l'ordre des champs dans le FXML
 Changer le numéro d'immobilisation obligatoire.
 
 Modifier un materiel : rechercher le nom du materiel par nom et pas par numéro d'immobilisation !!
@@ -64,5 +63,7 @@ SupprimerIntervention
 SupprimerInstallation
 
 TRIGGER A FAIRE POUR LES LOGICIELS ETC...
+
+Pour les editions de rapport, après appui sur le bouton, faire une popup qui dit que le rapport a été généré dans le dossier
 
 

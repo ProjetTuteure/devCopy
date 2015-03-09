@@ -11,7 +11,7 @@
     <GridPane maxHeight="342.0" prefHeight="342.0" prefWidth="330.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
         <Label prefHeight="17.0" prefWidth="172.0" text="Numéro d'immobilisation" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <Label prefHeight="17.0" prefWidth="200.0" text="N° d'immo du materiel à modif" />
+            <Label prefHeight="17.0" prefWidth="200.0" text="Nom du matériel à modifier" />
             <Label text="Nom du matériel" GridPane.rowIndex="3" />
             <Label text="Numero de serie" GridPane.rowIndex="4" />
             <Label text="Système d'exploitation" GridPane.rowIndex="5" />

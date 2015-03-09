@@ -33,6 +33,7 @@ public class MaterielDAO {
 					.prepareStatement("INSERT INTO MATERIEL (numImmobMateriel,numeroSerieMateriel,systemeExploitationMateriel,nomMateriel,dateExpirationGarantieMateriel,"
 							+ "repertoireDrivers,modeleMateriel,etat,idFacture,idFabricant,idSite,idType) "
 							+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+			System.out.println(materiel.getSystemeExploitationMateriel().getValue());
 			prepareStatement.setString(1, materiel.getNumImmobMateriel().getValue());
 			prepareStatement.setString(2, materiel.getNumeroSerieMateriel().getValue());
 			prepareStatement.setString(3, materiel.getSystemeExploitationMateriel().getValue());
