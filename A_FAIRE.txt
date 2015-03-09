@@ -1,8 +1,4 @@
-Changer caractères spéciaux de tous les popup de pb de connexion à la BD
-TESTER TOUS LES MESSAGES DES POPUP ERREURS
-
 Changer l'URL de la BD : mettre popup si champ URL vide...
-
 
 Ajouter Materiel : Changer l'ordre des champs dans le FXML
 Changer le numéro d'immobilisation obligatoire.
