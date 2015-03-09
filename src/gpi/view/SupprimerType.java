@@ -67,7 +67,6 @@ public class SupprimerType {
 
 	private boolean controlerSaisies() {
 		if (comboboxtype.getValue() == null) {
-			Popup.getInstance().afficherPopup("Vous devez selectionner le type à supprimer");
 			return false;
 		}
 		return true;
@@ -89,6 +88,8 @@ public class SupprimerType {
 			}
 			okClicked = true;
 			dialogStage.close();
+		}else{
+			Popup.getInstance().afficherPopup("Vous devez sélectionner le type à supprimer");
 		}
 	}
 

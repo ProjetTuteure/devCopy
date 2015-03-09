@@ -105,29 +105,29 @@ public class ModifierFacture {
 
 	private boolean controlerSaisies() {
 		if(factureCombobox.getValue()==null){
-			Popup.getInstance().afficherPopup("Le champ \"date de facture\" doit �tre saisi");
+			Popup.getInstance().afficherPopup("Le champ \"date de facture\" doit être saisi");
 			return false;
 		}
 		if(numFactureField.getText().isEmpty()){
-			Popup.getInstance().afficherPopup("Le champ \"Num�ro de facture\" doit �tre saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Numéro de facture\" doit être saisi");
 			return false;
 		}
 		if(dateFacturePicker.getValue()==null){
-			Popup.getInstance().afficherPopup("Le champ \"date de facture\" doit �tre saisi");
+			Popup.getInstance().afficherPopup("Le champ \"date de facture\" doit être saisi");
 			return false;
 		}
 		if(numFactureField.getText().length()>Constante.LONGUEUR_NUM_FACTURE){
-			Popup.getInstance().afficherPopup("La longueur du numero de facture saisi doit �tre inf�rieur � "+Constante.LONGUEUR_NUM_FACTURE+" caract�res");
+			Popup.getInstance().afficherPopup("La longueur du numero de facture saisi doit être inférieur à "+Constante.LONGUEUR_NUM_FACTURE+" caract�res");
 			return false;
 		}
 		if(montantFactureField.getText().length()>Constante.LONGUEUR_MONTANT_FACTURE){
-			Popup.getInstance().afficherPopup("La longueur du montant de la facture saisi doit �tre inf�rieur � "+Constante.LONGUEUR_MONTANT_FACTURE+" caract�res");
+			Popup.getInstance().afficherPopup("La longueur du montant de la facture saisi doit être inférieur à "+Constante.LONGUEUR_MONTANT_FACTURE+" caract�res");
 			return false;
 		}
 		Pattern p = Pattern.compile("[0-9]{1,8}[.]{1}[0-9]{1,2}");
 		Matcher m = p.matcher(montantFactureField.getText());
 		if(!m.matches()){
-			Popup.getInstance().afficherPopup("Le format du montant de la facture est erron�. Format : 123.45");
+			Popup.getInstance().afficherPopup("Le format du montant de la facture est erroné. Format : 123.45");
 			return false;
 		}
 		return true;
