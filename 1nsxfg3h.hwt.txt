@@ -1,0 +1,38 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	A_FAIRE.txt
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 6 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   src/gpi/metier/IAvance.java
+#	new file:   src/gpi/metier/IAvanceDAO.java
+#	modified:   src/gpi/metier/MaterielDAO.java
+#	modified:   src/gpi/view/AjouterSite.java
+#	modified:   src/gpi/view/AjouterType.java
+#	modified:   src/gpi/view/AvanceOverview.fxml
+#	modified:   src/gpi/view/ModifierBD.java
+#	modified:   src/gpi/view/ModifierFacture.java
+#	modified:   src/gpi/view/ModifierSite.java
+#	modified:   src/gpi/view/ModifierType.java
+#	modified:   src/gpi/view/ResultatAvanceController.java
+#	modified:   src/gpi/view/ResultatAvanceOverview.fxml
+#	modified:   src/gpi/view/SupprimerSite.java
+#	modified:   src/gpi/view/SupprimerType.java
+#	modified:   src/utils/MaConnexion.java
+#
+
