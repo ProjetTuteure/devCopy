@@ -15,8 +15,8 @@
             <Label prefHeight="17.0" prefWidth="162.0" text="Date d'expiration du logiciel" GridPane.rowIndex="2" />
             <TextField fx:id="versionLogicielField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Facture du logiciel" GridPane.rowIndex="3" />
-            <ComboBox fx:id="ComboboxFacture" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <DatePicker fx:id="dateExpirationGarantieField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="ComboboxFacture" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       </children>
       <columnConstraints>
         <ColumnConstraints fillWidth="true" hgrow="SOMETIMES" maxWidth="170.0" minWidth="170.0" prefWidth="170.0" />

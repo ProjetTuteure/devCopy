@@ -15,10 +15,10 @@
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></TextField>
+            <ComboBox fx:id="comboboxLogiciel" onAction="#handlechange" prefWidth="200.0" GridPane.columnIndex="1">
             <Label prefHeight="17.0" prefWidth="130.0" text="Version du logiciel" GridPane.rowIndex="3" />
             <Label prefHeight="17.0" prefWidth="168.0" text="Date d'expiration du logiciel" GridPane.rowIndex="4" />
             <Label prefHeight="17.0" prefWidth="128.0" text="Logiciel à modifier" />
-            <ComboBox fx:id="comboboxLogiciel" onAction="#handlechange" prefWidth="200.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" />
                </GridPane.margin></ComboBox>
