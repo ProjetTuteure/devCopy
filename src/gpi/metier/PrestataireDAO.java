@@ -145,6 +145,11 @@ public class PrestataireDAO {
 		}
 		return prestataireList;
 	}
+	/**
+	 * Retourne tous les noms des prestataires présents dans la BD
+	 * @return
+	 * @throws ConnexionBDException
+	 */
 	public ObservableList<String> recupererAllNomPrestataire() throws ConnexionBDException{
 		ResultSet resultat;
 		ObservableList<String> nomsPrestataire=FXCollections.observableArrayList();
@@ -169,6 +174,43 @@ public class PrestataireDAO {
 		}
 		return nomsPrestataire;
 	}
+	
+	/**
+	 * Retourne tous les noms des prestataires présents dans la table estIntervenu
+	 * @return tous les prestataires présents dans la table estIntervenu
+	 * @throws ConnexionBDException
+	 */
+	public ObservableList<String> recupererAllNomPrestataireParEstIntervenu() throws ConnexionBDException{
+		ResultSet resultat;
+		ObservableList<String> nomsPrestataire=FXCollections.observableArrayList();
+		try {
+			connexion = MaConnexion.getInstance().getConnexion();
+			PreparedStatement preparedStatement = connexion
+					.prepareStatement("SELECT DISTINCT nomPrestataire FROM PRESTATAIRE P JOIN ESTINTERVENU EI ON"
+							+ " P.idPrestataire=EI.idPrestataire");
+			resultat = preparedStatement.executeQuery();
+			while(resultat.next()){
+				nomsPrestataire.add(resultat.getString("nomPrestataire"));
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return nomsPrestataire;
+	}
+	/**
+	 * Récupère le prestataire par son Id
+	 * @param idPrestataire le prestataire à récupérer.
+	 * @return le prestataire correspondant à l'id passé en paramètre
+	 * @throws ConnexionBDException
+	 */
 	public Prestataire recupererPrestataireParId(int idPrestataire)
 			throws ConnexionBDException {
 		ResultSet resultat;
@@ -240,6 +282,40 @@ public class PrestataireDAO {
 		String prenomPrestataireARetourner;
 		try {
 			PreparedStatement ps= connexion.prepareStatement("SELECT idPrestataire,prenomPrestataire FROM PRESTATAIRE WHERE nomPrestataire=?");
+			ps.setString(1, nomPrestataire);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				prenomPrestataireARetourner=rs.getString("idPrestataire")+"- "+rs.getString("prenomPrestataire");
+				list.add(prenomPrestataireARetourner);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	/**
+	 * Retourne la liste des idPrestataire et des prenomPrestataire étant dans la table ESTINTERVENU correspondant au 
+	 * nom passé en paramètre
+	 * @param nomPrestataire
+	 * @return la liste des idPrestataire et des prénoms correspondant au nom passé en paramètre
+	 * @throws ConnexionBDException
+	 */
+	public ObservableList<String> recupererPrenomPrestataireParNomParEstIntervenu(String nomPrestataire) throws ConnexionBDException {
+		Connection connexion=MaConnexion.getInstance().getConnexion();
+		ObservableList<String> list=FXCollections.observableArrayList();
+		String prenomPrestataireARetourner;
+		try {
+			PreparedStatement ps= connexion.prepareStatement("SELECT P.idPrestataire,prenomPrestataire FROM PRESTATAIRE P JOIN "
+					+ "ESTINTERVENU EI ON P.idPrestataire=EI.idPrestataire WHERE P.nomPrestataire=?");
 			ps.setString(1, nomPrestataire);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){

@@ -266,17 +266,58 @@ public class MaintenanceDAO {
 		return listARetourner;
 	}
 	
-	public ObservableList<String> recupererAllObjetMaintenanceParEstMaintenuString() throws ConnexionBDException{
+	/**
+	 * Récupère les objets de maintenance contenues dans la table estIntervenu
+	 * @return
+	 * @throws ConnexionBDException
+	 */
+	public ObservableList<String> recupererAllObjetMaintenanceParEstIntervenuString() throws ConnexionBDException{
 		ObservableList<String> listARetourner=FXCollections.observableArrayList();
 		Connection connexion=null;
 		connexion = MaConnexion.getInstance().getConnexion();
 		try {
-			PreparedStatement ps=connexion.prepareStatement("SELECT DISTINCT objetMaintenance FROM MAINTENANCE M JOIN ESTMAINTENU EM ON "
-					+ "M.idMaintenance=EM.idMaintenance");
+			PreparedStatement ps=connexion.prepareStatement("SELECT DISTINCT objetMaintenance FROM MAINTENANCE M JOIN ESTINTERVENU EI ON "
+					+ "M.idMaintenance=EI.idMaintenance");
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
 				listARetourner.add(rs.getString("objetMaintenance"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listARetourner;
+	}
+	
+	/**
+	 * Récupère la date maintenance correspondant à l'objet maintenance passé en paramètre.
+	 * La date maintenance qui correspond à une maintenance qui est dans la table estIntervenu
+	 * @param objetMaintenance
+	 * @return
+	 * @throws ConnexionBDException
+	 */
+	public ObservableList<String> recupererDateMaintenanceParObjetParEstIntervenu(String objetMaintenance) throws ConnexionBDException{
+		ObservableList<String> listARetourner=FXCollections.observableArrayList();
+		Connection connexion=null;
+		connexion = MaConnexion.getInstance().getConnexion();
+		String dateMaintenanceARenvoyer;
+		try {
+			PreparedStatement ps=connexion.prepareStatement("SELECT M.idMaintenance,M.dateMaintenance FROM MAINTENANCE M "
+					+ "JOIN ESTINTERVENU EI ON M.idMaintenance=EI.idMaintenance WHERE M.objetMaintenance=?");
+			ps.setString(1,objetMaintenance);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				dateMaintenanceARenvoyer=rs.getString("idMaintenance")+"- "+DateConverter.getFrenchDate(rs.getString("dateMaintenance"));
+				listARetourner.add(dateMaintenanceARenvoyer);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -133,7 +133,6 @@ public class AjouterIntervention {
 		int idMaintenanceAAjouter;
 		int idFactureAAjouter;
 		if(controlerSaisies()){
-			System.out.println("Coucou2");
 			idMaintenanceAAjouter=Integer.parseInt(comboboxDateMaintenanceIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
 			idPrestataireAAjouter=Integer.parseInt(comboboxPrenomPrestataireIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
 			idFactureAAjouter=Integer.parseInt(comboboxNumFactureIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
@@ -142,7 +141,7 @@ public class AjouterIntervention {
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
-			Popup.getInstance().afficherPopup("Maintenance ajoutée !");
+			Popup.getInstance().afficherPopup("Intervention ajoutée !");
 			okClicked = true;
 			dialogStage.close();
 		}

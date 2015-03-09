@@ -63,4 +63,6 @@ SupprimerCompose
 SupprimerIntervention
 SupprimerInstallation
 
+TRIGGER A FAIRE POUR LES LOGICIELS ETC...
+
 

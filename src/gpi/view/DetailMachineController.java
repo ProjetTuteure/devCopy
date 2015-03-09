@@ -3,8 +3,6 @@ package gpi.view;
 import gpi.MainApp;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.*;
-
-
 import ping.ChangerCouleurPastille;
 import ping.PingWindows;
 import utils.Popup;
@@ -19,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
@@ -254,15 +253,18 @@ public class DetailMachineController{
 		
 		
 		colorCircle.setVisible(false);
-		/*
-		 * Rajouter un test en fonction de la machine qui ping (linux ou windows ??)
-		 */
-		PingWindows pingWindows=new PingWindows(materiel);
-		ChangerCouleurPastille pastille=new ChangerCouleurPastille(colorCircle,pingWindows);
-		Thread threadPing=new Thread(pingWindows);
-		threadPing.start();
-		Thread changerCouleur=new Thread(pastille);
-		changerCouleur.start();
+		
+		if(materiel.getEtatMaterielString()=="HS"){
+			colorCircle.setFill(Color.RED);
+			colorCircle.setVisible(true);
+		}else{
+			PingWindows pingWindows=new PingWindows(materiel);
+			ChangerCouleurPastille pastille=new ChangerCouleurPastille(colorCircle,pingWindows);
+			Thread threadPing=new Thread(pingWindows);
+			threadPing.start();
+			Thread changerCouleur=new Thread(pastille);
+			changerCouleur.start();
+		}
 	}
 	
 	/**

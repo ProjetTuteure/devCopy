@@ -54,21 +54,21 @@ public class SupprimerIntervention {
 		this.factureDAO=new FactureDAO();
 		this.estIntervenuDAO=new EstIntervenuDAO();
 		try {
-			this.listObjetIntervention=this.maintenanceDAO.recupererAllObjetMaintenanceParEstMaintenuString();
+			this.listObjetIntervention=this.maintenanceDAO.recupererAllObjetMaintenanceParEstIntervenuString();
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxObjetMaintenanceIntervention.setItems(listObjetIntervention);
 		
 		try{
-			this.listNomPrestataire=this.prestataireDAO.recupererAllNomPrestataire();
+			this.listNomPrestataire=this.prestataireDAO.recupererAllNomPrestataireParEstIntervenu();
 		}catch(ConnexionBDException e){
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		comboboxNomPrestataireIntervention.setItems(this.listNomPrestataire);
 		
 		try{
-			this.listFacture=this.factureDAO.recupererAllNumeroFacture();
+			this.listFacture=this.factureDAO.recupererAllNumeroFactureParEstIntervenu();
 		}catch(ConnexionBDException e){
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
@@ -160,7 +160,7 @@ public class SupprimerIntervention {
 	private void handleChange1() {
 		String objetSelected=this.listObjetIntervention.get(comboboxObjetMaintenanceIntervention.getSelectionModel().getSelectedIndex());
 		try {
-			this.listDateMaintenanceParObjet=maintenanceDAO.recupererDateMaintenanceParObjet(objetSelected);
+			this.listDateMaintenanceParObjet=maintenanceDAO.recupererDateMaintenanceParObjetParEstIntervenu(objetSelected);
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
@@ -172,7 +172,7 @@ public class SupprimerIntervention {
 		String nomPrestataireMaintenanceSelected;
 		nomPrestataireMaintenanceSelected=this.listNomPrestataire.get(this.comboboxNomPrestataireIntervention.getSelectionModel().getSelectedIndex());
 		try {
-			this.listPrenomPrestataire=this.prestataireDAO.recupererPrenomPrestataireParNom(nomPrestataireMaintenanceSelected);
+			this.listPrenomPrestataire=this.prestataireDAO.recupererPrenomPrestataireParNomParEstIntervenu(nomPrestataireMaintenanceSelected);
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 			e.printStackTrace();

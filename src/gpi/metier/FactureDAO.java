@@ -220,4 +220,42 @@ public class FactureDAO {
 		}
 		return null;
 	}
+	
+	/**
+	 * Retourne tous les numéros de facture contenues dans la table estIntervenu
+	 * @return les numéros de factures contenues dans la table estIntervenu
+	 * @throws ConnexionBDException
+	 */
+	public ObservableList<String> recupererAllNumeroFactureParEstIntervenu() throws ConnexionBDException{
+		ObservableList<String> numeroFactureARetourner;
+		numeroFactureARetourner=FXCollections.observableArrayList();
+		Connection connexion=null;
+		ResultSet resultat;
+		String factureARetourner;
+		try{
+			connexion=MaConnexion.getInstance().getConnexion();
+			PreparedStatement prep = connexion.prepareStatement("SELECT F.idFacture,F.numFacture FROM FACTURE F JOIN "
+					+ "ESTINTERVENU EI ON F.idFacture=EI.idFacture");
+			
+			resultat=prep.executeQuery();
+			while(resultat.next()){
+				factureARetourner=resultat.getString("idFacture")+"- "+resultat.getString("numFacture");
+				numeroFactureARetourner.add(factureARetourner);
+			}
+			return numeroFactureARetourner;
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
 }
