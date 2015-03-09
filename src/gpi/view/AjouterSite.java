@@ -6,11 +6,10 @@ import gpi.metier.SiteDAO;
 
 import java.io.File;
 
-import javax.swing.JFileChooser;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import utils.Constante;
 import utils.Popup;
@@ -110,18 +109,17 @@ public class AjouterSite {
 
 	@FXML
 	private void handleChoose(ActionEvent event) {
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Open File");
-		fileChooser.showOpenDialog(null); 
-		File file = fileChooser.getSelectedFile();
-
-
-		if (file != null) {
-			String adresse=file.getAbsolutePath();
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+		directoryChooser.setTitle("Open directory");
+		File selectedDirectory = directoryChooser.showDialog(null);
+		if (selectedDirectory != null) {
+			String adresse=selectedDirectory.getAbsolutePath();
 			adresse=adresse.replace("\\", "/");
 			adresse="file:///"+adresse;
-			setCheminImageSite(adresse);
-		}
+			this.setCheminImageSite(adresse);
+        }else{
+        	this.setCheminImageSite("");
+        }
 
 	}
 

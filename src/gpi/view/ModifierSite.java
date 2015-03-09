@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import utils.Constante;
 import utils.Popup;
@@ -17,7 +18,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFileChooser;
 
 public class ModifierSite {
 	int idSite;
@@ -68,13 +68,6 @@ public class ModifierSite {
 		this.dialogStage = dialogStage;
 	}
 
-	// a voir pour la suite
-	// public void setPerson(Site site) {
-	// this.site = site;
-	//
-	// NameSiteField.setText(site.getNomSte());
-	//
-	// }
 
 	/**
 	 * Cette methode permet de savoir si le bouton MODIFIER est clique ou pas
@@ -152,17 +145,17 @@ public class ModifierSite {
 	 */
 	@FXML
 	private void handleChoose(ActionEvent event) {
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Open File");
-		fileChooser.showOpenDialog(null); // you could pass a stage
-		File file = fileChooser.getSelectedFile(); // reference here if you
-
-		if (file != null) {
-			String adresse = file.getAbsolutePath();
-			adresse = adresse.replace("\\", "/");
-			adresse = "file:///" + adresse;
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+		directoryChooser.setTitle("Open directory");
+		File selectedDirectory = directoryChooser.showDialog(null);
+		if (selectedDirectory != null) {
+			String adresse=selectedDirectory.getAbsolutePath();
+			adresse=adresse.replace("\\", "/");
+			adresse="file:///"+adresse;
 			this.setCheminImageSite(adresse);
-		}
+        }else{
+        	this.setCheminImageSite("");
+        }
 
 	}
 

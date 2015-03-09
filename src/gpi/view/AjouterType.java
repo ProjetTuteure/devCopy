@@ -6,11 +6,11 @@ import gpi.metier.TypeDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import utils.*;
 import utils.Popup;
 
-import javax.swing.*;
 
 import java.io.File;
 
@@ -112,18 +112,17 @@ public class AjouterType {
 
 	@FXML
 	private void handleChoose(ActionEvent event) {
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Open File");
-		fileChooser.showOpenDialog(null);
-		File file = fileChooser.getSelectedFile();
-
-		if (file != null) {
-			String adresse = file.getAbsolutePath();
-			adresse = adresse.replace("\\", "/");
-			adresse = "file:///" + adresse;
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+		directoryChooser.setTitle("Open directory");
+		File selectedDirectory = directoryChooser.showDialog(null);
+		if (selectedDirectory != null) {
+			String adresse=selectedDirectory.getAbsolutePath();
+			adresse=adresse.replace("\\", "/");
+			adresse="file:///"+adresse;
 			this.setCheminImageType(adresse);
-		}
-
+        }else{
+        	this.setCheminImageType("");
+        }
 	}
 
 	public String getCheminImageType() {
