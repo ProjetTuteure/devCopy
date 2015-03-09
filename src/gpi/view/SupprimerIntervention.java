@@ -54,7 +54,7 @@ public class SupprimerIntervention {
 		this.factureDAO=new FactureDAO();
 		this.estIntervenuDAO=new EstIntervenuDAO();
 		try {
-			this.listObjetIntervention=this.maintenanceDAO.recupererAllObjetMaintenanceString();
+			this.listObjetIntervention=this.maintenanceDAO.recupererAllObjetMaintenanceParEstMaintenuString();
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
