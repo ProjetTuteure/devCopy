@@ -1,5 +1,4 @@
 Modifier facture : Dans facture à modifier : mettre l'id facture+numéro facture
-changer popup erreur caractère spécial...
 
 Ajouter fabricant : vérifier caractères spéciaux popup erreur
 
