@@ -1,7 +1,3 @@
-Modifier un materiel : rechercher le nom du materiel par nom et pas par numéro d'immobilisation !!
-
-Supprimer un matériel : IDEM rechercher le materiel par son nom et pas par numéro d'immobilisation !!
-
 Modifier facture : Dans facture à modifier : mettre l'id facture+numéro facture
 changer popup erreur caractère spécial...
 
