@@ -10,17 +10,17 @@
     <GridPane prefHeight="164.0" prefWidth="301.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
         <Label prefHeight="17.0" prefWidth="101.0" text="Numéro de facture" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <ComboBox fx:id="factureCombobox" onAction="#handlechange" prefWidth="200.0" GridPane.columnIndex="1" />
         <TextField fx:id="numFactureField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <DatePicker fx:id="dateFacturePicker" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <TextField fx:id="montantFactureField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" /> 
+        <ComboBox fx:id="numRevendeurCombobox" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label text="Nom du revendeur" GridPane.rowIndex="5" />
             <Label prefHeight="17.0" prefWidth="101.0" text="Date de facture" GridPane.rowIndex="3" />
             <Label prefHeight="17.0" prefWidth="101.0" text="Montant facture" GridPane.rowIndex="4" />
-            <TextField fx:id="montantFactureField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <DatePicker fx:id="dateFacturePicker" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label prefHeight="17.0" prefWidth="101.0" text="Facture à modifier" />
-            <ComboBox fx:id="factureCombobox" onAction="#handlechange" prefWidth="200.0" GridPane.columnIndex="1" />
             <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Separator prefWidth="200.0" GridPane.rowIndex="1" />
-            <ComboBox fx:id="numRevendeurCombobox" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       </children>
       <columnConstraints>
         <ColumnConstraints fillWidth="true" halignment="LEFT" hgrow="SOMETIMES" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />

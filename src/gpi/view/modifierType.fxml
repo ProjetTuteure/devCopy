@@ -10,11 +10,11 @@
     <GridPane prefHeight="164.0" prefWidth="301.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
         <Label text="Nom du type" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <ComboBox fx:id="comboboxTypeMod" onAction="#handlechange" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
         <TextField fx:id="nomTypeField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Image du type" GridPane.rowIndex="2" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleChoose" text="Choisir l'image..." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Label text="Type à modifier" />
-            <ComboBox fx:id="comboboxTypeMod" onAction="#handlechange" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+        <Label text="Image du type" GridPane.rowIndex="2" />
+        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleChoose" text="Choisir l'image..." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+        <Label text="Type à modifier" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="80.0" prefWidth="96.0" />

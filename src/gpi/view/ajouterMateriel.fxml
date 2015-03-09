@@ -12,26 +12,26 @@
       <children>
         <Label prefHeight="17.0" prefWidth="172.0" text="Numéro d'immobilisation" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Label text="Nom du materiel" GridPane.rowIndex="1" />
+            <Label text="Numero de serie" GridPane.rowIndex="2" />
+            <Label text="Système d'exploitation" GridPane.rowIndex="3" />
+            <Label text="Modèle du materiel" GridPane.rowIndex="4" />
             <Label text="Type de materiel" GridPane.rowIndex="5" />
-            <TextField fx:id="nomMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="immobMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" />
-            <TextField fx:id="numeroSerieMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="systemeExploitationMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label prefHeight="17.0" prefWidth="202.0" text="Date d'expiration garantie" GridPane.rowIndex="7" />
             <Label text="Etat du materiel" GridPane.rowIndex="6" />
             <Label prefHeight="17.0" prefWidth="202.0" text="Fabricant du materiel" GridPane.rowIndex="8" />
             <Label prefHeight="17.0" prefWidth="202.0" text="Facture du materiel" GridPane.rowIndex="9" />
             <Label prefHeight="17.0" prefWidth="202.0" text="Site du materiel" GridPane.rowIndex="10" />
+            <TextField fx:id="immobMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" />
+            <TextField fx:id="nomMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="numeroSerieMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="systemeExploitationMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="modeleMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboboxTypeMateriel" maxWidth="175.0" minWidth="160.0" prefHeight="25.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <ComboBox fx:id="comboboxEtatMateriel" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <DatePicker fx:id="dateMaterielPicker" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <ComboBox fx:id="comboboxFabricantMateriel" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <ComboBox fx:id="comboboxFactureMateriel" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <ComboBox fx:id="comboboxSiteMateriel" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <ComboBox fx:id="comboboxTypeMateriel" maxWidth="175.0" minWidth="160.0" prefHeight="25.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label text="Numero de serie" GridPane.rowIndex="2" />
-            <Label text="Système d'exploitation" GridPane.rowIndex="3" />
-            <Label text="Modèle du materiel" GridPane.rowIndex="4" />
-            <TextField fx:id="modeleMaterielField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       </children>
       <columnConstraints>
         <ColumnConstraints fillWidth="true" hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
