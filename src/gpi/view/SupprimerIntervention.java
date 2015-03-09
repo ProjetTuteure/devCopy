@@ -137,7 +137,7 @@ public class SupprimerIntervention {
 			idPrestataireASupprimer=Integer.parseInt(comboboxPrenomPrestataireIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
 			idFactureASupprimer=Integer.parseInt(comboboxNumFactureIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
 			try {
-				estIntervenuDAO.ajouterEstIntervenu(idMaintenanceASupprimer,idPrestataireASupprimer,idFactureASupprimer);
+				estIntervenuDAO.supprimerUtilise(idMaintenanceASupprimer, idPrestataireASupprimer, idFactureASupprimer);
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
