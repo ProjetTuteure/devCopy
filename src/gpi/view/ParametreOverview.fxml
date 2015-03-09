@@ -107,7 +107,7 @@
             <Label text="Gérer les installations logiciel" GridPane.rowIndex="18" />
             <Button mnemonicParsing="false" onAction="#handleaddInstallation" text="Ajouter..." GridPane.columnIndex="1" GridPane.rowIndex="18" />
             <Button mnemonicParsing="false" onAction="#handlesuppInstallation" text="Supprimer..." GridPane.columnIndex="3" GridPane.rowIndex="18" />
-            <Button mnemonicParsing="false" text="Rapport Logiciels" GridPane.columnIndex="3" />
+            <Button mnemonicParsing="false" onAction="#onClickButtonRapport" text="Rapport Logiciels" GridPane.columnIndex="3" />
           
                </children>
       </GridPane>
