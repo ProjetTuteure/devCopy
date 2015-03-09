@@ -30,6 +30,118 @@ public class Rapports {
 	      Font.BOLD);
 
 	  
+	  public void GenerateLogiciels(){
+		  try {
+		      String FILE = Constante.CHEMIN_RAPPORTS+"Logiciels.pdf";
+		      Document document = new Document();
+		      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+		      document.open();
+		      
+		      document.addTitle("Rapport");
+			  document.addAuthor("ADAM SAS");
+			  document.addCreator("ADAM SAS");
+			  
+			  Image image=Image.getInstance("src/sources/images/ADAM_RAPPORT.png");
+			  document.add(image);
+			  
+			  Paragraph preface = new Paragraph();
+
+			  Paragraph titre=new Paragraph("Logiciels", titleFont);
+			  titre.setAlignment(Element.ALIGN_CENTER);
+			  preface.add(titre);
+
+			  addEmptyLine(preface, 1);
+
+			  Paragraph description=new Paragraph("Liste des logiciels de ADAM SAS",smallBold);
+			  description.setAlignment(Element.ALIGN_CENTER);
+			  preface.add(description);
+
+			  addEmptyLine(preface, 3);
+
+			  document.add(preface);
+			  
+
+			  Paragraph paragraph=new Paragraph("En fonctionnement",headFont);
+			  addEmptyLine(paragraph, 2);
+			  // add a table
+			  createTableEtat(paragraph,1);
+			  document.add(paragraph);
+			  document.newPage();
+			  
+		      document.close();
+		    } catch (Exception e) {
+		      e.printStackTrace();
+		    }
+		  }
+	  
+	  private static void createTableEtat(Paragraph paragraph) throws DocumentException {
+		    PdfPTable table = new PdfPTable(5);
+
+		    table.setWidths(new int[]{14,14,14,14,14});
+		    table.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    
+		    PdfPCell c1 = new PdfPCell(new Phrase("Nom"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+
+		    c1 = new PdfPCell(new Phrase("Version"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+
+		    c1 = new PdfPCell(new Phrase("Date d'expiration"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    c1 = new PdfPCell(new Phrase("Date d'achat"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    c1 = new PdfPCell(new Phrase("Revendeur"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    
+		    table.setHeaderRows(1);
+		    
+		    RapportsDAO rapportsDAO = new RapportsDAO();
+		    String[][] rapport=null;
+		    try {
+				rapport=rapportsDAO.getRapportLogiciels();
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+		    
+		    
+		    
+		    PdfPCell cell=new PdfPCell();
+		    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    boolean pair;
+		    BaseColor color;
+		    for(int i=0;i<rapport.length;i++){
+		    	pair=(i%2==0)?true:false;
+		    	color=pair?BaseColor.LIGHT_GRAY:BaseColor.WHITE;
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][0],cellFont));
+		    	cell.setBackgroundColor(color);
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][1],cellFont));
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][2],cellFont));
+		    	table.addCell(cell);
+		
+		    	cell.setPhrase(new Phrase(rapport[i][3],cellFont));
+		    	table.addCell(cell);
+		    	
+		    	cell.setPhrase(new Phrase(rapport[i][4],cellFont));
+		    	table.addCell(cell);
+		    }
+		    paragraph.add(table);
+		  }
+	  
+	  
+	  
+	  
 	  
 	  public void GenerateEtat(){
 		  try {

@@ -167,4 +167,43 @@ private Connection connexion;
 		}
 		return rapport;
 	}
+	
+	public String[][] getRapportLogiciels() throws ConnexionBDException{
+		connexion = MaConnexion.getInstance().getConnexion();
+		String rapport[][] = null;
+		try{
+			PreparedStatement ps=connexion.prepareStatement("SELECT COUNT(*) as nbLigne FROM LOGICIEL;");
+			ResultSet resultat = ps.executeQuery();
+			resultat.next();
+			int nbLignes=resultat.getInt("nbLigne");
+			String requete="SELECT nomLogiciel,versionLogiciel,dateExpirationLogiciel,dateFacture,nomRevendeur FROM LOGICIEL l"
+				+ " JOIN FACTURE f ON l.idFacture=f.idFacture"
+				+ " JOIN REVENDEUR r ON f.idRevendeur=r.idRevendeur"
+				+ " ORDER BY nomLogiciel ASC";
+			ps=connexion.prepareStatement(requete);
+			resultat = ps.executeQuery();
+			rapport=new String[nbLignes][7];
+			int i=0;
+			while(resultat.next()){
+				rapport[i][0]=resultat.getString("nomLogiciel");
+				rapport[i][1]=resultat.getString("versionLogiciel");
+				rapport[i][2]=resultat.getString("dateExpirationLogiciel");
+				rapport[i][3]=resultat.getString("dateFacture");
+				rapport[i][4]=resultat.getString("nomRevendeur");
+				i++;
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return rapport;
+	}
 }

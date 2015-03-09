@@ -47,9 +47,6 @@ CREATE TABLE LOGICIEL(
 	dateExpirationLogiciel DATE,
 	idFacture int FOREIGN KEY REFERENCES FACTURE(idFacture))
 
-CREATE TABLE ETAT(
-	etat varchar(20) PRIMARY KEY
-)
 
 CREATE TABLE MATERIEL(
 	idMateriel int IDENTITY(1,1) PRIMARY KEY ,
