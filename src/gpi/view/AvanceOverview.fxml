@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -22,9 +23,9 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <BorderPane.margin>
                   <Insets bottom="25.0" left="100.0" right="300.0" />
@@ -51,9 +52,9 @@
                         <Insets bottom="5.0" top="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ComboBox fx:id="comboboxSiteAvanceOverview" promptText="Selectionner par site" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ComboBox fx:id="comboboxAncienneteAvanceOverview" promptText="Selectionner par ancienneté" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="comboboxTypeAvanceOverview" promptText="Selectionner par type" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="comboboxSiteAvanceOverview" prefHeight="25.0" prefWidth="220.0" promptText="Selectionner par site" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="comboboxAncienneteAvanceOverview" prefHeight="25.0" prefWidth="220.0" promptText="Selectionner par ancienneté" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="comboboxTypeAvanceOverview" prefHeight="25.0" prefWidth="220.0" promptText="Selectionner par type" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="utilisateur" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets bottom="5.0" top="5.0" />
@@ -95,7 +96,7 @@
             </Label>
          </top>
          <bottom>
-            <Button mnemonicParsing="false" text="Rechercher" onAction="#goToScreen2" BorderPane.alignment="TOP_LEFT">
+            <Button mnemonicParsing="false" onAction="#goToScreen2" text="Rechercher" BorderPane.alignment="TOP_LEFT">
                <BorderPane.margin>
                   <Insets left="250.0" />
                </BorderPane.margin>
