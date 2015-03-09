@@ -108,7 +108,7 @@ public class SupprimerComposant {
 		}
 
 		for (Composant composant : listeCarac) {
-			listcarac.add(composant.getCaracteristiqueComposant());
+			listcarac.add(composant.getCaracteristiqueComposant()  +" - " +  composant.getFabricantComposant().getNomFabricant().get());
 		}
 		comboboxcarac.setItems(listcarac);
 	}
