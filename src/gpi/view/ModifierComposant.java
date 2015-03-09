@@ -135,7 +135,7 @@ public class ModifierComposant {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 		for (Composant cp : listeCarac) {
-			listcarac.add(cp.getCaracteristiqueComposant());
+			listcarac.add(cp.getCaracteristiqueComposant() +" - " +  cp.getFabricantComposant().getNomFabricant().get());
 		}
 		comboboxcarac.setItems(listcarac);
 	}

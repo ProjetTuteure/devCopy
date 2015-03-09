@@ -51,7 +51,6 @@ public class PrestataireDAO {
 	}
 
 	public int modifierPrestataire(Prestataire prestataire) throws ConnexionBDException {
-		System.out.println(prestataire);
 		int nombreLigneAffectee = 0;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
@@ -281,7 +280,7 @@ public class PrestataireDAO {
 		ObservableList<String> list=FXCollections.observableArrayList();
 		String prenomPrestataireARetourner;
 		try {
-			PreparedStatement ps= connexion.prepareStatement("SELECT idPrestataire,prenomPrestataire FROM PRESTATAIRE WHERE nomPrestataire=?");
+			PreparedStatement ps= connexion.prepareStatement("SELECT DISTINCT idPrestataire,prenomPrestataire FROM PRESTATAIRE WHERE nomPrestataire=?");
 			ps.setString(1, nomPrestataire);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
@@ -314,7 +313,7 @@ public class PrestataireDAO {
 		ObservableList<String> list=FXCollections.observableArrayList();
 		String prenomPrestataireARetourner;
 		try {
-			PreparedStatement ps= connexion.prepareStatement("SELECT P.idPrestataire,prenomPrestataire FROM PRESTATAIRE P JOIN "
+			PreparedStatement ps= connexion.prepareStatement("SELECT DISTINCT P.idPrestataire,prenomPrestataire FROM PRESTATAIRE P JOIN "
 					+ "ESTINTERVENU EI ON P.idPrestataire=EI.idPrestataire WHERE P.nomPrestataire=?");
 			ps.setString(1, nomPrestataire);
 			ResultSet rs=ps.executeQuery();

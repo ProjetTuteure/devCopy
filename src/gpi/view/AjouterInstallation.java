@@ -95,20 +95,33 @@ public class AjouterInstallation {
 	 */
 	@FXML
 	private void handleOk() {
-		EstInstalleDAO estInstalleDAO=new EstInstalleDAO();
-		int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxNomMateriel.getValue()));
-		int idLogiciel = listIdLogiciel.get(listNomLogiciel.indexOf(comboboxLogiciel.getValue()));
-		try {
-			EstInstalle estInstalle=new EstInstalle(idMateriel,idLogiciel);
-			estInstalleDAO.ajouterEstInstalle(estInstalle);
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
+		if(controlerSaisies()){
+			EstInstalleDAO estInstalleDAO=new EstInstalleDAO();
+			int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxNomMateriel.getValue()));
+			int idLogiciel = listIdLogiciel.get(listNomLogiciel.indexOf(comboboxLogiciel.getValue()));
+			try {
+				EstInstalle estInstalle=new EstInstalle(idMateriel,idLogiciel);
+				estInstalleDAO.ajouterEstInstalle(estInstalle);
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
 
 	}
 
+	private boolean controlerSaisies(){
+		if(comboboxNomMateriel.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Matériel à ajouter l'installation\" doit être rempli");
+			return false;
+		}
+		if(comboboxLogiciel.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Logiciel à ajouter\" doit être rempli");
+			return false;
+		}
+		return true;
+	}
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton ANNULER
 	 * est clique

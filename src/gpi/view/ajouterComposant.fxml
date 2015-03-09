@@ -10,10 +10,10 @@
   <children>
     <GridPane prefHeight="166.0" prefWidth="322.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
-            <Label text="Nom du matériel" />
+            <Label text="Nom du composant" />
             <Label text="Caractéristiques" GridPane.rowIndex="2" />
             <TextField fx:id="nomField" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" />
-            <Label prefHeight="17.0" prefWidth="202.0" text="Fabricant du matériel" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="202.0" text="Fabricant du composant" GridPane.rowIndex="1" />
             <ComboBox fx:id="comboboxfabr" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextArea fx:id="caracteristiquesField" prefHeight="90.0" prefWidth="176.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>

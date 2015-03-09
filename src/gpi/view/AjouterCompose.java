@@ -119,7 +119,6 @@ public class AjouterCompose {
 		List<Composant> listComposant = null;
 		try {
 			listComposant = composantDAO.recupererComposantParNom(comboboxNomComposant.getValue());
-			System.out.println(listComposant);
 		} catch (ConnexionBDException e2) {
 			Popup.getInstance().afficherPopup(e2.getMessage());
 		}

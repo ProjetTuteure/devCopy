@@ -14,9 +14,6 @@ public class EstIntervenuDAO {
 	public int ajouterEstIntervenu(int idMaintenance,int idPrestataire, int idFacture) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		int resultat;
-		System.out.println(idMaintenance);
-		System.out.println(idPrestataire);
-		System.out.println(idFacture);
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prep = connexion

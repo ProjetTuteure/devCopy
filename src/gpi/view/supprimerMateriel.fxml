@@ -23,7 +23,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="N° d'immob. du matériel à supprimer" />
+            <Label text="Nom du matériel à supprimer" />
             <ComboBox fx:id="comboboxMateriel" prefWidth="150.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>

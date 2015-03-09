@@ -141,7 +141,7 @@ public class SupprimerIntervention {
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
-			Popup.getInstance().afficherPopup("Maintenance ajoutée !");
+			Popup.getInstance().afficherPopup("Intervention supprimée !");
 			okClicked = true;
 			dialogStage.close();
 		}

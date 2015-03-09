@@ -234,7 +234,7 @@ public class FactureDAO {
 		String factureARetourner;
 		try{
 			connexion=MaConnexion.getInstance().getConnexion();
-			PreparedStatement prep = connexion.prepareStatement("SELECT F.idFacture,F.numFacture FROM FACTURE F JOIN "
+			PreparedStatement prep = connexion.prepareStatement("SELECT DISTINCT F.idFacture,F.numFacture FROM FACTURE F JOIN "
 					+ "ESTINTERVENU EI ON F.idFacture=EI.idFacture");
 			
 			resultat=prep.executeQuery();

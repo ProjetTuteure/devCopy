@@ -9,7 +9,7 @@
   <children>
     <GridPane prefHeight="71.0" prefWidth="360.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
-        <Label text="Materiel à ajouter l'installation" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label text="Materiel" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Label text="Logiciel à ajouter" GridPane.rowIndex="1" />
             <ComboBox fx:id="comboboxNomMateriel" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
             <ComboBox fx:id="comboboxLogiciel" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />

@@ -53,7 +53,7 @@ public class ModifierFacture {
 		try {
 			for (Facture facture : factureDAO.recupererAllFacture()) {
 				listIdFacture.add(facture.getIdFacture().getValue());
-				listFacture.add(facture.getNumFacture());
+				listFacture.add(facture.getNumFacture() +" - "+ facture.getDateFacStringProperty().get());
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());

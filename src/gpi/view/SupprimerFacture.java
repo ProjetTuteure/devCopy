@@ -26,7 +26,7 @@ public class SupprimerFacture {
 	List<Integer> listFactureId;
 
 	/**
-	 * Initialise les donn�es Ajoute les donn�es aux combobox
+	 * Initialise les données Ajoute les données aux combobox
 	 */
 	@FXML
 	private void initialize() {
@@ -35,7 +35,7 @@ public class SupprimerFacture {
 		listFactureId = new ArrayList<Integer>();
 		try {
 			for (Facture facture : factureDAO.recupererAllFacture()) {
-				listFacture.add(facture.getNumFacture());
+				listFacture.add(facture.getNumFacture() +" - "+ facture.getDateFacStringProperty().get());
 				listFactureId.add(facture.getIdFacture().getValue());
 			}
 		} catch (ConnexionBDException e) {
