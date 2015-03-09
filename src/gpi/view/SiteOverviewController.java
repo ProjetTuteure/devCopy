@@ -1,5 +1,6 @@
 package gpi.view;
 
+import utils.Constante;
 import utils.Popup;
 import utils.Rapports;
 import gpi.MainApp;
@@ -161,5 +162,6 @@ public class SiteOverviewController {
 	public void onClickButton(){
 		Rapports rapport = new Rapports();
 		rapport.GenerateMaterielParc();
+		Popup.getInstance().afficherPopup("Rapport des biens informatiques du parc généré \n ("+Constante.CHEMIN_RAPPORTS+"MaterielParc.pdf)");
 	}
 }

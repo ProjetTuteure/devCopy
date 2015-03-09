@@ -6,6 +6,8 @@ import gpi.metier.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import utils.Constante;
+import utils.Popup;
 import utils.Rapports;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,6 +49,7 @@ public class ParametreController implements Initializable {
 	public void onClickButtonRapport(){
 		Rapports rapport=new Rapports();
 		rapport.GenerateLogiciels();
+		Popup.getInstance().afficherPopup("Rapport des logiciels de la société généré \n ("+Constante.CHEMIN_RAPPORTS+"Logiciels.pdf)");
 	}
 
 	/**

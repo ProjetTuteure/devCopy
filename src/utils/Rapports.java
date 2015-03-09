@@ -41,7 +41,7 @@ public class Rapports {
 			  document.addAuthor("ADAM SAS");
 			  document.addCreator("ADAM SAS");
 			  
-			  Image image=Image.getInstance("src/sources/images/ADAM_RAPPORT.png");
+			  Image image=Image.getInstance(Constante.CHEMIN_IMAGE_RAPPORT);
 			  document.add(image);
 			  
 			  Paragraph preface = new Paragraph();
@@ -154,7 +154,7 @@ public class Rapports {
 			  document.addAuthor("ADAM SAS");
 			  document.addCreator("ADAM SAS");
 			  
-			  Image image=Image.getInstance("src/sources/images/ADAM_RAPPORT.png");
+			  Image image=Image.getInstance(Constante.CHEMIN_IMAGE_RAPPORT);
 			  document.add(image);
 			  
 			  Paragraph preface = new Paragraph();
@@ -295,7 +295,7 @@ public class Rapports {
 			  document.addAuthor("ADAM SAS");
 			  document.addCreator("ADAM SAS");
 			  
-			  Image image=Image.getInstance("src/sources/images/ADAM_RAPPORT.png");
+			  Image image=Image.getInstance(Constante.CHEMIN_IMAGE_RAPPORT);
 			  document.add(image);
 			  
 			  Paragraph preface = new Paragraph();
@@ -454,7 +454,7 @@ public class Rapports {
 		  document.addCreator("ADAM SAS");
 		  
 		  Paragraph preface = new Paragraph();
-		  Image image=Image.getInstance("src/sources/images/ADAM_RAPPORT.png");
+		  Image image=Image.getInstance(Constante.CHEMIN_IMAGE_RAPPORT);
 		  document.add(image);
 		  
 		  Paragraph titre=new Paragraph("Au rapport", titleFont);
@@ -525,7 +525,6 @@ public class Rapports {
 	    try {
 			rapport=rapportsDAO.getRapportMaterielParc();
 		} catch (ConnexionBDException e) {
-			// TODO Auto-generated catch block
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
 	    

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utils.Popup;
-import utils.PopupChargement;
 import gpi.bd.Donnee;
 import gpi.metier.*;
 import gpi.view.*;

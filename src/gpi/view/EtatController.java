@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import utils.Constante;
 import utils.DateConverter;
 import utils.Popup;
 import utils.Rapports;
@@ -91,6 +92,7 @@ public class EtatController implements Initializable{
 	public void onClickButton(){
 		Rapports rapport=new Rapports();
 		rapport.GenerateEtat();
+		Popup.getInstance().afficherPopup("Rapport de l'état du matériel généré \n ("+Constante.CHEMIN_RAPPORTS+"Etat.pdf)");
 	}
 
 	/**

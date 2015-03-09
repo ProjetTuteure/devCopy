@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import utils.Constante;
 import utils.DateConverter;
 import utils.Popup;
 import utils.Rapports;
@@ -124,6 +125,7 @@ public class AncienneteController implements Initializable {
 	public void onClickButton(){
 		Rapports rapport=new Rapports();
 		rapport.GenerateFinGarantie();
+		Popup.getInstance().afficherPopup("Rapport du matériel en fin de garantie généré\n ("+Constante.CHEMIN_RAPPORTS+"FinGarantie.pdf)");
 	}
      
 	@FXML 

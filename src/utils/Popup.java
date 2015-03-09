@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -55,17 +56,21 @@ public final class Popup {
 	public void afficherPopup(String texteAAfficher){
 		if(Popup.instance!=null){
 			buttonOk.setOnAction(new EventHandler<ActionEvent>() {
-			    @Override 
+			    @Override
 			    public void handle(ActionEvent e) {
 			    	Popup.instance=null;
 			        dialogStage.close();
 			    }
 			});
 		}
+		Text text=new Text();
+		text.setTextAlignment(TextAlignment.CENTER);
+		text.setText(texteAAfficher);
 		dialogStage.setScene(new Scene(VBoxBuilder.create().
-			    children(new Text(texteAAfficher),buttonOk).
+			    children(text,buttonOk).
 			    alignment(Pos.CENTER).padding(new Insets(5)).build()));
 			dialogStage.setAlwaysOnTop(true);
+			dialogStage.setTitle(" ");
 			dialogStage.show();
 	}
 	

@@ -35,4 +35,5 @@ public class Constante {
 	public static final String CHEMIN_VNC_VIEWER="./VNC/vncviewer.exe";
 	public static final String CHEMIN_CONF_PROPERTIES="./Configuration.properties";
 	public static final String CHEMIN_RAPPORTS="Rapports/";
+	public static final String CHEMIN_IMAGE_RAPPORT="src/sources/images/ADAM_RAPPORT.png";
 }
