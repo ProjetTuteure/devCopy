@@ -1342,7 +1342,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/ajouterInstallation.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Ajouter une opération d'installation");
+			dialogStage.setTitle("Installation");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);
@@ -1370,7 +1370,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/supprimerInstallation.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Supprimer une opération d'installation");
+			dialogStage.setTitle("Désinstaller");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);
