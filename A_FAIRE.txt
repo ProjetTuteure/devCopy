@@ -20,8 +20,6 @@ Supprimer logiciel sur une machine : gérer les champs vides
 
 utlisiateur modifier et supprimer
 
-Modifier/supprimer facture : numéro facture pas unique
-
 TRIGGER A FAIRE POUR LES LOGICIELS ETC...
 
 Pour les editions de rapport, après appui sur le bouton, faire une popup qui dit que le rapport a été généré dans le dossier
