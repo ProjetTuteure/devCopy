@@ -11,11 +11,10 @@ Ajouter une maintenance sur le matériel : Maintenance sur le matériel : mettre l
 Ajouter maintenance : faute d'orthographe "ayant eu une opérationde maintance"...
 Supprimer une opération de maintenance : orthographe
 
-Installation logiciel : gérer les champs vides
-Supprimer logiciel sur une machine : gérer les champs vides
-
 utlisiateur modifier et supprimer
 
 TRIGGER A FAIRE POUR LES LOGICIELS ETC...
+
+Pour les editions de rapport, après appui sur le bouton, faire une popup qui dit que le rapport a été généré dans le dossier
 
 

@@ -45,7 +45,7 @@ public class AjouterLogiciel {
 		listFacture = FXCollections.observableArrayList();
 		try {
 			for (Facture facture : factureDAO.recupererAllFacture()){
-				listFacture.add(facture.getNumFacture());
+				listFacture.add(facture.getNumFacture() + " - "+ facture.getDateFacStringProperty().get());
 				listFactureId.add(facture.getIdFacture().getValue());
 			}
 		} catch (ConnexionBDException e) {
