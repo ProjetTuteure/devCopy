@@ -28,7 +28,7 @@ public class MaConnexion {
 			DriverManager.setLoginTimeout(2);
 			connexion = DriverManager.getConnection(url,user,mdp);
 		} catch (SQLException e) {
-			throw new ConnexionBDException("Probl�me de connexion à la bd");
+			throw new ConnexionBDException("Problème de connexion à la bd");
 		}
 		return connexion;
 	}
