@@ -3,12 +3,11 @@ package gpi.view;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
+
 import utils.Constante;
-=======
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
->>>>>>> c188695aedb434f45667e3d23e78283830ee71cd
+
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
 import gpi.exception.PrimaryKeyException;
@@ -95,21 +94,6 @@ public class AjouterCompose {
 	 */
 	@FXML
 	private void handleOk() {
-<<<<<<< HEAD
-		Composant composantSelected = null;
-		Materiel materielSelected = null;
-		MaterielDAO materielDAO = new MaterielDAO();
-		ComposeDAO composeDAO = new ComposeDAO();
-		okClicked = true;
-		try {
-			composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
-			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxMateriel.getValue()))));
-			composeDAO.ajouterCompose(new Compose(composantSelected,materielSelected));
-			Popup.getInstance().afficherPopup("Composant "+composantSelected.getNomComposant()+" ajouté dans "+materielSelected.getNomMateriel().getValue());
-
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
-=======
 		if(controlerSaisies()){
 			Composant composantSelected = null;
 			Materiel materielSelected = null;
@@ -127,7 +111,6 @@ public class AjouterCompose {
 				Popup.getInstance().afficherPopup(pke.getMessage());
 			}
 			dialogStage.close();
->>>>>>> c188695aedb434f45667e3d23e78283830ee71cd
 		}
 	}
 
