@@ -7,6 +7,7 @@ BEGIN
 	WHILE @@FETCH_STATUS=0
 	BEGIN
 		DELETE FROM ESTINSTALLE WHERE idLogiciel=@idLogicielASupprimer
+		DELETE FROM LOGICIEL WHERE idLogiciel=@idLogicielASupprimer
 		FETCH CursorLogiciel INTO @idLogicielASupprimer
 	END
 	CLOSE CursorLogiciel
