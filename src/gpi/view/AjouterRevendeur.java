@@ -80,7 +80,7 @@ public class AjouterRevendeur {
 				rdao.ajouterRevendeur(revendeurAAjouter);
 				Popup.getInstance().afficherPopup("Revendeur "
 						+ revendeurAAjouter.getNomRevendeur().getValue()
-						+ " ajouté !");
+						+ " ajouté");
 			} catch (ConnexionBDException ce) {
 				Popup.getInstance().afficherPopup(ce.getMessage());
 			}

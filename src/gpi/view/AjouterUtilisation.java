@@ -2,6 +2,7 @@ package gpi.view;
 
 import gpi.exception.ConnexionBDException;
 import gpi.exception.PrimaryKeyException;
+import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
 import gpi.metier.PageMateriel;
 import gpi.metier.PageMaterielDAO;
@@ -12,6 +13,7 @@ import gpi.metier.UtiliseDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 
@@ -43,7 +45,7 @@ public class AjouterUtilisation {
 	private ObservableList<String> listNomMateriel;
 	private List<String> listIdMateriel;
 	/**
-	 * Initialise les donn�es
+	 * Initialise les données
 	 */
 	@FXML
 	private void initialize() {
@@ -102,7 +104,10 @@ public class AjouterUtilisation {
 			int indexUtilisateur = ComboboxNomUtilisateur.getSelectionModel().getSelectedIndex();
 			int indexMateriel = ComboboxMateriel.getSelectionModel().getSelectedIndex();
 			try{
-				utiliseDAO.ajouterUtilise(new Utilise(dateDebutUtilisation.getValue(),utilisateurDAO.recupererUtilisateurParId(listIdUtilisateur.get(indexUtilisateur)), materielDAO.recupererMaterielParId(Integer.parseInt(listIdMateriel.get(indexMateriel)))));
+				Utilisateur utilisateur=utilisateurDAO.recupererUtilisateurParId(listIdUtilisateur.get(indexUtilisateur));
+				Materiel materiel=materielDAO.recupererMaterielParId(Integer.parseInt(listIdMateriel.get(indexMateriel)));
+				utiliseDAO.ajouterUtilise(new Utilise(dateDebutUtilisation.getValue(),utilisateur, materiel));
+				Popup.getInstance().afficherPopup("Utilisateur "+utilisateur.getNomUtilisateur().getValue()+" ajouté sur "+materiel.getNomMateriel().getValue());
 			}catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

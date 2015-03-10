@@ -72,7 +72,7 @@ public class AjouterSite {
 			setNomSite(NameSiteField.getText());
 			try {
 				siteDAO.ajouterSite(new Site(0,getNomSite(),getCheminImageSite()));
-				Popup.getInstance().afficherPopup("Site "+getNomSite()+" ajout� !");
+				Popup.getInstance().afficherPopup("Site "+getNomSite()+" ajouté");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

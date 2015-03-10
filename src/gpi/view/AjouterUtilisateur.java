@@ -28,7 +28,7 @@ public class AjouterUtilisateur {
 	private boolean okClicked = false;
 
 	/**
-	 * Initialise les donn�es
+	 * Initialise les données
 	 */
 	@FXML
 	private void initialize() {
@@ -104,7 +104,7 @@ public class AjouterUtilisateur {
 				utilisateurDAO.ajouterUtilisateur(utilisateurAAjouter);
 				Popup.getInstance().afficherPopup("Utilisateur "
 						+ utilisateurAAjouter.getNomUtilisateur().getValue()
-						+ " ajout� !");
+						+ " ajouté");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

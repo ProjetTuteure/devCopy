@@ -139,7 +139,7 @@ public class AjouterPrestataire {
 			try {
 				prestataireDAO.ajouterPrestataire(prestataireAAjouter);
 				Popup.getInstance().afficherPopup("Prestataire " + nomPrestataireField.getText() + " "
-						+ prenomPrestataireField.getText() + " ajouté !");
+						+ prenomPrestataireField.getText() + " ajouté");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

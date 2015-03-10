@@ -66,7 +66,7 @@ public class AjouterType {
 			try {
 				typeDAO.ajouterType(typeAAjoute);
 				Popup.getInstance().afficherPopup("Type " + typeAAjoute.getNomTypeString()
-						+ " ajout� !");
+						+ " ajouté");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
@@ -78,23 +78,23 @@ public class AjouterType {
 
 	private boolean controlerSaisies() {
 		if (nomTypeField.getText().isEmpty()) {
-			Popup.getInstance().afficherPopup("Le champ \"Nom du type\" doit �tre saisi");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du type\" doit être saisi");
 			return false;
 		}
 		if (nomTypeField.getText().length() > Constante.LONGUEUR_NOM_TYPE) {
-			Popup.getInstance().afficherPopup("La longueur du nom du type saisi doit �tre inf�rieur � "
-					+ Constante.LONGUEUR_NOM_TYPE + " caract�res");
+			Popup.getInstance().afficherPopup("La longueur du nom du type saisi doit être infêrieur à "
+					+ Constante.LONGUEUR_NOM_TYPE + " caractères");
 			return false;
 		}
 		if (this.getCheminImageType() != null) {
 			if (this.getCheminImageType().length() > Constante.LONGUEUR_CHEMIN_IMAGE) {
-				Popup.getInstance().afficherPopup("La longueur du chemin saisi doit �tre inf�rieur � "
-						+ Constante.LONGUEUR_CHEMIN_IMAGE + " caract�res");
+				Popup.getInstance().afficherPopup("La longueur du chemin saisi doit être infêrieur à "
+						+ Constante.LONGUEUR_CHEMIN_IMAGE + " caractères");
 				return false;
 			}
 		}
 		else{
-			Popup.getInstance().afficherPopup("Une image doit être s�lectionn�e");
+			Popup.getInstance().afficherPopup("Une image doit être sélectionnée");
 			return false;
 		}
 		return true;

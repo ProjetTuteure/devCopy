@@ -194,17 +194,6 @@ public class AncienneteController implements Initializable {
 		dernierUtilisateurMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(utiliseDAO.recupererNomDernierUtilisateurMachine(Integer.parseInt(cellData.getValue().getIdMateriel()))));
 		siteMateriel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomSite()));
 	}
-	
-	
-//	private StringProperty getDernierUtilisateur(Integer idMateriel){
-//		UtiliseDAO utiliseDAO = new UtiliseDAO();
-//		StringProperty nomDernierUtilisateur;
-//		nomDernierUtilisateur=new SimpleStringProperty(utiliseDAO.recupererNomDernierUtilisateurMachine(idMateriel));
-//		if(nomDernierUtilisateur.getValue()==""){
-//			nomDernierUtilisateur=new SimpleStringProperty("Aucun utilisateur");
-//		}
-//		return nomDernierUtilisateur;
-//	}
 
 	/**
 	 * Permet de restreindre l'affichage des donn�es dans la TableView en fonction des crit�res
