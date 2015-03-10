@@ -7,8 +7,6 @@ Supprimer une opération de maintenance : orthographe
 
 Popup page parametre
 
-Champ Null Image
-
 Ajouter Prestataire champs pas dans le bon ordre
 idem ajouter Maintenance
 
