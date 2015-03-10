@@ -3,7 +3,10 @@ package gpi.view;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import utils.Constante;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 
 import utils.Popup;
 import gpi.exception.ConnexionBDException;

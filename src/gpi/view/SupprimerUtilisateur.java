@@ -41,12 +41,9 @@ public class SupprimerUtilisateur {
 		listnom = FXCollections.observableArrayList();
 		listeNom = new ArrayList<Utilisateur>();
 		try {
-			listeNom = utilisateurDAO.recupererAllUtilisateur();
+			listnom.addAll(utilisateurDAO.recupererAllNomUtilisateur());
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
-		}
-		for (Utilisateur utilisateur : listeNom) {
-			listnom.add(utilisateur.getNomUtilisateur().getValue());
 		}
 		comboboxnom.setItems(listnom);
 	}
@@ -116,21 +113,14 @@ public class SupprimerUtilisateur {
 	@FXML
 	private void handlechange() {
 		listprenom = FXCollections.observableArrayList();
-		int indexUtilisateurSelectionne = comboboxnom.getSelectionModel()
-				.getSelectedIndex();
 		try {
-			listePrenom = utilisateurDAO.recupererUtilisateurParNom(listnom
-					.get(comboboxnom.getSelectionModel().getSelectedIndex()));
+			listePrenom = utilisateurDAO.recupererUtilisateurParNom(comboboxnom.getSelectionModel().getSelectedItem());
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		Utilisateur selected = listeNom.get(indexUtilisateurSelectionne);
 
 		for (Utilisateur ut : listePrenom) {
-			if (ut.getNomUtilisateur().getValue()
-					.equals(selected.getNomUtilisateur().getValue())) {
 				listprenom.add(ut.getPrenomUtilisateur().getValue());
-			}
 		}
 		comboboxprenom.setItems(listprenom);
 	}

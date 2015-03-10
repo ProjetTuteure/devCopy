@@ -132,16 +132,20 @@ public class AjouterIntervention {
 		int idPrestataireAAjouter;
 		int idMaintenanceAAjouter;
 		int idFactureAAjouter;
+		MaintenanceDAO maintenanceDAO = new MaintenanceDAO();
+		PrestataireDAO prestataireDAO = new PrestataireDAO();
 		if(controlerSaisies()){
 			idMaintenanceAAjouter=Integer.parseInt(comboboxDateMaintenanceIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
 			idPrestataireAAjouter=Integer.parseInt(comboboxPrenomPrestataireIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
 			idFactureAAjouter=Integer.parseInt(comboboxNumFactureIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
 			try {
+				String objetMaintenance=maintenanceDAO.recupererObjetMaintenanceParId(idMaintenanceAAjouter);
+				String nomPrestataire=prestataireDAO.recupererNomPrestataireParId(idPrestataireAAjouter);
 				estIntervenuDAO.ajouterEstIntervenu(idMaintenanceAAjouter,idPrestataireAAjouter,idFactureAAjouter);
+				Popup.getInstance().afficherPopup("Intervention de "+nomPrestataire+" ajoutée pour la maintenance '"+objetMaintenance+"'");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
-			Popup.getInstance().afficherPopup("Intervention ajoutée !");
 			okClicked = true;
 			dialogStage.close();
 		}

@@ -13,7 +13,7 @@
             <Label text="Materiel" GridPane.rowIndex="1" />
             <ComboBox fx:id="ComboboxNomUtilisateur" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
             <ComboBox fx:id="ComboboxMateriel" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Debut d'utilisation" GridPane.rowIndex="2" />
+            <Label text="Début d'utilisation" GridPane.rowIndex="2" />
             <DatePicker fx:id="dateDebutUtilisation" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       </children>
       <columnConstraints>

@@ -1,20 +1,14 @@
-Modifier facture : Dans facture à modifier : mettre l'id facture+numéro facture
-
-Ajouter fabricant : vérifier caractères spéciaux popup erreur
-
-Ajouter logiciel : mettre numéro de facture + numéro d'immobilisation
-
-Gerer les compositions mat/comp : Faire les controles de champs vides.
+Gerer les compositions mat/comp/utilisation : Faire les controles de champs vides.
 
 Ajouter une maintenance sur le matériel : Maintenance sur le matériel : mettre les idMateriel
 
 Ajouter maintenance : faute d'orthographe "ayant eu une opérationde maintance"...
 Supprimer une opération de maintenance : orthographe
 
-utlisiateur modifier et supprimer
+Popup page parametre
 
-TRIGGER A FAIRE POUR LES LOGICIELS ETC...
+Champ Null Image
 
-Pour les editions de rapport, après appui sur le bouton, faire une popup qui dit que le rapport a été généré dans le dossier
-
+Ajouter Prestataire champs pas dans le bon ordre
+idem ajouter Maintenance
 

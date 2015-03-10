@@ -1,6 +1,7 @@
 package gpi.view;
 
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
 import gpi.metier.MaterielDAO;
 import gpi.metier.PageMateriel;
 import gpi.metier.PageMaterielDAO;
@@ -11,6 +12,7 @@ import gpi.metier.UtiliseDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 import utils.Popup;
@@ -93,21 +95,41 @@ public class AjouterUtilisation {
 	 */
 	@FXML
 	private void handleOk() {
-		UtiliseDAO utiliseDAO = new UtiliseDAO();
-		MaterielDAO materielDAO = new MaterielDAO();
-		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
-		int indexUtilisateur = ComboboxNomUtilisateur.getSelectionModel().getSelectedIndex();
-		int indexMateriel = ComboboxMateriel.getSelectionModel().getSelectedIndex();
-		try{
-			utiliseDAO.ajouterUtilise(new Utilise(dateDebutUtilisation.getValue(),utilisateurDAO.recupererUtilisateurParId(listIdUtilisateur.get(indexUtilisateur)), materielDAO.recupererMaterielParId(Integer.parseInt(listIdMateriel.get(indexMateriel)))));
-		}catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
+		if(controlerSaisies()){
+			UtiliseDAO utiliseDAO = new UtiliseDAO();
+			MaterielDAO materielDAO = new MaterielDAO();
+			UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
+			int indexUtilisateur = ComboboxNomUtilisateur.getSelectionModel().getSelectedIndex();
+			int indexMateriel = ComboboxMateriel.getSelectionModel().getSelectedIndex();
+			try{
+				utiliseDAO.ajouterUtilise(new Utilise(dateDebutUtilisation.getValue(),utilisateurDAO.recupererUtilisateurParId(listIdUtilisateur.get(indexUtilisateur)), materielDAO.recupererMaterielParId(Integer.parseInt(listIdMateriel.get(indexMateriel)))));
+			}catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+			catch (PrimaryKeyException e1) {
+				Popup.getInstance().afficherPopup(e1.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
+
 		}
-		okClicked = true;
-		dialogStage.close();
-
 	}
-
+	
+	private boolean controlerSaisies(){
+		if(this.ComboboxNomUtilisateur.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Utilisateur\" doit être rempli");
+			return false;
+		}
+		if(ComboboxMateriel.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Matériel\" doit être rempli");
+			return false;
+		}
+		if(this.dateDebutUtilisation.getValue()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Début d'utilisation\" doit être rempli");
+			return false;
+		}
+		return true;
+	}
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton ANNULER
 	 * est clique

@@ -11,7 +11,7 @@
       <children>
         <Label text="Nom du composant" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Label text="Caractéristique du composant" GridPane.rowIndex="1" />
-            <Label text="Materiel ayant le composant" GridPane.rowIndex="3" />
+            <Label text="Materiel" GridPane.rowIndex="3" />
             <Separator prefWidth="200.0" GridPane.rowIndex="2" />
             <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ComboBox fx:id="comboboxNomComposant" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />

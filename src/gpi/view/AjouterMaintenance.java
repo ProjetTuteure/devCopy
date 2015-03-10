@@ -77,7 +77,7 @@ public class AjouterMaintenance {
 					coutMaintenance);
 			try {
 				maintenanceDAO.ajouterMaintenance(maintenance);
-				Popup.getInstance().afficherPopup("Maintenance du "+maintenance.getdateMaintenanceStringProperty().getValue()+" ajout�e !");
+				Popup.getInstance().afficherPopup("Maintenance du "+maintenance.getdateMaintenanceStringProperty().getValue()+" ajoutée !");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

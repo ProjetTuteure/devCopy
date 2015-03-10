@@ -13,12 +13,12 @@ import java.util.List;
 import utils.MaConnexion;
 
 public class LogicielDAO {
+	private Connection connexion;
 
 	
 	public LogicielDAO(){}
 	
 	public int ajouterLogiciel(Logiciel logiciel) throws ConnexionBDException{
-		Connection connexion=null;
 		int resultat;
 		try{
 			connexion=MaConnexion.getInstance().getConnexion();
@@ -51,7 +51,6 @@ public class LogicielDAO {
 	
 	
 	public int modifierLogiciel(Logiciel logiciel) throws ConnexionBDException{
-		Connection connexion=null;
 		int resultat;
 		try{
 			connexion=MaConnexion.getInstance().getConnexion();
@@ -84,7 +83,6 @@ public class LogicielDAO {
 	}
 	
 	public int supprimerLogiciel(Logiciel logiciel) throws ConnexionBDException{
-		Connection connexion=null;
 		int resultat;
 		try{
 			connexion=MaConnexion.getInstance().getConnexion();
@@ -110,7 +108,6 @@ public class LogicielDAO {
 	}
 	
 	public Logiciel recupererLogicielParId(int idLogiciel) throws ConnexionBDException{
-		Connection connexion=null;
 		ResultSet resultat;
 		LocalDate dateExpirationLogiciel;
 		String nomLogiciel,versionLogiciel;
@@ -146,7 +143,6 @@ public class LogicielDAO {
 	}
 		
 	public List<Logiciel> recupererAllLogiciel() throws ConnexionBDException{
-		Connection connexion=null;
 		FactureDAO factureDAO=new FactureDAO();
 		List<Logiciel> listLogiciel=new ArrayList<Logiciel>();
 		ResultSet resultat;
@@ -187,6 +183,30 @@ public class LogicielDAO {
 			}
 		}
 		return null;
+	}
+	
+	public String recupererNomLogicielParId(int idLogiciel) throws ConnexionBDException {
+		ResultSet resultat;
+		String nomLogiciel="";
+		try {
+			connexion = MaConnexion.getInstance().getConnexion();
+			PreparedStatement Preparedstatement = connexion.prepareStatement("SELECT nomLogiciel FROM LOGICIEL WHERE idLogiciel=?");
+			Preparedstatement.setInt(1, idLogiciel);
+			resultat = Preparedstatement.executeQuery();
+			resultat.next();
+			nomLogiciel=resultat.getString("nomLogiciel");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion !=null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return nomLogiciel;
 	}
 }
 

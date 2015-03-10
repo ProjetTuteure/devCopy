@@ -245,7 +245,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.launch();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1315,7 +1315,7 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/supprimerEstMaintenu.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Supprimer une op�ration de maintenance");
+			dialogStage.setTitle("Supprimer une opération de maintenance");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(false);

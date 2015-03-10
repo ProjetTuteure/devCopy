@@ -16,14 +16,15 @@ import utils.Popup;
 import gpi.exception.ConnexionBDException;
 
 public class MaintenanceDAO {
+	private Connection connexion;
 	/**
 	 * Permet d'inserer une maintenance dans la BD
 	 * @param maintenance la maintenance a inserer dans la BD
 	 */
 	public void ajouterMaintenance(Maintenance maintenance) throws ConnexionBDException
 	{
-		Connection connexion=MaConnexion.getInstance().getConnexion();
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement ps=connexion.prepareStatement("INSERT INTO MAINTENANCE (dateMaintenance,objetMaintenance,descriptionMaintenance,coutMaintenance) "
 					+ "VALUES (?,?,?,?)");
 			ps.setString(1,maintenance.getdateMaintenanceStringProperty().getValue());
@@ -52,8 +53,8 @@ public class MaintenanceDAO {
 	public List<Maintenance> recupererAllMaintenance() throws ConnexionBDException
 	{
 		List<Maintenance> listeARetourner=new ArrayList<Maintenance>();
-		Connection connexion=MaConnexion.getInstance().getConnexion();
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement ps=connexion.prepareStatement("SELECT * FROM MAINTENANCE");
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
@@ -87,10 +88,10 @@ public class MaintenanceDAO {
 	 * @throws ConnexionBDException si un probl�me de connexion a la bd survient
 	 */
 	public Maintenance recupererMaintenanceParId(int idMaintenance) throws ConnexionBDException {
-		Connection connexion=MaConnexion.getInstance().getConnexion();
-		Maintenance maintenance=null;
 		PreparedStatement ps;
+		Maintenance maintenance=null;
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			ps = connexion.prepareStatement("SELECT * FROM MAINTENANCE WHERE idMaintenance=?");
 			ps.setInt(1, idMaintenance);
 			ResultSet rs=ps.executeQuery();
@@ -126,8 +127,8 @@ public class MaintenanceDAO {
 	public List<Maintenance> recupererMaintenancesParObjet(String objetMaintenance) throws ConnexionBDException
 	{
 		List<Maintenance> listeMaintenance=new ArrayList<Maintenance>();
-		Connection connexion=MaConnexion.getInstance().getConnexion();
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement ps=connexion.prepareStatement("SELECT * FROM MAINTENANCE WHERE objetMaintenance=?");
 			ps.setString(1,objetMaintenance);
 			ResultSet rs=ps.executeQuery();
@@ -161,8 +162,8 @@ public class MaintenanceDAO {
 	 */
 	public void modifierMaintenance(Maintenance maintenance) throws ConnexionBDException
 	{
-		Connection connexion=MaConnexion.getInstance().getConnexion();
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement ps=connexion.prepareStatement("UPDATE MAINTENANCE SET "
 					+ "dateMaintenance=?,"
 					+ "objetMaintenance=?,"
@@ -195,9 +196,9 @@ public class MaintenanceDAO {
 	 */
 	public void supprimerMaintenance(Maintenance maintenance)throws ConnexionBDException
 	{
-		Connection connexion=MaConnexion.getInstance().getConnexion();
 		PreparedStatement ps;
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			ps = connexion.prepareStatement("DELETE FROM MAINTENANCE WHERE idMaintenance=?");
 			ps.setInt(1, maintenance.getIdMaintenance().getValue());
 			ps.executeUpdate();
@@ -215,10 +216,9 @@ public class MaintenanceDAO {
 	}
 	public ObservableList<String> recupererDateMaintenanceParObjet(String objetMaintenance) throws ConnexionBDException{
 		ObservableList<String> listARetourner=FXCollections.observableArrayList();
-		Connection connexion=null;
 		String dateMaintenanceARenvoyer;
-		connexion = MaConnexion.getInstance().getConnexion();
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement ps=connexion.prepareStatement("SELECT idMaintenance,dateMaintenance FROM MAINTENANCE where objetMaintenance=?");
 			ps.setString(1,objetMaintenance);
 			ResultSet rs=ps.executeQuery();
@@ -243,9 +243,8 @@ public class MaintenanceDAO {
 	
 	public ObservableList<String> recupererAllObjetMaintenanceString() throws ConnexionBDException{
 		ObservableList<String> listARetourner=FXCollections.observableArrayList();
-		Connection connexion=null;
-		connexion = MaConnexion.getInstance().getConnexion();
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement ps=connexion.prepareStatement("SELECT DISTINCT objetMaintenance FROM MAINTENANCE");
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
@@ -273,9 +272,8 @@ public class MaintenanceDAO {
 	 */
 	public ObservableList<String> recupererAllObjetMaintenanceParEstIntervenuString() throws ConnexionBDException{
 		ObservableList<String> listARetourner=FXCollections.observableArrayList();
-		Connection connexion=null;
-		connexion = MaConnexion.getInstance().getConnexion();
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement ps=connexion.prepareStatement("SELECT DISTINCT objetMaintenance FROM MAINTENANCE M JOIN ESTINTERVENU EI ON "
 					+ "M.idMaintenance=EI.idMaintenance");
 			ResultSet rs=ps.executeQuery();
@@ -306,10 +304,9 @@ public class MaintenanceDAO {
 	 */
 	public ObservableList<String> recupererDateMaintenanceParObjetParEstIntervenu(String objetMaintenance) throws ConnexionBDException{
 		ObservableList<String> listARetourner=FXCollections.observableArrayList();
-		Connection connexion=null;
-		connexion = MaConnexion.getInstance().getConnexion();
 		String dateMaintenanceARenvoyer;
 		try {
+			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement ps=connexion.prepareStatement("SELECT M.idMaintenance,M.dateMaintenance FROM MAINTENANCE M "
 					+ "JOIN ESTINTERVENU EI ON M.idMaintenance=EI.idMaintenance WHERE M.objetMaintenance=?");
 			ps.setString(1,objetMaintenance);
@@ -331,5 +328,29 @@ public class MaintenanceDAO {
 			}
 		}
 		return listARetourner;
+	}
+	
+	public String recupererObjetMaintenanceParId(int idMaintenance) throws ConnexionBDException {
+		ResultSet resultat;
+		String objetMaintenance="";
+		try {
+			connexion = MaConnexion.getInstance().getConnexion();
+			PreparedStatement Preparedstatement = connexion.prepareStatement("SELECT objetMaintenance FROM MAINTENANCE WHERE idMaintenance=?");
+			Preparedstatement.setInt(1, idMaintenance);
+			resultat = Preparedstatement.executeQuery();
+			resultat.next();
+			objetMaintenance=resultat.getString("objetMaintenance");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion !=null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return objetMaintenance;
 	}
 }

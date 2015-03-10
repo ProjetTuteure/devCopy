@@ -400,4 +400,28 @@ public class MaterielDAO {
 			}
 		}
 	}
+	
+	public String recupererNomMaterielParId(int idMateriel) throws ConnexionBDException {
+		ResultSet resultat;
+		String nomMateriel="";
+		try {
+			connexion = MaConnexion.getInstance().getConnexion();
+			PreparedStatement Preparedstatement = connexion.prepareStatement("SELECT nomMateriel FROM MATERIEL WHERE idMateriel=?");
+			Preparedstatement.setInt(1, idMateriel);
+			resultat = Preparedstatement.executeQuery();
+			resultat.next();
+			nomMateriel=resultat.getString("nomMateriel");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion !=null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return nomMateriel;
+	}
 }

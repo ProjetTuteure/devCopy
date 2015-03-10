@@ -221,6 +221,7 @@ public class AjouterMateriel {
 			}
 			okClicked = true;
 			dialogStage.close();
+			Popup.getInstance().afficherPopup("Materiel "+nomMaterielField.getText()+" ajouté");
 		}
 
 	}

@@ -82,6 +82,14 @@ public class AjouterFacture {
 	 */
 	@FXML
 	private void handleOk() {
+		String montant = montantFactureField.getText();
+		if(montant.contains(",")){
+			montant.replace(',', '.');
+		}
+		if(!(montant.contains("."))){
+			montant += ".00";
+		}
+		montantFactureField.setText(montant);
 		if(controlerSaisies()){
 			FactureDAO factureDAO = new FactureDAO();
 			RevendeurDAO revendeurDAO = new RevendeurDAO();
@@ -92,7 +100,7 @@ public class AjouterFacture {
 					revendeurFacture=revendeurDAO.recupererRevendeurParId(listRevendeurId.get(index));
 				}
 				factureDAO.ajouterFacture(new Facture(0,numFactureField.getText(),dateFacturePicker.getValue(),Float.parseFloat(montantFactureField.getText()),revendeurFacture));
-				Popup.getInstance().afficherPopup("Facture "+numFactureField.getText()+" ajout�e !");
+				Popup.getInstance().afficherPopup("Facture "+numFactureField.getText()+" ajoutée !");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
