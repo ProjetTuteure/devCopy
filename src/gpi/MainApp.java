@@ -66,6 +66,12 @@ public class MainApp extends Application {
 		Platform.runLater(threadParametre);
 	}
 	
+	public static void rafraichir(){
+		MainApp.rafraichirTab(SiteOverview,"Site");
+		MainApp.rafraichirTab(AncienneteOverview,"Anciennete");
+		MainApp.rafraichirTab(EtatOverview,"Etat");
+	}
+	
 	public void initLoginLayout() {
 		try {
 			// Load root layout from fxml file.
@@ -83,6 +89,19 @@ public class MainApp extends Application {
 		}
 	}
 
+	public static void rafraichirTab(Tab tab, String nom){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/" + nom
+				+ "Overview.fxml"));
+			AnchorPane tabOverview = (AnchorPane) loader.load();
+			tab.setText(nom);
+			tab.setContent(tabOverview);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void initTabOverview(Tab tab, String nom) {
 		try {
 			tab = new Tab();
