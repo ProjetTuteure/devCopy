@@ -82,7 +82,7 @@ public class SupprimerFabricant {
 		if (controlerSaisies()) {
 			try {
 				fabricantDAO.supprimerFabricant(new Fabricant(listIdFabricant.get(comboboxfabr.getSelectionModel().getSelectedIndex()),null, null, null, null, null,null));
-				Popup.getInstance().afficherPopup("Fabricant "+comboboxfabr.getValue()+" supprimé !");
+				Popup.getInstance().afficherPopup("Fabricant "+comboboxfabr.getValue()+" supprimé");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

@@ -86,7 +86,7 @@ public class SupprimerFacture {
 				factureDAO
 						.supprimerFacture(new Facture(id, null, null, 0, null));
 				Popup.getInstance().afficherPopup("Facture " + comboboxFacture.getValue()
-						+ " supprim�e !");
+						+ " supprimée");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

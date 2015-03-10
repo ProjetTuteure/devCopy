@@ -77,7 +77,7 @@ public class SupprimerComposant {
 			try {
 				if (composantDAO.supprimerComposant(composant) == true) {
 					dialogStage.close();
-					Popup.getInstance().afficherPopup("Composant supprimé !");
+					Popup.getInstance().afficherPopup("Composant "+composant.getNomComposant()+" supprimé");
 				} else {
 					Popup.getInstance().afficherPopup("Echec lors de la suppression");
 				}

@@ -115,6 +115,7 @@ public class SupprimerUtilisation {
 		this.idMateriel = (listIdMateriel.get(ComboboxMateriel.getSelectionModel().getSelectedIndex()));
 		try {
 			utiliseDAO.supprimerUtlise(this.idUtilisateur, Integer.parseInt(this.idMateriel));
+			Popup.getInstance().afficherPopup("Utilisateur "+ComboboxNomUtilisateur.getValue()+" supprimé du matériel "+ComboboxMateriel.getValue());
 		} catch (NumberFormatException | ConnexionBDException e) {
 			/*Todo*/
 		}

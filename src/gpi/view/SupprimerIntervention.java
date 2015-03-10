@@ -138,10 +138,10 @@ public class SupprimerIntervention {
 			idFactureASupprimer=Integer.parseInt(comboboxNumFactureIntervention.getSelectionModel().getSelectedItem().split("-")[0]);
 			try {
 				estIntervenuDAO.supprimerUtilise(idMaintenanceASupprimer, idPrestataireASupprimer, idFactureASupprimer);
+				Popup.getInstance().afficherPopup("Intervention de "+comboboxPrenomPrestataireIntervention.getSelectionModel().getSelectedItem().split("-")[1]+" de la maintenance du "+comboboxDateMaintenanceIntervention.getSelectionModel().getSelectedItem().split("-")[1]+" supprimée");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
-			Popup.getInstance().afficherPopup("Intervention supprimée !");
 			okClicked = true;
 			dialogStage.close();
 		}

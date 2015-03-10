@@ -101,6 +101,7 @@ public class SupprimerCompose {
 				composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
 				materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex())));
 				composeDAO.supprimerCompose(new Compose(composantSelected,materielSelected));
+				Popup.getInstance().afficherPopup("Composant "+composantSelected.getNomComposant()+" supprimé de "+materielSelected.getNomMateriel().getValue());
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

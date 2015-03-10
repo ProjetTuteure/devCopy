@@ -70,6 +70,7 @@ public class SupprimerMateriel {
 		MaterielDAO materielDAO=new MaterielDAO();
 		try {
 			materielDAO.supprimerMateriel(new Materiel(Integer.parseInt(listStrings[0]), null, null, null, null, null, null, null, null, null, null,null,null));
+			Popup.getInstance().afficherPopup("Materiel "+listStrings[1]+" supprimé");
 		} catch (NumberFormatException e) {
 			Popup.getInstance().afficherPopup("L'id du materiel doit être un entier");
 		} catch (ConnexionBDException e) {

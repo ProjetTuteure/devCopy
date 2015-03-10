@@ -5,8 +5,6 @@ Ajouter une maintenance sur le matériel : Maintenance sur le matériel : mettre l
 Ajouter maintenance : faute d'orthographe "ayant eu une opérationde maintance"...
 Supprimer une opération de maintenance : orthographe
 
-Popup page parametre
-
 Ajouter Prestataire champs pas dans le bon ordre
 idem ajouter Maintenance
 

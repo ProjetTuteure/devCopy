@@ -83,7 +83,7 @@ public class SupprimerRevendeur {
 				revendeurDAO.supprimerRevendeur(revendeur);
 				dialogStage.close();
 				Popup.getInstance().afficherPopup("Revendeur " + revendeur.getNomRevendeur().getValue()
-						+ " supprimé !");
+						+ " supprimé");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 				this.dialogStage.close();

@@ -87,7 +87,7 @@ public class SupprimerUtilisateur {
 			try {
 				if (utilisateurDAO.supprimerUtilisateur(utilisateur) == true) {
 					dialogStage.close();
-					Popup.getInstance().afficherPopup("Utilisateur supprim� !");
+					Popup.getInstance().afficherPopup("Utilisateur "+utilisateur.getNomUtilisateur().getValue()+" supprimé");
 				} else {
 					Popup.getInstance().afficherPopup("Echec lors de la suppression");
 				}

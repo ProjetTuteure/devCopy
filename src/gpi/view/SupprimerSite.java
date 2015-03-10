@@ -77,7 +77,7 @@ public class SupprimerSite {
 			int id=listSiteId.get(selected);
 			try {
 				siteDAO.supprimerSite(new Site(id,null,null));
-				Popup.getInstance().afficherPopup("Site "+comboboxSiteSupp.getValue()+" supprimé !");
+				Popup.getInstance().afficherPopup("Site "+comboboxSiteSupp.getValue()+" supprimé");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

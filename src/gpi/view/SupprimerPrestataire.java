@@ -81,7 +81,7 @@ public class SupprimerPrestataire {
 				Popup.getInstance().afficherPopup("Prestataire "+this.listPrestataireParNom.get(indicePrestataireASupprimer).
 						getNomPrestataire().getValue()+" "+
 						this.listPrestataireParNom.get(indicePrestataireASupprimer).getPrenomPrestataire().getValue()
-						+" supprimé !");
+						+" supprimé");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

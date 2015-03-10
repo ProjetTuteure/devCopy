@@ -82,6 +82,7 @@ public class SupprimerInstallation {
 			try {
 				EstInstalle estInstalle=new EstInstalle(idMateriel,idLogiciel);
 				estInstalleDAO.supprimerEstInstalle(estInstalle);
+				Popup.getInstance().afficherPopup("Logiciel "+comboboxLogiciel.getValue()+" désinstallé de "+comboboxNomMateriel.getValue());
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

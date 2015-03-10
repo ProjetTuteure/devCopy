@@ -80,7 +80,7 @@ public class SupprimerLogiciel {
 				logicielDAO.supprimerLogiciel(new Logiciel(id, null, null,
 						null, null));
 				Popup.getInstance().afficherPopup("Logiciel " + listLogiciel.get(selected)
-						+ " supprimé !");
+						+ " supprimé");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

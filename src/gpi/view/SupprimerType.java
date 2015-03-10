@@ -82,7 +82,7 @@ public class SupprimerType {
 			try {
 				typeDAO.supprimerType(new Type(listIdType.get(comboboxtype
 						.getSelectionModel().getSelectedIndex()), "", ""));
-				Popup.getInstance().afficherPopup("Type " + comboboxtype.getValue() + " supprimé !");
+				Popup.getInstance().afficherPopup("Type " + comboboxtype.getValue() + " supprimé");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

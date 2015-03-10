@@ -76,7 +76,7 @@ public class SupprimerMaintenance {
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
-			Popup.getInstance().afficherPopup("Maintenance du "+maintenanceASupprimer.getdateMaintenanceStringProperty().getValue()+" supprim�e");
+			Popup.getInstance().afficherPopup("Maintenance du "+maintenanceASupprimer.getdateMaintenanceStringProperty().getValue()+" supprimée");
 			okClicked = true;
 			dialogStage.close();
 		}
@@ -86,7 +86,7 @@ public class SupprimerMaintenance {
 	{
 		if(cb_objetMaintenance.getSelectionModel().getSelectedItem()==null)
 		{
-			Popup.getInstance().afficherPopup("Un objet de maintenance doit �tre selectionn�");
+			Popup.getInstance().afficherPopup("Un objet de maintenance doit être selectionné");
 			return false;
 		}
 		return true;

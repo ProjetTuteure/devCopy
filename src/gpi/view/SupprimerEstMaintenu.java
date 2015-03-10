@@ -94,7 +94,7 @@ public class SupprimerEstMaintenu {
 				EstMaintenu estMaintenuASupprime=new EstMaintenu(maintenance,materiel);
 				estMaintenuDAO.supprimerEstMaintenu(estMaintenuASupprime);
 				Popup.getInstance().afficherPopup("L'opération de maintenance "+maintenance.getObjetMaintenance()
-						+" du "+maintenance.getdateMaintenanceString()+" sur le matériel "+materiel.getNomMateriel().getValue()+" supprimée !");
+						+" du "+maintenance.getdateMaintenanceString()+" sur le matériel "+materiel.getNomMateriel().getValue()+" supprimée");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
