@@ -245,7 +245,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.launch();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
