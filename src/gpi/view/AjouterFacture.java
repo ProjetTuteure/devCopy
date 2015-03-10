@@ -82,6 +82,14 @@ public class AjouterFacture {
 	 */
 	@FXML
 	private void handleOk() {
+		String montant = montantFactureField.getText();
+		if(montant.contains(",")){
+			montant.replace(',', '.');
+		}
+		if(!(montant.contains("."))){
+			montant += ".00";
+		}
+		montantFactureField.setText(montant);
 		if(controlerSaisies()){
 			FactureDAO factureDAO = new FactureDAO();
 			RevendeurDAO revendeurDAO = new RevendeurDAO();
