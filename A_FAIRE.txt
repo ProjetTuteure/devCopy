@@ -1,4 +1,4 @@
-Gerer les compositions mat/comp : Faire les controles de champs vides.
+Gerer les compositions mat/comp/utilisation : Faire les controles de champs vides.
 
 Ajouter une maintenance sur le matériel : Maintenance sur le matériel : mettre les idMateriel
 
