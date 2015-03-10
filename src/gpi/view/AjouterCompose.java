@@ -3,6 +3,7 @@ package gpi.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.Constante;
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Composant;
@@ -98,6 +99,8 @@ public class AjouterCompose {
 			composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
 			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxMateriel.getValue()))));
 			composeDAO.ajouterCompose(new Compose(composantSelected,materielSelected));
+			Popup.getInstance().afficherPopup("Composant "+composantSelected.getNomComposant()+" ajouté dans "+materielSelected.getNomMateriel().getValue());
+
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}

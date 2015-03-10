@@ -92,7 +92,7 @@ public class AjouterFacture {
 					revendeurFacture=revendeurDAO.recupererRevendeurParId(listRevendeurId.get(index));
 				}
 				factureDAO.ajouterFacture(new Facture(0,numFactureField.getText(),dateFacturePicker.getValue(),Float.parseFloat(montantFactureField.getText()),revendeurFacture));
-				Popup.getInstance().afficherPopup("Facture "+numFactureField.getText()+" ajout�e !");
+				Popup.getInstance().afficherPopup("Facture "+numFactureField.getText()+" ajoutée !");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

@@ -335,4 +335,28 @@ public class PrestataireDAO {
 		}
 		return list;
 	}
+	
+	public String recupererNomPrestataireParId(int idPrestataire) throws ConnexionBDException {
+		ResultSet resultat;
+		String nomPrestataire="";
+		try {
+			connexion = MaConnexion.getInstance().getConnexion();
+			PreparedStatement Preparedstatement = connexion.prepareStatement("SELECT nomPrestataire FROM PRESTATAIRE WHERE idPrestataire=?");
+			Preparedstatement.setInt(1, idPrestataire);
+			resultat = Preparedstatement.executeQuery();
+			resultat.next();
+			nomPrestataire=resultat.getString("nomPrestataire");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion !=null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return nomPrestataire;
+	}
 }

@@ -12,7 +12,7 @@ import java.util.List;
 import utils.MaConnexion;
 
 public class EstInstalleDAO {
-private Connection connection;
+	private Connection connection;
 	
 	public int ajouterEstInstalle(EstInstalle estInstalle) throws ConnexionBDException {
 		int nombreLigneAffectee = 0;

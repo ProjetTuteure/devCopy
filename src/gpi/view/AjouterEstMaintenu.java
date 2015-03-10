@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import utils.Constante;
 import utils.Popup;
 
 
@@ -88,6 +89,8 @@ public class AjouterEstMaintenu {
 			Materiel materiel=materielDAO.recupererMaterielParId(idMateriel);
 			EstMaintenu estMaintenuAAjoute=new EstMaintenu(maintenance,materiel);
 			estMaintenuDAO.ajouterEstMaintenu(estMaintenuAAjoute);
+			Popup.getInstance().afficherPopup("Maitenance '"+maintenance.getObjetMaintenance()+"' sur "+materiel.getNomMateriel().getValue()+" ajoutée");
+
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}

@@ -1,5 +1,6 @@
 package gpi.view;
 
+import utils.Constante;
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.EstInstalle;
@@ -97,11 +98,17 @@ public class AjouterInstallation {
 	private void handleOk() {
 		if(controlerSaisies()){
 			EstInstalleDAO estInstalleDAO=new EstInstalleDAO();
+			MaterielDAO materielDAO = new MaterielDAO();
+			LogicielDAO logicielDAO = new LogicielDAO();
 			int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxNomMateriel.getValue()));
 			int idLogiciel = listIdLogiciel.get(listNomLogiciel.indexOf(comboboxLogiciel.getValue()));
+			String nomMateriel;
 			try {
+				nomMateriel = materielDAO.recupererNomMaterielParId(idMateriel);
+				String nomLogiciel=logicielDAO.recupererNomLogicielParId(idLogiciel);
 				EstInstalle estInstalle=new EstInstalle(idMateriel,idLogiciel);
 				estInstalleDAO.ajouterEstInstalle(estInstalle);
+				Popup.getInstance().afficherPopup("Installation de '"+nomLogiciel+"' sur "+nomMateriel+" ajoutée");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
