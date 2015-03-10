@@ -21,7 +21,7 @@ public class EstMaintenuDAO {
             nombreLigneAffectee=preparedStatement.executeUpdate();
         } catch (SQLException e) {
         	if(e.getMessage().contains("PRIMARY KEY")){
-        		throw new PrimaryKeyException("Cette opération de maintenance est déjà ajouté");
+        		throw new PrimaryKeyException("Cette opération de maintenance est déjà ajoutée");
         	}
             e.printStackTrace();
         } finally {

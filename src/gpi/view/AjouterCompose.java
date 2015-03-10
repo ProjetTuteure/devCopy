@@ -7,6 +7,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
 import gpi.metier.Composant;
 import gpi.metier.ComposantDAO;
 import gpi.metier.Compose;
@@ -103,6 +104,8 @@ public class AjouterCompose {
 				Popup.getInstance().afficherPopup("Le composant "+composantSelected.getNomComposant()+" a été ajouté au matériel "+materielSelected.getNomMateriel().getValue());
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
+			} catch (PrimaryKeyException pke){
+				Popup.getInstance().afficherPopup(pke.getMessage());
 			}
 			dialogStage.close();
 		}

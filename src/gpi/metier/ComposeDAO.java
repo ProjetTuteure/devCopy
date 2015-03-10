@@ -1,6 +1,7 @@
 package gpi.metier;
 
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import utils.MaConnexion;
 public class ComposeDAO {
 	private Connection connection;
 	
-	public int ajouterCompose(Compose compose) throws ConnexionBDException {
+	public int ajouterCompose(Compose compose) throws ConnexionBDException, PrimaryKeyException {
 		int nombreLigneAffectee = 0;
 		try {
 			connection = MaConnexion.getInstance().getConnexion();
@@ -24,7 +25,10 @@ public class ComposeDAO {
 			prepareStatement.setInt(2, compose.getMateriel().getIdMateriel().getValue());
 			nombreLigneAffectee = prepareStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			if(e.getMessage().contains("PRIMARY KEY")){
+        		throw new PrimaryKeyException("Cette opération de maintenance est déjà ajoutée");
+        	}
+            e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
