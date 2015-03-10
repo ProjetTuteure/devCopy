@@ -107,4 +107,32 @@ public class PageMaterielDAO {
 		}
 		return listePageMateriel;
 	}
+	
+	public ObservableList<PageMateriel> getMaterielMaintenu() throws ConnexionBDException{
+		connexion = MaConnexion.getInstance().getConnexion();
+		ObservableList<PageMateriel> listePageMateriel=FXCollections.observableArrayList();
+		String requete="SELECT M.idMateriel,M.nomMateriel FROM MATERIEL M"
+				+ " JOIN ESTMAINTENU E ON E.idMateriel=M.idMateriel"
+				+ " ORDER BY M.nomMateriel ASC";
+		
+		try {
+			PreparedStatement ps=connexion.prepareStatement(requete);
+			ResultSet resultat = ps.executeQuery();
+			while(resultat.next()){
+				listePageMateriel.add(new PageMateriel(resultat.getString("idMateriel"),
+						resultat.getString("nomMateriel")));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listePageMateriel;
+	}
 }
