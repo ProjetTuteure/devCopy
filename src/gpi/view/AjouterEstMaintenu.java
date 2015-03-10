@@ -47,7 +47,6 @@ public class AjouterEstMaintenu {
 		try {
 			for (Maintenance maintenance : maintenanceDAO.recupererAllMaintenance()){
 				listObjetMaintenance.add(maintenance.getObjetMaintenance());
-				listIdMaintenance.add(maintenance.getIdMaintenance().intValue());
 			}
 			for (PageMateriel pageMateriel : pageMaterielDAO.getAllMateriel()){
 				listNomMateriel.add(String.valueOf( pageMateriel.getNomMateriel()));
@@ -86,24 +85,44 @@ public class AjouterEstMaintenu {
 	 */
 	@FXML
 	private void handleOk() {
-		EstMaintenuDAO estMaintenuDAO=new EstMaintenuDAO();
-		MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
-		MaterielDAO materielDAO=new MaterielDAO();
-		int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxMateriel.getValue()));
-		int idMaintenance = listIdMaintenance.get(listObjetMaintenance.indexOf(comboboxMaintenanceObjet.getValue()));
-		try {
-			Maintenance maintenance=maintenanceDAO.recupererMaintenanceParId(idMaintenance);
-			Materiel materiel=materielDAO.recupererMaterielParId(idMateriel);
-			EstMaintenu estMaintenuAAjoute=new EstMaintenu(maintenance,materiel);
-			estMaintenuDAO.ajouterEstMaintenu(estMaintenuAAjoute);
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
-		} catch (PrimaryKeyException pke){
-			Popup.getInstance().afficherPopup(pke.getMessage());
-		}
-		okClicked = true;
-		dialogStage.close();
+		if(controlerSaisies()){
+			EstMaintenuDAO estMaintenuDAO=new EstMaintenuDAO();
+			MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
+			MaterielDAO materielDAO=new MaterielDAO();
+			int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxMateriel.getValue()));
+			int idMaintenance = Integer.parseInt(listDateMaintenance.get(comboboxMaintenanceDate.getSelectionModel().getSelectedIndex()).split("-")[0]);
+			try {
+				Maintenance maintenance=maintenanceDAO.recupererMaintenanceParId(idMaintenance);
+				Materiel materiel=materielDAO.recupererMaterielParId(idMateriel);
+				EstMaintenu estMaintenuAAjoute=new EstMaintenu(maintenance,materiel);
+				estMaintenuDAO.ajouterEstMaintenu(estMaintenuAAjoute);
+				Popup.getInstance().afficherPopup("L'opération de maintenance "+maintenance.getObjetMaintenance()
+						+" du "+maintenance.getdateMaintenanceString()+" sur le matériel "+materiel.getNomMateriel().getValue()+" ajoutée !");
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			} catch (PrimaryKeyException pke){
+				Popup.getInstance().afficherPopup(pke.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
+		}	
 
+	}
+	private boolean controlerSaisies() {
+		if(comboboxMateriel.getSelectionModel().getSelectedIndex()==-1){
+			Popup.getInstance().afficherPopup("Vous devez selectionner le matériel de l'opération à ajouter");
+			return false;
+		}
+		if(comboboxMaintenanceObjet.getSelectionModel().getSelectedIndex()==-1){
+			Popup.getInstance().afficherPopup("Vous devez selectionner l'objet de la maintenance de l'opération à ajouter");
+			return false;
+		}
+		if(comboboxMaintenanceDate.getSelectionModel().getSelectedIndex()==-1){
+			Popup.getInstance().afficherPopup("Vous devez selectionner la date de la maintenance de l'opération à ajouter");
+			return false;
+		}
+		return true;
+		
 	}
 	
 	@FXML

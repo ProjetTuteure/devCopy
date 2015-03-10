@@ -23,7 +23,6 @@ public class EstMaintenuDAO {
         	if(e.getMessage().contains("PRIMARY KEY")){
         		throw new PrimaryKeyException("Cette opération de maintenance est déjà ajoutée");
         	}
-            e.printStackTrace();
         } finally {
             try {
             	if (connexion != null){

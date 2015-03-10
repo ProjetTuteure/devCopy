@@ -1,5 +1,8 @@
 package gpi.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gpi.exception.ConnexionBDException;
 import gpi.metier.*;
 import javafx.collections.FXCollections;
@@ -20,31 +23,33 @@ public class SupprimerEstMaintenu {
 	@FXML
 	private boolean okClicked = false;
 	@FXML
-	private ComboBox<String> comboboxMaintenance;
-	@FXML
 	private ComboBox<String> comboboxMateriel;
+	@FXML
+	private ComboBox<String> comboboxMaintenanceObjet;
+	@FXML
+	private ComboBox<String> comboboxMaintenanceDate;
 
 	private EstMaintenuDAO estMaintenuDAO =new EstMaintenuDAO();
 
 	private ObservableList<String> listNomMateriel;
-	private ObservableList<Integer> listIdMateriel;
-	private ObservableList<String> listNomMaintenance;
-	private ObservableList<Integer> listIdMaintenance;
+	private ObservableList<String> listDateMaintenance;
+	private ObservableList<String> listObjetMaintenance;
+	private List<Integer> listIdMateriel;
+	private List<Integer> listIdMaintenance;
 
 	/**
 	 * Initialise les donnees Ajoute les donnees aux combobox
 	 */
 	@FXML
 	private void initialize() {
-		MaterielDAO materielDAO=new MaterielDAO();
 		listNomMateriel = FXCollections.observableArrayList();
 		listIdMateriel = FXCollections.observableArrayList();
 		PageMaterielDAO pageMaterielDAO = new PageMaterielDAO();
 		try {
 			
-			for (PageMateriel pageMateriel : pageMaterielDAO.getAllMateriel()){
+			for (PageMateriel pageMateriel : pageMaterielDAO.getMaterielMaintenu()){
 				listNomMateriel.add(String.valueOf( pageMateriel.getNomMateriel()));
-				listIdMateriel.add( Integer.parseInt(pageMateriel.getIdMateriel()));
+				listIdMateriel.add(Integer.parseInt(pageMateriel.getIdMateriel()));
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
@@ -77,22 +82,42 @@ public class SupprimerEstMaintenu {
 	 */
 	@FXML
 	private void handleOk() {
-		EstMaintenuDAO estMaintenuDAO=new EstMaintenuDAO();
-		int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxMateriel.getValue()));
-		int idMaintenance = listIdMaintenance.get(listNomMaintenance.indexOf(comboboxMaintenance.getValue()));
-		MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
-		MaterielDAO materielDAO=new MaterielDAO();
-		try {
-			Maintenance maintenance=maintenanceDAO.recupererMaintenanceParId(idMaintenance);
-			Materiel materiel=materielDAO.recupererMaterielParId(idMateriel);
-			EstMaintenu estMaintenuASupprime=new EstMaintenu(maintenance,materiel);
-			estMaintenuDAO.supprimerEstMaintenu(estMaintenuASupprime);
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
+		if (controlerSaisies()) {
+			EstMaintenuDAO estMaintenuDAO=new EstMaintenuDAO();
+			int idMateriel = listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex());
+			int idMaintenance = listIdMaintenance.get(comboboxMaintenanceDate.getSelectionModel().getSelectedIndex());
+			MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
+			MaterielDAO materielDAO=new MaterielDAO();
+			try {
+				Maintenance maintenance=maintenanceDAO.recupererMaintenanceParId(idMaintenance);
+				Materiel materiel=materielDAO.recupererMaterielParId(idMateriel);
+				EstMaintenu estMaintenuASupprime=new EstMaintenu(maintenance,materiel);
+				estMaintenuDAO.supprimerEstMaintenu(estMaintenuASupprime);
+				Popup.getInstance().afficherPopup("L'opération de maintenance "+maintenance.getObjetMaintenance()
+						+" du "+maintenance.getdateMaintenanceString()+" sur le matériel "+materiel.getNomMateriel().getValue()+" supprimée !");
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
+	}
 
+	private boolean controlerSaisies() {
+		if(comboboxMateriel.getSelectionModel().getSelectedIndex()==-1){
+			Popup.getInstance().afficherPopup("Vous devez selectionner le matériel de l'opération à supprimer");
+			return false;
+		}
+		if(comboboxMaintenanceObjet.getSelectionModel().getSelectedIndex()==-1){
+			Popup.getInstance().afficherPopup("Vous devez selectionner l'objet de la maintenance de l'opération à supprimer");
+			return false;
+		}
+		if(comboboxMaintenanceDate.getSelectionModel().getSelectedIndex()==-1){
+			Popup.getInstance().afficherPopup("Vous devez selectionner la date de la maintenance de l'opération à supprimer");
+			return false;
+		}
+		return true;
+		
 	}
 
 	/**
@@ -106,17 +131,30 @@ public class SupprimerEstMaintenu {
 
 	@FXML
 	private void handleChange() {
-		int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxMateriel.getValue()));
-		listNomMaintenance = FXCollections.observableArrayList();
-		listIdMaintenance = FXCollections.observableArrayList();
+		int idMateriel = listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex());
+		listNomMateriel = FXCollections.observableArrayList();
+		listIdMaintenance = new ArrayList<Integer>();
+		listObjetMaintenance =FXCollections.observableArrayList();
 		try {
 			for (Maintenance maintenance : estMaintenuDAO.recupererMaintenanceParMateriel(idMateriel)){
-				listNomMaintenance.add(maintenance.getdateMaintenanceString());
+				listObjetMaintenance.add(maintenance.getObjetMaintenance());
 				listIdMaintenance.add(maintenance.getIdMaintenance().getValue());
 			}
 		} catch (ConnexionBDException e) {
 			e.printStackTrace();
 		}
-		comboboxMaintenance.setItems(listNomMaintenance);
+		comboboxMaintenanceObjet.setItems(listObjetMaintenance);
+	}
+	
+	@FXML
+	private void handleChange1() {
+		MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
+		String objetSelected=this.listObjetMaintenance.get(comboboxMaintenanceObjet.getSelectionModel().getSelectedIndex());
+		try {
+			this.listDateMaintenance=maintenanceDAO.recupererDateMaintenanceParObjet(objetSelected);
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+		comboboxMaintenanceDate.setItems(this.listDateMaintenance);
 	}
 }

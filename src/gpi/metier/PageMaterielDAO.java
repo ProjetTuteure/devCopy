@@ -111,7 +111,7 @@ public class PageMaterielDAO {
 	public ObservableList<PageMateriel> getMaterielMaintenu() throws ConnexionBDException{
 		connexion = MaConnexion.getInstance().getConnexion();
 		ObservableList<PageMateriel> listePageMateriel=FXCollections.observableArrayList();
-		String requete="SELECT M.idMateriel,M.nomMateriel FROM MATERIEL M"
+		String requete="SELECT DISTINCT M.idMateriel,M.nomMateriel FROM MATERIEL M"
 				+ " JOIN ESTMAINTENU E ON E.idMateriel=M.idMateriel"
 				+ " ORDER BY M.nomMateriel ASC";
 		

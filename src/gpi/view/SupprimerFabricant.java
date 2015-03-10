@@ -80,15 +80,16 @@ public class SupprimerFabricant {
 	@FXML
 	private void handleOk() {
 		if (controlerSaisies()) {
-		try {
-			fabricantDAO.supprimerFabricant(new Fabricant(listIdFabricant.get(comboboxfabr.getSelectionModel().getSelectedIndex()),null, null, null, null, null,null));
-			Popup.getInstance().afficherPopup("Fabricant "+comboboxfabr.getValue()+" supprimé !");
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
+			try {
+				fabricantDAO.supprimerFabricant(new Fabricant(listIdFabricant.get(comboboxfabr.getSelectionModel().getSelectedIndex()),null, null, null, null, null,null));
+				Popup.getInstance().afficherPopup("Fabricant "+comboboxfabr.getValue()+" supprimé !");
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
-	}}
+	}
 
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton ANNULER
