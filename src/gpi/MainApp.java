@@ -67,9 +67,8 @@ public class MainApp extends Application {
 	}
 	
 	public static void rafraichir(){
-		MainApp.rafraichirTab(SiteOverview,"Site");
-		MainApp.rafraichirTab(AncienneteOverview,"Anciennete");
-		MainApp.rafraichirTab(EtatOverview,"Etat");
+		MainApp.launch();
+		rootLayout.getSelectionModel().select(4);
 	}
 	
 	public void initLoginLayout() {
@@ -84,19 +83,6 @@ public class MainApp extends Application {
 			primaryStage.show();
 			LoginController controller = loader.getController();
 	        controller.setMainApp(this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void rafraichirTab(Tab tab, String nom){
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/" + nom
-				+ "Overview.fxml"));
-			AnchorPane tabOverview = (AnchorPane) loader.load();
-			tab.setText(nom);
-			tab.setContent(tabOverview);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -264,7 +250,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-			MainApp.launch();
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -289,9 +275,9 @@ public class MainApp extends Application {
 
 			SupprimerSite controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-
+			
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -318,7 +304,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -345,7 +331,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -372,7 +358,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -399,7 +385,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -426,7 +412,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -453,7 +439,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -480,7 +466,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -507,7 +493,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -534,7 +520,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -561,7 +547,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -588,7 +574,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -615,7 +601,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -642,7 +628,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -669,7 +655,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -696,7 +682,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -723,7 +709,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -750,7 +736,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -777,7 +763,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -804,7 +790,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -831,7 +817,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -859,6 +845,7 @@ public class MainApp extends Application {
 
 
 			dialogStage.showAndWait();
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -885,7 +872,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -912,7 +899,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -939,7 +926,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -966,7 +953,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -993,7 +980,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1020,7 +1007,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1047,7 +1034,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1075,7 +1062,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1102,7 +1089,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1129,7 +1116,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1156,7 +1143,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1183,7 +1170,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1210,7 +1197,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1238,7 +1225,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1265,7 +1252,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1293,7 +1280,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1318,6 +1305,7 @@ public class MainApp extends Application {
 			AjouterEstMaintenu controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			dialogStage.showAndWait();
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1345,7 +1333,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1372,7 +1360,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1400,7 +1388,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1428,7 +1416,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
@@ -1455,7 +1443,7 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 
 			dialogStage.showAndWait();
-
+			MainApp.rafraichir();
 			return controller.isOkClicked();
 
 		} catch (IOException e) {
