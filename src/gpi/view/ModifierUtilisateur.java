@@ -56,12 +56,9 @@ public class ModifierUtilisateur {
 		listnom = FXCollections.observableArrayList();
 		listeNom = new ArrayList<Utilisateur>();
 		try {
-			listeNom = utilisateurDAO.recupererAllUtilisateur();
+			listnom.addAll(utilisateurDAO.recupererAllNomUtilisateur());
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
-		}
-		for (Utilisateur utilisateur : listeNom) {
-			listnom.add(utilisateur.getNomUtilisateur().getValue());
 		}
 		comboboxnom.setItems(listnom);
 	}
@@ -121,7 +118,7 @@ public class ModifierUtilisateur {
 				utilisateurDAO.modifierUtilisateur(utilisateur);
 				Popup.getInstance().afficherPopup("Utilisateur "
 						+ utilisateur.getNomUtilisateur().getValue()
-						+ " modifi� !");
+						+ " modifié !");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
@@ -145,21 +142,14 @@ public class ModifierUtilisateur {
 	@FXML
 	private void handlechange1() {
 		listprenom = FXCollections.observableArrayList();
-		int indexUtilisateurSelectionne = comboboxnom.getSelectionModel()
-				.getSelectedIndex();
 		try {
-			listePrenom = utilisateurDAO.recupererUtilisateurParNom(listnom
-					.get(comboboxnom.getSelectionModel().getSelectedIndex()));
+			listePrenom = utilisateurDAO.recupererUtilisateurParNom(comboboxnom.getSelectionModel().getSelectedItem());
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		Utilisateur selected = listeNom.get(indexUtilisateurSelectionne);
 
 		for (Utilisateur ut : listePrenom) {
-			if (ut.getNomUtilisateur().getValue()
-					.equals(selected.getNomUtilisateur().getValue())) {
 				listprenom.add(ut.getPrenomUtilisateur().getValue());
-			}
 		}
 		comboboxprenom.setItems(listprenom);
 	}
