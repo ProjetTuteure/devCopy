@@ -9,7 +9,6 @@ import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import utils.Constante;
@@ -89,9 +88,12 @@ public class AjouterSite {
 			Popup.getInstance().afficherPopup("La longueur du nom du site saisi doit être inférieur à "+Constante.LONGUEUR_NOM_SITE+" caractéres");
 			return false;
 		}	
-		if(getCheminImageSite()!=null){
+		if(getCheminImageSite()==null){
+			Popup.getInstance().afficherPopup("Vous devez choisir une image");
+			return false;
+		}else{
 			if(getCheminImageSite().length()>Constante.LONGUEUR_CHEMIN_IMAGE){
-				Popup.getInstance().afficherPopup("La longueur du chemin saisi doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractéres");
+				Popup.getInstance().afficherPopup("La longueur du chemin de l'image saisi doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractéres");
 				return false;
 			}
 		}

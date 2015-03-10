@@ -114,15 +114,14 @@ public class ModifierType {
 			Popup.getInstance().afficherPopup("La longueur du nom du type doit être inférieur à "+Constante.LONGUEUR_NOM_TYPE+" caractères");
 			return false;
 		}
-		if(this.getCheminImageType()!=null){
+		if(this.getCheminImageType()==null){
+			Popup.getInstance().afficherPopup("Vous devez choisir une image");
+			return false;
+		}else{
 			if(this.getCheminImageType().length()>Constante.LONGUEUR_CHEMIN_IMAGE){
 				Popup.getInstance().afficherPopup("La longueur du chemin doit être inférieur à "+Constante.LONGUEUR_CHEMIN_IMAGE+" caractères");
 				return false;
 			}
-		}
-		else{
-			Popup.getInstance().afficherPopup("Une image doit être sélectionnée");
-			return false;
 		}
 		return true;
 	}

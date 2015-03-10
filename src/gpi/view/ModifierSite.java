@@ -115,15 +115,15 @@ public class ModifierSite {
 					+ Constante.LONGUEUR_NOM_SITE + " caractères");
 			return false;
 		}
-		if (this.getCheminImageSite() != null) {
+		if (this.getCheminImageSite() == null) {
+			Popup.getInstance().afficherPopup("Vous devez choisir une image");
+			return false;
+		} else {
 			if (getCheminImageSite().length() > Constante.LONGUEUR_CHEMIN_IMAGE) {
 				Popup.getInstance().afficherPopup("La longueur du chemin saisi doit être inférieur à "
 						+ Constante.LONGUEUR_CHEMIN_IMAGE + " caractères");
 				return false;
 			}
-		} else {
-			Popup.getInstance().afficherPopup("Une image doit être sélectionnée");
-			return false;
 		}
 		return true;
 	}
