@@ -1,6 +1,7 @@
 package gpi.view;
 
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
 import gpi.metier.MaterielDAO;
 import gpi.metier.PageMateriel;
 import gpi.metier.PageMaterielDAO;
@@ -11,6 +12,7 @@ import gpi.metier.UtiliseDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 import utils.Popup;
@@ -102,6 +104,9 @@ public class AjouterUtilisation {
 			utiliseDAO.ajouterUtilise(new Utilise(dateDebutUtilisation.getValue(),utilisateurDAO.recupererUtilisateurParId(listIdUtilisateur.get(indexUtilisateur)), materielDAO.recupererMaterielParId(Integer.parseInt(listIdMateriel.get(indexMateriel)))));
 		}catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+		catch (PrimaryKeyException e1) {
+			Popup.getInstance().afficherPopup(e1.getMessage());
 		}
 		okClicked = true;
 		dialogStage.close();
