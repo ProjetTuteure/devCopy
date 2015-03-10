@@ -2,10 +2,4 @@ Gerer les compositions mat/comp/utilisation : Faire les controles de champs vide
 
 Ajouter une maintenance sur le matériel : Maintenance sur le matériel : mettre les idMateriel
 
-Ajouter maintenance : faute d'orthographe "ayant eu une opérationde maintance"...
-Supprimer une opération de maintenance : orthographe
-
-Ajouter Prestataire champs pas dans le bon ordre
-idem ajouter Maintenance
-
 Ajouter composition message d'erreur si composition existe déjà

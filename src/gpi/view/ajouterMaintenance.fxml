@@ -11,11 +11,11 @@
     <GridPane prefHeight="164.0" prefWidth="301.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
         <Label prefHeight="17.0" prefWidth="132.0" text="Date de la maintenance" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <DatePicker fx:id="dp_dateMaintenance" GridPane.columnIndex="1" />
             <Label text="Coût de la maintenance" GridPane.rowIndex="1" />
             <Label text="Objet de la maintenance" GridPane.rowIndex="2" />
             <TextField fx:id="tf_coutMaintenance" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="tf_objetMaintenance" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker fx:id="dp_dateMaintenance" GridPane.columnIndex="1" />
             <Label text="Desciption" GridPane.rowIndex="3" />
             <TextArea fx:id="ta_description" prefColumnCount="20" prefHeight="100.0" prefRowCount="5" prefWidth="151.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
