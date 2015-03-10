@@ -7,8 +7,6 @@ Supprimer une opération de maintenance : orthographe
 
 Popup page parametre
 
-Page "Ajouter composition" a retravailler
-
 
 
 
