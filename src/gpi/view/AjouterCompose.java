@@ -100,6 +100,7 @@ public class AjouterCompose {
 				composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
 				materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxMateriel.getValue()))));
 				composeDAO.ajouterCompose(new Compose(composantSelected,materielSelected));
+				Popup.getInstance().afficherPopup("Le composant "+composantSelected.getNomComposant()+" a été ajouté au matériel "+materielSelected.getNomMateriel().getValue());
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
@@ -122,6 +123,7 @@ public class AjouterCompose {
 		}
 		if(comboboxMateriel.getSelectionModel().getSelectedItem()==null){
 			Popup.getInstance().afficherPopup("Le champ \"Materiel ayant le composant\" doit être rempli");
+			return false;
 		}
 		return true;
 	}

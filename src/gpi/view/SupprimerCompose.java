@@ -91,21 +91,43 @@ public class SupprimerCompose {
 	 */
 	@FXML
 	private void handleOk() {
-		Composant composantSelected = null;
-		Materiel materielSelected = null;
-		MaterielDAO materielDAO = new MaterielDAO();
-		
-		okClicked = true;
-		try {
-			composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
-			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex())));
-			composeDAO.supprimerCompose(new Compose(composantSelected,materielSelected));
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
+		if(controlerSaisies()){
+			Composant composantSelected = null;
+			Materiel materielSelected = null;
+			MaterielDAO materielDAO = new MaterielDAO();
+			
+			okClicked = true;
+			try {
+				composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
+				materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex())));
+				composeDAO.supprimerCompose(new Compose(composantSelected,materielSelected));
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+			dialogStage.close();
 		}
-		dialogStage.close();
 	}
 
+	/**
+	 * Permet de controler les saises
+	 * @return true si les saisies sont bonnes, false si les saisies sont incorrects
+	 */
+	private boolean controlerSaisies(){
+		if(comboboxNomComposant.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Nom du composant\" doit être rempli");
+			return false;
+		}
+		if(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Caractéristique du composant\" doit être rempli");
+			return false;
+		}
+		if(comboboxMateriel.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Materiel ayant le composant\" doit être rempli");
+			return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton ANNULER
 	 * est clique
