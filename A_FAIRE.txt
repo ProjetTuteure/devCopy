@@ -12,3 +12,4 @@ Champ Null Image
 Ajouter Prestataire champs pas dans le bon ordre
 idem ajouter Maintenance
 
+Ajouter composition message d'erreur si composition existe déjà
