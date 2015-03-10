@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
 import utils.MaConnexion;
 
 public class UtiliseDAO {
@@ -17,7 +18,7 @@ public class UtiliseDAO {
 	public UtiliseDAO() {
 	}
 
-	public int ajouterUtilise(Utilise utilise) throws ConnexionBDException {
+	public int ajouterUtilise(Utilise utilise) throws ConnexionBDException, PrimaryKeyException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		int resultat;
 		try {
@@ -31,6 +32,9 @@ public class UtiliseDAO {
 			resultat = prep.executeUpdate();
 			return resultat;
 		} catch (SQLException e) {
+			if(e.getMessage().contains("PRIMARY KEY")){
+        		throw new PrimaryKeyException("L'utilisateur "+utilise.getUtilisateurUtilise().getNomUtilisateur().getValue()+" "+utilise.getUtilisateurUtilise().getPrenomUtilisateur().getValue()+" utilise déjà le matériel "+utilise.getMaterielUtilise().getNomMateriel().getValue());
+        	}
 			e.printStackTrace();
 		} finally {
 			try {

@@ -5,10 +5,6 @@ Ajouter une maintenance sur le matériel : Maintenance sur le matériel : mettre l
 Ajouter maintenance : faute d'orthographe "ayant eu une opérationde maintance"...
 Supprimer une opération de maintenance : orthographe
 
-utlisiateur modifier et supprimer
-
-TRIGGER A FAIRE POUR LES LOGICIELS ETC...
-
 Popup page parametre
 
 Page "Ajouter composition" a retravailler
