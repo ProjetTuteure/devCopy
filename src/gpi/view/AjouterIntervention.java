@@ -45,7 +45,7 @@ public class AjouterIntervention {
 	private EstIntervenuDAO estIntervenuDAO;
 
 	/**
-	 * Initialise les donn�es
+	 * Initialise les données
 	 */
 	@FXML
 	private void initialize() {

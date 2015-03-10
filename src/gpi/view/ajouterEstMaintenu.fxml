@@ -1,27 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="150.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.AjouterEstMaintenu">
+<AnchorPane prefHeight="230.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpi.view.AjouterEstMaintenu">
   <children>
-    <GridPane prefHeight="164.0" prefWidth="301.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-      <children>
-        <Label text="Matériel ayant eu une opération de maintance" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Label text="Maintenance sur le matériel" GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboboxMateriel" prefWidth="200.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="comboboxMaintenance" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      </children>
+    <GridPane prefHeight="100.0" prefWidth="500.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
       <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="120.0" prefWidth="249.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="181.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.0" minWidth="120.0" prefWidth="249.0" />
       </columnConstraints>
       <rowConstraints>
-        <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
       </rowConstraints>
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <BorderPane prefHeight="150.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <GridPane minWidth="200.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="260.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="260.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label disable="true" prefHeight="17.0" prefWidth="79.0" text="Matériel" />
+                              <Label prefHeight="17.0" prefWidth="268.0" text="Matériel ayant eu un opération de maintenance " GridPane.rowIndex="1" />
+                              <ComboBox fx:id="comboboxMateriel" prefHeight="25.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="5.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                           </children>
+                        </GridPane>
+                     </center>
+                  </BorderPane>
+               </center>
+               <left>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" BorderPane.alignment="CENTER" />
+               </right>
+               <top>
+                  <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </top>
+               <bottom>
+                  <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </bottom>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="300.0" GridPane.rowIndex="1">
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                     <children>
+                        <ComboBox fx:id="comboboxMaintenanceObjet" onAction="#handleChange" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="5.0" />
+                           </GridPane.margin>
+                        </ComboBox>
+                        <ComboBox fx:id="comboboxMaintenanceDate" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="5.0" />
+                           </GridPane.margin>
+                        </ComboBox>
+                        <Label text="Objet" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Date" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                        <Label disable="true" prefHeight="17.0" prefWidth="79.0" text="Maintenance :" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="250.0" prefWidth="260.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="260.0" />
+                     </columnConstraints>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </center>
+               <top>
+                  <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </top>
+               <bottom>
+                  <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </bottom>
+               <right>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" BorderPane.alignment="CENTER" />
+               </right>
+               <left>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" BorderPane.alignment="CENTER" />
+               </left>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </BorderPane>
+         </children>
     </GridPane>
       <HBox id="HBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" minWidth="-1.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>

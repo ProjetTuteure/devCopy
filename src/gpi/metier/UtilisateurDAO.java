@@ -132,8 +132,8 @@ public class UtilisateurDAO {
 					.prepareStatement("SELECT * FROM UTILISATEUR WHERE nomUtilisateur=?");
 			ps.setString(1, nomUtilisateur);
 			ResultSet rs = ps.executeQuery();
+			list = new ArrayList<Utilisateur>();
 			while (rs.next()) {
-				list = new ArrayList<Utilisateur>();
 				list.add(new Utilisateur(new SimpleIntegerProperty(rs
 						.getInt("idUtilisateur")), rs
 						.getString("nomUtilisateur"), rs
@@ -169,6 +169,30 @@ public class UtilisateurDAO {
 						.getString("nomUtilisateur"), rs
 						.getString("prenomUtilisateur"), rs
 						.getString("telUtilisateur")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return listeUtilisateur;
+	}
+
+	public List<String> recupererAllNomUtilisateur() throws ConnexionBDException {
+		Connection connexion = MaConnexion.getInstance().getConnexion();
+		List<String> listeUtilisateur = new ArrayList<String>();
+		try {
+			PreparedStatement ps = connexion
+					.prepareStatement("SELECT Distinct nomUtilisateur FROM UTILISATEUR");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				listeUtilisateur.add(rs.getString("nomUtilisateur"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

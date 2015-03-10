@@ -1,6 +1,7 @@
 package gpi.metier;
 
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
 import utils.MaConnexion;
 
 import java.sql.*;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class EstMaintenuDAO {
     private Connection connexion;
-    public int ajouterEstMaintenu(EstMaintenu estMaintenu) throws ConnexionBDException {
+    public int ajouterEstMaintenu(EstMaintenu estMaintenu) throws ConnexionBDException, PrimaryKeyException {
         int nombreLigneAffectee=0;
         try {
             connexion= MaConnexion.getInstance().getConnexion();
@@ -19,6 +20,9 @@ public class EstMaintenuDAO {
 
             nombreLigneAffectee=preparedStatement.executeUpdate();
         } catch (SQLException e) {
+        	if(e.getMessage().contains("PRIMARY KEY")){
+        		throw new PrimaryKeyException("Cette opération de maintenance est déjà ajoutée");
+        	}
             e.printStackTrace();
         } finally {
             try {
