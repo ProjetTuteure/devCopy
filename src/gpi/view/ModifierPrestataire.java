@@ -157,7 +157,7 @@ public class ModifierPrestataire {
 				prestataireAModifier.setSocietePrestataire(societePrestataireField.getText());
 				
 				prestataireDAO.modifierPrestataire(prestataireAModifier);
-				Popup.getInstance().afficherPopup("Prestataire "+prestataireAModifier.getNomPrestataire().getValue()+" "+prestataireAModifier.getPrenomPrestataire().getValue()+" modifié !");
+				Popup.getInstance().afficherPopup("Prestataire "+prestataireAModifier.getNomPrestataire().getValue()+" "+prestataireAModifier.getPrenomPrestataire().getValue()+" modifié");
 			} catch (ConnexionBDException e) {
 				e.printStackTrace();
 			}

@@ -90,7 +90,7 @@ public class ModifierLogiciel {
 			int idLogiciel=listObjetsLogiciel.get(indexLogiciel).getIdLogiciel();
 			try {
 				logicielDAO.modifierLogiciel(new Logiciel(idLogiciel,nomLogicielField.getText(),versionLogicielField.getText(),dateExpirationLogicielPicker.getValue(),facture));
-				Popup.getInstance().afficherPopup("Logiciel "+nomLogicielField.getText()+" modifié !");
+				Popup.getInstance().afficherPopup("Logiciel "+nomLogicielField.getText()+" modifié");
 			}  catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

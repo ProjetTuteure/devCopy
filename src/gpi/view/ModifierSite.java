@@ -91,7 +91,7 @@ public class ModifierSite {
 			try {
 				siteDAO.modifierSite(new Site(getIdSite(), getNomSite(),
 						getCheminImageSite()));
-				Popup.getInstance().afficherPopup("Site " + getNomSite() + " modifié !");
+				Popup.getInstance().afficherPopup("Site " + getNomSite() + " modifié");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

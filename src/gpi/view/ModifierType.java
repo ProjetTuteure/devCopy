@@ -90,7 +90,7 @@ public class ModifierType {
 			Type typeAModifie=new Type(this.getIdType(),nomTypeField.getText(),this.getCheminImageType());
 			try {
 				typeDAO.modifierType(typeAModifie);
-				Popup.getInstance().afficherPopup("Type "+typeAModifie.getNomTypeString()+" modifié !");
+				Popup.getInstance().afficherPopup("Type "+typeAModifie.getNomTypeString()+" modifié");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

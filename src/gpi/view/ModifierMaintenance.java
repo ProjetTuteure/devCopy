@@ -85,7 +85,7 @@ public class ModifierMaintenance {
 						ta_descriptionMaintenance.getText(),
 						coutMaintenance);
 						maintenanceDAO.modifierMaintenance(maintenance);
-				Popup.getInstance().afficherPopup("Maintenance du "+maintenanceAModifier.getdateMaintenanceStringProperty().getValue()+ " modifi�e !");
+				Popup.getInstance().afficherPopup("Maintenance du "+maintenanceAModifier.getdateMaintenanceStringProperty().getValue()+ " modifiée");
 				okClicked = true;
 				dialogStage.close();
 			}

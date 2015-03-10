@@ -74,12 +74,12 @@ public class ModifierComposant {
 	private void handleOk() {
 		Fabricant fabricant = null;
 		if (nomfield.getText().equals("")) {
-			Popup.getInstance().afficherPopup("Le champ \"Nom du composant\" doit �tre rempli");
+			Popup.getInstance().afficherPopup("Le champ \"Nom du composant\" doit être rempli");
 		} else if (nomfield.getText().length() > Constante.LONGUEUR_NOM_COMPOSANT) {
-			Popup.getInstance().afficherPopup("Le nom du composant doit etre inf�rieur � "
-					+ Constante.LONGUEUR_NOM_COMPOSANT + " caract�res");
+			Popup.getInstance().afficherPopup("Le nom du composant doit etre inférieur à "
+					+ Constante.LONGUEUR_NOM_COMPOSANT + " caractères");
 		} else if (caracfield.getText().length() > Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT) {
-			Popup.getInstance().afficherPopup("Les caract�ristiques ne peuvent pas d�passer "
+			Popup.getInstance().afficherPopup("Les caractéristiques ne peuvent pas dépasser "
 					+ Constante.LONGUEUR_CARACTERISTIQUE_COMPOSANT
 					+ " caract�res");
 		} else {
@@ -111,7 +111,7 @@ public class ModifierComposant {
 				composant.setFabricantComposant(fabricant);
 
 				composantDAO.modifierComposant(composant);
-				Popup.getInstance().afficherPopup("Composant "+composant.getNomComposant()+" modifi� !");
+				Popup.getInstance().afficherPopup("Composant "+composant.getNomComposant()+" modifié");
 			} catch (ConnexionBDException e) {
 				e.printStackTrace();
 			}

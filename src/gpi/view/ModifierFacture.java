@@ -93,7 +93,7 @@ public class ModifierFacture {
 			}
 			try {
 				factureDAO.modifierFacture(new Facture(idFacture,numFactureField.getText(),dateFacturePicker.getValue(),Float.parseFloat(montantFactureField.getText()),revendeur));
-				Popup.getInstance().afficherPopup("Facture "+numFactureField.getText()+" modifi�e !");
+				Popup.getInstance().afficherPopup("Facture "+numFactureField.getText()+" modifiée");
 			}  catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

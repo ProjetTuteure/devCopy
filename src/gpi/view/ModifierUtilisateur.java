@@ -118,7 +118,7 @@ public class ModifierUtilisateur {
 				utilisateurDAO.modifierUtilisateur(utilisateur);
 				Popup.getInstance().afficherPopup("Utilisateur "
 						+ utilisateur.getNomUtilisateur().getValue()
-						+ " modifié !");
+						+ " modifié");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

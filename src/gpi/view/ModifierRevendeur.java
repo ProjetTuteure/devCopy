@@ -108,7 +108,7 @@ public class ModifierRevendeur {
 			try
 			{
 				revendeurDAO.modifierRevendeur(revendeur);
-				Popup.getInstance().afficherPopup("Revendeur "+revendeur.getNomRevendeur().getValue()+" modifié !");
+				Popup.getInstance().afficherPopup("Revendeur "+revendeur.getNomRevendeur().getValue()+" modifié");
 			}
 			catch(ConnexionBDException ce)
 			{

@@ -82,7 +82,7 @@ public class ModifierFabricant {
 			Fabricant fabricantAModifier=new Fabricant(this.getIdFabriquant(),nomFabricantField.getText(),telFabricantField.getText(),mobileFabricantField.getText(),faxFabricantField.getText(),emailFabricantField.getText(),adresseFabricantField.getText());
 			try {
 				fabricantDAO.modifierFabricant(fabricantAModifier);
-				Popup.getInstance().afficherPopup("Fabricant "+fabricantAModifier.getNomFabricantString()+" modifié !");
+				Popup.getInstance().afficherPopup("Fabricant "+fabricantAModifier.getNomFabricantString()+" modifié");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}

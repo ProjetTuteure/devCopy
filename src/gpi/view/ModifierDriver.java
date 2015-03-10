@@ -52,6 +52,7 @@ public class ModifierDriver {
 	private void handleOk() {
 		if (!(cheminfield.getText().isEmpty())){
 			Propriete.getInstance().setProperties("driver",cheminfield.getText());
+			Popup.getInstance().afficherPopup("Chemin driver modifié \n ('"+cheminfield.getText()+"')");
 			okClicked = true;
 			dialogStage.close();
 		}

@@ -162,6 +162,7 @@ public class ModifierMateriel {
 					numeroSerieMaterielField.getText(), systemeExploitationMaterielField.getText(),
 					nomMaterielField.getText(),typeMateriel,etatMateriel,
 					dateExpirationGarantieMateriel,this.getRepertoireDriver(), factureMateriel, siteMateriel, fabricantMateriel, modeleMaterielField.getText()));
+			Popup.getInstance().afficherPopup("Materiel "+nomMaterielField.getText()+" modifié");
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
