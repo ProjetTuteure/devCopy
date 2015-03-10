@@ -3,6 +3,8 @@ package gpi.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Composant;
@@ -24,7 +26,7 @@ public class AjouterCompose {
 	@FXML
 	private Stage dialogStage;
 	@FXML
-	private boolean okClicked = false;
+	private boolean okClicked=false;
 	@FXML
 	private ComboBox<String> comboboxNomComposant;
 	@FXML
@@ -33,7 +35,6 @@ public class AjouterCompose {
 	private ComboBox<String> comboboxMateriel;
 
 	private ComposantDAO composantDAO;
-
 	
 	private ObservableList<String> listeNomComposant;
 	private List<Integer> listeIdComposant;
@@ -89,22 +90,41 @@ public class AjouterCompose {
 	 */
 	@FXML
 	private void handleOk() {
-		Composant composantSelected = null;
-		Materiel materielSelected = null;
-		MaterielDAO materielDAO = new MaterielDAO();
-		ComposeDAO composeDAO = new ComposeDAO();
-		okClicked = true;
-		try {
-			composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
-			materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxMateriel.getValue()))));
-			composeDAO.ajouterCompose(new Compose(composantSelected,materielSelected));
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
+		if(controlerSaisies()){
+			Composant composantSelected = null;
+			Materiel materielSelected = null;
+			MaterielDAO materielDAO = new MaterielDAO();
+			ComposeDAO composeDAO = new ComposeDAO();
+			okClicked = true;
+			try {
+				composantSelected = composantDAO.recupererComposantParId(listeIdComposant.get(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedIndex()));
+				materielSelected = materielDAO.recupererMaterielParId(Integer.parseInt(listeIdMateriel.get(listeNomMateriel.indexOf(comboboxMateriel.getValue()))));
+				composeDAO.ajouterCompose(new Compose(composantSelected,materielSelected));
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+			dialogStage.close();
 		}
-		dialogStage.close();
-
 	}
 
+	/**
+	 * Permet de controler les saises
+	 * @return true si les saisies sont bonnes, false si les saisies sont incorrects
+	 */
+	private boolean controlerSaisies(){
+		if(comboboxNomComposant.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Nom du composant\" doit être rempli");
+			return false;
+		}
+		if(comboboxCaracteristiqueComposant.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Caractéristique du composant\" doit être rempli");
+			return false;
+		}
+		if(comboboxMateriel.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Materiel ayant le composant\" doit être rempli");
+		}
+		return true;
+	}
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton ANNULER
 	 * est clique
