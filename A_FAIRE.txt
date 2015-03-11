@@ -3,3 +3,5 @@ Gerer les compositions mat/comp/utilisation : Faire les controles de champs vide
 Ajouter une maintenance sur le matériel : Maintenance sur le matériel : mettre les idMateriel
 
 Ajouter composition message d'erreur si composition existe déjà
+
+Faire le Rapport
