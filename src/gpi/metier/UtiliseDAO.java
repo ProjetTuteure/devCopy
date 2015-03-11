@@ -154,7 +154,7 @@ public List<String> recupererUtilisateursByDateParMachine(Integer idMateriel) th
 				resultats.add(donnee);
 				donnee=resultat.getString(1)+"_"+resultat.getString(2);
 			}
-			donnee+="_ ";
+			donnee+="_NODATE";
 			resultats.add(donnee);
 		} catch (SQLException e) {
 			e.printStackTrace();

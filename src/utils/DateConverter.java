@@ -10,7 +10,7 @@ public class DateConverter {
 	 * @return la chaîne correspondant à la date JJ/MM/AAAA
 	 */
 	public static String getFrenchDate(String date){
-		if(date!=null){
+		if(date!=null && !date.equals("NODATE")){
 			LocalDate dateMaintenance;
 			dateMaintenance=LocalDate.parse(date);
 		 	String chaine1="";
@@ -23,7 +23,7 @@ public class DateConverter {
 	        }
 	        return chaine1+dateMaintenance.getDayOfMonth()+"/"+chaine2+dateMaintenance.getMonthValue()+"/"+dateMaintenance.getYear();
 		}else{
-			return "";
+			return " ";
 		}
 	}
 }
