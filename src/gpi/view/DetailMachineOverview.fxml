@@ -19,7 +19,7 @@
                   <Text fx:id="textSiteNomMachine" layoutX="371.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Site -&gt; NomMachine" wrappingWidth="167.6708984375" />
                   <Text fx:id="textCheminDossierDrivers" layoutX="371.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chemin Dossier Drivers" />
                   <Circle fx:id="colorCircle" fill="#0f8a2a" layoutX="245.0" layoutY="43.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button layoutX="629.0" layoutY="118.0" mnemonicParsing="false" text="Imprimer Rapport(s)" />
+                  <Button layoutX="629.0" layoutY="118.0" mnemonicParsing="false" onAction="#ajouterAffecterUtilisateur" text="Ajouter Utilisateur" />
                   <Button layoutX="665.0" layoutY="82.0" mnemonicParsing="false" onAction="#goBack" text="Retour" />
                   <Button fx:id="b_vnc" layoutX="665.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#lancerVNC" text="VNC" />
                </children>
