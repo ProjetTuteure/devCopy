@@ -49,15 +49,16 @@ public class UtiliseDAO {
 		return 0;
 	}
 
-	public int supprimerUtlise(int idUtilisateur, int idMateriel) throws ConnexionBDException {
+	public int supprimerUtilise(int idUtilisateur, int idMateriel,String date) throws ConnexionBDException {
 		Connection connexion = MaConnexion.getInstance().getConnexion();
 		int resultat;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement prep = connexion
-					.prepareStatement("DELETE FROM UTILISE WHERE idUtilisateur=? And idMateriel=?;");
+					.prepareStatement("DELETE FROM UTILISE WHERE idUtilisateur=? And idMateriel=? AND dateUtilise=?;");
 			prep.setInt(1,idUtilisateur);
 			prep.setInt(2,idMateriel);
+			prep.setString(3,date);
 			resultat = prep.executeUpdate();
 			return resultat;
 		} catch (SQLException e) {
@@ -73,8 +74,33 @@ public class UtiliseDAO {
 		}
 		return 0;
 	}
+	
+	public List<String> recupererDateUtilisation(int idMateriel,int idUtilisateur) throws ConnexionBDException {
+		List<String> listDate = new ArrayList<String>();
+		Connection connexion = MaConnexion.getInstance().getConnexion();
+		ResultSet resultat;
+		try {
+			PreparedStatement statement = connexion.prepareStatement("SELECT * FROM UTILISE WHERE idMateriel=? AND idUtilisateur=?");
+            statement.setInt(1, idMateriel);
+			statement.setInt(2, idUtilisateur);
+			resultat=statement.executeQuery();
+            while(resultat.next()){
+            	listDate.add(resultat.getString("dateUtilise"));         
+            }
+		} catch (SQLException e) {
+		}finally{
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				 e.printStackTrace();
+			}
+		}
+		return listDate;
+	}
 
-	public List<Utilise> recuperMaterielUtiliseAll() throws ConnexionBDException {
+	public List<Utilise> recupererMaterielUtiliseAll() throws ConnexionBDException {
 		List<Utilise> listUtilise = new ArrayList<Utilise>();
 		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
 		Connection connexion = MaConnexion.getInstance().getConnexion();
@@ -103,6 +129,31 @@ public class UtiliseDAO {
 			}
 		}
 		return listUtilise;
+	}
+	public List<Utilisateur> recupererAllUtilisateurUtilise() throws ConnexionBDException {
+		List<Utilisateur> listUtilisateur = new ArrayList<Utilisateur>();
+		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
+		Connection connexion = MaConnexion.getInstance().getConnexion();
+		ResultSet resultat;
+		Utilisateur utilisateur;
+		try {
+			Statement statement = connexion.createStatement();
+            resultat=statement.executeQuery("SELECT * FROM UTILISE");
+            while(resultat.next()){
+            	utilisateur = utilisateurDAO.recupererUtilisateurParId(resultat.getInt("idUtilisateur"));
+            	listUtilisateur.add(utilisateur);
+            }
+		} catch (SQLException e) {
+		}finally{
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				 e.printStackTrace();
+			}
+		}
+		return listUtilisateur;
 	}
 	
 	public String recupererNomDernierUtilisateurMachine(Integer idMateriel){
