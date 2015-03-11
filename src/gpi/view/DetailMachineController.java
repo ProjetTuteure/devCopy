@@ -323,6 +323,12 @@ public class DetailMachineController{
 		MainApp.showAddEstInstallerMaterielDialog(materiel);
 	}
 	
+	@FXML
+	private void ajouterMaintenanceMateriel(){
+		Materiel materiel=getActiveMateriel();
+		MainApp.showAddMaintenanceMaterielDialog(materiel);
+	}
+	
 	/**
 	 * Permet le retour sur les pages pr�c�dentes
 	 * @param event 

@@ -2,17 +2,21 @@ package gpi.view;
 
 import utils.Constante;
 import utils.Popup;
+import gpi.MainApp;
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
+import gpi.metier.EstMaintenu;
+import gpi.metier.EstMaintenuDAO;
 import gpi.metier.Maintenance;
 import gpi.metier.MaintenanceDAO;
+import gpi.metier.Materiel;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
-public class AjouterMaintenance {
+public class AjouterMaintenanceMateriel {
 	@FXML
 	private Stage dialogStage;
 
@@ -31,7 +35,8 @@ public class AjouterMaintenance {
 	@FXML
 	private TextArea ta_description;
 	
-	private MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
+	private MaintenanceDAO maintenanceDAO = new MaintenanceDAO();
+	private EstMaintenuDAO estMaintenuDAO = new EstMaintenuDAO();
 	/**
 	 * Initialise les donn�es
 	 */
@@ -66,6 +71,7 @@ public class AjouterMaintenance {
 	private void handleOk() {
 		okClicked = true;
 		float coutMaintenance=0;
+		Materiel materiel=getActiveMateriel();
 		if(controlerSaisies()==true)
 		{
 			if(!tf_coutMaintenance.getText().isEmpty()){
@@ -77,9 +83,12 @@ public class AjouterMaintenance {
 					coutMaintenance);
 			try {
 				maintenanceDAO.ajouterMaintenance(maintenance);
-				Popup.getInstance().afficherPopup("Maintenance du "+maintenance.getdateMaintenanceStringProperty().getValue()+" ajoutée");
+				estMaintenuDAO.ajouterEstMaintenu(new EstMaintenu(maintenance, materiel));
+				Popup.getInstance().afficherPopup("Maintenance du "+maintenance.getdateMaintenanceStringProperty().getValue()+" ajoutée pour le matériel "+materiel.getNomMateriel().getValue());
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
+			} catch (PrimaryKeyException pke) {
+				Popup.getInstance().afficherPopup(pke.getMessage());
 			}
 			dialogStage.close();
 		}
@@ -129,6 +138,27 @@ public class AjouterMaintenance {
 		}
 		return true;
 	}
+	
+	public Materiel getActiveMateriel(){
+		int index=0;
+		switch(MainApp.getActiveTab()){
+		case 0:
+			index=2;
+			break;
+		case 1:
+			index=0;
+			break;
+		case 2:
+			index=0;
+			break;
+		case 3:
+            //index=0;
+			index=11;
+			break;
+		}
+	return (Materiel)MainApp.getCritere(index);
+	}
+	
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton ANNULER
 	 * est clique

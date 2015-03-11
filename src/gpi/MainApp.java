@@ -1320,6 +1320,32 @@ public class MainApp extends Application {
 			return false;
 		}
 	}
+	
+	public static boolean showAddMaintenanceMaterielDialog(Materiel materiel) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					MainApp.class.getResource("view/ajouterMaintenanceMateriel.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Ajouter une maintenance sur le materiel "+materiel.getNomMateriel().getValue());
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(false);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			AjouterMaintenanceMateriel controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+
+			dialogStage.showAndWait();
+			return controller.isOkClicked();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	public static boolean showSuppUtilisationDialog() {
 		try {
