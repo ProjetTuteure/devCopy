@@ -131,6 +131,8 @@ public class SupprimerEstMaintenu {
 
 	@FXML
 	private void handleChange() {
+		comboboxMaintenanceObjet.setItems(null);
+		comboboxMaintenanceDate.setItems(null);
 		int idMateriel = listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex());
 		listNomMateriel = FXCollections.observableArrayList();
 		listIdMaintenance = new ArrayList<Integer>();
@@ -148,13 +150,15 @@ public class SupprimerEstMaintenu {
 	
 	@FXML
 	private void handleChange1() {
-		MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
-		String objetSelected=this.listObjetMaintenance.get(comboboxMaintenanceObjet.getSelectionModel().getSelectedIndex());
-		try {
-			this.listDateMaintenance=maintenanceDAO.recupererDateMaintenanceParObjet(objetSelected);
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
+		if(comboboxMaintenanceObjet.getSelectionModel().getSelectedIndex()!=-1){
+			MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
+			String objetSelected=this.listObjetMaintenance.get(comboboxMaintenanceObjet.getSelectionModel().getSelectedIndex());
+			try {
+				this.listDateMaintenance=maintenanceDAO.recupererDateMaintenanceParObjet(objetSelected);
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+			comboboxMaintenanceDate.setItems(this.listDateMaintenance);
 		}
-		comboboxMaintenanceDate.setItems(this.listDateMaintenance);
 	}
 }
