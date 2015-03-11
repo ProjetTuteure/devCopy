@@ -138,7 +138,7 @@ public class UtiliseDAO {
 		Utilisateur utilisateur;
 		try {
 			Statement statement = connexion.createStatement();
-            resultat=statement.executeQuery("SELECT * FROM UTILISE");
+            resultat=statement.executeQuery("SELECT DISTINCT idUtilisateur FROM UTILISE");
             while(resultat.next()){
             	utilisateur = utilisateurDAO.recupererUtilisateurParId(resultat.getInt("idUtilisateur"));
             	listUtilisateur.add(utilisateur);

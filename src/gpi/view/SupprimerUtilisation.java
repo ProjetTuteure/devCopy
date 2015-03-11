@@ -4,8 +4,6 @@ import gpi.exception.ConnexionBDException;
 import gpi.metier.PageMateriel;
 import gpi.metier.PageMaterielDAO;
 import gpi.metier.Utilisateur;
-import gpi.metier.UtilisateurDAO;
-import gpi.metier.Utilise;
 import gpi.metier.UtiliseDAO;
 
 import java.util.ArrayList;
@@ -58,9 +56,9 @@ public class SupprimerUtilisation {
 		listIdMateriel = new ArrayList<Integer>();
 		
 		try{
-			for(Utilise utilise : utiliseDAO.recupererMaterielUtiliseAll()){
-				listNomUtilisateur.add(utilise.getUtilisateurUtilise().getNomUtilisateur().getValue()+" "+utilise.getUtilisateurUtilise().getPrenomUtilisateur().getValue());
-				listIdUtilisateur.add(utilise.getUtilisateurUtilise().getIdUtilisateur().intValue());
+			for(Utilisateur utilisateur : utiliseDAO.recupererAllUtilisateurUtilise()){
+				listNomUtilisateur.add(utilisateur.getNomUtilisateur().getValue()+" "+utilisateur.getPrenomUtilisateur().getValue());
+				listIdUtilisateur.add(utilisateur.getIdUtilisateur().intValue());
 			}
 		}catch(ConnexionBDException e){
 			Popup.getInstance().afficherPopup(e.getMessage());
@@ -93,8 +91,6 @@ public class SupprimerUtilisation {
 		if(comboboxMateriel.getSelectionModel().getSelectedIndex()!=-1){
 			this.idUtilisateur = listIdUtilisateur.get(comboboxNomUtilisateur.getSelectionModel().getSelectedIndex());
 			this.idMateriel = listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex());
-			System.out.println(idUtilisateur);
-			System.out.println(idMateriel);
 			UtiliseDAO utiliseDAO = new UtiliseDAO();
 			this.listDateUtilisation = FXCollections.observableArrayList();
 			listDateUtilisationDB = new ArrayList<String>();
@@ -140,13 +136,12 @@ public class SupprimerUtilisation {
 		this.idUtilisateur = (listIdUtilisateur.get(comboboxNomUtilisateur.getSelectionModel().getSelectedIndex()));
 		this.idMateriel = (listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex()));
 		this.dateUtilisation = (listDateUtilisationDB.get(comboboxDateUtilisation.getSelectionModel().getSelectedIndex()));
-		System.out.println(dateUtilisation);
 		
 		try {
 			utiliseDAO.supprimerUtilise(this.idUtilisateur, this.idMateriel,this.dateUtilisation);
 			Popup.getInstance().afficherPopup("Utilisateur "+comboboxNomUtilisateur.getValue()+" supprimé du matériel "+comboboxMateriel.getValue());
-		} catch (NumberFormatException | ConnexionBDException e) {
-			/*Todo*/
+		} catch (ConnexionBDException e) {
+			e.printStackTrace();
 		}
 		okClicked = true;
 		dialogStage.close();
