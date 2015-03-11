@@ -1294,7 +1294,32 @@ public class MainApp extends Application {
 			return false;
 		}
 	}
+	
+	public static boolean showAddEstInstallerMaterielDialog(Materiel materiel) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					MainApp.class.getResource("view/ajouterLogicielMateriel.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Ajouter un logiciel sur le materiel "+materiel.getNomMateriel().getValue());
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(false);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
 
+			AjouterLogicielMateriel controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+
+			dialogStage.showAndWait();
+			return controller.isOkClicked();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	public static boolean showSuppUtilisationDialog() {
 		try {
