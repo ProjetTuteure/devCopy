@@ -79,7 +79,7 @@ public class AjouterLogicielMateriel{
 			try {
 				Materiel materiel=getActiveMateriel();
 				String nomLogiciel=logicielDAO.recupererNomLogicielParId(idLogiciel);
-				EstInstalle estInstalle=new EstInstalle(Integer.parseInt(materiel.getNomMateriel().getValue()),idLogiciel);
+				EstInstalle estInstalle=new EstInstalle(materiel.getIdMateriel().getValue(),idLogiciel);
 				estInstalleDAO.ajouterEstInstalle(estInstalle);
 				Popup.getInstance().afficherPopup("Installation de '"+nomLogiciel+"' sur "+materiel.getNomMateriel().getValue()+" ajoutée");
 			} catch (ConnexionBDException e) {

@@ -318,7 +318,7 @@ public class DetailMachineController{
 	}
 	
 	@FXML
-	private void ajouterLogicielMachine(){
+	private void ajouterLogicielMateriel(){
 		Materiel materiel=getActiveMateriel();
 		MainApp.showAddEstInstallerMaterielDialog(materiel);
 	}
