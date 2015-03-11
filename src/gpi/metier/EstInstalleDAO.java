@@ -26,7 +26,7 @@ public class EstInstalleDAO {
 			nombreLigneAffectee = prepareStatement.executeUpdate();
 		} catch (SQLException e) {
 			if(e.getMessage().contains("PRIMARY KEY")){
-        		throw new PrimaryKeyException("Ce logiciel a déjà été ajoutée sur ce matériel");
+        		throw new PrimaryKeyException("Ce logiciel a déjà été ajouté sur ce matériel");
         	}else{
         		e.printStackTrace();
         	}
