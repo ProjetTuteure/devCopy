@@ -34,8 +34,9 @@ public class UtiliseDAO {
 		} catch (SQLException e) {
 			if(e.getMessage().contains("PRIMARY KEY")){
         		throw new PrimaryKeyException("L'utilisateur "+utilise.getUtilisateurUtilise().getNomUtilisateur().getValue()+" "+utilise.getUtilisateurUtilise().getPrenomUtilisateur().getValue()+" utilise déjà le matériel "+utilise.getMaterielUtilise().getNomMateriel().getValue());
+        	}else{
+                e.printStackTrace();	
         	}
-			e.printStackTrace();
 		} finally {
 			try {
 				if (connexion != null){

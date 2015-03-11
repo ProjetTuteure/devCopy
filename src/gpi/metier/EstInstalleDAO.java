@@ -1,6 +1,7 @@
 package gpi.metier;
 
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import utils.MaConnexion;
 public class EstInstalleDAO {
 	private Connection connection;
 	
-	public int ajouterEstInstalle(EstInstalle estInstalle) throws ConnexionBDException {
+	public int ajouterEstInstalle(EstInstalle estInstalle) throws ConnexionBDException, PrimaryKeyException {
 		int nombreLigneAffectee = 0;
 		try {
 			connection = MaConnexion.getInstance().getConnexion();
@@ -24,7 +25,11 @@ public class EstInstalleDAO {
 			prepareStatement.setString(2, estInstalle.getIdMateriel());
 			nombreLigneAffectee = prepareStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			if(e.getMessage().contains("PRIMARY KEY")){
+        		throw new PrimaryKeyException("Ce logiciel a déjà été ajoutée sur ce matériel");
+        	}else{
+        		e.printStackTrace();
+        	}
 		} finally {
 			try {
 				connection.close();

@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-import utils.Constante;
 import utils.Popup;
 
 
@@ -32,7 +31,6 @@ public class AjouterEstMaintenu {
 	private ObservableList<String> listDateMaintenance;
 	private ObservableList<String> listObjetMaintenance;
 	private List<Integer> listIdMateriel;
-	private List<Integer> listIdMaintenance;
 	
 	/**
 	 * Initialise les donnees Ajoute les donnees aux combobox
@@ -44,7 +42,6 @@ public class AjouterEstMaintenu {
 		PageMaterielDAO pageMaterielDAO=new PageMaterielDAO();
 		listNomMateriel = FXCollections.observableArrayList();
 		listIdMateriel = new ArrayList<Integer>();
-		listIdMaintenance = new ArrayList<Integer>();	
 		try {
 			for (Maintenance maintenance : maintenanceDAO.recupererAllMaintenance()){
 				listObjetMaintenance.add(maintenance.getObjetMaintenance());
@@ -107,25 +104,6 @@ public class AjouterEstMaintenu {
 			okClicked = true;
 			dialogStage.close();
 		}	
-		EstMaintenuDAO estMaintenuDAO=new EstMaintenuDAO();
-		MaintenanceDAO maintenanceDAO=new MaintenanceDAO();
-		MaterielDAO materielDAO=new MaterielDAO();
-		int idMateriel = listIdMateriel.get(listNomMateriel.indexOf(comboboxMateriel.getValue()));
-		int idMaintenance = listIdMaintenance.get(listObjetMaintenance.indexOf(comboboxMaintenanceObjet.getValue()));
-		try {
-			Maintenance maintenance=maintenanceDAO.recupererMaintenanceParId(idMaintenance);
-			Materiel materiel=materielDAO.recupererMaterielParId(idMateriel);
-			EstMaintenu estMaintenuAAjoute=new EstMaintenu(maintenance,materiel);
-			estMaintenuDAO.ajouterEstMaintenu(estMaintenuAAjoute);
-			Popup.getInstance().afficherPopup("Maitenance '"+maintenance.getObjetMaintenance()+"' sur "+materiel.getNomMateriel().getValue()+" ajoutée");
-
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
-		} catch (PrimaryKeyException pke){
-			Popup.getInstance().afficherPopup(pke.getMessage());
-		}
-		okClicked = true;
-		dialogStage.close();
 
 	}
 	private boolean controlerSaisies() {

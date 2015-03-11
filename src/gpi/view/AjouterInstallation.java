@@ -3,6 +3,7 @@ package gpi.view;
 import utils.Constante;
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
 import gpi.metier.EstInstalle;
 import gpi.metier.EstInstalleDAO;
 import gpi.metier.EstMaintenu;
@@ -111,6 +112,8 @@ public class AjouterInstallation {
 				Popup.getInstance().afficherPopup("Installation de '"+nomLogiciel+"' sur "+nomMateriel+" ajoutée");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
+			} catch (PrimaryKeyException pke){
+				Popup.getInstance().afficherPopup(pke.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();

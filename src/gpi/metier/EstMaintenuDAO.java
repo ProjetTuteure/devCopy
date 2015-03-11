@@ -22,6 +22,8 @@ public class EstMaintenuDAO {
         } catch (SQLException e) {
         	if(e.getMessage().contains("PRIMARY KEY")){
         		throw new PrimaryKeyException("Cette opération de maintenance est déjà ajoutée");
+        	}else{
+        		e.printStackTrace();
         	}
         } finally {
             try {

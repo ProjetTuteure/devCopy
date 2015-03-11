@@ -67,7 +67,14 @@ public class MainApp extends Application {
 	}
 	
 	public static void rafraichir(){
-		MainApp.launch();
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/SiteOverview.fxml"));
+			AnchorPane tabOverview = (AnchorPane) loader.load();
+			rootLayout.getTabs().get(0).setContent(tabOverview);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		rootLayout.getSelectionModel().select(4);
 	}
 	
