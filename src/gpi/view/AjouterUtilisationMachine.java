@@ -47,6 +47,7 @@ public class AjouterUtilisationMachine {
 				for(Utilisateur utilisateur : utilisateurDAO.recupererAllUtilisateur()){
 					listNomUtilisateur.add(utilisateur.getNomUtilisateur().getValue()+" "+utilisateur.getPrenomUtilisateur().getValue());
 					listIdUtilisateur.add(utilisateur.getIdUtilisateur().intValue());
+					System.out.println("la");
 				}
 			}catch(ConnexionBDException e){
 				Popup.getInstance().afficherPopup(e.getMessage());
@@ -139,9 +140,5 @@ public class AjouterUtilisationMachine {
 		@FXML
 		private void handleCancel() {
 			dialogStage.close();
-		}
-
-		@FXML
-		private void handleChange() {
 		}
 	}

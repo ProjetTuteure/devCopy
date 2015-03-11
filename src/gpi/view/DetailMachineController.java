@@ -1,5 +1,8 @@
 package gpi.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gpi.MainApp;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.*;
@@ -90,17 +93,17 @@ public class DetailMachineController{
 	@FXML
 	private TableColumn<Maintenance,String> descriptionMaintenance;
 	@FXML
-	private TableView<Materiel> tableViewUtilisateurs;
+	private TableView<Utilisateur> tableViewUtilisateurs;
 	@FXML
-	private TableColumn<Materiel,String> nomUtilisateur;
+	private TableColumn<Utilisateur,String> nomUtilisateur;
 	@FXML
-	private TableColumn<Materiel,String> prenomUtilisateur;
+	private TableColumn<Utilisateur,String> prenomUtilisateur;
 	@FXML
-	private TableColumn<Materiel,String> telUtilisateur;
+	private TableColumn<Utilisateur,String> telUtilisateur;
 	@FXML
-	private TableColumn<Materiel,String> debutUtilisateur;
+	private TableColumn<Utilisateur,String> debutUtilisateur;
 	@FXML
-	private TableColumn<Materiel,String> finUtilisateur;
+	private TableColumn<Utilisateur,String> finUtilisateur;
 	@FXML
 	private TableView<Logiciel> tableViewLogiciels;
 	@FXML
@@ -130,6 +133,7 @@ public class DetailMachineController{
 	ObservableList<Materiel> listMateriel;
 	ObservableList<Facture> listFacture;
 	ObservableList<Materiel> listFabricant;
+	ObservableList<Utilisateur> listUtilisateur;
 	ObservableList<Facture> listRevendeur;
 	ObservableList<Maintenance> listMaintenance;
 	
@@ -170,6 +174,8 @@ public class DetailMachineController{
 		EstMaintenuDAO estMaintenuDAO = new EstMaintenuDAO();
 		ComposeDAO composeDAO = new ComposeDAO();
 		EstInstalleDAO estInstalleDAO = new EstInstalleDAO();
+		UtiliseDAO utiliseDAO = new UtiliseDAO();
+		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
 		
 		textSiteNomMachine.setText(materiel.getSiteMateriel().getNomSiteProperty().getValue()+" --> "+materiel.getNomMateriel().getValueSafe());
 		textCheminDossierDrivers.setText(materiel.getRepertoireDriverMateriel().getValueSafe());
@@ -203,6 +209,8 @@ public class DetailMachineController{
 		telFabricant.setCellValueFactory(cellData -> cellData.getValue().getFabricantMateriel().getTelFabricant());
 		adresseFabricant.setCellValueFactory(cellData -> cellData.getValue().getFabricantMateriel().getAdresseFabricant());
 		
+		
+		
 		listRevendeur = FXCollections.observableArrayList();
 		listRevendeur.add(materiel.getFactureMateriel());
 		tableViewRevendeur.setItems(listRevendeur);
@@ -226,7 +234,26 @@ public class DetailMachineController{
 		coutMaintenance.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCoutMaintenanceString()));
 		descriptionMaintenance.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescriptionMaintenance()));
 		
-		//utilisateurs onglet
+		listUtilisateur = FXCollections.observableArrayList();
+		List<String> listDebutUtilisation = new ArrayList<String>();
+		List<String> listFinUtilisation = new ArrayList<String>();
+		Utilisateur utilisateur;
+		try {
+			for(String donnee : utiliseDAO.recupererUtilisateursByDateParMachine(materiel.getIdMateriel().getValue())){
+				utilisateur=utilisateurDAO.recupererUtilisateurParId(Integer.parseInt(donnee.split("_")[0]));
+				listUtilisateur.add(utilisateur);
+				listDebutUtilisation.add(donnee.split("_")[1]);
+				listFinUtilisation.add(donnee.split("_")[2]);				
+			}
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+		tableViewUtilisateurs.setItems(listUtilisateur);
+		nomUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomUtilisateur().getValue()));
+		prenomUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenomUtilisateur().getValue()));
+		telUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelUtilisateur().getValue()));
+		debutUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(listDebutUtilisation.get(listUtilisateur.indexOf(cellData.getValue()))));
+		finUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(listFinUtilisation.get(listUtilisateur.indexOf(cellData.getValue()))));
 		
 		listLogiciel = FXCollections.observableArrayList();
 		try {
