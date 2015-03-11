@@ -76,9 +76,11 @@ public class SupprimerUtilisation {
 		this.listDateUtilisation = FXCollections.observableArrayList();
 		listDateUtilisationDB = new ArrayList<String>();
 		try {
-			for(PageMateriel pageMateriel : pageMaterielDAO.getMaterielByIdUtilisateur(idUtilisateur)){
-				listNomMateriel.add(pageMateriel.getNomMateriel());
-				listIdMateriel.add(Integer.parseInt(pageMateriel.getIdMateriel()));	
+			for(PageMateriel pageMateriel : pageMaterielDAO.getMaterielByIdUtilisateur(idUtilisateur)){ 
+				if(!listNomMateriel.contains(pageMateriel.getNomMateriel())){
+					listNomMateriel.add(pageMateriel.getNomMateriel());
+					listIdMateriel.add(Integer.parseInt(pageMateriel.getIdMateriel()));	
+				}
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
@@ -132,22 +134,39 @@ public class SupprimerUtilisation {
 	 */
 	@FXML
 	private void handleOk() {
-		UtiliseDAO utiliseDAO=new UtiliseDAO();
-		this.idUtilisateur = (listIdUtilisateur.get(comboboxNomUtilisateur.getSelectionModel().getSelectedIndex()));
-		this.idMateriel = (listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex()));
-		this.dateUtilisation = (listDateUtilisationDB.get(comboboxDateUtilisation.getSelectionModel().getSelectedIndex()));
-		
-		try {
-			utiliseDAO.supprimerUtilise(this.idUtilisateur, this.idMateriel,this.dateUtilisation);
-			Popup.getInstance().afficherPopup("Utilisateur "+comboboxNomUtilisateur.getValue()+" supprimé du matériel "+comboboxMateriel.getValue());
-		} catch (ConnexionBDException e) {
-			e.printStackTrace();
+		if(controlerSaisies()){
+			UtiliseDAO utiliseDAO=new UtiliseDAO();
+			this.idUtilisateur = (listIdUtilisateur.get(comboboxNomUtilisateur.getSelectionModel().getSelectedIndex()));
+			this.idMateriel = (listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex()));
+			this.dateUtilisation = (listDateUtilisationDB.get(comboboxDateUtilisation.getSelectionModel().getSelectedIndex()));
+			
+			try {
+				utiliseDAO.supprimerUtilise(this.idUtilisateur, this.idMateriel,this.dateUtilisation);
+				Popup.getInstance().afficherPopup("Utilisateur "+comboboxNomUtilisateur.getValue()+" supprimé du matériel "+comboboxMateriel.getValue());
+			} catch (ConnexionBDException e) {
+				e.printStackTrace();
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
-
 	}
+	
 
+	private boolean controlerSaisies(){
+		if(comboboxNomUtilisateur.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Utilisateur\" doit être rempli");
+			return false;
+		}
+		if(comboboxMateriel.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Matériel\" doit être rempli");
+			return false;
+		}
+		if(comboboxDateUtilisation.getSelectionModel().getSelectedItem()==null){
+			Popup.getInstance().afficherPopup("Le champ \"Début d'utilisation\" doit être rempli");
+			return false;
+		}
+		return true;
+	}
 	/**
 	 * Cette procedure permet de fermer la fenetre, lorsque le bouton ANNULER
 	 * est clique

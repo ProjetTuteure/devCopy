@@ -40,7 +40,7 @@ public class SupprimerInstallation {
 		listNomMateriel = FXCollections.observableArrayList();
 		listIdMateriel = FXCollections.observableArrayList();
 		try {
-			for(PageMateriel pageMateriel : pageMaterielDAO.getAllMateriel()){
+			for(PageMateriel pageMateriel : pageMaterielDAO.getMaterielParInstallation()){
 				listIdMateriel.add(Integer.parseInt(pageMateriel.getIdMateriel()));
 				listNomMateriel.add(pageMateriel.getNomMateriel());
 			}

@@ -36,7 +36,7 @@ public class ResultatAvanceController implements Initializable {
     	List<IAvance> resultatMateriels = null;
 		try {
 			resultatMateriels = iAvanceDAO.recupererRechercheAvanceeMateriel();
-			labelNbMaterielTrouve.setText("Resultats de la recherche: "+resultatMateriels.size()+" résultat trouvé");
+			labelNbMaterielTrouve.setText("Resultats de la recherche: "+resultatMateriels.size()+" résultat(s) trouvé(s)");
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
