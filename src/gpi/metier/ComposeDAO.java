@@ -26,9 +26,10 @@ public class ComposeDAO {
 			nombreLigneAffectee = prepareStatement.executeUpdate();
 		} catch (SQLException e) {
 			if(e.getMessage().contains("PRIMARY KEY")){
-        		throw new PrimaryKeyException("Cette opération de maintenance est déjà ajoutée");
+        		throw new PrimaryKeyException("Ce composant a déjà ajoutée sur ce matériel");
+        	}else{
+                e.printStackTrace();    		
         	}
-            e.printStackTrace();
 		} finally {
 			try {
 				connection.close();

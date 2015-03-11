@@ -3,6 +3,7 @@ package gpi.view;
 
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
+import gpi.exception.PrimaryKeyException;
 import gpi.metier.EstIntervenuDAO;
 import gpi.metier.FactureDAO;
 import gpi.metier.MaintenanceDAO;
@@ -145,6 +146,8 @@ public class AjouterIntervention {
 				Popup.getInstance().afficherPopup("Intervention de "+nomPrestataire+" ajoutée pour la maintenance '"+objetMaintenance+"'");
 			} catch (ConnexionBDException e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
+			} catch (PrimaryKeyException pke){
+				Popup.getInstance().afficherPopup(pke.getMessage());
 			}
 			okClicked = true;
 			dialogStage.close();
