@@ -140,29 +140,33 @@ public class DetailMachineController{
 	public DetailMachineController() {
     }
 	
+	public Materiel getActiveMateriel(){
+		switch(MainApp.getActiveTab()){
+		case 0:
+			index=2;
+			break;
+		case 1:
+			index=0;
+			break;
+		case 2:
+			index=0;
+			break;
+		case 3:
+            //index=0;
+			index=11;
+			break;
+		}
+	return (Materiel)MainApp.getCritere(index);
+	}
+	
 	/**
 	 * Initialise les donn�es et affecte l'index en fonction de la page
 	 * courante
 	 */
 	@FXML
 	public void initialize() {
-		switch(MainApp.getActiveTab()){
-			case 0:
-				index=2;
-				break;
-			case 1:
-				index=0;
-				break;
-			case 2:
-				index=0;
-				break;
-			case 3:
-                //index=0;
-				index=11;
-				break;
-		}
 		champNull=new SimpleStringProperty(" ");
-		materiel=(Materiel)MainApp.getCritere(index);
+		materiel=getActiveMateriel();
 		EstMaintenuDAO estMaintenuDAO = new EstMaintenuDAO();
 		ComposeDAO composeDAO = new ComposeDAO();
 		EstInstalleDAO estInstalleDAO = new EstInstalleDAO();
@@ -277,7 +281,8 @@ public class DetailMachineController{
 	
 	@FXML
 	private void ajouterAffecterUtilisateur(){
-		
+		Utilise util = new Utilise(null, null,getActiveMateriel());
+		MainApp.showAddUtilisationMaterielDialog(util);
 	}
 	
 	/**

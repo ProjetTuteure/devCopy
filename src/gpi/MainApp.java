@@ -1262,6 +1262,33 @@ public class MainApp extends Application {
 		}
 	}
 
+	public static boolean showAddUtilisationMaterielDialog(Utilise util) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					MainApp.class.getResource("view/ajouterUtilisation.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Ajouter une utilisation sur le materiel "+util.getMaterielUtilise().getNomMateriel().getValue());
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(false);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			AjouterUtilisationMachine controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+
+			dialogStage.showAndWait();
+			MainApp.rafraichir();
+			return controller.isOkClicked();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 
 	public static boolean showSuppUtilisationDialog() {
 		try {

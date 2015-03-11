@@ -36,7 +36,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodFabr(ActionEvent event) {
-		boolean okClicked = MainApp.showModFabrDialog();
+		MainApp.showModFabrDialog();
 	}
 	
 	@FXML
@@ -54,7 +54,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppFabr(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppFabrDialog();
+		MainApp.showSuppFabrDialog();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddFact(ActionEvent event) {
 		Facture facture = new Facture(0, null, null, 0, null);
-		boolean okClicked = MainApp.showAddFactDialog(facture);
+		MainApp.showAddFactDialog(facture);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodFact(ActionEvent event) {
-		boolean okClicked = MainApp.showModFactDialog();
+		MainApp.showModFactDialog();
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppFact(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppFactDialog();
+		MainApp.showSuppFactDialog();
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddLog(ActionEvent event) {
 		Logiciel logiciel = new Logiciel(0, null, null, null, null);
-		boolean okClicked = MainApp.showAddLogDialog(logiciel);
+		MainApp.showAddLogDialog(logiciel);
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodLog(ActionEvent event) {
-		boolean okClicked = MainApp.showModLogDialog();
+		MainApp.showModLogDialog();
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppLog(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppLogDialog();
+		MainApp.showSuppLogDialog();
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddMaint(ActionEvent event) {
 		Maintenance maintenance = new Maintenance(1, null, null, null, 0);
-		boolean okClicked = MainApp.showAddMaintDialog(maintenance);
+		MainApp.showAddMaintDialog(maintenance);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodMaint(ActionEvent event) {
-		boolean okClicked = MainApp.showModMaintDialog();
+		MainApp.showModMaintDialog();
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppMaint(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppMaintDialog();
+		MainApp.showSuppMaintDialog();
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class ParametreController implements Initializable {
 	private void handleaddMat(ActionEvent event) {
 		Materiel materiel = new Materiel(0, null,null,null, null, null, null, null, null,
 				null, null, null, null);
-		boolean okClicked = MainApp.showAddMatDialog(materiel);
+		MainApp.showAddMatDialog(materiel);
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodMat(ActionEvent event) {
-		boolean okClicked = MainApp.showModMatDialog();
+		MainApp.showModMatDialog();
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppMat(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppMatDialog();
+		MainApp.showSuppMatDialog();
 	}
 
 	/**
@@ -203,7 +203,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddPrest(ActionEvent event) {
 		Prestataire prest = new Prestataire(0, null, null, null, null,null,null,null);
-		boolean okClicked = MainApp.showAddPrestDialog(prest);
+		MainApp.showAddPrestDialog(prest);
 	}
 
 	/**
@@ -214,7 +214,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodPrest(ActionEvent event) {
-		boolean okClicked = MainApp.showModPrestDialog();
+		MainApp.showModPrestDialog();
 	}
 
 	/**
@@ -225,7 +225,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppPrest(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppPrestDialog();
+		MainApp.showSuppPrestDialog();
 	}
 
 	/**
@@ -237,7 +237,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddRev(ActionEvent event) {
 		Revendeur rev = new Revendeur(null, null, null, null,null,null,null);
-		boolean okClicked = MainApp.showAddRevDialog(rev);
+		MainApp.showAddRevDialog(rev);
 	}
 
 	/**
@@ -248,7 +248,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodRev(ActionEvent event) {
-		boolean okClicked = MainApp.showModRevDialog();
+		MainApp.showModRevDialog();
 	}
 
 	/**
@@ -259,7 +259,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppRev(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppRevDialog();
+		MainApp.showSuppRevDialog();
 	}
 
 	/**
@@ -271,7 +271,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddSite(ActionEvent event) {
 		Site site = new Site(0, null, null);
-		boolean okClicked = MainApp.showAddSiteDialog(site);
+		MainApp.showAddSiteDialog(site);
 	}
 
 	/**
@@ -282,7 +282,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodSite(ActionEvent event) {
-		boolean okClicked = MainApp.showModSiteDialog();
+		MainApp.showModSiteDialog();
 	}
 
 	/**
@@ -293,7 +293,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppSite(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppSiteDialog();
+		MainApp.showSuppSiteDialog();
 	}
 
 	/**
@@ -305,7 +305,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddType(ActionEvent event) {
 		Type type = new Type(0, null, null);
-		boolean okClicked = MainApp.showAddTypeDialog(type);
+		MainApp.showAddTypeDialog(type);
 	}
 
 	/**
@@ -316,7 +316,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodType(ActionEvent event) {
-		boolean okClicked = MainApp.showModTypeDialog();
+		MainApp.showModTypeDialog();
 	}
 
 	/**
@@ -327,7 +327,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppType(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppTypeDialog();
+		MainApp.showSuppTypeDialog();
 	}
 
 	/**
@@ -339,7 +339,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddUtilisateur(ActionEvent event) {
 		Utilisateur user = new Utilisateur(null, null, null, null);
-		boolean okClicked = MainApp.showAddUtilisateurDialog(user);
+		MainApp.showAddUtilisateurDialog(user);
 	}
 
 	/**
@@ -350,7 +350,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodUtilisateur(ActionEvent event) {
-		boolean okClicked = MainApp.showModUtilisateurDialog();
+		MainApp.showModUtilisateurDialog();
 	}
 
 	/**
@@ -361,7 +361,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppUtilisateur(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppUtilisateurDialog();
+		MainApp.showSuppUtilisateurDialog();
 	}
 
 	/**
@@ -374,7 +374,7 @@ public class ParametreController implements Initializable {
 	private void handleaddComposant(ActionEvent event) {
 		// Pas de type Type, mais de type compose => pas encore cr��
 		Type type = new Type(0, null, null);
-		boolean okClicked = MainApp.showAddComposantDialog(type);
+		MainApp.showAddComposantDialog(type);
 	}
 
 	/**
@@ -385,7 +385,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlemodComposant(ActionEvent event) {
-		boolean okClicked = MainApp.showModComposantDialog();
+		MainApp.showModComposantDialog();
 	}
 
 	/**
@@ -396,7 +396,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppComposant(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppComposantDialog();
+		MainApp.showSuppComposantDialog();
 	}
 
 	/**
@@ -409,7 +409,7 @@ public class ParametreController implements Initializable {
 	private void handleaddCompose(ActionEvent event) {
 		// Pas de type Type, mais de type compose => pas encore cr��
 		Composant comp = new Composant(null, null, null, null);
-		boolean okClicked = MainApp.showAddComposeDialog(comp);
+		MainApp.showAddComposeDialog(comp);
 	}
 
 	/**
@@ -420,7 +420,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppCompose(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppComposeDialog();
+		MainApp.showSuppComposeDialog();
 	}
 
 	/**
@@ -432,7 +432,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddIntervention(ActionEvent event) {
 		EstIntervenu inter = new EstIntervenu(null, null, null);
-		boolean okClicked = MainApp.showAddInterventionDialog(inter);
+		MainApp.showAddInterventionDialog(inter);
 	}
 
 	/**
@@ -443,7 +443,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppIntervention(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppInterventionDialog();
+		MainApp.showSuppInterventionDialog();
 	}
 
 	/**
@@ -455,7 +455,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddUtilisation(ActionEvent event) {
 		Utilise util = new Utilise(null, null,null);
-		boolean okClicked = MainApp.showAddUtilisationDialog(util);
+		MainApp.showAddUtilisationDialog(util);
 	}
 
 	/**
@@ -466,7 +466,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppUtilisation(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppUtilisationDialog();
+		MainApp.showSuppUtilisationDialog();
 	}
 
 	/**
@@ -478,7 +478,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddEstMaintenu(ActionEvent event) {
 		EstMaintenu mt = new EstMaintenu(null, null);
-		boolean okClicked = MainApp.showAddEstMaintenuDialog(mt);
+		MainApp.showAddEstMaintenuDialog(mt);
 	}
 
 	/**
@@ -489,7 +489,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppEstMaintenu(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppEstMaintenuDialog();
+		MainApp.showSuppEstMaintenuDialog();
 	}
 	
 	/**
@@ -501,7 +501,7 @@ public class ParametreController implements Initializable {
 	@FXML
 	private void handleaddInstallation(ActionEvent event) {
 		EstMaintenu mt = new EstMaintenu(null, null);
-		boolean okClicked = MainApp.showAddInstallationDialog(mt);
+		MainApp.showAddInstallationDialog(mt);
 	}
 
 	/**
@@ -512,7 +512,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handlesuppInstallation(ActionEvent event) {
-		boolean okClicked = MainApp.showSuppInstallationDialog();
+		MainApp.showSuppInstallationDialog();
 	}
 
 	/**
@@ -523,7 +523,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handleBD(ActionEvent event) {
-		boolean okClicked = MainApp.showModBDDialog();
+		MainApp.showModBDDialog();
 	}
 
 	/**
@@ -544,7 +544,7 @@ public class ParametreController implements Initializable {
 	 */
 	@FXML
 	private void handleDriver(ActionEvent event) {
-		boolean okClicked = MainApp.showModDriverDialog();
+		MainApp.showModDriverDialog();
 		// DirectoryChooser directoryChooser = new DirectoryChooser();
 		// directoryChooser.setTitle("Open directory");
 		// File selectedDirectory = directoryChooser.showDialog(null);
