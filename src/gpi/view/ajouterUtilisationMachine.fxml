@@ -11,7 +11,6 @@
       <children>
         <Label text="Utilisateur" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <ComboBox fx:id="ComboboxNomUtilisateur" onAction="#handleChange" prefWidth="200.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="ComboboxMateriel" prefWidth="200.0" GridPane.columnIndex="1" />
             <Label text="Début d'utilisation" GridPane.rowIndex="1" />
             <DatePicker fx:id="dateDebutUtilisation" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
