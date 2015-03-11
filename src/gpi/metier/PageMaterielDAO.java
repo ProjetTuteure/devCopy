@@ -135,4 +135,37 @@ public class PageMaterielDAO {
 		}
 		return listePageMateriel;
 	}
+	
+	/**
+	 * Récupère les matériels contenus dans la table estInstalle
+	 * @return
+	 * @throws ConnexionBDException
+	 */
+	public ObservableList<PageMateriel> getMaterielParInstallation() throws ConnexionBDException{
+		connexion = MaConnexion.getInstance().getConnexion();
+		ObservableList<PageMateriel> listePageMateriel=FXCollections.observableArrayList();
+		String requete="SELECT DISTINCT M.idMateriel,M.nomMateriel FROM MATERIEL M"
+				+ " JOIN ESTINSTALLE E ON E.idMateriel=M.idMateriel"
+				+ " ORDER BY M.nomMateriel ASC";
+		
+		try {
+			PreparedStatement ps=connexion.prepareStatement(requete);
+			ResultSet resultat = ps.executeQuery();
+			while(resultat.next()){
+				listePageMateriel.add(new PageMateriel(resultat.getString("idMateriel"),
+						resultat.getString("nomMateriel")));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listePageMateriel;
+	}
 }
