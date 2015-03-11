@@ -1,6 +1,7 @@
 package gpi.view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import gpi.MainApp;
@@ -8,6 +9,7 @@ import gpi.exception.ConnexionBDException;
 import gpi.metier.*;
 import ping.ChangerCouleurPastille;
 import ping.PingWindows;
+import utils.DateConverter;
 import utils.Popup;
 import vnc.VNCWindows;
 import javafx.beans.property.SimpleStringProperty;
@@ -248,12 +250,15 @@ public class DetailMachineController{
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
+		Collections.reverse(listUtilisateur);
+		Collections.reverse(listDebutUtilisation);
+		Collections.reverse(listFinUtilisation);
 		tableViewUtilisateurs.setItems(listUtilisateur);
 		nomUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomUtilisateur().getValue()));
 		prenomUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenomUtilisateur().getValue()));
 		telUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelUtilisateur().getValue()));
-		debutUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(listDebutUtilisation.get(listUtilisateur.indexOf(cellData.getValue()))));
-		finUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(listFinUtilisation.get(listUtilisateur.indexOf(cellData.getValue()))));
+		debutUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(DateConverter.getFrenchDate(listDebutUtilisation.get(listUtilisateur.indexOf(cellData.getValue())))));
+		finUtilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(DateConverter.getFrenchDate(listFinUtilisation.get(listUtilisateur.indexOf(cellData.getValue())))));
 		
 		listLogiciel = FXCollections.observableArrayList();
 		try {
