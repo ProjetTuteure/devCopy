@@ -15,6 +15,8 @@ import gpi.metier.Facture;
 import gpi.metier.FactureDAO;
 import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
+import gpi.metier.PageMateriel;
+import gpi.metier.PageMaterielDAO;
 import gpi.metier.Site;
 import gpi.metier.SiteDAO;
 import gpi.metier.Type;
@@ -67,7 +69,7 @@ public class AjouterMateriel {
 	private TextField modeleMaterielField;
 	@FXML
 	private DatePicker dateMaterielPicker;
-	
+		
 	/**
 	 * Initialise les donnees Ajoute les donnees aux combobox
 	 */
@@ -235,6 +237,18 @@ public class AjouterMateriel {
 			Popup.getInstance().afficherPopup("Le champ \"Nom matériel\" doit être rempli");
 			return false;
 		}
+		PageMaterielDAO pageMaterielDAO=new PageMaterielDAO();
+		List<String> nomMateriels=null;
+		try {
+			nomMateriels=pageMaterielDAO.getAllNomMateriel();
+		} catch (ConnexionBDException e) {
+			Popup.getInstance().afficherPopup(e.getMessage());
+		}
+		if(nomMateriels.contains(nomMaterielField.getText())){
+			Popup.getInstance().afficherPopup("Un matériel de ce nom est déjà ajouté, un nom matériel doit être unique");
+			return false;
+		}
+
 		if (nomMaterielField.getText().length() > Constante.LONGUEUR_NOM_MATERIEL) {
 			Popup.getInstance().afficherPopup("Le nom du matériel doit être inférieur à " + Constante.LONGUEUR_NOM_MATERIEL + " caractères");
 			return false;

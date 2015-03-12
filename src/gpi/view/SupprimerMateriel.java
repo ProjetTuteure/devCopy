@@ -1,6 +1,9 @@
 package gpi.view;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import utils.Popup;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Materiel;
@@ -21,24 +24,28 @@ public class SupprimerMateriel {
 	@FXML
 	private ComboBox<String> comboboxMateriel;
 
-	private ObservableList<String> listMateriel;
+	private ObservableList<String> listNomMateriel;
+	private List<String> listIdMateriel;
+	
 
 	/**
 	 * Initialise les donnees Ajoute les donnees aux combobox
 	 */
 	@FXML
 	private void initialize() {
-		listMateriel = FXCollections.observableArrayList();
+		listNomMateriel = FXCollections.observableArrayList();
+		listIdMateriel = new ArrayList<String>();
 		PageMaterielDAO pageMaterielDAO=new PageMaterielDAO();
 		
 		try {
 			for (PageMateriel materiel : pageMaterielDAO.getAllMateriel()) {
-				listMateriel.add(materiel.getIdMateriel()+"- "+materiel.getNomMateriel());
+				listNomMateriel.add(materiel.getNomMateriel());
+				listIdMateriel.add(materiel.getIdMateriel());
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		comboboxMateriel.setItems(listMateriel);
+		comboboxMateriel.setItems(listNomMateriel);
 	}
 
 	/**
@@ -66,11 +73,10 @@ public class SupprimerMateriel {
 	 */
 	@FXML
 	private void handleOk() {
-		String[] listStrings =comboboxMateriel.getValue().split("-");
 		MaterielDAO materielDAO=new MaterielDAO();
 		try {
-			materielDAO.supprimerMateriel(new Materiel(Integer.parseInt(listStrings[0]), null, null, null, null, null, null, null, null, null, null,null,null));
-			Popup.getInstance().afficherPopup("Materiel "+listStrings[1]+" supprimé");
+			materielDAO.supprimerMateriel(new Materiel(Integer.parseInt(listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex())), null, null, null, null, null, null, null, null, null, null,null,null));
+			Popup.getInstance().afficherPopup("Materiel "+comboboxMateriel.getValue()+" supprimé");
 		} catch (NumberFormatException e) {
 			Popup.getInstance().afficherPopup("L'id du materiel doit être un entier");
 		} catch (ConnexionBDException e) {

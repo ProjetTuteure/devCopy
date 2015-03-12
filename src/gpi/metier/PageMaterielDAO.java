@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import utils.MaConnexion;
 import javafx.collections.FXCollections;
@@ -76,6 +78,32 @@ public class PageMaterielDAO {
 			}
 		}
 		return listePageMateriel;
+	}
+	
+	public List<String> getAllNomMateriel() throws ConnexionBDException{
+		connexion = MaConnexion.getInstance().getConnexion();
+		List<String> listeNomMateriel=new ArrayList<String>();
+		String requete="SELECT nomMateriel FROM MATERIEL M"
+				+ " ORDER BY nomMateriel ASC";
+		
+		try {
+			PreparedStatement ps=connexion.prepareStatement(requete);
+			ResultSet resultat = ps.executeQuery();
+			while(resultat.next()){
+				listeNomMateriel.add(resultat.getString("nomMateriel"));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			try {
+				if (connexion != null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listeNomMateriel;
 	}
 	
 	public ObservableList<PageMateriel> getMaterielByIdUtilisateur(int idUtilisateur) throws ConnexionBDException{
