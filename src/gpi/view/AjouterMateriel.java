@@ -103,8 +103,12 @@ public class AjouterMateriel {
 		FactureDAO factureDAO=new FactureDAO();
 		try {
 			for (Facture facture : factureDAO.recupererAllFacture()) {
-				listFactureMateriel.add(facture.getNumFacture());
-				listIdFactureMateriel.add(facture.getIdFacture().getValue());
+				if(!listFactureMateriel.contains(facture.getNumFacture())){
+					listFactureMateriel.add(facture.getNumFacture());
+				}else{
+					listFactureMateriel.add(facture.getNumFacture()+" - "+facture.getRevendeurFacture().getNomRevendeur().getValue());
+				}		
+				listIdFactureMateriel.add(facture.getIdFacture().get());
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
@@ -160,7 +164,7 @@ public class AjouterMateriel {
 	 */
 	@FXML
 	private void handleOk() {
-		if (controlerSaisies() == true) {
+		if (controlerSaisies()) {
 			MaterielDAO materielDAO=new MaterielDAO();
 			TypeDAO typeDAO = new TypeDAO();
 			Type typeMateriel=null;
@@ -177,6 +181,7 @@ public class AjouterMateriel {
 			try {
 				if(comboboxFactureMateriel.getSelectionModel().getSelectedIndex()!=-1){
 					factureMateriel = factureDAO.recupererFactureParId(listIdFactureMateriel.get(comboboxFactureMateriel.getSelectionModel().getSelectedIndex()));
+					
 				}
 			} catch (ConnexionBDException e1) {
 				Popup.getInstance().afficherPopup(e1.getMessage());
@@ -244,6 +249,14 @@ public class AjouterMateriel {
 		}
 		if (modeleMaterielField.getText().length() > Constante.LONGUEUR_MODELE_MAT) {
 			Popup.getInstance().afficherPopup("Le modèle du matériel doit être inférieur à "+ Constante.LONGUEUR_MODELE_MAT + " caractères");
+			return false;
+		}
+		if (comboboxTypeMateriel.getSelectionModel().getSelectedIndex()==-1) {
+			Popup.getInstance().afficherPopup("Le matériel doit avoir un type");
+			return false;
+		}
+		if (comboboxEtatMateriel.getSelectionModel().getSelectedIndex()==-1) {
+			Popup.getInstance().afficherPopup("Le matériel doit avoir un état");
 			return false;
 		}
 		return true;

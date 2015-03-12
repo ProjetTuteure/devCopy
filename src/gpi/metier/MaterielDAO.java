@@ -53,7 +53,7 @@ public class MaterielDAO {
 			if(materiel.getFactureMateriel()==null){
 				prepareStatement.setString(9, null);
 			}else{
-				prepareStatement.setString(9, materiel.getFactureMateriel().getNumFacture());
+				prepareStatement.setInt(9, materiel.getFactureMateriel().getIdFacture().getValue());
 			}
 			if(materiel.getFabricantMateriel()==null){
 				prepareStatement.setString(10, null);
@@ -101,7 +101,7 @@ public class MaterielDAO {
 			preparedStatement.setString(1, materiel.getNumImmobMateriel().getValue());
 			preparedStatement.setString(2, materiel.getNomMateriel().getValue());
 			preparedStatement.setString(3, materiel.getNumeroSerieMateriel().getValue());
-			preparedStatement.setString(4, materiel	.getSystemeExploitationMateriel().getValue());
+			preparedStatement.setString(4, materiel.getSystemeExploitationMateriel().getValue());
 			if(materiel.getDateExpirationGarantie()==null){
 				preparedStatement.setString(5, null);
 			}else{
@@ -117,7 +117,7 @@ public class MaterielDAO {
 			if(materiel.getFactureMateriel()==null){
 				preparedStatement.setString(9, null);
 			}else{
-				preparedStatement.setString(9, materiel.getFactureMateriel().getNumFacture());
+				preparedStatement.setInt(9, materiel.getFactureMateriel().getIdFacture().getValue());
 			}
 			if(materiel.getFabricantMateriel()==null){
 				preparedStatement.setString(10, null);
