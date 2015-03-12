@@ -10,12 +10,20 @@
         <BorderPane layoutX="200.0" layoutY="147.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
                 <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <ListView fx:id="listMateriel" layoutX="15.0" layoutY="14.0" prefHeight="475.0" prefWidth="771.0">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets></ListView>
-                    </children>
+               <children>
+                  <TableView fx:id="tv_tableauRechercheAvancee" layoutX="14.0" layoutY="14.0" prefHeight="483.0" prefWidth="773.0">
+                    <columns>
+                      <TableColumn fx:id="tc_numImmobilisation" prefWidth="107.0" text="N°Immobilisation" />
+                      <TableColumn fx:id="tc_nom" prefWidth="87.66667175292969" text="Nom" />
+                        <TableColumn fx:id="tc_site" prefWidth="81.66665649414062" text="Site" />
+                        <TableColumn fx:id="tc_type" prefWidth="87.66665649414062" text="Type" />
+                        <TableColumn fx:id="tc_utilisateur" prefWidth="101.33334350585938" text="Utilisateur" />
+                        <TableColumn fx:id="tc_numFacture" prefWidth="117.66665649414062" text="N°Facture" />
+                        <TableColumn fx:id="tc_revendeur" prefWidth="100.66668701171875" text="Revendeur" />
+                        <TableColumn fx:id="tc_fabricant" prefWidth="89.0" text="Fabricant" />
+                    </columns>
+                  </TableView>
+               </children>
                 </Pane>
             </center>
          <top>

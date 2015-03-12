@@ -113,7 +113,6 @@ public class IAvanceDAO {
 				preparedStatement.setString(i, (String) MainApp.getCritere(0));
 				i++;
 			}
-			System.out.println(MainApp.getCritere(0));
 			if(!MainApp.getCritere(1).equals("")){
 				preparedStatement.setString(i, (String) MainApp.getCritere(1));
 				i++;
