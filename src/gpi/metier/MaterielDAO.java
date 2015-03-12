@@ -381,7 +381,7 @@ public class MaterielDAO {
 			resultat.next();
 			idMateriel=resultat.getInt(1);
 			Properties p = Propriete.getInstance().getProperties();
-			String newRepertoire=p.getProperty("driver")+"\\"+idMateriel;
+			String newRepertoire=p.getProperty("driver")+"/"+idMateriel;
 			PreparedStatement preparedStatementAjout = connexion.prepareStatement("UPDATE materiel SET repertoireDrivers=? WHERE idMateriel=?;");
 			preparedStatementAjout.setString(1, newRepertoire);
 			preparedStatementAjout.setInt(2, idMateriel);

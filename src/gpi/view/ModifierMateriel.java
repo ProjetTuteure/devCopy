@@ -164,6 +164,7 @@ public class ModifierMateriel {
 				}else{
 					etatMateriel=Etat.valueOf(comboboxEtatMateriel.getSelectionModel().getSelectedItem());
 				}
+				System.out.println(this.getRepertoireDriver());
 				comboboxTypeMateriel.getSelectionModel().getSelectedIndex();
 				materielDAO.modifierMateriel(new Materiel(this.getIdMateriel(), immobMaterielField.getText(),
 						numeroSerieMaterielField.getText(), systemeExploitationMaterielField.getText(),
@@ -243,7 +244,7 @@ public class ModifierMateriel {
 			adresse="file:///"+adresse;
 			this.setRepertoireDriver(adresse);
         }else{
-        	this.setRepertoireDriver("");
+        	this.setRepertoireDriver(selected.getRepertoireDriverMateriel().getValue());
         }
 	}
 

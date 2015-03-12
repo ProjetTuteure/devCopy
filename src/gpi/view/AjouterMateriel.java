@@ -248,7 +248,6 @@ public class AjouterMateriel {
 			Popup.getInstance().afficherPopup("Un matériel de ce nom est déjà ajouté, un nom matériel doit être unique");
 			return false;
 		}
-
 		if (nomMaterielField.getText().length() > Constante.LONGUEUR_NOM_MATERIEL) {
 			Popup.getInstance().afficherPopup("Le nom du matériel doit être inférieur à " + Constante.LONGUEUR_NOM_MATERIEL + " caractères");
 			return false;
