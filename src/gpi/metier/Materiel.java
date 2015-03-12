@@ -105,6 +105,9 @@ public class Materiel {
     }
 
     public StringProperty getDateExpirationGarantieMaterielStringProperty() {
+    	if(dateExpirationGarantieMateriel==null){
+    		return new SimpleStringProperty(" ");
+    	}
         String chaine1="";
         String chaine2="";
         if(dateExpirationGarantieMateriel.getDayOfMonth()<10){

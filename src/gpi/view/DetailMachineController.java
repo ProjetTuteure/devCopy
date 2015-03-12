@@ -1,8 +1,11 @@
 package gpi.view;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import gpi.MainApp;
 import gpi.exception.ConnexionBDException;
@@ -13,6 +16,7 @@ import utils.DateConverter;
 import utils.Popup;
 import vnc.VNCWindows;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -165,6 +169,12 @@ public class DetailMachineController{
 	return (Materiel)MainApp.getCritere(index);
 	}
 	
+	private StringProperty testIfNull(StringProperty ssp){
+		if(ssp.getValue()==null || ssp.getValue().equals("")){
+			return new SimpleStringProperty(" ");
+		}
+		return ssp;
+	}
 	/**
 	 * Initialise les donn�es et affecte l'index en fonction de la page
 	 * courante
@@ -181,45 +191,55 @@ public class DetailMachineController{
 		
 		textSiteNomMachine.setText(materiel.getSiteMateriel().getNomSiteProperty().getValue()+" --> "+materiel.getNomMateriel().getValueSafe());
 		textCheminDossierDrivers.setText(materiel.getRepertoireDriverMateriel().getValueSafe());
-		imageType.setImage(new Image(materiel.getTypeMateriel().getCheminImageType().getValue()));
-		
+		imageType.setImage(new Image("file:///"));
+		if(materiel.getTypeMateriel().getCheminImageType().getValue()!=null && !materiel.getTypeMateriel().getCheminImageType().getValue().equals("")){
+			imageType.setImage(new Image(materiel.getTypeMateriel().getCheminImageType().getValue()));
+		}
 		listMateriel = FXCollections.observableArrayList();
 		listMateriel.add(materiel);
 		tableViewMateriel.setItems(listMateriel);
-		numImmoMateriel.setCellValueFactory(cellData -> cellData.getValue().getNumImmobMateriel());
+		numImmoMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getNumImmobMateriel()));
 		nomMateriel.setCellValueFactory(cellData -> cellData.getValue().getNomMateriel());
 		typeMateriel.setCellValueFactory(cellData -> cellData.getValue().getTypeMateriel().getNomType());
-		seMateriel.setCellValueFactory(cellData -> cellData.getValue().getSystemeExploitationMateriel());
+		seMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSystemeExploitationMateriel()));
 		etatMateriel.setCellValueFactory(cellData -> cellData.getValue().getEtatMaterielStringProperty());
-		finGarantieMateriel.setCellValueFactory(cellData -> cellData.getValue().getDateExpirationGarantieMaterielStringProperty());
-		driversMateriel.setCellValueFactory(cellData -> cellData.getValue().getRepertoireDriverMateriel());
-		siteMateriel.setCellValueFactory(cellData -> cellData.getValue().getSiteMateriel().getNomSiteProperty());
+		finGarantieMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getDateExpirationGarantieMaterielStringProperty()));
+		driversMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getRepertoireDriverMateriel()));
+		siteMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSiteMateriel().getNomSiteProperty()));
 		
 		listFacture = FXCollections.observableArrayList();
 		listFacture.add(materiel.getFactureMateriel());
-		tableViewFacture.setItems(listFacture);
-		numFacture.setCellValueFactory(cellData -> cellData.getValue().getNumFactureProperty());
-		montantFacture.setCellValueFactory(cellData -> cellData.getValue().getMontantFactureStringProperty());
-		dateFacture.setCellValueFactory(cellData -> cellData.getValue().getDateFacStringProperty());
-		fournisseurFacture.setCellValueFactory(cellData -> cellData.getValue().getRevendeurFacture().getNomRevendeur());
+		if(listFacture.get(0)!=null && materiel.getFactureMateriel()!=null){
+			tableViewFacture.setItems(listFacture);
+			numFacture.setCellValueFactory(cellData -> cellData.getValue().getNumFactureProperty());
+			montantFacture.setCellValueFactory(cellData -> cellData.getValue().getMontantFactureStringProperty());
+			dateFacture.setCellValueFactory(cellData -> cellData.getValue().getDateFacStringProperty());
+			if(materiel.getFactureMateriel().getRevendeurFacture()!=null){
+				fournisseurFacture.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getRevendeurFacture().getNomRevendeur()));	
+			}else{
+				fournisseurFacture.setCellValueFactory(cellData -> new SimpleStringProperty(" "));
+			}
+		}
 		
 		listFabricant = FXCollections.observableArrayList();
 		listFabricant.add(materiel);
-		tableViewFabricant.setItems(listFabricant);
-		numSerieFabricant.setCellValueFactory(cellData -> cellData.getValue().getNumeroSerieMateriel());
-		nomFabricant.setCellValueFactory(cellData -> cellData.getValue().getFabricantMateriel().getNomFabricant());
-		telFabricant.setCellValueFactory(cellData -> cellData.getValue().getFabricantMateriel().getTelFabricant());
-		adresseFabricant.setCellValueFactory(cellData -> cellData.getValue().getFabricantMateriel().getAdresseFabricant());
-		
-		
+		if(listFabricant.get(0)!=null && materiel.getFabricantMateriel()!=null){
+			tableViewFabricant.setItems(listFabricant);
+			numSerieFabricant.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getNumeroSerieMateriel()));
+			nomFabricant.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getFabricantMateriel().getNomFabricant()));
+			telFabricant.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getFabricantMateriel().getTelFabricant()));
+			adresseFabricant.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getFabricantMateriel().getAdresseFabricant()));
+		}
 		
 		listRevendeur = FXCollections.observableArrayList();
 		listRevendeur.add(materiel.getFactureMateriel());
-		tableViewRevendeur.setItems(listRevendeur);
-		nomRevendeur.setCellValueFactory(cellData -> cellData.getValue().getRevendeurFacture().getNomRevendeur());
-		telRevendeur.setCellValueFactory(cellData -> cellData.getValue().getRevendeurFacture().getTelRevendeur());
-		adresseRevendeur.setCellValueFactory(cellData -> cellData.getValue().getRevendeurFacture().getAdresseRevendeur());
-		numFactureRevendeur.setCellValueFactory(cellData -> cellData.getValue().getNumFactureProperty());
+		if(listRevendeur.get(0)!=null && materiel.getFactureMateriel()!=null && materiel.getFactureMateriel().getRevendeurFacture()!=null){
+			tableViewRevendeur.setItems(listRevendeur);
+			nomRevendeur.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getRevendeurFacture().getNomRevendeur()));
+			telRevendeur.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getRevendeurFacture().getTelRevendeur()));
+			adresseRevendeur.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getRevendeurFacture().getAdresseRevendeur()));
+			numFactureRevendeur.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getNumFactureProperty()));
+		}
 		
 		listMaintenance = FXCollections.observableArrayList();
 		try {
@@ -249,7 +269,7 @@ public class DetailMachineController{
 			}
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
-		}
+		} catch (SQLException e) {}
 		Collections.reverse(listUtilisateur);
 		Collections.reverse(listDebutUtilisation);
 		Collections.reverse(listFinUtilisation);

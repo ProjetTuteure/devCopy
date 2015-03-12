@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import gpi.exception.ConnexionBDException;
 import gpi.exception.PrimaryKeyException;
 import utils.MaConnexion;
@@ -185,7 +187,7 @@ public class UtiliseDAO {
 		return nomUtilisateur;
 	}
 	
-public List<String> recupererUtilisateursByDateParMachine(Integer idMateriel) throws ConnexionBDException {
+public List<String> recupererUtilisateursByDateParMachine(Integer idMateriel) throws ConnexionBDException,SQLException {
 		
 		Connection connexion;
 		ResultSet resultat;
@@ -193,25 +195,19 @@ public List<String> recupererUtilisateursByDateParMachine(Integer idMateriel) th
 		List<String> resultats=new ArrayList<String>();
 		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
 		String nomUtilisateur="";
-		try {
-			connexion =  MaConnexion.getInstance().getConnexion();
-			PreparedStatement statement = connexion.prepareStatement("SELECT idUtilisateur,dateUtilise FROM UTILISE WHERE idMateriel=? ORDER BY dateUtilise ASC");
-			statement.setInt(1, idMateriel.intValue());
-			resultat=statement.executeQuery();
-			resultat.next();
-			donnee=resultat.getString(1)+"_"+resultat.getString(2);
-			while(resultat.next()){
-				donnee+="_"+resultat.getString(2);
-				resultats.add(donnee);
-				donnee=resultat.getString(1)+"_"+resultat.getString(2);
-			}
-			donnee+="_NODATE";
+		connexion =  MaConnexion.getInstance().getConnexion();
+		PreparedStatement statement = connexion.prepareStatement("SELECT idUtilisateur,dateUtilise FROM UTILISE WHERE idMateriel=? ORDER BY dateUtilise ASC");
+		statement.setInt(1, idMateriel.intValue());
+		resultat=statement.executeQuery();
+		resultat.next();
+		donnee=resultat.getString(1)+"_"+resultat.getString(2);
+		while(resultat.next()){
+			donnee+="_"+resultat.getString(2);
 			resultats.add(donnee);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ConnexionBDException e) {
-			 e.printStackTrace();
+			donnee=resultat.getString(1)+"_"+resultat.getString(2);
 		}
+		donnee+="_NODATE";
+		resultats.add(donnee);
 		return resultats;
 	}
 
