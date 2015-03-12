@@ -21,8 +21,9 @@ public class MaintenanceDAO {
 	 * Permet d'inserer une maintenance dans la BD
 	 * @param maintenance la maintenance a inserer dans la BD
 	 */
-	public void ajouterMaintenance(Maintenance maintenance) throws ConnexionBDException
+	public int ajouterMaintenance(Maintenance maintenance) throws ConnexionBDException
 	{
+		int idMaintenance=0;
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
 			PreparedStatement ps=connexion.prepareStatement("INSERT INTO MAINTENANCE (dateMaintenance,objetMaintenance,descriptionMaintenance,coutMaintenance) "
@@ -32,6 +33,10 @@ public class MaintenanceDAO {
 			ps.setString(3,maintenance.getDescriptionMaintenance());
 			ps.setFloat(4,maintenance.getCoutMaintenance());
 			ps.executeUpdate();
+			PreparedStatement preparedStatement = connexion.prepareStatement("SELECT IDENT_CURRENT('maintenance');");
+			ResultSet resultat = preparedStatement.executeQuery();
+			resultat.next();
+			idMaintenance=resultat.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -43,6 +48,7 @@ public class MaintenanceDAO {
 				e.printStackTrace();
 			}
 		}
+		return idMaintenance;
 	}
 	
 	/**

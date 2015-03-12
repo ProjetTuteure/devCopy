@@ -82,7 +82,8 @@ public class AjouterMaintenanceMateriel {
 					ta_description.getText(),
 					coutMaintenance);
 			try {
-				maintenanceDAO.ajouterMaintenance(maintenance);
+				int idMaintenance=maintenanceDAO.ajouterMaintenance(maintenance);
+				maintenance=maintenanceDAO.recupererMaintenanceParId(idMaintenance);
 				estMaintenuDAO.ajouterEstMaintenu(new EstMaintenu(maintenance, materiel));
 				Popup.getInstance().afficherPopup("Maintenance du "+maintenance.getdateMaintenanceStringProperty().getValue()+" ajoutée pour le matériel "+materiel.getNomMateriel().getValue());
 			} catch (ConnexionBDException e) {
