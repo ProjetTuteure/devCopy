@@ -23,6 +23,7 @@
                   <Button layoutX="665.0" layoutY="82.0" mnemonicParsing="false" onAction="#goBack" text="Retour" />
                   <Button fx:id="b_vnc" layoutX="671.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#lancerVNC" text="VNC" />
                   <Button layoutX="462.0" layoutY="152.0" mnemonicParsing="false" onAction="#ajouterLogicielMateriel" text="Ajouter Logiciel" />
+                  <Button layoutX="596.0" layoutY="152.0" mnemonicParsing="false" onAction="#ajouterMaintenanceMateriel" text="Ajouter Maintenance" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="798.0">
