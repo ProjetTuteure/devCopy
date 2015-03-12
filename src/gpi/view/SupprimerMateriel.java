@@ -73,18 +73,26 @@ public class SupprimerMateriel {
 	 */
 	@FXML
 	private void handleOk() {
-		MaterielDAO materielDAO=new MaterielDAO();
-		try {
-			materielDAO.supprimerMateriel(new Materiel(Integer.parseInt(listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex())), null, null, null, null, null, null, null, null, null, null,null,null));
-			Popup.getInstance().afficherPopup("Materiel "+comboboxMateriel.getValue()+" supprimé");
-		} catch (NumberFormatException e) {
-			Popup.getInstance().afficherPopup("L'id du materiel doit être un entier");
-		} catch (ConnexionBDException e) {
-			Popup.getInstance().afficherPopup(e.getMessage());
+		if (controlerSaisies()) {
+			MaterielDAO materielDAO=new MaterielDAO();
+			try {
+				materielDAO.supprimerMateriel(new Materiel(Integer.parseInt(listIdMateriel.get(comboboxMateriel.getSelectionModel().getSelectedIndex())), null, null, null, null, null, null, null, null, null, null,null,null));
+				Popup.getInstance().afficherPopup("Materiel "+comboboxMateriel.getValue()+" supprimé");
+			} catch (NumberFormatException e) {
+				Popup.getInstance().afficherPopup("L'id du materiel doit être un entier");
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}
+			okClicked = true;
+			dialogStage.close();
 		}
-		okClicked = true;
-		dialogStage.close();
-
+	}
+	private boolean controlerSaisies() {
+		if (comboboxMateriel.getSelectionModel().getSelectedIndex()==-1) {
+			Popup.getInstance().afficherPopup("Le champ \"Nom matériel\" doit être saisi");
+			return false;
+		}
+		return true;
 	}
 
 	/**
