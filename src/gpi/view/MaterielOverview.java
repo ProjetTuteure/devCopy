@@ -125,7 +125,10 @@ public class MaterielOverview {
 					BorderPane bp=new BorderPane();
 					Label label=new Label(materiels.get(i*4+j).getNomMateriel());
 					label.setFont(new Font("Arial",20));
-					ImageView image=new ImageView(materiels.get(i*4+j).getCheminImageMateriel());
+					ImageView image=new ImageView("file:///");
+					if(materiels.get(i*4+j).getCheminImageMateriel()!=null && !materiels.get(i*4+j).getCheminImageMateriel().equals("")){
+						image=new ImageView(materiels.get(i*4+j).getCheminImageMateriel());	
+					}
 					image.setFitHeight(100);
 					image.setFitWidth(100);
 					BorderPane.setAlignment(label,Pos.CENTER);

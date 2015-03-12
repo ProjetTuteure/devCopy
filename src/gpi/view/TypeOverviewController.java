@@ -158,7 +158,10 @@ public class TypeOverviewController {
 					BorderPane bp=new BorderPane();
 					Label label=new Label(types.get(i*4+j).getNomType().getValue());
 					label.setFont(new Font("Arial",20));
-					ImageView image=new ImageView(types.get(i*4+j).getCheminImageType().getValue());
+					ImageView image=new ImageView("file:///");
+					if(types.get(i*4+j).getCheminImageType()!=null && !types.get(i*4+j).getCheminImageType().getValue().equals("")){
+						image=new ImageView(types.get(i*4+j).getCheminImageType().getValue());	
+					}
 					image.setFitHeight(100);
 					image.setFitWidth(100);
 					BorderPane.setAlignment(label,Pos.CENTER);

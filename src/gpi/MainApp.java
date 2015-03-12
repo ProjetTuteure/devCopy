@@ -74,6 +74,7 @@ public class MainApp extends Application {
 			loader.setLocation(MainApp.class.getResource("view/SiteOverview.fxml"));
 			AnchorPane tabOverview = (AnchorPane) loader.load();
 			rootLayout.getTabs().get(0).setContent(tabOverview);
+			tab0.removeAll(tab0);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -12,4 +12,6 @@ BEGIN
 		DELETE FROM SITE WHERE idSite=@idSite
 		FETCH CursorSite INTO @idSite
 	END
+	CLOSE CursorSite
+	DEALLOCATE CursorSite
 END

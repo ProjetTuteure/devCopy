@@ -95,7 +95,10 @@ public class SiteOverviewController {
 					BorderPane bp=new BorderPane();
 					Label label=new Label(sites.get(i*4+j).getNomSiteProperty().getValue());
 					label.setFont(new Font("Arial",20));
-					ImageView image=new ImageView(sites.get(i*4+j).getCheminImageSiteProperty().getValue());
+					ImageView image=new ImageView("file:///");
+					if(sites.get(i*4+j).getCheminImageSiteProperty()!=null && !sites.get(i*4+j).getCheminImageSiteProperty().getValue().equals("")){
+						image=new ImageView(sites.get(i*4+j).getCheminImageSiteProperty().getValue());	
+					}
 					image.setFitHeight(100);
 					image.setFitWidth(100);
 					BorderPane.setAlignment(label,Pos.CENTER);
