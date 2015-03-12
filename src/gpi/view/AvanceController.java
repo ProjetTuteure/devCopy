@@ -19,10 +19,16 @@ import javafx.scene.control.TextField;
 
 
 
+
+
+
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import utils.Popup;
 
@@ -101,6 +107,17 @@ public class AvanceController implements Initializable {
      */
     @FXML
     private void goToScreen2(ActionEvent event) {
+    	if(!dateAchat.getText().equals("")){
+    		String pattern = "dd/MM/yyyy";
+        	try {
+        		DateFormat dateFormat = new SimpleDateFormat(pattern);
+        		dateFormat.setLenient(false);
+        	    dateFormat.parse(dateAchat.getText());
+        	}catch (Exception e){
+        		Popup.getInstance().afficherPopup("Le format de la date doit être ");
+        	}
+    	}
+    	
         MainApp.setCritere(noImmobilisation.getText());
         MainApp.setCritere(nomMateriel.getText());
         if(comboboxSiteAvanceOverview.getSelectionModel().getSelectedIndex()==-1){

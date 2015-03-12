@@ -135,7 +135,7 @@ public class IAvance {
 				+ numImmobMateriel + ", nom=" + nomMateriel
 				+ ", nom=" + nomSite + ", anciennete=" + anciennete
 				+ ", type=" + typeMateriel + ", nom Utilisateur="
-				+ nomUtilisateur + ", dateAchatl=" + dateAchatMateriel
+				+ nomUtilisateur + ", dateAchat=" + dateAchatMateriel
 				+ ", numFacture=" + numFactureMateriel
 				+ ", nomRevendeur=" + nomRevendeur + ", nomFabricant="
 				+ nomFabricant + ", modele=" + modeleMateriel;

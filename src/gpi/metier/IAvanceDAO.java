@@ -54,6 +54,7 @@ public class IAvanceDAO {
 	
 	public List<IAvance> recupererRechercheAvanceeMateriel() throws ConnexionBDException{
 		List<IAvance> listMateriel=new ArrayList<IAvance>();
+		int i=1;
 		String sql="Select distinct m.idMateriel, m.numImmobMateriel, m.nomMateriel, s.nomSite, t.nomType,ut.nomUtilisateur, f.dateFacture,f.numFacture, r.nomRevendeur, fab.nomFabricant,m.modeleMateriel"+
 		" FROM Materiel m"+ 
 		" JOIN site s on m.idSite=s.idSite"+
@@ -65,59 +66,106 @@ public class IAvanceDAO {
 		" JOIN Utilisateur ut on ut.idUtilisateur=u.idUtilisateur";
 		sql+=" WHERE ";
 		if(!MainApp.getCritere(0).equals("")){
-			sql+="m.numImmobMateriel = '"+MainApp.getCritere(0)+"' AND \n";
+			sql+="m.numImmobMateriel = ? AND \n";
 		}
 		if(!MainApp.getCritere(1).equals("")){
-			sql+="m.nomMateriel = '"+MainApp.getCritere(1)+"' AND \n";
+			sql+="m.nomMateriel = ? AND \n";
 		}
 		if(!(MainApp.getCritere(2).equals(""))){
-			sql+="s.idSite = '"+MainApp.getCritere(2)+"' AND \n";
+			sql+="s.idSite = ? AND \n";
 		}
-		if(!MainApp.getCritere(3).equals("")){
-			LocalDate localDate=LocalDate.now();
-			localDate=localDate.minusYears((Integer)(MainApp.getCritere(3)));
-			String chaine1="";
-	        String chaine2="";
-	        if(localDate.getDayOfMonth()<10){
-	            chaine1="0";
-	        }
-	        if(localDate.getMonthValue()<10){
-	            chaine2="0";
-	        }
-	        String dateFacture=localDate.getYear()+"-"+chaine2+localDate.getMonthValue()+"-"+chaine1+localDate.getDayOfMonth();
+		if(!MainApp.getCritere(3).equals("")){;
 	        if((Integer)(MainApp.getCritere(3))<8){
-				sql+="f.dateFacture >= '"+dateFacture+"' AND \n";
+				sql+="f.dateFacture >= ? AND \n";
 			}else{
-				sql+="f.dateFacture < '"+dateFacture+"' AND \n";
+				sql+="f.dateFacture < ? AND \n";
 			}			
 		}
 		if(!(MainApp.getCritere(4).equals(""))){
-			sql+="t.idType = '"+MainApp.getCritere(4)+"' AND \n";
+			sql+="t.idType = ? AND \n";
 		}
 		if(!MainApp.getCritere(5).equals("")){
-			sql+="ut.nomUtilisateur = '"+MainApp.getCritere(5)+"' AND \n";
+			sql+="ut.nomUtilisateur = ? AND \n";
 		}
 		if(!MainApp.getCritere(6).equals("")){
-			sql+="f.dateFacture = '"+MainApp.getCritere(6)+"' AND \n";
+			sql+="f.dateFacture = ? AND \n";
 		}
 		if(!MainApp.getCritere(7).equals("")){
-			sql+="f.idFacture = '"+MainApp.getCritere(7)+"' AND \n";
+			sql+="f.idFacture = ? AND \n";
 		}
 		if(!MainApp.getCritere(8).equals("")){
-			sql+="r.nomRevendeur = '"+MainApp.getCritere(8)+"' AND \n";
+			sql+="r.nomRevendeur = ? AND \n";
 		}
 		if(!MainApp.getCritere(9).equals("")){
-			sql+="f.nomFabricant = '"+MainApp.getCritere(9)+"' AND \n";
+			sql+="fab.nomFabricant = ? AND \n";
 		}
 		if(!MainApp.getCritere(10).equals("")){
-			sql+="m.modeleMateriel = '"+MainApp.getCritere(10) +"' AND \n";
+			sql+="m.modeleMateriel = ? AND \n";
 		}
 		sql+=" u.dateUtilise >= ALL(SELECT dateUtilise from utilise u1 "
 				+ "where u.idMateriel = u1.idMateriel)";
+		
+		
 		try {
 			connexion = MaConnexion.getInstance().getConnexion();
-			Statement statement = connexion.createStatement();
-			ResultSet resultat = statement.executeQuery(sql);
+			PreparedStatement preparedStatement =connexion.prepareStatement(sql);
+			if(!MainApp.getCritere(0).equals("")){
+				preparedStatement.setString(i, (String) MainApp.getCritere(0));
+				i++;
+			}
+			System.out.println(MainApp.getCritere(0));
+			if(!MainApp.getCritere(1).equals("")){
+				preparedStatement.setString(i, (String) MainApp.getCritere(1));
+				i++;
+			}
+			if(!(MainApp.getCritere(2).equals(""))){
+				preparedStatement.setInt(i, (Integer) MainApp.getCritere(2));
+				i++;
+			}
+			if(!MainApp.getCritere(3).equals("")){
+				LocalDate localDate=LocalDate.now();
+				localDate=localDate.minusYears((Integer)(MainApp.getCritere(3)));
+				String chaine1="";
+		        String chaine2="";
+		        if(localDate.getDayOfMonth()<10){
+		            chaine1="0";
+		        }
+		        if(localDate.getMonthValue()<10){
+		            chaine2="0";
+		        }
+		        String dateFacture=localDate.getYear()+"-"+chaine2+localDate.getMonthValue()+"-"+chaine1+localDate.getDayOfMonth();
+				preparedStatement.setString(i, dateFacture);
+				i++;		
+			}
+			if(!(MainApp.getCritere(4).equals(""))){
+				preparedStatement.setInt(i, (Integer) MainApp.getCritere(4));
+				i++;
+			}
+			if(!MainApp.getCritere(5).equals("")){
+				preparedStatement.setString(i, (String) MainApp.getCritere(5));
+				i++;
+			}
+			if(!MainApp.getCritere(6).equals("")){
+				preparedStatement.setString(i, (String) MainApp.getCritere(6));
+				i++;
+			}
+			if(!MainApp.getCritere(7).equals("")){
+				preparedStatement.setString(i, (String) MainApp.getCritere(7));
+				i++;
+			}
+			if(!MainApp.getCritere(8).equals("")){
+				preparedStatement.setString(i, (String) MainApp.getCritere(8));
+				i++;
+			}
+			if(!MainApp.getCritere(9).equals("")){
+				preparedStatement.setString(i, (String) MainApp.getCritere(9));
+				i++;
+			}
+			if(!MainApp.getCritere(10).equals("")){
+				preparedStatement.setString(i, (String) MainApp.getCritere(10));
+				i++;
+			}
+			ResultSet resultat = preparedStatement.executeQuery();
 			while (resultat.next()) {
 				String anciennete;
 				if(MainApp.getCritere(3)==null){

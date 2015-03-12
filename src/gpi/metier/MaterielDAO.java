@@ -53,7 +53,6 @@ public class MaterielDAO {
 			if(materiel.getFactureMateriel()==null){
 				prepareStatement.setString(9, null);
 			}else{
-				System.out.println(materiel.getFactureMateriel().getNumFacture());
 				prepareStatement.setString(9, materiel.getFactureMateriel().getNumFacture());
 			}
 			if(materiel.getFabricantMateriel()==null){
