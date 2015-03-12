@@ -1,5 +1,6 @@
 package gpi.view;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -329,6 +330,22 @@ public class DetailMachineController{
 	@FXML 
 	private void lancerVNC(){
 		new VNCWindows(this.materiel.getNomMateriel().getValue());
+	}
+	
+	/**
+	 *Ouvrir dossier du materiel au clic du bouton Ouvrir dossier
+	 */
+	@FXML 
+	private void ouvertureDossier(){
+		Materiel materiel=getActiveMateriel();
+		System.out.println(materiel.getRepertoireDriverMateriel());
+		try {
+			String repertoire=materiel.getRepertoireDriverMateriel().getValue();
+			repertoire=repertoire.replace("/", "\\");
+	    	Runtime.getRuntime().exec("explorer "+repertoire);
+		} catch (IOException e) {
+			Popup.getInstance().afficherPopup("Impossible d'ouvrir le le dossier");
+		}
 	}
 	
 	@FXML
