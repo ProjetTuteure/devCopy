@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
@@ -15,6 +16,7 @@ import ping.ChangerCouleurPastille;
 import ping.PingWindows;
 import utils.DateConverter;
 import utils.Popup;
+import utils.Propriete;
 import vnc.VNCWindows;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -189,9 +191,9 @@ public class DetailMachineController{
 		EstInstalleDAO estInstalleDAO = new EstInstalleDAO();
 		UtiliseDAO utiliseDAO = new UtiliseDAO();
 		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
-		
+		Properties p = Propriete.getInstance().getProperties();
 		textSiteNomMachine.setText(materiel.getSiteMateriel().getNomSiteProperty().getValue()+" --> "+materiel.getNomMateriel().getValueSafe());
-		textCheminDossierDrivers.setText(materiel.getRepertoireDriverMateriel().getValueSafe());
+		textCheminDossierDrivers.setText(p.getProperty("driver")+"/"+materiel.getNomMateriel().getValueSafe());
 		imageType.setImage(new Image("file:///"));
 		if(materiel.getTypeMateriel().getCheminImageType().getValue()!=null && !materiel.getTypeMateriel().getCheminImageType().getValue().equals("")){
 			imageType.setImage(new Image(materiel.getTypeMateriel().getCheminImageType().getValue()));
@@ -205,7 +207,7 @@ public class DetailMachineController{
 		seMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSystemeExploitationMateriel()));
 		etatMateriel.setCellValueFactory(cellData -> cellData.getValue().getEtatMaterielStringProperty());
 		finGarantieMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getDateExpirationGarantieMaterielStringProperty()));
-		driversMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getRepertoireDriverMateriel()));
+		driversMateriel.setCellValueFactory(cellData -> testIfNull(new SimpleStringProperty(p.getProperty("driver")+"/"+cellData.getValue().getNomMateriel())));
 		siteMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSiteMateriel().getNomSiteProperty()));
 		
 		listFacture = FXCollections.observableArrayList();
@@ -339,7 +341,8 @@ public class DetailMachineController{
 	private void ouvertureDossier(){
 		Materiel materiel=getActiveMateriel();
 		try {
-			String repertoire=materiel.getRepertoireDriverMateriel().getValue();
+			Properties p = Propriete.getInstance().getProperties();
+			String repertoire=p.getProperty("driver")+"/"+materiel.getNomMateriel().getValueSafe();
 			repertoire=repertoire.replace("/", "\\");
 	    	Runtime.getRuntime().exec("explorer "+repertoire);
 		} catch (IOException e) {
