@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.Popup;
 import gpi.bd.Donnee;
 import gpi.metier.*;
 import gpi.view.*;
