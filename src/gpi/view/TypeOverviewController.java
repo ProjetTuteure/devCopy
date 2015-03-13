@@ -160,7 +160,11 @@ public class TypeOverviewController {
 					label.setFont(new Font("Arial",20));
 					ImageView image=new ImageView("file:///");
 					if(types.get(i*4+j).getCheminImageType()!=null && !types.get(i*4+j).getCheminImageType().getValue().equals("")){
-						image=new ImageView(types.get(i*4+j).getCheminImageType().getValue());	
+						try{
+							image=new ImageView(types.get(i*4+j).getCheminImageType().getValue());
+						}catch(IllegalArgumentException e){
+							image=new ImageView("file:///");
+						}	
 					}
 					image.setFitHeight(100);
 					image.setFitWidth(100);

@@ -97,7 +97,11 @@ public class SiteOverviewController {
 					label.setFont(new Font("Arial",20));
 					ImageView image=new ImageView("file:///");
 					if(sites.get(i*4+j).getCheminImageSiteProperty()!=null && !sites.get(i*4+j).getCheminImageSiteProperty().getValue().equals("")){
-						image=new ImageView(sites.get(i*4+j).getCheminImageSiteProperty().getValue());	
+						try{
+							image=new ImageView(sites.get(i*4+j).getCheminImageSiteProperty().getValue());
+						}catch(IllegalArgumentException e){
+							image=new ImageView("file:///");
+						}	
 					}
 					image.setFitHeight(100);
 					image.setFitWidth(100);

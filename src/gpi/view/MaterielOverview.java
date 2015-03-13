@@ -127,7 +127,11 @@ public class MaterielOverview {
 					label.setFont(new Font("Arial",20));
 					ImageView image=new ImageView("file:///");
 					if(materiels.get(i*4+j).getCheminImageMateriel()!=null && !materiels.get(i*4+j).getCheminImageMateriel().equals("")){
-						image=new ImageView(materiels.get(i*4+j).getCheminImageMateriel());	
+						try{
+							image=new ImageView(materiels.get(i*4+j).getCheminImageMateriel());	
+						}catch(IllegalArgumentException e){
+							image=new ImageView("file:///");
+						}
 					}
 					image.setFitHeight(100);
 					image.setFitWidth(100);
