@@ -460,7 +460,7 @@ public class Rapports {
 
 		  document.add(image);
 		  
-		  Paragraph titre=new Paragraph("Au rapport", titleFont);
+		  Paragraph titre=new Paragraph("Parc Informatique", titleFont);
 		  titre.setAlignment(Element.ALIGN_CENTER);
 		  preface.add(titre);
 

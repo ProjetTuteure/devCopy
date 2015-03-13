@@ -207,7 +207,7 @@ public class DetailMachineController{
 		seMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSystemeExploitationMateriel()));
 		etatMateriel.setCellValueFactory(cellData -> cellData.getValue().getEtatMaterielStringProperty());
 		finGarantieMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getDateExpirationGarantieMaterielStringProperty()));
-		driversMateriel.setCellValueFactory(cellData -> testIfNull(new SimpleStringProperty(p.getProperty("driver")+"/"+cellData.getValue().getNomMateriel())));
+		driversMateriel.setCellValueFactory(cellData -> testIfNull(new SimpleStringProperty(p.getProperty("driver")+"/"+cellData.getValue().getNomMateriel().get())));
 		siteMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSiteMateriel().getNomSiteProperty()));
 		
 		listFacture = FXCollections.observableArrayList();
