@@ -126,13 +126,13 @@ INSERT INTO FACTURE VALUES (1,'2011-11-11', 123.5,1),(2,'2012-12-12', 99 ,2);
 
 INSERT INTO MATERIEL (numImmobMateriel,numeroSerieMateriel,systemeExploitationMateriel,nomMateriel,dateExpirationGarantieMateriel,
 repertoireDrivers,modeleMateriel,etat,idFacture,idFabricant,idSite,idType)
-VALUES ('1IMMO','numeroSerie1','windowsXP','pc-martine','2012-11-11','/driver/pc-martine','XXX1','EN_MARCHE',1,1,1,1),
-('2IMMO','numeroSerie2','windowsXP','pc-gertrude','2012-11-11','/driver/pc-gertrude','XXX2','EN_MARCHE',1,2,1,1),
-('3IMMO','numeroSerie3','windowsXP','PC1','2014-12-31','/driver/PC1','XXX3','EN_MARCHE',1,1,1,1),
-('4IMMO','numeroSerie4','windowsXP','PC2','2015-12-31','/driver/PC2','XXX4','EN_MARCHE',1,1,2,1),
-('5IMMO','numeroSerie5','windowsXP','PC3','2014-02-05','/driver/PC3','XXX5','HS',2,1,3,1),
-('6IMMO','numeroSerie6','windowsXP','Routeur1','2017-02-14','/driver/Routeur1','XXX6','EN_MARCHE',2,1,4,1),
-('7IMMO','numeroSerie7','windowsXP','Routeur2','2012-03-14','/driver/Routeur2','XXX7','EN_PANNE',2,1,4,1)
+VALUES ('1IMMO','numeroSerie1','windowsXP','pc-martine','2012-11-11','./dossier/1','XXX1','EN_MARCHE',1,1,1,1),
+('2IMMO','numeroSerie2','windowsXP','pc-gertrude','2012-11-11','./dossier/2','XXX2','EN_MARCHE',1,2,1,1),
+('3IMMO','numeroSerie3','windowsXP','PC1','2014-12-31','./dossier/3','XXX3','EN_MARCHE',1,1,1,1),
+('4IMMO','numeroSerie4','windowsXP','PC2','2015-12-31','./dossier/4','XXX4','EN_MARCHE',1,1,2,1),
+('5IMMO','numeroSerie5','windowsXP','PC3','2014-02-05','./dossier/5','XXX5','HS',2,1,3,1),
+('6IMMO','numeroSerie6','windowsXP','Routeur1','2017-02-14','./dossier/6','XXX6','EN_MARCHE',2,1,4,1),
+('7IMMO','numeroSerie7','windowsXP','Routeur2','2012-03-14','./dossier/7','XXX7','EN_PANNE',2,1,4,1)
 
 INSERT INTO LOGICIEL VALUES ('Microsoft Office 2012','1.0','2014-10-01',1)
 

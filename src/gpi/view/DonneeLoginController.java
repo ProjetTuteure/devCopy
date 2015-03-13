@@ -13,10 +13,10 @@ public class DonneeLoginController {
 	}
 	
 	public void controllerLoginEtMotDePasse(String login,String motDePasse) throws LoginException{
-		if(!login.equals(p.getProperty("login"))){
+		if(!login.equals(p.getProperty("loginApplication"))){
 			throw new LoginException("Login incorrect");
 		}
-		if(!motDePasse.equals(p.getProperty("motDePasse"))){
+		if(!motDePasse.equals(p.getProperty("motDePasseApplication"))){
 			throw new LoginException("Mot de passe incorrect");
 		}
 	}

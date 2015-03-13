@@ -284,18 +284,5 @@ public class AjouterMateriel {
 		dialogStage.close();
 	}
 
-	/**
-	 * Cette methode permet de pre remplir les champs lorsqu'un Materiel est
-	 * selectionne
-	 */
-	@FXML
-	private void handleChoose() {
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Choisir un dossier");
-		File selectedDirectory = directoryChooser.showDialog(null);
-
-		if (selectedDirectory != null) {
-		}
-	}
 
 }

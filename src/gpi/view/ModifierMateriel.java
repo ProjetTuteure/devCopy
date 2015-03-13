@@ -1,6 +1,5 @@
 package gpi.view;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 public class ModifierMateriel {
@@ -164,7 +162,6 @@ public class ModifierMateriel {
 				}else{
 					etatMateriel=Etat.valueOf(comboboxEtatMateriel.getSelectionModel().getSelectedItem());
 				}
-				System.out.println(this.getRepertoireDriver());
 				comboboxTypeMateriel.getSelectionModel().getSelectedIndex();
 				materielDAO.modifierMateriel(new Materiel(this.getIdMateriel(), immobMaterielField.getText(),
 						numeroSerieMaterielField.getText(), systemeExploitationMaterielField.getText(),
@@ -231,21 +228,6 @@ public class ModifierMateriel {
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
-	}
-
-	@FXML
-	private void handlechoose() {
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Choisir un dossier");
-		File selectedDirectory = directoryChooser.showDialog(null);
-		if (selectedDirectory != null) {
-			String adresse=selectedDirectory.getAbsolutePath();
-			adresse=adresse.replace("\\", "/");
-			adresse="file:///"+adresse;
-			this.setRepertoireDriver(adresse);
-        }else{
-        	this.setRepertoireDriver(selected.getRepertoireDriverMateriel().getValue());
-        }
 	}
 
 	@FXML
@@ -351,6 +333,7 @@ public class ModifierMateriel {
 		}else{
 			comboboxTypeMateriel.setPromptText(this.selected.getTypeMateriel().getNomTypeString());
 		}
+		this.setRepertoireDriver(this.selected.getRepertoireDriverMateriel().getValue());
 	}
 
 	public int getIdMateriel() {

@@ -21,9 +21,9 @@ public class MaConnexion {
 	public Connection getConnexion() throws ConnexionBDException{
 		Connection connexion = null;
 		Properties p = Propriete.getInstance().getProperties();
-		String url = "jdbc:sqlserver://"+p.getProperty("ipBD")+":"+p.getProperty("port")+";databaseName="+p.getProperty("base")+";";
-		String mdp = p.getProperty("mdp");
-		String user= p.getProperty("user");
+		String url = "jdbc:sqlserver://"+p.getProperty("ipBaseDeDonnees")+":"+p.getProperty("portBaseDeDonnees")+";databaseName="+p.getProperty("nomBaseDeDonnees")+";";
+		String mdp = p.getProperty("motDePasseBaseDeDonnees");
+		String user= p.getProperty("userBaseDeDonnees");
 		try {
 			DriverManager.setLoginTimeout(2);
 			connexion = DriverManager.getConnection(url,user,mdp);

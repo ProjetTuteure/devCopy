@@ -338,7 +338,6 @@ public class DetailMachineController{
 	@FXML 
 	private void ouvertureDossier(){
 		Materiel materiel=getActiveMateriel();
-		System.out.println(materiel.getRepertoireDriverMateriel());
 		try {
 			String repertoire=materiel.getRepertoireDriverMateriel().getValue();
 			repertoire=repertoire.replace("/", "\\");
