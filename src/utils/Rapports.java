@@ -41,7 +41,7 @@ public class Rapports {
 			  document.addAuthor("ADAM SAS");
 			  document.addCreator("ADAM SAS");
 			  
-			  Image image=Image.getInstance(Constante.CHEMIN_IMAGE_RAPPORT);
+			  Image image=Image.getInstance(this.getClass().getResource(Constante.CHEMIN_IMAGE_RAPPORT));
 			  document.add(image);
 			  
 			  Paragraph preface = new Paragraph();
@@ -154,7 +154,8 @@ public class Rapports {
 			  document.addAuthor("ADAM SAS");
 			  document.addCreator("ADAM SAS");
 			  
-			  Image image=Image.getInstance(Constante.CHEMIN_IMAGE_RAPPORT);
+			  Image image=Image.getInstance(this.getClass().getResource(Constante.CHEMIN_IMAGE_RAPPORT));
+
 			  document.add(image);
 			  
 			  Paragraph preface = new Paragraph();
@@ -295,7 +296,8 @@ public class Rapports {
 			  document.addAuthor("ADAM SAS");
 			  document.addCreator("ADAM SAS");
 			  
-			  Image image=Image.getInstance(Constante.CHEMIN_IMAGE_RAPPORT);
+			  Image image=Image.getInstance(this.getClass().getResource(Constante.CHEMIN_IMAGE_RAPPORT));
+
 			  document.add(image);
 			  
 			  Paragraph preface = new Paragraph();
@@ -454,7 +456,8 @@ public class Rapports {
 		  document.addCreator("ADAM SAS");
 		  
 		  Paragraph preface = new Paragraph();
-		  Image image=Image.getInstance(Constante.CHEMIN_IMAGE_RAPPORT);
+		  Image image=Image.getInstance(this.getClass().getResource(Constante.CHEMIN_IMAGE_RAPPORT));
+
 		  document.add(image);
 		  
 		  Paragraph titre=new Paragraph("Au rapport", titleFont);

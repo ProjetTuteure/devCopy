@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -63,6 +64,7 @@ public class ResultatAvanceController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	tv_tableauRechercheAvancee.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     	IAvanceDAO iAvanceDAO=new IAvanceDAO();
     	ObservableList resultatMateriels = null;
 		try {
@@ -72,18 +74,19 @@ public class ResultatAvanceController implements Initializable {
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-
-        tv_tableauRechercheAvancee.setOnMouseClicked((event)->{
-        	MaterielDAO materielDAO=new MaterielDAO();
-        	
-            try {
+		
+		tv_tableauRechercheAvancee.setOnMouseClicked((event)->{
+			MaterielDAO materielDAO=new MaterielDAO();
+       	
+			try {
 				MainApp.setCritere(materielDAO.recupererMaterielParId(Integer.parseInt(tv_tableauRechercheAvancee.getFocusModel().getFocusedItem().getIdMateriel())));
 			} catch (Exception e) {
 				Popup.getInstance().afficherPopup(e.getMessage());
 			}
-            MainApp.changerTab("DetailMachine");
-        });
+				MainApp.changerTab("DetailMachine");
+			});
     }
+    
     
     private void addDonneeTableView(ObservableList<IAvance> materiel) {
 		tv_tableauRechercheAvancee.setItems(materiel);
