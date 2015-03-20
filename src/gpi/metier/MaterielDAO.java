@@ -452,4 +452,23 @@ public class MaterielDAO {
 		}
 		return nomMateriel;
 	}
+	
+	public void updateCheminRepertoire(String repertoire) throws ConnexionBDException{
+		try {
+			connexion = MaConnexion.getInstance().getConnexion();
+			PreparedStatement Preparedstatement = connexion.prepareStatement("EXEC updateCheminDriverMateriel ?");
+			Preparedstatement.setString(1,repertoire);
+			Preparedstatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connexion !=null){
+					connexion.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

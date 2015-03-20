@@ -1,5 +1,8 @@
 package gpi.view;
 
+import gpi.exception.ConnexionBDException;
+import gpi.metier.MaterielDAO;
+
 import java.io.File;
 
 import utils.Popup;
@@ -51,8 +54,14 @@ public class ModifierDriver {
 	@FXML
 	private void handleOk() {
 		if (!(cheminfield.getText().isEmpty())){
-			Propriete.getInstance().setProperties("driver",cheminfield.getText());
-			Popup.getInstance().afficherPopup("Chemin driver modifié \n ('"+cheminfield.getText()+"')");
+			MaterielDAO materielDAO=new MaterielDAO();
+			try {
+				materielDAO.updateCheminRepertoire(cheminfield.getText());
+				Propriete.getInstance().setProperties("driver",cheminfield.getText());
+				Popup.getInstance().afficherPopup("Chemin driver modifié \n ('"+cheminfield.getText()+"')");
+			} catch (ConnexionBDException e) {
+				Popup.getInstance().afficherPopup(e.getMessage());
+			}		
 			okClicked = true;
 			dialogStage.close();
 		}

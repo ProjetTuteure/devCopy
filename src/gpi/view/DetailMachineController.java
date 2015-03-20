@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-
 import gpi.MainApp;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.*;
@@ -206,7 +204,7 @@ public class DetailMachineController{
 		UtiliseDAO utiliseDAO = new UtiliseDAO();
 		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
 		Properties p = Propriete.getInstance().getProperties();
-		textCheminDossierDrivers.setText(p.getProperty("repertoire")+"/"+materiel.getIdMateriel().get());
+		textCheminDossierDrivers.setText(materiel.getRepertoireDriverMateriel().getValue());
 		imageType.setImage(new Image("file:///"));
 		textNomMateriel.setText(materiel.getNomMateriel().getValue());
 		textEtatMateriel.setText(materiel.getEtatMaterielString());
@@ -236,7 +234,7 @@ public class DetailMachineController{
 		seMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSystemeExploitationMateriel()));
 		etatMateriel.setCellValueFactory(cellData -> cellData.getValue().getEtatMaterielStringProperty());
 		finGarantieMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getDateExpirationGarantieMaterielStringProperty()));
-		driversMateriel.setCellValueFactory(cellData -> testIfNull(new SimpleStringProperty(p.getProperty("repertoire")+"/"+cellData.getValue().getIdMateriel().get())));
+		driversMateriel.setCellValueFactory(cellData -> testIfNull(new SimpleStringProperty(materiel.getRepertoireDriverMateriel().getValue())));
 		siteMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSiteMateriel().getNomSiteProperty()));
 		
 		listFacture = FXCollections.observableArrayList();
@@ -371,7 +369,7 @@ public class DetailMachineController{
 		Materiel materiel=getActiveMateriel();
 		try {
 			Properties p = Propriete.getInstance().getProperties();
-			String repertoire=p.getProperty("repertoire")+"/"+materiel.getIdMateriel().get();
+			String repertoire=materiel.getRepertoireDriverMateriel().getValue();
 			repertoire=repertoire.replace("/", "\\");
 	    	Runtime.getRuntime().exec("explorer "+repertoire);
 		} catch (IOException e) {
