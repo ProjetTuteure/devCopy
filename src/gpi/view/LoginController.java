@@ -4,9 +4,11 @@ import gpi.MainApp;
 import gpi.exception.LoginException;
 
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import utils.Popup;
+import utils.Propriete;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,9 +32,13 @@ public class LoginController implements Initializable{
 	
 	private DonneeLoginController donneeLoginController;
 	
+	private Properties p;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.donneeLoginController=new DonneeLoginController();
+		this.p = Propriete.getInstance().getProperties();
+		this.tf_identifiant.setText(p.getProperty("loginApplication"));
 	}
 	
 	public void eventOk(ActionEvent event){
