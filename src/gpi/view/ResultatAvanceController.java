@@ -62,12 +62,12 @@ public class ResultatAvanceController implements Initializable {
     /**
      * Initialise les données
      */
-    @Override
+	@Override
     public void initialize(URL location, ResourceBundle resources) {
     	tv_tableauRechercheAvancee.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     	IAvanceDAO iAvanceDAO=new IAvanceDAO();
-    	ObservableList resultatMateriels = null;
 		try {
+			ObservableList resultatMateriels = null;
 			resultatMateriels = FXCollections.observableArrayList(iAvanceDAO.recupererRechercheAvanceeMateriel());
 			labelNbMaterielTrouve.setText("Resultats de la recherche: "+resultatMateriels.size()+" résultat(s) trouvé(s)");
 			this.addDonneeTableView(resultatMateriels);

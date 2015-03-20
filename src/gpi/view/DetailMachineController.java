@@ -206,7 +206,7 @@ public class DetailMachineController{
 		UtiliseDAO utiliseDAO = new UtiliseDAO();
 		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
 		Properties p = Propriete.getInstance().getProperties();
-		textCheminDossierDrivers.setText(p.getProperty("driver")+"/"+materiel.getNomMateriel().getValueSafe());
+		textCheminDossierDrivers.setText(p.getProperty("repertoire")+"/"+materiel.getIdMateriel().get());
 		imageType.setImage(new Image("file:///"));
 		textNomMateriel.setText(materiel.getNomMateriel().getValue());
 		textEtatMateriel.setText(materiel.getEtatMaterielString());
@@ -236,7 +236,7 @@ public class DetailMachineController{
 		seMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSystemeExploitationMateriel()));
 		etatMateriel.setCellValueFactory(cellData -> cellData.getValue().getEtatMaterielStringProperty());
 		finGarantieMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getDateExpirationGarantieMaterielStringProperty()));
-		driversMateriel.setCellValueFactory(cellData -> testIfNull(new SimpleStringProperty(p.getProperty("driver")+"/"+cellData.getValue().getNomMateriel().get())));
+		driversMateriel.setCellValueFactory(cellData -> testIfNull(new SimpleStringProperty(p.getProperty("repertoire")+"/"+cellData.getValue().getIdMateriel().get())));
 		siteMateriel.setCellValueFactory(cellData -> testIfNull(cellData.getValue().getSiteMateriel().getNomSiteProperty()));
 		
 		listFacture = FXCollections.observableArrayList();
@@ -371,7 +371,7 @@ public class DetailMachineController{
 		Materiel materiel=getActiveMateriel();
 		try {
 			Properties p = Propriete.getInstance().getProperties();
-			String repertoire=p.getProperty("driver")+"/"+materiel.getNomMateriel().getValueSafe();
+			String repertoire=p.getProperty("repertoire")+"/"+materiel.getIdMateriel().get();
 			repertoire=repertoire.replace("/", "\\");
 	    	Runtime.getRuntime().exec("explorer "+repertoire);
 		} catch (IOException e) {

@@ -72,13 +72,14 @@ public class AvanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
   
-    	listAnciennete = FXCollections.observableArrayList(
+    	listAnciennete = FXCollections.observableArrayList("Peu importe l'ancienneté",
                 "moins d'un ans", "moins de deux ans", "moins de trois ans",
                 "moins de quattre ans", "moins de cinq ans", "moins de six ans",
                 "moins de sept ans", "plus de sept ans");
     	listIdSite=new ArrayList<Integer>();
     	listNomSite=FXCollections.observableArrayList();
     	try {
+    		listNomSite.add("Tous les sites");
 			for (Site site : siteDAO.recupererAllSite()) {
 				listNomSite.add(site.getNomSiteString());
 				listIdSite.add(site.getIdSite());
@@ -89,6 +90,7 @@ public class AvanceController implements Initializable {
     	listIdType=new ArrayList<Integer>();
     	listNomType=FXCollections.observableArrayList();
     	try {
+    		listNomType.add("Tous les types");
 			for (Type type : typeDAO.recupererAllType()) {
 				listNomType.add(type.getNomTypeString());
 				listIdType.add(type.getIdType());
@@ -120,17 +122,17 @@ public class AvanceController implements Initializable {
     	
         MainApp.setCritere(noImmobilisation.getText());
         MainApp.setCritere(nomMateriel.getText());
-        if(comboboxSiteAvanceOverview.getSelectionModel().getSelectedIndex()==-1){
+        if(comboboxSiteAvanceOverview.getSelectionModel().getSelectedIndex()==-1 || comboboxSiteAvanceOverview.getValue().equals("Tous les sites")){
         	MainApp.setCritere("");
         }else{
         	MainApp.setCritere(listIdSite.get(comboboxSiteAvanceOverview.getSelectionModel().getSelectedIndex()));
         }        
-        if (comboboxAncienneteAvanceOverview.getSelectionModel().getSelectedIndex()==-1){
+        if (comboboxAncienneteAvanceOverview.getSelectionModel().getSelectedIndex()==-1 || comboboxAncienneteAvanceOverview.getValue().equals("Peu importe l'ancienneté")){
             MainApp.setCritere("");
         }else{
             MainApp.setCritere(listNumAnciennete[comboboxAncienneteAvanceOverview.getSelectionModel().getSelectedIndex()]);
         }
-        if(comboboxTypeAvanceOverview.getSelectionModel().getSelectedIndex()==-1){
+        if(comboboxTypeAvanceOverview.getSelectionModel().getSelectedIndex()==-1 || comboboxTypeAvanceOverview.getValue().equals("Tous les types")){
         	MainApp.setCritere("");
         }else{
             MainApp.setCritere(listIdType.get(comboboxTypeAvanceOverview.getSelectionModel().getSelectedIndex()));

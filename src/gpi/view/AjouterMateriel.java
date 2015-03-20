@@ -4,9 +4,11 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import utils.Constante;
 import utils.Popup;
+import utils.Propriete;
 import gpi.exception.ConnexionBDException;
 import gpi.metier.Etat;
 import gpi.metier.Fabricant;
@@ -228,6 +230,7 @@ public class AjouterMateriel {
 			}
 			okClicked = true;
 			dialogStage.close();
+	    
 			Popup.getInstance().afficherPopup("Materiel "+nomMaterielField.getText()+" ajouté");
 		}
 

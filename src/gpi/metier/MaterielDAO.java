@@ -2,6 +2,7 @@ package gpi.metier;
 
 import gpi.exception.ConnexionBDException;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import utils.MaConnexion;
+import utils.Popup;
 import utils.Propriete;
 
 public class MaterielDAO {
@@ -398,6 +400,25 @@ public class MaterielDAO {
 				e.printStackTrace();
 			}
 		}
+		Properties p = Propriete.getInstance().getProperties();
+		if(idMateriel!=-1){
+			String repertoire=p.getProperty("repertoire")+"/"+idMateriel;
+			String repertoireDriver=p.getProperty("repertoire")+"/"+idMateriel+"/drivers";
+			String repertoireDocument=p.getProperty("repertoire")+"/"+idMateriel+"/documents";
+			repertoire=repertoire.replace("/", "\\");
+	        File file = new File(repertoire);
+	        file.mkdir();
+	        if(file.exists()){
+	        	File fileDriver = new File(repertoireDriver);
+	        	File fileDocument = new File(repertoireDocument);
+	        	fileDriver.mkdir();
+	        	fileDocument.mkdir();
+	        	
+	        }else{
+	        	Popup.getInstance().afficherPopup("Le dossier existe déjà.");
+	        }
+        }
+
 	}
 	
 	public String recupererNomMaterielParId(int idMateriel) throws ConnexionBDException {
