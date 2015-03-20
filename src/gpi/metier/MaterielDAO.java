@@ -402,10 +402,18 @@ public class MaterielDAO {
 		}
 		Properties p = Propriete.getInstance().getProperties();
 		if(idMateriel!=-1){
+			String repertoireBase=p.getProperty("repertoire");
+			repertoireBase=repertoireBase.replace("/", "\\");
+			File fileBase = new File(repertoireBase);
+			if(!fileBase.exists()){
+				fileBase.mkdir();
+			}
 			String repertoire=p.getProperty("repertoire")+"/"+idMateriel;
 			String repertoireDriver=p.getProperty("repertoire")+"/"+idMateriel+"/drivers";
 			String repertoireDocument=p.getProperty("repertoire")+"/"+idMateriel+"/documents";
 			repertoire=repertoire.replace("/", "\\");
+			repertoireDriver=repertoireDriver.replace("/", "\\");
+			repertoireDocument=repertoireDocument.replace("/", "\\");
 	        File file = new File(repertoire);
 	        file.mkdir();
 	        if(file.exists()){
