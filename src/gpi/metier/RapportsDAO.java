@@ -26,13 +26,14 @@ private Connection connexion;
 			ResultSet resultat = ps.executeQuery();
 			resultat.next();
 			int nbLignes=resultat.getInt("nbLigne");
-			String requete="SELECT nomMateriel,numeroSerieMateriel,numImmobMateriel,nomType,etat,dateExpirationGarantieMateriel,nomSite FROM MATERIEL m"
+			String requete="SELECT nomMateriel,numeroSerieMateriel,numImmobMateriel,nomType,etat,dateExpirationGarantieMateriel,nomSite,dateFacture FROM MATERIEL m"
 				+ " JOIN TYPE t ON m.idType=t.idType"
 				+ " JOIN SITE s ON m.idSite=s.idSite"
+				+ " JOIN FACTURE f ON m.idFacture=f.idFacture"
 				+ " ORDER BY s.nomSite ASC";
 			ps=connexion.prepareStatement(requete);
 			resultat = ps.executeQuery();
-			rapport=new String[nbLignes][7];
+			rapport=new String[nbLignes][8];
 			int i=0;
 			while(resultat.next()){
 				rapport[i][0]=resultat.getString("nomMateriel");
@@ -42,6 +43,8 @@ private Connection connexion;
 				rapport[i][4]=resultat.getString("etat");
 				rapport[i][5]=resultat.getString("dateExpirationGarantieMateriel");
 				rapport[i][6]=resultat.getString("nomSite");
+				rapport[i][7]=resultat.getString("dateFacture");
+				
 				i++;
 			}
 		} catch (SQLException e1) {
