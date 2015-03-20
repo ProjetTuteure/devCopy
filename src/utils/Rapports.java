@@ -488,9 +488,9 @@ public class Rapports {
 	  }
 
 	  private static void createTableMaterielParc(Paragraph paragraph) throws DocumentException {
-	    PdfPTable table = new PdfPTable(7);
+	    PdfPTable table = new PdfPTable(8);
 
-	    table.setWidths(new int[]{12,9,10,5,13,11,8});
+	    table.setWidths(new int[]{12,9,10,5,11,11,8,8});
 	    table.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    
 	    PdfPCell c1 = new PdfPCell(new Phrase("Nom"));
@@ -518,6 +518,10 @@ public class Rapports {
 	    table.addCell(c1);
 	    
 	    c1 = new PdfPCell(new Phrase("Site"));
+	    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    table.addCell(c1);
+	    
+	    c1 = new PdfPCell(new Phrase("Date d'achat"));
 	    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    table.addCell(c1);
 	    
@@ -559,6 +563,9 @@ public class Rapports {
 	    	table.addCell(cell);
 	    	
 	    	cell.setPhrase(new Phrase(rapport[i][6],cellFont));
+	    	table.addCell(cell);
+	    	
+	    	cell.setPhrase(new Phrase(DateConverter.getFrenchDate(rapport[i][7]),cellFont));
 	    	table.addCell(cell);
 	    }
 	    paragraph.add(table);
