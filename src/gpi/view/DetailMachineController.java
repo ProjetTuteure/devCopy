@@ -135,6 +135,22 @@ public class DetailMachineController{
 	private ImageView imageType;
 	@FXML
 	private Button b_vnc;
+	@FXML
+	private Text textSiteMateriel;
+	@FXML
+	private Text textNomMateriel;
+	@FXML
+	private Text textEtatMateriel;
+	@FXML
+	private Text textTypeMateriel;
+	@FXML
+	private Text textNumImmoMateriel;
+	@FXML
+	private Text textNumSerieMateriel;
+	@FXML
+	private Text textSEMateriel;
+	@FXML
+	private Text textFinGarantieMateriel;
 	
 	private Materiel materiel;
 	private int index=0;
@@ -195,8 +211,23 @@ public class DetailMachineController{
 		textSiteNomMachine.setText(materiel.getSiteMateriel().getNomSiteProperty().getValue()+" --> "+materiel.getNomMateriel().getValueSafe());
 		textCheminDossierDrivers.setText(p.getProperty("driver")+"/"+materiel.getNomMateriel().getValueSafe());
 		imageType.setImage(new Image("file:///"));
+		textNomMateriel.setText(materiel.getNomMateriel().getValue());
+		textEtatMateriel.setText(materiel.getEtatMaterielString());
+		textTypeMateriel.setText(materiel.getTypeMateriel().getNomTypeString());
 		if(materiel.getTypeMateriel().getCheminImageType().getValue()!=null && !materiel.getTypeMateriel().getCheminImageType().getValue().equals("")){
 			imageType.setImage(new Image(materiel.getTypeMateriel().getCheminImageType().getValue()));
+		}
+		if(materiel.getNumImmobMateriel()!=null){
+			textNumImmoMateriel.setText(materiel.getNumImmobMateriel().getValue());
+		}
+		if(materiel.getNumeroSerieMateriel()!=null){
+			textNumSerieMateriel.setText(materiel.getNumeroSerieMateriel().getValue());
+		}
+		if(materiel.getSystemeExploitationMateriel()!=null){
+			textSEMateriel.setText(materiel.getSystemeExploitationMateriel().getValue());
+		}
+		if(materiel.getDateExpirationGarantieMaterielStringProperty()!=null){
+			textFinGarantieMateriel.setText(materiel.getDateExpirationGarantieMaterielStringProperty().getValue());
 		}
 		listMateriel = FXCollections.observableArrayList();
 		listMateriel.add(materiel);
