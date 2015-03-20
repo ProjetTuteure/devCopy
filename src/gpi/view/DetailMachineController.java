@@ -36,8 +36,6 @@ import javafx.scene.text.Text;
 public class DetailMachineController{
 
 	@FXML
-	private Text textSiteNomMachine;
-	@FXML
 	private Text textCheminDossierDrivers;
 	@FXML
 	private Circle colorCircle;
@@ -208,12 +206,12 @@ public class DetailMachineController{
 		UtiliseDAO utiliseDAO = new UtiliseDAO();
 		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
 		Properties p = Propriete.getInstance().getProperties();
-		textSiteNomMachine.setText(materiel.getSiteMateriel().getNomSiteProperty().getValue()+" --> "+materiel.getNomMateriel().getValueSafe());
 		textCheminDossierDrivers.setText(p.getProperty("driver")+"/"+materiel.getNomMateriel().getValueSafe());
 		imageType.setImage(new Image("file:///"));
 		textNomMateriel.setText(materiel.getNomMateriel().getValue());
 		textEtatMateriel.setText(materiel.getEtatMaterielString());
 		textTypeMateriel.setText(materiel.getTypeMateriel().getNomTypeString());
+		textSiteMateriel.setText(materiel.getSiteMaterielString());
 		if(materiel.getTypeMateriel().getCheminImageType().getValue()!=null && !materiel.getTypeMateriel().getCheminImageType().getValue().equals("")){
 			imageType.setImage(new Image(materiel.getTypeMateriel().getCheminImageType().getValue()));
 		}
