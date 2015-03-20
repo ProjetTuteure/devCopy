@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.Constante;
 import gpi.bd.Donnee;
 import gpi.metier.*;
 import gpi.view.*;
@@ -49,7 +50,7 @@ public class MainApp extends Application {
 		this.primaryStage.setWidth(805);
 		this.primaryStage.setHeight(685);
 		this.primaryStage.setResizable(false);
-		this.primaryStage.getIcons().add(new Image("/sources/images/Icon.png"));
+		this.primaryStage.getIcons().add(new Image(Constante.CHEMIN_LOGO));
 		initLoginLayout();
 	}
 	

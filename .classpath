@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="src/|out/|VNC/|Test/|sources/images/|sources/|Rapports/|lib/|BD/" kind="src" output="out" path=""/>
+	<classpathentry excluding="src/|out/|VNC/|Test/|sources/images/|Rapports/|lib/|BD/|dossier/|sources/" kind="src" output="out" path=""/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
