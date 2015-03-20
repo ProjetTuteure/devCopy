@@ -16,15 +16,21 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="798.0">
                <children>
                   <ImageView fx:id="imageType" fitHeight="150.0" fitWidth="200.0" layoutX="37.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="textSiteNomMachine" layoutX="371.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Site -&gt; NomMachine" wrappingWidth="167.6708984375" />
+                  <Text fx:id="textSiteNomMachine" layoutX="370.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Site -&gt; NomMachine" wrappingWidth="167.6708984375" />
                   <Text fx:id="textCheminDossierDrivers" layoutX="37.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chemin Dossier Drivers" />
                   <Circle fx:id="colorCircle" fill="#0f8a2a" layoutX="245.0" layoutY="43.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button layoutX="315.0" layoutY="152.0" mnemonicParsing="false" onAction="#ajouterAffecterUtilisateur" text="Ajouter Utilisateur" />
-                  <Button layoutX="665.0" layoutY="69.0" mnemonicParsing="false" onAction="#goBack" text="Retour" />
-                  <Button fx:id="b_vnc" layoutX="671.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#lancerVNC" text="VNC" />
-                  <Button layoutX="462.0" layoutY="152.0" mnemonicParsing="false" onAction="#ajouterLogicielMateriel" text="Ajouter Logiciel" />
-                  <Button layoutX="596.0" layoutY="152.0" mnemonicParsing="false" onAction="#ajouterMaintenanceMateriel" text="Ajouter Maintenance" />
-                  <Button layoutX="646.0" layoutY="106.0" mnemonicParsing="false" onMouseClicked="#ouvertureDossier" text="Ouvrir dossier" />
+                  <Button layoutX="409.0" layoutY="179.0" mnemonicParsing="false" onAction="#ajouterAffecterUtilisateur" text="Ajouter Utilisateur" />
+                  <Button layoutX="665.0" layoutY="118.0" mnemonicParsing="false" onAction="#goBack" text="Retour" />
+                  <Button fx:id="b_vnc" layoutX="671.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#lancerVNC" text="VNC" />
+                  <Button layoutX="539.0" layoutY="179.0" mnemonicParsing="false" onAction="#ajouterLogicielMateriel" text="Ajouter Logiciel" />
+                  <Button layoutX="654.0" layoutY="179.0" mnemonicParsing="false" onAction="#ajouterMaintenanceMateriel" text="Ajouter Maintenance" />
+                  <Button layoutX="646.0" layoutY="77.0" mnemonicParsing="false" onMouseClicked="#ouvertureDossier" text="Ouvrir dossier" />
+                  <Text layoutX="370.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="370.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="370.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="370.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="370.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="370.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="798.0">
