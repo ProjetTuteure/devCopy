@@ -18,7 +18,7 @@
          <bottom>
             <AnchorPane prefHeight="110.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="634.0" layoutY="40.0" mnemonicParsing="false" onAction="#onClickButton" text="Génerer Rapport" AnchorPane.rightAnchor="100.0" />
+                  <Button layoutX="531.0" layoutY="43.0" mnemonicParsing="false" onAction="#onClickButton" text="Générer rapport selon l'état des matériels" AnchorPane.rightAnchor="33.0" />
                </children>
             </AnchorPane>
          </bottom>

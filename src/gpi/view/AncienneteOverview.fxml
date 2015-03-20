@@ -34,7 +34,7 @@
          <bottom>
             <AnchorPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="619.0" layoutY="40.0" mnemonicParsing="false" onAction="#onClickButton" text="Génerer Rapport" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0" />
+                  <Button layoutX="544.0" layoutY="38.0" mnemonicParsing="false" onAction="#onClickButton" text="Générer rapport du matériel en fin de garantie" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="38.0" />
                </children>
             </AnchorPane>
          </bottom>

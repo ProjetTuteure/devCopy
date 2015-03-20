@@ -9,6 +9,7 @@ import gpi.metier.Materiel;
 import gpi.metier.MaterielDAO;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +94,10 @@ public class EtatController implements Initializable{
 		Rapports rapport=new Rapports();
 		rapport.GenerateEtat();
 		Popup.getInstance().afficherPopup("Rapport de l'état du matériel généré \n ("+Constante.CHEMIN_RAPPORTS+"Etat.pdf)");
+		try {
+			Runtime.getRuntime().exec("explorer "+Constante.CHEMIN_RAPPORTS_EXPLORER);
+		} catch (IOException e) {
+		}
 	}
 
 	/**

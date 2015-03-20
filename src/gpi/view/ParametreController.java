@@ -3,6 +3,7 @@ package gpi.view;
 import gpi.MainApp;
 import gpi.metier.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,6 +45,10 @@ public class ParametreController implements Initializable {
 		Rapports rapport=new Rapports();
 		rapport.GenerateLogiciels();
 		Popup.getInstance().afficherPopup("Rapport des logiciels de la société généré \n ("+Constante.CHEMIN_RAPPORTS+"Logiciels.pdf)");
+		try {
+			Runtime.getRuntime().exec("explorer "+Constante.CHEMIN_RAPPORTS_EXPLORER);
+		} catch (IOException e) {
+		}
 	}
 
 	/**

@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -126,6 +127,10 @@ public class AncienneteController implements Initializable {
 		Rapports rapport=new Rapports();
 		rapport.GenerateFinGarantie();
 		Popup.getInstance().afficherPopup("Rapport du matériel en fin de garantie généré\n ("+Constante.CHEMIN_RAPPORTS+"FinGarantie.pdf)");
+		try {
+			Runtime.getRuntime().exec("explorer "+Constante.CHEMIN_RAPPORTS_EXPLORER);
+		} catch (IOException e) {
+		}
 	}
      
 	@FXML 
