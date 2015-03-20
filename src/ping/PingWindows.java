@@ -49,14 +49,12 @@ public class PingWindows implements Ping,Runnable {
             String line;
 
             while ((line = bufferedreader.readLine()) != null) {
-            	System.out.println(line);
-            	compteurLigne++;
+               	compteurLigne++;
             }
         } catch (IOException e) {
 
             e.printStackTrace();
         }
-        System.out.println(compteurLigne);
         if(compteurLigne==8){
         	this.resultatPing=true;
         }else{

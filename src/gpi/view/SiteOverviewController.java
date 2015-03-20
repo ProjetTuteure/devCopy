@@ -1,5 +1,7 @@
 package gpi.view;
 
+import java.io.IOException;
+
 import utils.Constante;
 import utils.Popup;
 import utils.Rapports;
@@ -170,5 +172,9 @@ public class SiteOverviewController {
 		Rapports rapport = new Rapports();
 		rapport.GenerateMaterielParc();
 		Popup.getInstance().afficherPopup("Rapport des biens informatiques du parc généré \n ("+Constante.CHEMIN_RAPPORTS+"MaterielParc.pdf)");
+		try {
+			Runtime.getRuntime().exec("explorer "+Constante.CHEMIN_RAPPORTS_EXPLORER);
+		} catch (IOException e) {
+		}
 	}
 }
