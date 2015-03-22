@@ -206,6 +206,8 @@ public class DetailMachineController{
 		Properties p = Propriete.getInstance().getProperties();
 		textCheminDossierDrivers.setText(materiel.getRepertoireDriverMateriel().getValue());
 		imageType.setImage(new Image("file:///"));
+		imageType.setFitWidth(150);
+		imageType.setFitHeight(150);
 		textNomMateriel.setText(materiel.getNomMateriel().getValue());
 		textEtatMateriel.setText(materiel.getEtatMaterielString());
 		textTypeMateriel.setText(materiel.getTypeMateriel().getNomTypeString());
