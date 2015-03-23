@@ -74,7 +74,7 @@ public class MaterielOverview {
 		} catch (ConnexionBDException e) {
 			Popup.getInstance().afficherPopup(e.getMessage());
 		}
-		this.setLabelMaterielVille(site.getNomSiteString()+" -> "+type.getNomType().getValue());
+		this.setLabelMaterielVille(site.getNomSiteString()+" / "+type.getNomType().getValue());
 		this.sp_materiel.setHbarPolicy(ScrollBarPolicy.NEVER);
 		this.ajouterMaterielGridPane(listMaterielOverviewController);
 		this.ajouterActionBouton(b_retour);
